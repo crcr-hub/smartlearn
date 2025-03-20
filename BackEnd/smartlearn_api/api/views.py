@@ -51,6 +51,48 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             user_status.last_seen = now()
             user_status.save()
         return response  # Return the token response
+    
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_user_details(request):
+    user = request.user
+    user_data = {
+        "user_id": user.id,
+        "username": user.username,
+        "email": user.email,
+        "role": user.role,
+        "is_superuser": user.is_superuser,
+        "block_status": user.block_status,
+    }
+
+    # Check if user is a student
+    if hasattr(user, 'studentprofile'):
+        student_profile = user.studentprofile
+        user_data.update({
+            "first_name": student_profile.first_name,
+            "last_name": student_profile.last_name,
+            "place": student_profile.place,
+            "qualification":student_profile.qualification,
+            "mobile":student_profile.mobile,
+        })
+
+    # Check if user is a teacher
+    if hasattr(user, 'teacherprofile'):
+        teacher_profile = user.teacherprofile
+        user_data.update({
+            "profile_id": teacher_profile.id,
+            "first_name": teacher_profile.first_name,
+            "last_name": teacher_profile.last_name,
+            "place": teacher_profile.place,
+            "gender": teacher_profile.gender,
+            "qualification": teacher_profile.qualification,
+            "experience": teacher_profile.experience,
+            "experience_in": teacher_profile.experience_in,
+        })
+
+    return Response(user_data)
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()

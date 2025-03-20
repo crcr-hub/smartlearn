@@ -14,14 +14,23 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
 
     const response = await axiosInstance.post('/token/', { email, password });
     const { access, refresh } = response.data;
-    const user = jwtDecode(access);
+    const decodedUser = jwtDecode(access);
 
-      // 🔥 Clear previous session data before storing new user details
-      localStorage.clear();  // Clears everything stored in localStorage
-      sessionStorage.clear(); 
+    // Clear previous session data
+    localStorage.clear();
+    sessionStorage.clear();
 
+    // Store tokens
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", refresh);
+
+    // 🔥 Fetch user details separately after login
+    const userResponse = await axiosInstance.get('/user-details/', {
+      headers: { Authorization: `Bearer ${access}` },
+    });
+
+    const user = userResponse.data; // Full user details
+
     localStorage.setItem("user", JSON.stringify(user));
   
     if (user.is_superuser){
@@ -232,7 +241,7 @@ export const addTeacher = createAsyncThunk('auth/addTeacher', async ({userData, 
   }
 });
 
-export const viewStudent = createAsyncThunk('auth/viewUsers', async (_, { rejectWithValue }) => {
+export const viewStudent = createAsyncThunk('auth/viewStudent', async (_, { rejectWithValue }) => {
   try {
     const response = await axiosInstance.get('/list_students');
     return response.data; // Assuming the API returns a list of users
@@ -241,7 +250,7 @@ export const viewStudent = createAsyncThunk('auth/viewUsers', async (_, { reject
   }
 });
 
-export const viewTeachers = createAsyncThunk('auth/viewUsers', async (_, { rejectWithValue }) => {
+export const viewTeachers = createAsyncThunk('auth/viewTeachers', async (_, { rejectWithValue }) => {
   try {
     const response = await axiosInstance.get('/list_teachers');
     return response.data; // Assuming the API returns a list of users
@@ -1107,6 +1116,7 @@ const initialState = {
   refresh: localStorage.getItem("refresh") || null,
   isAuthenticated: !!localStorage.getItem("access"),
   error: null,
+  userlist :null,
   loading: false,
   teachers:null,
   teacher:null,
@@ -1427,14 +1437,21 @@ const authSlice = createSlice({
         state.loading = false; // Loading complete
         // Optional: Handle Teacher addition success in state if needed
       })
+
+      .addCase(viewTeachers.fulfilled, (state, action) => {
+        
+        state.userlist = action.payload; // Set users data
+        state.loading = false; // Loading complete
+      })
     
       .addCase(viewStudent.pending, (state) => {
         state.loading = true; // Start loading
         state.error = null;  // Clear previous errors
       })
+    
       .addCase(viewStudent.fulfilled, (state, action) => {
         
-        state.user = action.payload; // Set users data
+        state.userlist = action.payload; // Set users data
         state.loading = false; // Loading complete
       })
       .addCase(viewStudent.rejected, (state, action) => {

@@ -39,6 +39,7 @@ import TutorRecentMessagesPage from '../components/teacher/screen/TutorRecentMes
 import PrivateRoute from '../components/PrivateRoute';
 import TeacherMyCourse from '../components/teacher/screen/TeacherMyCourse';
 import ProfilePage from '../components/student/screen/ProfilePage';
+import StudentPrivateRoute from '../components/privateRoutes/StudentPrivateRoute';
 
 function IndexLayout() {
   return (
@@ -52,7 +53,8 @@ function IndexLayout() {
           <Route path='/teacherregister' element={<TeacherRegister/>}/>
           {/* <Route path = "/tutor/*" element = {<TutorLayout/>}/> */}
           <Route path = "/admin/*" element = {<AdminLayout/>}/>
-          <Route path = '/home/' element={<PrivateRoute><HomePage/></PrivateRoute>} />
+          <Route path = '/home/' element={<StudentPrivateRoute><HomePage/></StudentPrivateRoute>} />
+
           <Route path = '/tutorhome' element={<PrivateRoute><TeacherHomePage/></PrivateRoute>} />
           <Route path='/tutordashboard' element={<PrivateRoute><TeacherDashboardPage/></PrivateRoute>}/>
         
@@ -63,23 +65,24 @@ function IndexLayout() {
           <Route path='/add_module/:id' element={<PrivateRoute><TeacherAddModulPage/></PrivateRoute>} />
           <Route path='/teachermessage' element={<PrivateRoute><TecherMessage/></PrivateRoute>} />
           <Route path='/liststudent' element ={<PrivateRoute><StudentListPage/></PrivateRoute>} />
-          <Route path='/recent_m' element={<PrivateRoute><RecentMessages/></PrivateRoute>} />
+       
           <Route path='/mycourse' element={<PrivateRoute><TeacherMyCourse/></PrivateRoute>} />
-
-
           <Route path = '/tutorchat/:sid' element={<PrivateRoute><TutorChatComponent/></PrivateRoute>} />
-          <Route path='/videoplayer/:courseId' element={<PrivateRoute><VideoPlayerPage/></PrivateRoute>} />
-          <Route path='/coursedetails/:id' element={<PrivateRoute><CourseDetailsPage/></PrivateRoute>}/>
-          <Route path='/cartpage' element={<PrivateRoute><StudentCartPage/></PrivateRoute>}/>
-          <Route path='/wishlist' element={<PrivateRoute><StudentWishlistPage/></PrivateRoute>}/>
-          <Route path='/billing' element={<PrivateRoute><BillingDetailsPage/></PrivateRoute>}/>
-          <Route path='/mylearning' element={<PrivateRoute><MyLearningPage/></PrivateRoute>} />
-          <Route path='/learning/:id' element ={<PrivateRoute><Learning/></PrivateRoute>} />
-          <Route path='/chat/:tutorId' element = {<PrivateRoute><ChatComponentPage/></PrivateRoute>} />
-          <Route path='/teacherchat/:sid' element={<PrivateRoute><TeacherChatComponetPage/></PrivateRoute>} />
-          <Route path='/tutorlist' element = {<PrivateRoute><TutorList/></PrivateRoute>} />
           <Route path='/tutrecent_m' element ={<PrivateRoute><TutorRecentMessagesPage/></PrivateRoute>} />
-          <Route path='/sprofile' element ={<PrivateRoute><ProfilePage/></PrivateRoute>} />
+          <Route path='/teacherchat/:sid' element={<PrivateRoute><TeacherChatComponetPage/></PrivateRoute>} />
+
+
+          <Route path='/videoplayer/:courseId' element={<StudentPrivateRoute><VideoPlayerPage/></StudentPrivateRoute>} />
+          <Route path='/coursedetails/:id' element={<StudentPrivateRoute><CourseDetailsPage/></StudentPrivateRoute>}/>
+          <Route path='/cartpage' element={<StudentPrivateRoute><StudentCartPage/></StudentPrivateRoute>}/>
+          <Route path='/wishlist' element={<StudentPrivateRoute><StudentWishlistPage/></StudentPrivateRoute>}/>
+          <Route path='/billing' element={<StudentPrivateRoute><BillingDetailsPage/></StudentPrivateRoute>}/>
+          <Route path='/mylearning' element={<StudentPrivateRoute><MyLearningPage/></StudentPrivateRoute>} />
+          <Route path='/learning/:id' element ={<StudentPrivateRoute><Learning/></StudentPrivateRoute>} />
+          <Route path='/chat/:tutorId' element = {<StudentPrivateRoute><ChatComponentPage/></StudentPrivateRoute>} />
+          <Route path='/recent_m' element={<StudentPrivateRoute><RecentMessages/></StudentPrivateRoute>} />
+          <Route path='/tutorlist' element = {<StudentPrivateRoute><TutorList/></StudentPrivateRoute>} />
+          <Route path='/sprofile' element ={<StudentPrivateRoute><ProfilePage/></StudentPrivateRoute>} />
           
           {/* <Route path="/viewuser" element = {<ViewUser />} /> */}
        

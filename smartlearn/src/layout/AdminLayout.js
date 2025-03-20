@@ -27,6 +27,7 @@ import SelectACourse from '../components/admin/courses/SelectACourse';
 import ViewModules from '../components/admin/courses/ViewModules';
 import PendingCourses from '../components/admin/courses/PendingCourses';
 import ReportPage from '../components/admin/ReportPage';
+import AdminPrivateRoute from '../components/privateRoutes/AdminPrivateRoute';
 
 
 
@@ -47,25 +48,25 @@ function AdminLayout() {
      <Routes>
         {/* This will render BaseLayout, and inside it, you can define your nested routes */}
         <Route path="/" element={<BaseLayout />}>
-          <Route path="adminhome" element={<PrivateRoute redurectTo="/"><Dashboard/></PrivateRoute> } />
-          <Route path="addstudent" element= {<PrivateRoute redurectTo="/"><AddStudent/></PrivateRoute>} />
-          <Route path = "viewstudent" element = {<PrivateRoute redurectTo="/"><ViewStudent/></PrivateRoute> }/>
-          <Route path = "student/:id" element = {<PrivateRoute redurectTo="/"><UpdateStudent/></PrivateRoute> }/>
-          <Route path = "addteacher" element = {<PrivateRoute redurectTo="/"><AddTeacher/></PrivateRoute> }/>
-          <Route path = "viewteacher" element = {<PrivateRoute redurectTo="/"><ViewTeacher/></PrivateRoute> }/>
-          <Route path = "teacher/:id" element = {<PrivateRoute redurectTo="/"><UpdateTeacher/></PrivateRoute> }/>
-          <Route path = "addcategory" element = {<PrivateRoute redurectTo="/"><AddCategory/></PrivateRoute> }/>
-          <Route path = "viewcategory" element = {<PrivateRoute redurectTo="/"><ViewCategory/></PrivateRoute> }/>
-          <Route path = "category/:id" element = {<PrivateRoute redurectTo="/"><UpdatedCat/></PrivateRoute> }/>
-          <Route path = "addcourse" element = {<PrivateRoute redurectTo="/"><AddCourse/></PrivateRoute> }/>
-          <Route path = "addcourses" element = {<PrivateRoute redurectTo="/"><AddaCourse/></PrivateRoute> }/>
-          <Route path = "viewcourses" element = {<PrivateRoute redurectTo="/"><ViewCourses/></PrivateRoute> }/>
-          <Route path = "courses/:id" element = {<PrivateRoute redurectTo="/"><UpdateCourse/></PrivateRoute> }/>
-          <Route path = "course/:id" element = {<PrivateRoute redurectTo="/"><UpdateaCourse/></PrivateRoute> }/>
-          <Route path="/selectcourse" element={<PrivateRoute redurectTo="/"><SelectACourse/> </PrivateRoute> }/>
-          <Route path="/viewmodule/:id" element={<PrivateRoute redurectTo="/"><ViewModules/> </PrivateRoute> }/>
-          <Route path="/pendingcourses" element = {<PrivateRoute redurectTo="/"><PendingCourses/></PrivateRoute>}/>
-          <Route path="/reports" element={<PrivateRoute redurectTo ="/"><ReportPage/></PrivateRoute>} />
+          <Route path="adminhome" element={<AdminPrivateRoute ><Dashboard/></AdminPrivateRoute> } />
+          <Route path="addstudent" element= {<AdminPrivateRoute ><AddStudent/></AdminPrivateRoute>} />
+          <Route path = "viewstudent" element = {<AdminPrivateRoute ><ViewStudent/></AdminPrivateRoute> }/>
+          <Route path = "student/:id" element = {<AdminPrivateRoute ><UpdateStudent/></AdminPrivateRoute> }/>
+          <Route path = "addteacher" element = {<AdminPrivateRoute ><AddTeacher/></AdminPrivateRoute> }/>
+          <Route path = "viewteacher" element = {<AdminPrivateRoute ><ViewTeacher/></AdminPrivateRoute> }/>
+          <Route path = "teacher/:id" element = {<AdminPrivateRoute ><UpdateTeacher/></AdminPrivateRoute> }/>
+          <Route path = "addcategory" element = {<AdminPrivateRoute ><AddCategory/></AdminPrivateRoute> }/>
+          <Route path = "viewcategory" element = {<AdminPrivateRoute ><ViewCategory/></AdminPrivateRoute> }/>
+          <Route path = "category/:id" element = {<AdminPrivateRoute ><UpdatedCat/></AdminPrivateRoute> }/>
+          <Route path = "addcourse" element = {<AdminPrivateRoute ><AddCourse/></AdminPrivateRoute> }/>
+          <Route path = "addcourses" element = {<AdminPrivateRoute ><AddaCourse/></AdminPrivateRoute> }/>
+          <Route path = "viewcourses" element = {<AdminPrivateRoute ><ViewCourses/></AdminPrivateRoute> }/>
+          <Route path = "courses/:id" element = {<AdminPrivateRoute ><UpdateCourse/></AdminPrivateRoute> }/>
+          <Route path = "course/:id" element = {<AdminPrivateRoute ><UpdateaCourse/></AdminPrivateRoute> }/>
+          <Route path="/selectcourse" element={<AdminPrivateRoute ><SelectACourse/> </AdminPrivateRoute> }/>
+          <Route path="/viewmodule/:id" element={<AdminPrivateRoute ><ViewModules/> </AdminPrivateRoute> }/>
+          <Route path="/pendingcourses" element = {<AdminPrivateRoute ><PendingCourses/></AdminPrivateRoute>}/>
+          <Route path="/reports" element={<AdminPrivateRoute ><ReportPage/></AdminPrivateRoute>} />
           
         </Route>
       </Routes>

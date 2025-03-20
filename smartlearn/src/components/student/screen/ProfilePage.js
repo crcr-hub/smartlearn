@@ -52,6 +52,31 @@ function ProfilePage() {
         setIsEditing(true);
     };
 
+     const [errors, setErrors] = useState({});    
+      const containsHTMLTags = (input) => /<[^>]*>/.test(input);
+      const validate = () => {
+            let newErrors = {};
+        
+            if (!profileData.first_name) {
+              newErrors.first_name = "First name is required";}
+            else if (containsHTMLTags(profileData.first_name)){
+              newErrors.first_name = "Invalid input (No HTML tags allowed)";
+    
+            }
+            if (!profileData.last_name) {newErrors.last_name = "Last name is required";}
+            else if (containsHTMLTags(profileData.last_name)) {
+              newErrors.last_name = "Invalid input (No HTML tags allowed)";
+          }
+            if (profileData.gender === "") newErrors.gender = "Gender is required";
+            if (!profileData.qualification) newErrors.qualification = "Qualification is required";
+            if (!profileData.place) newErrors.place = "Place is required";
+            if (!profileData.mobile){newErrors.mobile = "Mobile number is required";} 
+            else if (!/^\d{10}$/.test(profileData.mobile)){newErrors.mobile = "Mobile number must be 10 digits";} 
+           
+            setErrors(newErrors);
+            return Object.keys(newErrors).length === 0; // Valid if no errors
+          };
+
     const handleSaveClick = () => {
         setIsEditing(false);
        
@@ -79,6 +104,26 @@ function ProfilePage() {
                             {/* First Name */}
                             <div className="col-md-5">
                                 <div className="form-group">
+                                    
+                                {/* <MDBCol col='6'>
+              
+              <MDBInput wrapperClass='mb-2' label=
+                        {
+                          errors.first_name ? (
+                            <span style={{ color: "red" }}>{errors.first_name}</span>
+                          ) : (
+                            "First Name"
+                          )
+                        }
+  onChange={(e)=>{setUserData({...userData, first_name:e.target.value});
+  if (errors.first_name) {
+    setErrors({ ...errors, first_name: "" });
+  }
+  }} type='text' />
+   
+            </MDBCol> */}
+                                    
+                                    
                                     <label htmlFor="firstName" className="form-label fs-6">First Name</label>
                                     {isEditing ? (
                                         <input

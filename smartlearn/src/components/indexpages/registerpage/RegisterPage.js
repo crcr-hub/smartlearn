@@ -15,6 +15,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { Form, useNavigate } from 'react-router-dom';
 import { addStudent } from '../../../redux/authSlices';
+import { quartersInYear } from 'date-fns';
 
 function RegisterPage() {
   const dispatch = useDispatch()
@@ -33,11 +34,20 @@ function RegisterPage() {
         mobile :""
       })
   const [errors, setErrors] = useState({});    
+  const containsHTMLTags = (input) => /<[^>]*>/.test(input);
   const validate = () => {
         let newErrors = {};
     
-        if (!userData.first_name) newErrors.first_name = "First name is required";
-        if (!userData.last_name) newErrors.last_name = "Last name is required";
+        if (!userData.first_name) {
+          newErrors.first_name = "First name is required";}
+        else if (containsHTMLTags(userData.first_name)){
+          newErrors.first_name = "Invalid input (No HTML tags allowed)";
+
+        }
+        if (!userData.last_name) {newErrors.last_name = "Last name is required";}
+        else if (containsHTMLTags(userData.last_name)) {
+          newErrors.last_name = "Invalid input (No HTML tags allowed)";
+      }
         if (userData.gender === "") newErrors.gender = "Gender is required";
         if (!userData.qualification) newErrors.qualification = "Qualification is required";
         if (!userData.place) newErrors.place = "Place is required";
@@ -90,7 +100,7 @@ function RegisterPage() {
                   <MDBInput wrapperClass='mb-2' label=
                             {
                               errors.first_name ? (
-                                <span style={{ color: "red" }}>First Name is required</span>
+                                <span style={{ color: "red" }}>{errors.first_name}</span>
                               ) : (
                                 "First Name"
                               )
@@ -106,7 +116,7 @@ function RegisterPage() {
                 <MDBCol col='6'>
                   <MDBInput wrapperClass='mb-2' label= {
                               errors.last_name ? (
-                                <span style={{ color: "red" }}>Last Name is required</span>
+                                <span style={{ color: "red" }}>{errors.last_name}</span>
                               ) : (
                                 "Last Name"
                               )
@@ -126,7 +136,11 @@ function RegisterPage() {
           id="genderSelect"
           className="form-select"
           value={userData.gender} 
-      onChange={(e) => setUserData({...userData,gender:e.target.value})} >
+      onChange={(e) => {setUserData({...userData,gender:e.target.value})
+      if (errors.gender){
+        setErrors({...errors,gender:""})
+       }
+      }} >
           <option value="">
          Choose..
           </option>
@@ -137,7 +151,7 @@ function RegisterPage() {
         <label htmlFor="genderSelect" className="form-label">
         {
                               errors.gender ? (
-                                <span style={{ color: "red" }}>Select Your Gender</span>
+                                <span style={{ color: "red" }}>{errors.gender}</span>
                               ) : (
                                 "Select Gender"
                               )
@@ -152,63 +166,73 @@ function RegisterPage() {
 
                 <MDBCol col='6'>
                   <MDBInput wrapperClass='mb-2' label= {
-                              errors.gender ? (
-                                <span style={{ color: "red" }}>Qualification is Required</span>
-                              ) : (
-                                "Qualification"
-                              )
+                              errors.qualification ? (
+                                <span style={{ color: "red" }}>{errors.qualification}</span>
+                              ) : ("Qualification")
                             }  value={userData.qualification}
-       onChange={(e)=> setUserData({...userData,qualification:e.target.value})} id='form2' type='text'/>
+                          onChange={(e)=> {setUserData({...userData,qualification:e.target.value});
+                          if (errors.qualification){
+                            setErrors({...errors,qualification:""})
+                          }
+                          }} id='form2' type='text'/>
                 </MDBCol>
               </MDBRow>
               <MDBRow>
                 <MDBCol col='6'>
                   <MDBInput wrapperClass='mb-2' label= {
-                              errors.gender ? (
-                                <span style={{ color: "red" }}>Place is Required</span>
-                              ) : (
-                                "Place"
-                              )
+                              errors.place ? (<span style={{ color: "red" }}>{errors.place}</span>
+                              ) : ("Place")
                             } value={userData.place} 
-      onChange={(e) => setUserData({...userData,place:e.target.value})} id='form1' type='text'/>
+      onChange={(e) => {setUserData({...userData,place:e.target.value});
+      if(errors.place){
+        setErrors({...errors,place:""})
+      }
+      }} id='form1' type='text'/>
                 </MDBCol>
 
                 <MDBCol col='6'>
                   <MDBInput wrapperClass='mb-2' label= {
-                              errors.gender ? (
-                                <span style={{ color: "red" }}>{errors.mobile}</span>
-                              ) : (
-                                "Mobile"
-                              )
+                              errors.mobile ? (<span style={{ color: "red" }}>{errors.mobile}</span>
+                              ) : ("Mobile")
                             }  value={userData.mobile} 
-      onChange={(e) => setUserData({...userData, mobile:e.target.value})} id='form2' type='text'/>
+      onChange={(e) => {setUserData({...userData, mobile:e.target.value});
+      if(errors.mobile){
+        setErrors({...errors,mobile:""})
+      }
+      }} id='form2' type='text'/>
                 </MDBCol>
               </MDBRow>
 
               <MDBInput wrapperClass='mb-2' label= {
                               errors.email ? (
                                 <span style={{ color: "red" }}>{errors.email}</span>
-                              ) : (
-                                "Email"
-                              )
+                              ) : ( "Email")
                             }  value={userData.email} 
-      onChange={(e) => setUserData({...userData,email:e.target.value})} id='form3' type='email'/>
+      onChange={(e) => {setUserData({...userData,email:e.target.value});
+      if(errors.email){
+        setErrors({...errors,email:""})
+      }
+      }} id='form3' type='email'/>
               <MDBInput wrapperClass='mb-2' label={
                               errors.password ? (
                                 <span style={{ color: "red" }}>{errors.password}</span>
-                              ) : (
-                                "Password"
-                              )
+                              ) : ( "Password")
                             } value={userData.password} 
-      onChange={(e) => setUserData({...userData,password:e.target.value})} id='form4' type='password'/>
+      onChange={(e) => {setUserData({...userData,password:e.target.value});
+      if(errors.password){
+        setErrors({...errors,password:""})
+      }
+      }} id='form4' type='password'/>
       <MDBInput wrapperClass='mb-2' label={
                               errors.password2 ? (
                                 <span style={{ color: "red" }}>{errors.password2}</span>
-                              ) : (
-                                "Repeat Password"
-                              )
+                              ) : ( "Repeat Password")
                             } value={userData.password2} 
-      onChange={(e) => setUserData({...userData,password2:e.target.value})} id='form4' type='password'/>
+      onChange={(e) => {setUserData({...userData,password2:e.target.value});
+      if(errors.password2){
+        setErrors({...errors,password2:""})
+      }
+      }} id='form4' type='password'/>
 
         <button className="btn btn-primary w-100 mb-2" style={{ height: '40px' }}>
           Sign Up

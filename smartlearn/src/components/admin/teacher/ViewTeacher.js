@@ -9,7 +9,7 @@ function ViewTeacher() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {  user:teachers, loading, error } = useSelector((state) => state.auth);
+    const {  userlist:teachers, loading, error } = useSelector((state) => state.auth);
     // console.log("teachers:", teachers);
     useEffect (()=>{
         dispatch (viewTeachers());},[dispatch])
