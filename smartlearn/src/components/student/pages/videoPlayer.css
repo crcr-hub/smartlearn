@@ -1,0 +1,48 @@
+/* Basic video container styling */
+.video-player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 100%;  /* Ensure the container takes up all available width */
+    width: 100%;      /* Make the container take the full width of the screen */
+    background-color: #000;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Video player styling */
+  .video-js {
+    width: 100% !important;  /* Make sure the video takes up all available width */
+    height: 550px !important; /* Define a height for the video player */
+    border-radius: 8px;
+    background-color: #000; /* Ensure a clean black background */
+  }
+  
+  /* Style video controls */
+  .vjs-control-bar {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for controls */
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .vjs-play-control {
+    background-color: #ff0000; /* Red play button */
+  }
+  
+  .vjs-volume-control {
+    background-color: #ff5500; /* Volume control */
+  }
+  
+  /* Customizing the progress bar */
+  .vjs-progress-holder {
+    background-color: #333; /* Dark background for progress */
+  }
+  
+  .vjs-play-progress {
+    background-color: #00cc00; /* Green for progress */
+  }
+  
+  .vjs-load-progress {
+    background-color: #888; /* Grey for buffered area */
+  }
+  

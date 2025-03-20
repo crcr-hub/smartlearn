@@ -1,0 +1,100 @@
+.rows{
+    margin-left: 20px;
+    color: #fff;
+}
+.posters-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .posters-container:hover .scroll-button {
+    opacity: 1;
+  }
+
+.posters{
+    display: flex;
+    padding: 20px;
+    overflow-x: scroll;
+    overflow-y:hidden ;
+    transition: transform 0.2s;
+    scroll-behavior: smooth;
+}
+
+.posters::-webkit-scrollbar{
+    display: none;
+}
+
+
+.poster{
+    max-height: 400px;
+    margin-right: 10px;
+    cursor: pointer;
+
+}
+
+
+.poster:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s;
+    
+  }
+
+.smallPoster{
+    max-height: 200px;
+    margin-right: 10px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.smallPoster:hover{
+    transform: scale(1.02);
+    transition: transform 0.3s;  
+}
+.youtubeDiv {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.266);
+    padding: 5px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.youtubeCloseButton{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgb(75, 71, 71);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .left {
+    left: 0;
+  }
+  
+  .right {
+    right: 0;
+  }
+  
