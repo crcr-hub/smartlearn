@@ -15,7 +15,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { Form, useNavigate } from 'react-router-dom';
 import { addStudent } from '../../../redux/authSlices';
-import { quartersInYear } from 'date-fns';
+import { lastDayOfDecade, quartersInYear } from 'date-fns';
 
 function RegisterPage() {
   const dispatch = useDispatch()
@@ -121,7 +121,13 @@ function RegisterPage() {
                                 "Last Name"
                               )
                             } value={userData.last_name} 
-      onChange={(e) => setUserData({...userData,last_name:e.target.value})} id='form2' type='text'/>
+      onChange={(e) => {setUserData({...userData,last_name:e.target.value})
+                            if (errors.last_name){
+                                setErrors({...errors,last_name:""})
+                            }
+                            
+      
+      }} id='form2' type='text'/>
                 </MDBCol>
               </MDBRow>
               <MDBRow>

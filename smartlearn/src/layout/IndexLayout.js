@@ -40,6 +40,7 @@ import PrivateRoute from '../components/PrivateRoute';
 import TeacherMyCourse from '../components/teacher/screen/TeacherMyCourse';
 import ProfilePage from '../components/student/screen/ProfilePage';
 import StudentPrivateRoute from '../components/privateRoutes/StudentPrivateRoute';
+import TeacherPrivateRoute from '../components/privateRoutes/TeacherPrivateRoute';
 
 function IndexLayout() {
   return (
@@ -55,21 +56,19 @@ function IndexLayout() {
           <Route path = "/admin/*" element = {<AdminLayout/>}/>
           <Route path = '/home/' element={<StudentPrivateRoute><HomePage/></StudentPrivateRoute>} />
 
-          <Route path = '/tutorhome' element={<PrivateRoute><TeacherHomePage/></PrivateRoute>} />
-          <Route path='/tutordashboard' element={<PrivateRoute><TeacherDashboardPage/></PrivateRoute>}/>
-        
-          <Route path='/teacheraddcourse' element={<PrivateRoute><TeacherAddCoursePage/></PrivateRoute>}/>
-          <Route path='/teacherupdatecourse/:id' element={<PrivateRoute><TeacherUpdateCoursePage/></PrivateRoute>}/>
-          <Route path='/teacherprofile' element={<PrivateRoute><TeacherProfilePage/></PrivateRoute>}/>
-          <Route path='/select' element={<PrivateRoute><TeacherSelectACoursePage/></PrivateRoute>} />
-          <Route path='/add_module/:id' element={<PrivateRoute><TeacherAddModulPage/></PrivateRoute>} />
-          <Route path='/teachermessage' element={<PrivateRoute><TecherMessage/></PrivateRoute>} />
-          <Route path='/liststudent' element ={<PrivateRoute><StudentListPage/></PrivateRoute>} />
-       
-          <Route path='/mycourse' element={<PrivateRoute><TeacherMyCourse/></PrivateRoute>} />
-          <Route path = '/tutorchat/:sid' element={<PrivateRoute><TutorChatComponent/></PrivateRoute>} />
-          <Route path='/tutrecent_m' element ={<PrivateRoute><TutorRecentMessagesPage/></PrivateRoute>} />
-          <Route path='/teacherchat/:sid' element={<PrivateRoute><TeacherChatComponetPage/></PrivateRoute>} />
+          <Route path = '/tutorhome' element={<TeacherPrivateRoute><TeacherHomePage/></TeacherPrivateRoute>} />
+          <Route path='/tutordashboard' element={<TeacherPrivateRoute><TeacherDashboardPage/></TeacherPrivateRoute>}/>
+          <Route path='/teacheraddcourse' element={<TeacherPrivateRoute><TeacherAddCoursePage/></TeacherPrivateRoute>}/>
+          <Route path='/teacherupdatecourse/:id' element={<TeacherPrivateRoute><TeacherUpdateCoursePage/></TeacherPrivateRoute>}/>
+          <Route path='/teacherprofile' element={<TeacherPrivateRoute><TeacherProfilePage/></TeacherPrivateRoute>}/>
+          <Route path='/select' element={<TeacherPrivateRoute><TeacherSelectACoursePage/></TeacherPrivateRoute>} />
+          <Route path='/add_module/:id' element={<TeacherPrivateRoute><TeacherAddModulPage/></TeacherPrivateRoute>} />
+          <Route path='/teachermessage' element={<TeacherPrivateRoute><TecherMessage/></TeacherPrivateRoute>} />
+          <Route path='/liststudent' element ={<TeacherPrivateRoute><StudentListPage/></TeacherPrivateRoute>} />
+          <Route path='/mycourse' element={<TeacherPrivateRoute><TeacherMyCourse/></TeacherPrivateRoute>} />
+          <Route path = '/tutorchat/:sid' element={<TeacherPrivateRoute><TutorChatComponent/></TeacherPrivateRoute>} />
+          <Route path='/tutrecent_m' element ={<TeacherPrivateRoute><TutorRecentMessagesPage/></TeacherPrivateRoute>} />
+          <Route path='/teacherchat/:sid' element={<TeacherPrivateRoute><TeacherChatComponetPage/></TeacherPrivateRoute>} />
 
 
           <Route path='/videoplayer/:courseId' element={<StudentPrivateRoute><VideoPlayerPage/></StudentPrivateRoute>} />

@@ -17,7 +17,7 @@ function MyLearning() {
         //Ensure user is available and fetch courses only when user_id exists
           dispatch(fetchLearningCourse());
           dispatch(viewCourses());
-      }, [dispatch]);
+      }, []);
       
 
 

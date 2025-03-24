@@ -8,7 +8,7 @@ function ProfilePage() {
     const {profile}  = useSelector((state)=>state.auth)
     const [isEditing,setIsEditing] = useState(false);
     const [profileData, setProfileData] = useState({
-        id:profile.id,
+        id: profile?.id || '',
         first_name:"",
         last_name:"",
         gender:"",
@@ -19,7 +19,7 @@ function ProfilePage() {
     
 
      const [originalProfileData, setOriginalProfileData] = useState({
-            id : profile.id,
+            id: profile?.id || '',
             first_name: '',
             last_name: '',
             place:"",
@@ -29,6 +29,11 @@ function ProfilePage() {
         });
 
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchStudentProfile()); // Fetch profile data on mount
+    }, []);
+
+    console.log("profilesssss",profile)
 
     useEffect(()=>{
         if(profile){
@@ -46,7 +51,7 @@ function ProfilePage() {
             setOriginalProfileData(initialProfileData);
         }
 
-    },[])
+    },[profile])
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -78,18 +83,21 @@ function ProfilePage() {
           };
 
     const handleSaveClick = () => {
-        setIsEditing(false);
        
-        // Here you can handle saving the updated data to the server or local state
+       if (validate()){
+        setIsEditing(false);
         dispatch(updateStudentProfile(profileData));  // Use profileData directly
-    dispatch(fetchStudentProfile()); 
+        dispatch(fetchStudentProfile()); 
 
-    setOriginalProfileData(profileData);
+        setOriginalProfileData(profileData);
+    }
+        // Here you can handle saving the updated data to the server or local state
     };
 
     const handleCancelClick = () => {
         setIsEditing(false);
         setProfileData(originalProfileData); // Revert changes back to the original data
+        setErrors({})
     };
   return (
     <div>
@@ -124,16 +132,29 @@ function ProfilePage() {
             </MDBCol> */}
                                     
                                     
-                                    <label htmlFor="firstName" className="form-label fs-6">First Name</label>
+                                    <label htmlFor="firstName" className="form-label fs-6">
+
+                                    {
+                              errors.first_name ? (
+                                <span style={{ color: "red" }}>{errors.first_name}</span>
+                              ) : (
+                                "First Name"
+                              )
+                            }
+
+                                    </label>
                                     {isEditing ? (
                                         <input
                                             type="text"
                                             className="form-control"
                                             id="firstName"
                                             value={profileData.first_name}
-                                            onChange={(e) =>
-                                                setProfileData({ ...profileData, first_name: e.target.value })
-                                            }
+                                            onChange={(e) =>{
+                                                setProfileData({ ...profileData, first_name: e.target.value });
+                                                if (errors.first_name) {
+                                                    setErrors({ ...errors, first_name: "" });
+                                                  }
+                                            }}
                                         />
                                     ) : (
                                         <p className="form-control-static fs-6">{profileData.first_name}</p>
@@ -144,16 +165,27 @@ function ProfilePage() {
                             {/* Last Name */}
                             <div className="col-md-5">
                                 <div className="form-group">
-                                    <label htmlFor="lastName" className="form-label fs-6">Last Name</label>
+                                    <label htmlFor="lastName" className="form-label fs-6">
+                                    {
+                              errors.last_name ? (
+                                <span style={{ color: "red" }}>{errors.last_name}</span>
+                              ) : (
+                                "Last Name"
+                              )
+                            }
+                                    </label>
                                     {isEditing ? (
                                         <input
                                             type="text"
                                             className="form-control"
                                             id="lastName"
                                             value={profileData.last_name}
-                                            onChange={(e) =>
-                                                setProfileData({ ...profileData, last_name: e.target.value })
-                                            }
+                                            onChange={(e) =>{
+                                                setProfileData({ ...profileData, last_name: e.target.value });
+                                                if (errors.last_name){
+                                                    setErrors({...errors,last_name:""})
+                                                }
+                                           } }
                                         />
                                     ) : (
                                         <p className="form-control-static fs-6">{profileData.last_name}</p>
@@ -163,13 +195,23 @@ function ProfilePage() {
 
                             <div className="col-md-5">
                                 <div className="form-group">
-                                    <label htmlFor="lastName" className="form-label fs-6">Gender</label>
+                                    <label htmlFor="lastName" className="form-label fs-6">
+                                    {
+                              errors.gender ? (
+                                <span style={{ color: "red" }}>{errors.gender}</span>
+                              ) : ( "Gender")
+                            }
+                                    </label>
                                     {isEditing ? (
                                          <select id="inputState" className="form-select" name="gender" value={profileData.gender} 
-                                         onChange={(e) => setProfileData({...profileData,gender:e.target.value})}>
-                                         <option selected>Choose...</option>
-                                         <option>Male</option>
-                                         <option>Female</option>
+                                         onChange={(e) => {setProfileData({...profileData,gender:e.target.value});
+                                         if (errors.gender){
+                                            setErrors({...errors,gender:""})
+                                           }
+                                         }}>
+                                         <option value="">Choose...</option>
+                                         <option value="Male">Male</option>
+                                         <option value="Female">Female</option>
                                          </select>
                                     ) : (
                                         <p className="form-control-static fs-6">{profileData.gender}</p>
@@ -180,16 +222,25 @@ function ProfilePage() {
 
                             <div className="col-md-5">
                                 <div className="form-group">
-                                    <label htmlFor="lastName" className="form-label fs-6">Place</label>
+                                    <label htmlFor="lastName" className="form-label fs-6">
+
+                                    {
+                              errors.place ? (<span style={{ color: "red" }}>{errors.place}</span>
+                              ) : ("Place")
+                            }
+                                    </label>
                                     {isEditing ? (
                                         <input
                                             type="text"
                                             className="form-control"
                                             id="lastName"
                                             value={profileData.place}
-                                            onChange={(e) =>
-                                                setProfileData({ ...profileData, place: e.target.value })
-                                            }
+                                            onChange={(e) =>{
+                                                setProfileData({ ...profileData, place: e.target.value });
+                                                if(errors.place){
+                                                    setErrors({...errors,place:""})
+                                                  }
+                                            } }
                                         />
                                     ) : (
                                         <p className="form-control-static fs-6">{profileData.place}</p>
@@ -200,16 +251,25 @@ function ProfilePage() {
 
                             <div className="col-md-5">
                                 <div className="form-group">
-                                    <label htmlFor="lastName" className="form-label fs-6">Qualification</label>
+                                    <label htmlFor="lastName" className="form-label fs-6">
+                                    {
+                              errors.qualification ? (
+                                <span style={{ color: "red" }}>{errors.qualification}</span>
+                              ) : ("Qualification")
+                            } 
+                                    </label>
                                     {isEditing ? (
                                         <input
                                             type="text"
                                             className="form-control"
                                             id="lastName"
                                             value={profileData.qualification}
-                                            onChange={(e) =>
-                                                setProfileData({ ...profileData, qualification: e.target.value })
-                                            }
+                                            onChange={(e) =>{
+                                                setProfileData({ ...profileData, qualification: e.target.value });
+                                                if (errors.qualification){
+                                                    setErrors({...errors,qualification:""})
+                                                  }
+                                           } }
                                         />
                                     ) : (
                                         <p className="form-control-static fs-6">{profileData.qualification}</p>
@@ -219,16 +279,24 @@ function ProfilePage() {
 
                                 <div className="col-md-5">
                                     <div className="form-group">
-                                    <label htmlFor="lastName" className="form-label fs-6">Mobile</label>
+                                    <label htmlFor="lastName" className="form-label fs-6">
+                                    {
+                              errors.mobile ? (<span style={{ color: "red" }}>{errors.mobile}</span>
+                              ) : ("Mobile")
+                            }
+                                    </label>
                                     {isEditing ? (
                                         <input
                                             type="text"
                                             className="form-control"
                                             id="lastName"
                                             value={profileData.mobile}
-                                            onChange={(e) =>
-                                                setProfileData({ ...profileData, mobile: e.target.value })
-                                            }
+                                            onChange={(e) =>{
+                                                setProfileData({ ...profileData, mobile: e.target.value });
+                                                if(errors.mobile){
+                                                    setErrors({...errors,mobile:""})
+                                                  }
+                                           } }
                                         />
                                     ) : (
                                         <p className="form-control-static fs-6">{profileData.mobile}</p>

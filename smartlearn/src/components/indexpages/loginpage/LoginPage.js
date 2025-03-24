@@ -57,11 +57,22 @@ function LoginPage() {
                         <a href="!#">Forgot password?</a>
                         </div>
 
-                        <MDBBtn className="mb-4 w-100"    style={{
+                        {/* <MDBBtn className="mb-4 w-100"    style={{
                                                   transform: 'none',
                                                   boxShadow: 'none',
                                                   transition: 'none'
-                                                }}>Sign in</MDBBtn>
+                                                }}>Sign in</MDBBtn> */}
+
+                <button type='submit'
+                  className="btn btn-primary mb-4 w-100" 
+                  style={{
+                    transform: 'none',
+                    boxShadow: 'none',
+                    transition: 'none'
+                  }}
+                >
+                  Sign in
+                </button>
                     </form>
                     </MDBCardBody>
                     </div>
