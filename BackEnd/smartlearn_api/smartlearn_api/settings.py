@@ -29,6 +29,8 @@ SECRET_KEY = 'django-insecure-)h$hy8yeu++&dbz_e!%e%075-t0^5vx+-)%*9vc97_xg=vz+9_
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["mysmartlearn.com/", "www.mysmartlearn.com/", "3.104.74.203/"]
+DEBUG = False
 
 
 # Application definition
@@ -140,6 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -188,3 +191,4 @@ import os
 
 MEDIA_URL = '/media/'  # URL to access media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
