@@ -93,7 +93,7 @@ const TutorChatComponent = () => {
         formData.append("image", file);
     
         try {
-            const response = await fetch("http://localhost:8000/api/upload-image/", {
+            const response = await fetch("https://mysmartlearn.com/api/upload-image/", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("access")}`,
