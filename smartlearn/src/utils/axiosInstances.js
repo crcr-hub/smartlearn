@@ -19,7 +19,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/',
+  // baseURL: 'http://127.0.0.1:8000/api/',
+  baseURL : 'https://mysmartlearn.com/api/'
 });
 
 axiosInstance.interceptors.request.use(
@@ -41,7 +42,7 @@ const refreshToken = async () => {
       throw new Error('No refresh token available');
     }
 
-    const response = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {
+    const response = await axios.post('https://mysmartlearn.com/api/token/refresh/', {
       refresh: refresh,
     });
 
