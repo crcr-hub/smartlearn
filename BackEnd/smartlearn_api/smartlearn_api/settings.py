@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)h$hy8yeu++&dbz_e!%e%075-t0^5vx+-)%*9vc97_xg=vz+9_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = ["mysmartlearn.com", "www.mysmartlearn.com", "13.237.128.111"]
 DEBUG = False
