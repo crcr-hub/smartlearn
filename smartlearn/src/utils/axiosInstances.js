@@ -19,12 +19,20 @@
 import axios from 'axios';
 import { baseUrl } from './constant';
 
+// ✅ Log current API base URL based on environment
+if (window.location.hostname !== 'localhost') {
+  console.log("🔒 Production mode - using API:", baseUrl);
+} else {
+  console.log("🛠 Development mode - using API:", baseUrl);
+}
+
 const axiosInstance = axios.create({
   // baseURL: 'http://127.0.0.1:8000/api/',
   baseURL : baseUrl
 });
 
 axiosInstance.interceptors.request.use(
+  
   (config) => {
     const token = localStorage.getItem('access');
     if (token) {
