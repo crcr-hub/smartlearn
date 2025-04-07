@@ -117,7 +117,7 @@ export const connectWebSocket = (roomName) => (dispatch) => {
     return;
   }
 
-  const socketUrl = `ws://localhost:8000/ws/chat/${roomName}/?token=${token}`;
+  const socketUrl = `wss://mysmartlearn.com/ws/chat/${roomName}/?token=${token}`;
 
   const createSocket = () => {
     const socket = new WebSocket(socketUrl);

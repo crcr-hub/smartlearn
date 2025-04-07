@@ -74,7 +74,7 @@ function CourseDetailsPage() {
         }}
       >
        
-        <img src={course?.course?.images ? `http://localhost:8000${course.course.images}` : ""} className="card-img-top" alt={course?.course?.title? course.course.title : ""} style={{paddingBottom:"10px"}}/>
+        <img src={course?.course?.images ? `https://mysmartlearn.com/${course.course.images}` : ""} className="card-img-top" alt={course?.course?.title? course.course.title : ""} style={{paddingBottom:"10px"}}/>
         <p>Price Details</p>
         <div style={{display:"flex"}}>
          
