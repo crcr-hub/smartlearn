@@ -26,6 +26,9 @@ if (window.location.hostname !== 'localhost') {
   console.log("🛠 Development mode - using API:", baseUrl);
 }
 
+console.log("Current hostname:", window.location.hostname);
+console.log("Using baseUrl:", baseUrl);
+
 const axiosInstance = axios.create({
   // baseURL: 'http://127.0.0.1:8000/api/',
   baseURL : baseUrl

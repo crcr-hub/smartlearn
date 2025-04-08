@@ -1,4 +1,2 @@
-export const baseUrl =
-  window.location.hostname === 'localhost'
-    ? 'http://127.0.0.1:8000/api/'
-    : 'https://mysmartlearn.com/api/';
+export const baseUrl='https://mysmartlearn.com/api/'
+export const WSBaseUrl='wss://mediacapital-server.space/ws'
