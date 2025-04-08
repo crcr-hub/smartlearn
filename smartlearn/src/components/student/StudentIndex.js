@@ -18,6 +18,9 @@ function StudentIndex() {
           dispatch (viewAllTeachers());
         },[dispatch])
         const [blockStatus,setBlockstatus] = useState();
+        console.log("categories", categories);
+        console.log("courses", courses);
+        console.log("teachers", teachers);
 
     const categoryArray = Array.isArray(categories) ? categories : [];
     
