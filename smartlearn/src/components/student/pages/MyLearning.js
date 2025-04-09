@@ -59,7 +59,7 @@ function MyLearning() {
                               <img
                                 src={
                                   course?.images
-                                    ? `http://localhost:8000${course.images}`
+                                    ? `https://mysmartlearn.com/${course.images}`
                                     : null
                                 }
                                 className="card-img-top"

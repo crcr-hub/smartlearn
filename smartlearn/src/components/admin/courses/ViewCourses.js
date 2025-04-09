@@ -75,7 +75,7 @@ function ViewCourses() {
 
             {course.images ? (
                 <img
-                src={`http://localhost:8000${course.images}`} // Path to the image
+                src={`https://mysmartlearn.com/${course.images}`} // Path to the image
                     alt={`Course ${course.name}`} // Alt text for the image
                     style={{ width: '50px', height: '50px' }} // Styling for the image
                 />

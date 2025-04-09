@@ -244,7 +244,7 @@ function UpdateaCourse() {
 
         <div className="col-mb-6">
         {courseData.image ? (
-                    <img src={`http://localhost:8000${courseData.image}`} // Path to the image
+                    <img src={`https://mysmartlearn.com/${courseData.image}`} // Path to the image
                     alt={`Course ${courseData.name}`} // Alt text for the image
                     style={{ width: '50px', height: '50px' }} // Styling for the image
                         />

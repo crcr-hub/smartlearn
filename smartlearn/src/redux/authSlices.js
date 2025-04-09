@@ -394,7 +394,7 @@ export const addCategory = createAsyncThunk('auth/addCategory',
       }
     });
 
-export const viewCategory = createAsyncThunk('auth/category', async (_, { rejectWithValue }) => {
+export const viewCategory = createAsyncThunk('auth/viewcategory', async (_, { rejectWithValue }) => {
   try {
     const response = await axiosInstance.get('/category/');
     return response.data; // Assuming the API returns a list of users
