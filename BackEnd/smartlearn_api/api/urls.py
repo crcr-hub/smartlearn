@@ -29,6 +29,8 @@ urlpatterns = [
     path("create-order/", views.create_order, name="create-order"),
     path('admin_dashboard/',views.admin_dashboard,name='admin_dashboard'),
     path("reports/<str:report_type>/", views.reports_view, name="reports"),
+    path('teachertransaction/<int:tid>/',views.tutorTransaction,name='teachertransaction'),
+    path('transactions/',views.transactions,name='transactions'),
     path('', include('courses.urls')),
     path('',include('teacher.urls')),
     path('', include('student.urls')),

@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 from dotenv import load_dotenv
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,9 +34,9 @@ ALLOWED_HOSTS = [
     "www.mysmartlearn.com",
     "13.237.128.111",
     "127.0.0.1",
-    "localhost"
+    "localhost",
 ]
-DEBUG = False
+DEBUG = True
 
 
 # Application definition
@@ -179,6 +180,8 @@ AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 AWS_REGION = os.getenv("AWS_REGION", "ap-southeast-2")
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
@@ -186,8 +189,16 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True 
 }
 
-RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
-RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
+
+
+
+# AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+# AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+# AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+# AWS_REGION = config("AWS_REGION", default="ap-southeast-2")
+
+# RAZORPAY_KEY_ID = config("RAZORPAY_KEY_ID")
+# RAZORPAY_KEY_SECRET = config("RAZORPAY_KEY_SECRET")
 
 
 

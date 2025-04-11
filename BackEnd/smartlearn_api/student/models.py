@@ -37,7 +37,7 @@ class Order(models.Model):
 
 class Order_items(models.Model):
     order = models.ForeignKey(Order,on_delete=models.CASCADE)
-    course = models.ForeignKey(Courses,on_delete=models.CASCADE)
+    course = models.ForeignKey(Courses,on_delete=models.CASCADE,related_name='order_items')
     price = models.DecimalField(max_digits=6, decimal_places=2,null=True)
     Offer_price = models.DecimalField(max_digits=6, decimal_places=2,null=True)
     created_at =  models.DateTimeField(auto_now=True)

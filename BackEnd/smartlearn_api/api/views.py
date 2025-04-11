@@ -170,6 +170,8 @@ def update_approve(request,cid):
     courses.save()
     return Response({"courses":courses.name}, status=status.HTTP_200_OK)
 
+
+
 @api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
 def clear_admin_notification(request):
@@ -274,7 +276,7 @@ def handle_teacher(request, id):
         teacher = TeacherProfile.objects.get(user_id=id)
 
         if request.method == 'GET':
-            print("working")
+         
             # Serialize and return teacher data
             user_data = UserSerializer(user)
             serializer = TeacherProfileSerializer(teacher)
@@ -282,7 +284,7 @@ def handle_teacher(request, id):
             'user': user_data.data,
             'profile': serializer.data
             }
-            print(combined_data)
+       
             return Response(combined_data, status=status.HTTP_200_OK)
 
         elif request.method == 'PUT':
@@ -547,7 +549,7 @@ def reports_view(request, report_type):
 
             students.append(student_data)
 
-        print(students)
+  
         
         return JsonResponse({"students": students})
 
@@ -614,5 +616,94 @@ def reports_view(request, report_type):
 
     return JsonResponse({"error": "Invalid report type"}, status=400)
     
+from django.db.models import Count, F, ExpressionWrapper, DecimalField,Value, Q
+from django.db.models.functions import Coalesce
+
+@api_view(['GET'])
+def tutorTransaction(request,tid):
+    user = get_object_or_404(User, id=tid)
+   
+    teacher = get_object_or_404(TeacherProfile, user = user)
+   # Fetch all courses for the teacher
+    courses = Courses.objects.filter(teacher=teacher,visible_status = 'public').annotate(
+    purchase_count=Count('order_items'),
+    total_revenue=Coalesce(Sum('order_items__Offer_price'), Value(0), output_field=DecimalField()),
+    teacher_share=ExpressionWrapper(
+        F('total_revenue') * Decimal('0.9'),
+        output_field=DecimalField(max_digits=10, decimal_places=2)
+    ),
+    admin_share=ExpressionWrapper(
+        F('total_revenue') * Decimal('0.1'),
+        output_field=DecimalField(max_digits=10, decimal_places=2)
+    )
+    )
+
+    total_teacher_share = courses.aggregate(total=Sum('teacher_share'))['total'] or 0
+    total_admin_share = courses.aggregate(total=Sum('admin_share'))['total'] or 0
+    print("shares",total_teacher_share,total_admin_share)
+    # Prepare the response data
+    response_data = [
+        {
+            'course_id': course.id,
+            'course_name': course.name,
+            'purchase_count': course.purchase_count,
+            'offer_price': course.offer_price,
+            'total_revenue': course.total_revenue,
+            'teacher_share': course.teacher_share,
+            'admin_share': course.admin_share,
+        }
+        for course in courses
+    ]
+
+    grand_totals = {
+        "total_teacher_share": total_teacher_share,
+        "total_admin_share": total_admin_share
+    }
+  
+
+    
+    return Response({
+        "courses": response_data,
+        "grand_totals": grand_totals
+    })
         
 
+
+@api_view(['GET'])
+def transactions(request):
+    print("okkkkkk")
+   
+    teachers = TeacherProfile.objects.annotate(
+        course_count=Count('courses',filter=Q(courses__visible_status='public'), distinct=True),
+        student_count=Count('courses__order_items__order__user', distinct=True),
+        total_revenue=Coalesce(Sum('courses__order_items__Offer_price'), Value(0), output_field=DecimalField()),
+    ).annotate(
+        teacher_share=F('total_revenue') * Decimal('0.9'),
+        admin_share=F('total_revenue') * Decimal('0.1')
+    )
+
+    total_teacher_share = teachers.aggregate(total=Sum('teacher_share'))['total'] or 0
+    total_admin_share = teachers.aggregate(total=Sum('admin_share'))['total'] or 0
+    grand_total = teachers.aggregate(total = Sum('total_revenue'))['total'] or 0
+
+    # Prepare the response data
+    response = [
+        {
+            'teacher_id': teacher.id,
+            'teacher_name': teacher.first_name,
+            'teacher_lastname':teacher.last_name,
+            'course_count': teacher.course_count,
+            'student_count': teacher.student_count,
+            'total_revenue': teacher.total_revenue,
+            'teacher_share': teacher.teacher_share,
+            'admin_share': teacher.admin_share,
+        }
+        for teacher in teachers
+    ]
+    response_data ={'response':response,
+                    'teacher_share':total_teacher_share,
+                    'admin_share':total_admin_share,
+                    'grand_total':grand_total
+                    }
+
+    return Response(response_data)

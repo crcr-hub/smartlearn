@@ -236,6 +236,57 @@ def tutor_dashboard(request):
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+from django.db.models import Count, F, ExpressionWrapper, DecimalField,Value
+from django.db.models.functions import Coalesce
+@api_view(['GET'])
+def tutorTransactions(request):
+    user = request.user
+   
+    teacher = get_object_or_404(TeacherProfile, user = user)
+   # Fetch all courses for the teacher
+    courses = Courses.objects.filter(teacher=teacher,visible_status = 'public').annotate(
+    purchase_count=Count('order_items'),
+    total_revenue=Coalesce(Sum('order_items__Offer_price'), Value(0), output_field=DecimalField()),
+    teacher_share=ExpressionWrapper(
+        F('total_revenue') * Decimal('0.9'),
+        output_field=DecimalField(max_digits=10, decimal_places=2)
+    ),
+    admin_share=ExpressionWrapper(
+        F('total_revenue') * Decimal('0.1'),
+        output_field=DecimalField(max_digits=10, decimal_places=2)
+    )
+    )
+
+    total_teacher_share = courses.aggregate(total=Sum('teacher_share'))['total'] or 0
+    total_admin_share = courses.aggregate(total=Sum('admin_share'))['total'] or 0
+    print("shares",total_teacher_share,total_admin_share)
+    # Prepare the response data
+    response_data = [
+        {
+            'course_id': course.id,
+            'course_name': course.name,
+            'purchase_count': course.purchase_count,
+            'offer_price': course.offer_price,
+            'total_revenue': course.total_revenue,
+            'teacher_share': course.teacher_share,
+            'admin_share': course.admin_share,
+        }
+        for course in courses
+    ]
+
+    grand_totals = {
+        "total_teacher_share": total_teacher_share,
+        "total_admin_share": total_admin_share
+    }
+  
+
+    
+    return Response({
+        "courses": response_data,
+        "grand_totals": grand_totals
+    })
+        
+
 
 # @api_view(['POST'])
 # def sentNotification(request,cid):

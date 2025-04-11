@@ -10,4 +10,5 @@ urlpatterns = [
     path('t_profile/',views.get_profile,name='t_profile'),
     path('recent_tmessages/',recent_messages,name='recent_tmessages'),
     path('tutor_dashboard/',views.tutor_dashboard,name='tutor_dashboard'),
+    path('tutortransactions/',views.tutorTransactions,name='tutortransactions'),
 ]
