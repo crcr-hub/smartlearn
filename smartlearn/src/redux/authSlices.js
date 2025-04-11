@@ -121,7 +121,9 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ userD
 export const transactions = createAsyncThunk("admin/transactions",
   async(_,{rejectWithValue})=>{
     try{
+      
       const response = await axiosInstance.get('/transactions/');
+      console.log("inside data")
       return response.data
     }catch(error){
       return rejectWithValue(error.response?.data) || 'failed to fetch the details'
