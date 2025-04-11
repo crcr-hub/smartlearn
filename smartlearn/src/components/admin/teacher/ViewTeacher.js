@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate,Link } from 'react-router-dom';
-import { teacherBlockStatus, viewTeachers } from '../../../redux/authSlices';
+import { teacherBlockStatus, viewCourses, viewTeachers } from '../../../redux/authSlices';
 
 function ViewTeacher() {
 
@@ -10,22 +10,32 @@ function ViewTeacher() {
     const navigate = useNavigate()
 
     const {  userlist:teachers, loading, error } = useSelector((state) => state.auth);
-    // console.log("teachers:", teachers);
+    const {courses} = useSelector((state)=>state.auth)
+   
+   
     useEffect (()=>{
-        dispatch (viewTeachers());},[dispatch])
+        dispatch (viewTeachers());
+         dispatch(viewCourses());
+      },[dispatch])
+    
+      const courseCount = (teacherId) => {
+        if (!Array.isArray(courses)) {
+          return 0; // Return 0 if courses is undefined or not an array
+      }
+      return courses.filter((course) => course.teacher === teacherId).length;
+      };
 
         
-        const [blockStatus,setBlockstatus] = useState();
+    const [blockStatus,setBlockstatus] = useState();
 
     const teacherArray = Array.isArray(teachers) ? teachers : [];
+   
   // Handle Block/Unblock
   const handleBlockUnblock = (userId, currentStatus) => {
     const newStatus = !currentStatus; // Toggle block/unblock status
-    console.log("inside", userId, currentStatus, "new:", newStatus);
     dispatch(teacherBlockStatus({ userId, blockStatus: newStatus }))
         .unwrap()
         .then((response) => {
-            console.log('Successfully updated:', response);
             navigate('/admin/viewteacher'); // Navigate after update
         })
         .catch((error) => {
@@ -40,12 +50,7 @@ function ViewTeacher() {
   return (
     <div>
       <table class="table">
-  <thead class="table-dark">
-    ...
-  </thead>
-  <tbody>
-    ...
-  </tbody>
+  
 </table><h3>Tutors</h3>
 
 
@@ -62,8 +67,7 @@ function ViewTeacher() {
       <th scope="col">Experience</th>
       <th scope="col">Experience In</th>
       <th scope="col">Place</th>
-      <th scope="col">Mobile</th>
-      <th scope="col">Courses</th>
+      <th scope="col">No.Courses</th>
       <th scope="col">Action</th>
     </tr>
    
@@ -81,19 +85,19 @@ function ViewTeacher() {
           <td>{teacher.profile.experience}</td>
           <td>{teacher.profile.experience_in}</td>
           <td>{teacher.profile.place}</td>
-          <td>{teacher.profile.mobile}</td>
-          <td>{teacher.courses} </td>
+          <td>{courseCount(teacher.profile.id)} </td>
           <td>
             {/* <Link To={`/teacher/${teacher.user.id}`}  className="btn btn-warning btn-sm">Update</Link> */}
-            <Link to={`/admin/teacher/${teacher.user.id}`} className="btn btn-warning btn-sm">Update</Link>
+            <Link style={{margin:"5px"}} to={`/admin/teacher/${teacher.user.id}`} className="btn btn-warning btn-sm">Update</Link>
             {/* <button onClick={()=>(dispatch(fetchteacher({ id: teacher.user.id, navigate })))} className="btn btn-danger btn-sm">
                 Update
             </button> */}
             
-            <button onClick={() => {
+            <button  onClick={() => {
                 handleBlockUnblock(teacher.user.id, teacher.user.block_status)}} className="btn btn-danger btn-sm">
                 {teacher.user.block_status ? 'Aprove' : 'Block'}
             </button>
+            <Link style={{margin:"5px"}} to={`/admin/teachertransactions/${teacher.user.id}`} className="btn btn-primary btn-sm">Transactions</Link>
           </td>
         </tr>
       ))}

@@ -41,6 +41,7 @@ import TeacherMyCourse from '../components/teacher/screen/TeacherMyCourse';
 import ProfilePage from '../components/student/screen/ProfilePage';
 import StudentPrivateRoute from '../components/privateRoutes/StudentPrivateRoute';
 import TeacherPrivateRoute from '../components/privateRoutes/TeacherPrivateRoute';
+import TeacherTransaction from '../components/teacher/pages/TeacherTransaction';
 
 function IndexLayout() {
   return (
@@ -69,7 +70,7 @@ function IndexLayout() {
           <Route path = '/tutorchat/:sid' element={<TeacherPrivateRoute><TutorChatComponent/></TeacherPrivateRoute>} />
           <Route path='/tutrecent_m' element ={<TeacherPrivateRoute><TutorRecentMessagesPage/></TeacherPrivateRoute>} />
           <Route path='/teacherchat/:sid' element={<TeacherPrivateRoute><TeacherChatComponetPage/></TeacherPrivateRoute>} />
-
+          <Route path = '/teacherTransactions' element={<TeacherPrivateRoute><TeacherTransaction/></TeacherPrivateRoute>} />
 
           <Route path='/videoplayer/:courseId' element={<StudentPrivateRoute><VideoPlayerPage/></StudentPrivateRoute>} />
           <Route path='/coursedetails/:id' element={<StudentPrivateRoute><CourseDetailsPage/></StudentPrivateRoute>}/>

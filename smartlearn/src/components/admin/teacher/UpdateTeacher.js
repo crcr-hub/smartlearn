@@ -28,7 +28,7 @@ function UpdateTeacher() {
     });
 
     useEffect(() => {
-        console.log("jjjjjj",teachers?.profile?.first_name);
+       
         if (teachers?.profile && teachers?.user) {
     
             setUserData((prevData) => ({

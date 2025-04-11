@@ -28,6 +28,8 @@ import ViewModules from '../components/admin/courses/ViewModules';
 import PendingCourses from '../components/admin/courses/PendingCourses';
 import ReportPage from '../components/admin/ReportPage';
 import AdminPrivateRoute from '../components/privateRoutes/AdminPrivateRoute';
+import ViewTeacherTransactions from '../components/admin/teacher/ViewTeacherTransactions';
+import Transactions from '../components/admin/Transactions';
 
 
 
@@ -55,6 +57,9 @@ function AdminLayout() {
           <Route path = "addteacher" element = {<AdminPrivateRoute ><AddTeacher/></AdminPrivateRoute> }/>
           <Route path = "viewteacher" element = {<AdminPrivateRoute ><ViewTeacher/></AdminPrivateRoute> }/>
           <Route path = "teacher/:id" element = {<AdminPrivateRoute ><UpdateTeacher/></AdminPrivateRoute> }/>
+          <Route path = "teachertransactions/:id" element = {<AdminPrivateRoute ><ViewTeacherTransactions/></AdminPrivateRoute> }/>
+         <Route path = "transactions" element={<AdminPrivateRoute><Transactions/></AdminPrivateRoute>} />
+
           <Route path = "addcategory" element = {<AdminPrivateRoute ><AddCategory/></AdminPrivateRoute> }/>
           <Route path = "viewcategory" element = {<AdminPrivateRoute ><ViewCategory/></AdminPrivateRoute> }/>
           <Route path = "category/:id" element = {<AdminPrivateRoute ><UpdatedCat/></AdminPrivateRoute> }/>

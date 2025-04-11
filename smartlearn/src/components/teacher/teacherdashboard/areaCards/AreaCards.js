@@ -24,7 +24,7 @@ const AreaCards = ({cardInfo}) => {
           cardInfo={{
             title: "This Week Revenue",
             value: `₹${cardInfo?.last_week_revenue || "0.00"}`,
-            text: "t",
+            text: "",
           }}
         />
         <AreaCard

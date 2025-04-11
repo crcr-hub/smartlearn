@@ -12,6 +12,7 @@ import {
     MdOutlineGridView,
     MdOutlineLogout,
     MdOutlineMessage,
+    MdOutlinePayment,
     MdOutlinePeople,
     MdOutlineSettings,
     MdOutlineShoppingBag,
@@ -361,6 +362,15 @@ const Sidebar = () => {
   
           <div className="sidebar-menu sidebar-menu2">
             <ul className="menu-list">
+             
+              <li className="menu-item">
+                <Link to="/admin/transactions"  className="menu-link">
+                  <span className="menu-link-icon">
+                    <MdOutlinePayment size={20} />
+                  </span>
+                  <span className="menu-link-text">Transactions</span>
+                </Link>
+              </li>
               <li className="menu-item">
                 <Link to="/"  className="menu-link">
                   <span className="menu-link-icon">

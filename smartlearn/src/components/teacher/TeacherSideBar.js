@@ -32,6 +32,9 @@ function TeacherSideBar() {
                   }`}>List Your Students</Link>
                         <Link to="/tutrecent_m" className={`list-group-item list-group-item-action ${
                     location.pathname === "/tutrecent_m" ? "active" : "" }`}>Recent Messages</Link>
+                    
+                    <Link to="/teacherTransactions" className={`list-group-item list-group-item-action ${
+                    location.pathname === "/teacherTransactions" ? "active" : "" }`}>Transactions</Link>
                     </div>
                    
                 </div>

@@ -1,9 +1,10 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, asyncThunkCreator } from '@reduxjs/toolkit';
 import axiosInstance from '../utils/axiosInstances';
 import Swal from 'sweetalert2';
 import {jwtDecode} from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { act } from 'react';
+import axios from 'axios';
 
 // Thunks
 // Login --------------------------------------------------------------------------------------------------------------------
@@ -114,6 +115,30 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ userD
 
 
 //................................ admin......................................
+
+
+
+export const transactions = createAsyncThunk("admin/transactions",
+  async(_,{rejectWithValue})=>{
+    try{
+      const response = await axiosInstance.get('/transactions/');
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.response?.data) || 'failed to fetch the details'
+    }
+  }
+)
+
+export const teacherTransaction = createAsyncThunk("admin/teachertransaction",
+  async(tid,{rejectWithValue}) =>{
+    try{
+      const response = await axiosInstance.get(`/teachertransaction/${tid}/`);
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.response?.data) || 'failed to fetch the details'
+    }
+  }
+)
 
 export const adminNotification = createAsyncThunk("admin/adminNotificaiton",
   async(_, {rejectWithValue}) =>{
@@ -1075,6 +1100,18 @@ export const tutorDashboard = createAsyncThunk("report/tutorDashboard",
   }
 )
 
+export const tutorTransactions = createAsyncThunk("admin/tutorTransactions",
+  async(_,{rejectWithValue}) =>{
+    try{
+      const response = await axiosInstance.get('tutortransactions/');
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.response?.data) || 'failed to fetch the details'
+    }
+  }
+)
+
+
 //.........................admin_dashboard......................
 export const adminDashboard = createAsyncThunk("report/adminDashboard",
   async(_,{rejectWithValue})=>{
@@ -1151,6 +1188,8 @@ const initialState = {
   order : null,
   tutordashboardData : null,
   adminDashboardData : null,
+  teacherTransaction : null,
+  transactions_data : null,
 };
 
 // Slice
@@ -1235,6 +1274,31 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
+    .addCase(transactions.pending,(state)=>{
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(transactions.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.transactions_data =action.payload;
+    })
+    .addCase(tutorTransactions.pending,(state)=>{
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(tutorTransactions.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.teacherTransaction = action.payload;
+    })
+    .addCase(teacherTransaction.pending,(state)=>{
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(teacherTransaction.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.teacherTransaction = action.payload;
+    })
 
     .addCase(adminDashboard.pending,(state)=>{
       state.loading = true;

@@ -8,7 +8,8 @@ function ViewCourses() {
     const navigate = useNavigate()
     const {courses,loading,error} = useSelector((state)=>state.auth)
     const { category, loading:categoryLoading, error:categoryError } = useSelector((state) => state.auth);
-    const {  user:fetchedTeachers, loading:teacherLoading, error:teacherError } = useSelector((state) => state.auth);
+    const {  userlist:fetchedTeachers} = useSelector((state) => state.auth);
+    const {  user:fetchedTeacherss, loading:teacherLoading, error:teacherError } = useSelector((state) => state.auth);
     const teachers = Array.isArray(fetchedTeachers) ? fetchedTeachers : [];
     
     useEffect (()=>{
@@ -16,9 +17,11 @@ function ViewCourses() {
      
   
     const courseArray = Array.isArray(courses)?courses:[];
+    console.log("Coursesss are",courses,fetchedTeachers)
 
     useEffect(()=>{
         dispatch(viewCourses());
+        dispatch (viewTeachers());
     },[dispatch])
 
     useEffect(() => {
