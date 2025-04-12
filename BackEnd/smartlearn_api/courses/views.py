@@ -245,7 +245,23 @@ class ModuleView(APIView):
             return Response({"error": "Video file is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Save the uploaded file temporarily
-        video_path = default_storage.save(f"videos/{video_file.name}", video_file)
+        # video_path = default_storage.save(f"videos/{video_file.name}", video_file)
+
+
+
+
+        video_name = f"{uuid.uuid4().hex}_{video_file.name}"
+        video_path = os.path.join("videos", video_name)  # this will be stored in DB
+        full_path = os.path.join(settings.MEDIA_ROOT, video_path)  # this is the real path
+
+        os.makedirs(os.path.dirname(full_path), exist_ok=True)  # ensure videos/ folder exists
+
+        with open(full_path, 'wb+') as destination:
+            for chunk in video_file.chunks():
+                destination.write(chunk)
+
+
+
 
         # Convert request.data to a mutable dictionary (avoid copying files)
         mutable_data = request.data.dict() if isinstance(request.data, QueryDict) else dict(request.data)
