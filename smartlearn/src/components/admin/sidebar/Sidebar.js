@@ -225,7 +225,7 @@ const Sidebar = () => {
           marginLeft: "-50px", // Align it to the left by removing any left margin
         }}>
                 <Link to="/admin/pendingcourses" className={`menu-link ${
-                    location.pathname === "/admin/pendingcourses/" ? "active" : ""
+                    location.pathname === "/admin/pendingcourses" ? "active" : ""
                   }`}>
                   <span className="menu-link-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
@@ -294,24 +294,7 @@ const Sidebar = () => {
                 </Link>
               </li>
 
-              <li className="menu-item" style={{
-          width: "220px",  // Set width as per your requirement
-          height: "40px",  // Adjust height as needed
-          padding: "0",    // Optional: Remove padding if you want
-          marginLeft: "-50px", // Align it to the left by removing any left margin
-        }}>
-                <Link to="/admin/addcourses/" className={`menu-link ${
-                    location.pathname === "/admin/addcourses/" ? "active" : ""
-                  }`}>
-                  <span className="menu-link-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window-sidebar" viewBox="0 0 16 16">
-  <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
-  <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z"/>
-</svg>
-                  </span>
-                  <span className="menu-link-text">Add Courses</span>
-                </Link>
-              </li>
+              
 
               <li className="menu-item" style={{
           width: "220px",  // Set width as per your requirement
@@ -320,7 +303,7 @@ const Sidebar = () => {
           marginLeft: "-50px", // Align it to the left by removing any left margin
         }}>
                 <Link to="/admin/selectcourse" className={`menu-link ${
-                    location.pathname === "/admin/selectcourse" ? "active" : ""
+                    location.pathname === "/admin/selectcourse" || location.pathname.startsWith("/admin/viewmodule/") ? "active" : ""
                   }`}>
                   <span className="menu-link-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
@@ -334,7 +317,7 @@ const Sidebar = () => {
               </li>
 
 
-              <li className="menu-item" style={{
+              {/* <li className="menu-item" style={{
           width: "220px",  // Set width as per your requirement
           height: "40px",  // Adjust height as needed
           padding: "0",    // Optional: Remove padding if you want
@@ -352,7 +335,7 @@ const Sidebar = () => {
                   </span>
                   <span className="menu-link-text">Update Course</span>
                 </div>
-              </li>
+              </li> */}
          
             </ul>
           </div>
@@ -371,14 +354,7 @@ const Sidebar = () => {
                   <span className="menu-link-text">Transactions</span>
                 </Link>
               </li>
-              <li className="menu-item">
-                <Link to="/"  className="menu-link">
-                  <span className="menu-link-icon">
-                    <MdOutlineSettings size={20} />
-                  </span>
-                  <span className="menu-link-text">Settings</span>
-                </Link>
-              </li>
+              
               <li className="menu-item">
               <button onClick={handleLogout} className="menu-link">
                   <span className="menu-link-icon">

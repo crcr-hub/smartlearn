@@ -23,7 +23,7 @@ function TeacherDashboard() {
   },[dispatch, teacher?.profile_id])
   return (
 
-            <div className='container mt-3'>
+    <div className='container mt-3'>
             <div className='row'>
         <TeacherSideBar/>
       <section className='col-md-12' style={{width:"75%"}}>

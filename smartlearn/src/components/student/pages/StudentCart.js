@@ -245,9 +245,10 @@ function StudentCart() {
                                   }}>
                                   
                                       
-                                      <img  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
+                                      <img onClick={()=>handleOnClick(items.course)}  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
                                           height: "100px",
-                                          width:"150px",  
+                                          width:"150px", 
+                                          cursor:"pointer", 
                                           objectFit: "cover"}} />
                                   
                                   </div>

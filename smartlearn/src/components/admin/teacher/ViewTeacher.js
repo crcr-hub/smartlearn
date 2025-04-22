@@ -36,7 +36,7 @@ function ViewTeacher() {
     dispatch(teacherBlockStatus({ userId, blockStatus: newStatus }))
         .unwrap()
         .then((response) => {
-            navigate('/admin/viewteacher'); // Navigate after update
+          dispatch (viewTeachers()); // Navigate after update
         })
         .catch((error) => {
             console.error('Error updating block status:', error);

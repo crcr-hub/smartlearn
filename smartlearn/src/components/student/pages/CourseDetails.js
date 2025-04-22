@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { averageRating, fetchCourse, fetchModules, fetchTeacher, fetchTeacherProfile, getAllFeedback } from '../../../redux/authSlices';
+import { averageRating, fetchCourse, fetchLearningCourse, fetchModules, fetchTeacher, fetchTeacherProfile, getAllFeedback } from '../../../redux/authSlices';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 
 function CourseDetails() {
     const { id } = useParams();
     const dispatch = useDispatch();
+     const {learnings} = useSelector((state)=>state.auth)
     const { course, courseLoading, courseError } = useSelector((state) => state.auth); // Assuming course details are in state
     const { teacherprofile } = useSelector((state) => state.auth);
     const { modules } = useSelector((state) => state.auth);
@@ -40,19 +41,22 @@ function CourseDetails() {
 
 
     useEffect(()=>{
-    
+       dispatch(fetchLearningCourse());
          if (id) {
                   dispatch(fetchCourse(id)); // Fetch the course data to edit
                 }
     },[dispatch, id]);
 
-    useEffect(()=>{
-      if (course.course && course.course.id) {
-      dispatch(fetchModules( course.course.id));
-      dispatch(averageRating(course.course.id));
-       dispatch(getAllFeedback(course.course.id));
-    }
-    },[dispatch,course?.course?.id? course.course.id :""])
+    useEffect(() => {
+      const courseId = course?.course?.id;
+      if (courseId) {
+        dispatch(fetchModules(courseId));
+        dispatch(averageRating(courseId));
+        dispatch(getAllFeedback(courseId));
+      }
+    }, [dispatch, course]);
+    
+
     useEffect(() => {
       if (course.course && course.course.teacher) {
         dispatch(fetchTeacherProfile(course.course.teacher)); // Fetch teacher profile when course is available

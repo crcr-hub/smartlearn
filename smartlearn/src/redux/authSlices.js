@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", refresh);
 
-    // 🔥 Fetch user details separately after login
+    //  Fetch user details separately after login
     const userResponse = await axiosInstance.get('/user-details/', {
       headers: { Authorization: `Bearer ${access}` },
     });
@@ -46,7 +46,8 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
     
     return { user, access, refresh };
    } catch (error) {
-    if (error.response?.data?.detail === "Your account is pending approval. Please contact the administrator.") {
+    console.log(error.response.data)
+    if (error.response?.data?.detail === "pending approval") {
       Swal.fire({
         title: 'Account Pending Approval',
         text: 'Please contact the administrator for further assistance.',
@@ -57,6 +58,18 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
         timerProgressBar: true,
         showConfirmButton: false,
       });
+    }
+      else if(error.response?.data?.detail === "blocked") {
+        Swal.fire({
+          title: 'Account Blocked',
+          text: 'Please contact the administrator for further assistance.',
+          icon: 'warning',
+          toast: true,
+          timer: 6000,
+          position: 'top-right',
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
     } else {
       Swal.fire({
         title: 'Login Failed',
@@ -75,6 +88,41 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
 return rejectWithValue(error.response?.data || 'Login failed');
 }
 });
+
+
+
+export const sentOtp = createAsyncThunk('auth/sentOtp',
+  async({email},{rejectWithValue})=>{
+    try{
+      const response = await axiosInstance.post('/sentOtp/', { email });
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.response?.data || 'Failed to sent Otp')
+    }
+  });
+
+  export const verifyOtp = createAsyncThunk('auth/verifyOtp',
+    async({email,otp},{rejectWithValue})=>{
+      try{
+        const response = await axiosInstance.post('/verifyOtp/', {email,otp});
+        return response.data
+      }catch(error){
+        return rejectWithValue(error.response?.data || 'Failed to sent Otp')
+      }
+    });
+
+export const ResetPassword = createAsyncThunk('auth/ResetPassword',
+  async({userData},{rejectWithValue}) =>{
+    const email = userData.email;
+    const password = userData.password;
+    try{
+      const response = await axiosInstance.post('/resetPwd/',{email,password});
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.response?.data || 'Failed to reset a password')
+    }
+  }
+)
 
 
 export const viewAllTeachers = createAsyncThunk('auth/viewAllTeachers', async (_, { rejectWithValue }) => {
@@ -97,6 +145,7 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ userD
     navigate('/admin/addstudent' );
     return  response.data ;
   } catch (error) {
+    const errorData = error.response?.data;
     Swal.fire({
       title: 'Registration failed',
       icon: 'error',
@@ -112,6 +161,21 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ userD
 
 
 
+export const changePassword = createAsyncThunk("auth/changePassword",
+  async(passwordData,{rejectWithValue}) =>{
+    try{
+      const response = await axiosInstance.post('/changepwd/',passwordData);
+      console.log(response.data)
+      return response.data
+    }catch(error){
+      if (error.response && error.response.data) {
+        // Forward backend error message (e.g., "Incorrect current password")
+        return rejectWithValue(error.response.data);
+      } else {
+        return rejectWithValue({ error: "Something went wrong" });
+      }   
+    }
+  })
 
 
 //................................ admin......................................
@@ -123,7 +187,6 @@ export const transactions = createAsyncThunk("admin/transactions",
     try{
       
       const response = await axiosInstance.get('/transactions/');
-      console.log("inside data")
       return response.data
     }catch(error){
       return rejectWithValue(error.response?.data) || 'failed to fetch the details'
@@ -225,8 +288,17 @@ export const addStudent = createAsyncThunk('auth/addStudent',
    
     return response.data;
   } catch (error) {
+    const errorData = error.response?.data;
+    console.log("errorr", error.response, errorData);
+    let message = 'Registration failed';
+    if (typeof errorData === 'string') {
+      message = errorData;
+    } else if (errorData && typeof errorData === 'object') {
+      message = Object.values(errorData).flat().join('\n');
+    }
     Swal.fire({
       title: 'Error while registering',
+      text: message,
       icon: 'error',
       toast: true,
       timer: 6000,
@@ -605,7 +677,7 @@ export const updateCategoryData = createAsyncThunk( 'auth/updateCategoryData',
 
 
     export const updateCourse = createAsyncThunk( 'auth/updateCourse',
-      async ({ id, updatedCourseData, navigate }, { rejectWithValue }) => {
+      async ({ id, updatedCourseData }, { rejectWithValue }) => {
         const formData = new FormData();
       
         // Append regular data
@@ -629,13 +701,7 @@ export const updateCategoryData = createAsyncThunk( 'auth/updateCategoryData',
               'Content-Type': 'multipart/form-data', // Ensure the correct content type
             },
           }); // Adjust the API endpoint
-         
-          if (updatedCourseData.role === 'teacher') {
-            navigate('/tutordashboard')
-          }
-          else{
-            navigate('/admin/viewcourses');
-          }
+          
           return response.data; // Return updated user data
         } catch (error) {
           return rejectWithValue(error.response?.data || 'Failed to update category');
@@ -1576,40 +1642,40 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload || 'Failed to update user';
       })
-      .addCase( updateBlockStatus.pending,(state, action)=>{
-        state.loading = true;
-        state.error = action.payload;
-      })
+      // .addCase( updateBlockStatus.pending,(state, action)=>{
+      //   state.loading = true;
+      //   state.error = action.payload;
+      // })
 
-      .addCase(updateBlockStatus.fulfilled, (state, action) => {
-        const { userId, blockStatus } = action.meta.arg; // Use meta.arg if payload doesn't return these
-        const student = state.user.find((s) => s.user.id === userId); // Find the specific student
-        if (student) {
-          student.user.block_status = blockStatus; // Update block_status
-        }
-      })
-      .addCase( updateBlockStatus.rejected,(state, action)=>{
-        state.loading = true;
-        state.error = action.payload || 'Failed to update block status';
-      })
+      // .addCase(updateBlockStatus.fulfilled, (state, action) => {
+      //   const { userId, blockStatus } = action.meta.arg; // Use meta.arg if payload doesn't return these
+      //   const student = state.user.find((s) => s.user.id === userId); // Find the specific student
+      //   if (student) {
+      //     student.user.block_status = blockStatus; // Update block_status
+      //   }
+      // })
+      // .addCase( updateBlockStatus.rejected,(state, action)=>{
+      //   state.loading = true;
+      //   state.error = action.payload || 'Failed to update block status';
+      // })
 
 
-      .addCase( teacherBlockStatus.pending,(state, action)=>{
-        state.loading = true;
-        state.error = action.payload;
-      })
+      // .addCase( teacherBlockStatus.pending,(state, action)=>{
+      //   state.loading = true;
+      //   state.error = action.payload;
+      // })
 
-      .addCase(teacherBlockStatus.fulfilled, (state, action) => {
-        const { userId, blockStatus } = action.meta.arg; // Use meta.arg if payload doesn't return these
-        const teacher = state.user.find((s) => s.user.id === userId); // Find the specific student
-        if (teacher) {
-          teacher.user.block_status = blockStatus; // Update block_status
-        }
-      })
-      .addCase( teacherBlockStatus.rejected,(state, action)=>{
-        state.loading = true;
-        state.error = action.payload || 'Failed to update block status';
-      })
+      // .addCase(teacherBlockStatus.fulfilled, (state, action) => {
+      //   const { userId, blockStatus } = action.meta.arg; // Use meta.arg if payload doesn't return these
+      //   const teacher = state.user.find((s) => s.user.id === userId); // Find the specific student
+      //   if (teacher) {
+      //     teacher.user.block_status = blockStatus; // Update block_status
+      //   }
+      // })
+      // .addCase( teacherBlockStatus.rejected,(state, action)=>{
+      //   state.loading = true;
+      //   state.error = action.payload || 'Failed to update block status';
+      // })
 // courses --------------------------------------------------------------------
 
 

@@ -6,7 +6,7 @@ function TeacherSideBar() {
   return (
 
             
-        <aside className='col-md-3'>
+        <aside className='col-md-2'>
                 <div className='card'>
                     <h5 className='card-header'>Dashboard</h5>
                     <div className='list-group list-group-flush'>

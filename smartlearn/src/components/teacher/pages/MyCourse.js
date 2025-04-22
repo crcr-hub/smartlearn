@@ -9,6 +9,9 @@ function MyCourse() {
     const { tutorcourses, loading, error } = useSelector((state) => state.auth);
     const {user:teacher} = useSelector((state)=>state.auth)
    
+
+console.log("teahcer",teacher)
+
     useEffect(()=>{
      
       if (teacher?.profile_id) {
@@ -22,7 +25,7 @@ function MyCourse() {
     <div className='container mt-3'>
             <div className='row'>
         <TeacherSideBar/>
-      <section className='col-md-12' style={{width:"70%"}}>
+      <section className='col-md-10' >
       <div className='card' style={{border:"none"}}>
                             <div className='card-body' >
                                 <table className='table table-bordered'  >

@@ -11,7 +11,7 @@ function PendingCourses() {
     const {  user:fetchedTeachers, loading:teacherLoading, error:teacherError } = useSelector((state) => state.auth);
     const teachers = Array.isArray(fetchedTeachers) ? fetchedTeachers : [];
     
-    console.log(aprovalcourses,teachers)
+    console.log(aprovalcourses)
     const courseArray = Array.isArray(aprovalcourses)?aprovalcourses:[];
     useEffect(()=>{
         dispatch(pendingCourses())
@@ -64,11 +64,12 @@ function PendingCourses() {
     <table class="table">
       <thead class="table-dark">
         <tr>
-          <th scope="col">ID</th>
+         
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Teacher</th>
           <th scope="col">Category</th>
+          <th scope='col'>Date Created</th>
           <th scope="col">Image</th>
           <th scope="col">Action</th>
           
@@ -79,7 +80,7 @@ function PendingCourses() {
       {aprovalcourses && aprovalcourses.courses.length > 0 ? (
     aprovalcourses.courses.map((course) => ( 
         <tr key={course.id}>
-          <td>{course.id}</td>
+         
           <td>{course.name}</td>
           <td>{course.description}</td>
           <td>
@@ -96,6 +97,7 @@ function PendingCourses() {
                 ))
               : getCategoryTitle(course.category)}
           </td>
+          <td>{course.date_created}</td>
           <td>
             {course.images ? (
               <img

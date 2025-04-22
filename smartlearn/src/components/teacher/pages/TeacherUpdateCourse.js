@@ -118,7 +118,8 @@ useEffect(() => {
               
                 console.log("Updated Course Data:", updatedCourseData);
                 // Use the updateCourse action instead of addCourses
-                dispatch(updateCourse({ id,updatedCourseData, navigate }));
+                dispatch(updateCourse({ id,updatedCourseData}));
+                navigate('/mycourse')
                 };
        
   return (

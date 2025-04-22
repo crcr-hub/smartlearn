@@ -12,9 +12,7 @@ function ViewTeacherTransactions() {
     useEffect(()=>{
                 dispatch(fetchTeacher(id));
                 dispatch(teacherTransaction(id));
-                if (teacher){
-                   
-                }
+                
                
             },[dispatch,id]);
 

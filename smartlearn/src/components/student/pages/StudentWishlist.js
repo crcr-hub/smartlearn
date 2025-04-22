@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { AddToCart, AddToWishlist, FetchCart, fetchCartCourses, FetchWishlist, removeCartItem, removeWishlistItem } from '../../../redux/authSlices';
+import { AddToCart, AddToWishlist, FetchCart, fetchCartCourses, fetchLearningCourse, FetchWishlist, removeCartItem, removeWishlistItem } from '../../../redux/authSlices';
 
 function StudentWishlist() {
        const [activeTab, setActiveTab] = useState("wishlist"); // Default to 'cart'
@@ -11,7 +11,7 @@ function StudentWishlist() {
        const {user} = useSelector((state)=>state.auth)
        const {cart} = useSelector((state)=>state.auth)
        const {courses,loading:courserLoaading,error:courseError} = useSelector((state)=>state.auth)
-       
+       const {learnings} = useSelector((state)=>state.auth)
        const { cartCourseDetails, loading } = useSelector((state) => state.auth);
        const {wishlist} = useSelector((state)=>state.auth)
    
@@ -19,9 +19,11 @@ function StudentWishlist() {
        const validCourses = cartCourseDetails.filter(Boolean);
       
        const {teachers} = useSelector((state)=>state.auth)
-   
-          
+
+         
+      console.log("Lerating courses",wishlist)
        useEffect (()=>{
+        dispatch(fetchLearningCourse());
            if (user.user_id){
                dispatch(FetchCart(user.user_id));
                dispatch(FetchWishlist(user.user_id));
@@ -82,6 +84,13 @@ function StudentWishlist() {
             }
            
       }
+
+
+      const handleOnClick =(courseId)=>{
+        console.log("course id::",courseId)
+        navigate(`/coursedetails/${courseId}`)
+      }
+
       
   return (
 <div>
@@ -135,8 +144,9 @@ function StudentWishlist() {
                                         }}>
                                         
                                             
-                                            <img  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
+                                            <img onClick={()=>handleOnClick(course.id)}   src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
                                                 height: "100px",
+                                                cursor:"pointer",
                                                 width:"150px",  
                                                 objectFit: "cover"}} />
                                         
@@ -144,7 +154,7 @@ function StudentWishlist() {
                                         <div style={{width:"40%" , margin: "10px", borderRight: "5px solid black"}}>
                                            <h5 style={{fontWeight:"bold"}}>{course?.name? course.name:""}</h5> 
                                            <h6>by :{teacher?.first_name? teacher.first_name:""}</h6>
-                                           <h6>Rating</h6>
+                                           <h6>Rating</h6> 
                                         </div>
                                         <div style={{width:"15%" , margin: "10px", borderRight: "5px solid black"}}>
                                            <p><Link onClick={()=>handleRemove(items.id)}>Remove</Link></p> 
@@ -172,7 +182,7 @@ function StudentWishlist() {
 
 
                   <div  style={{  height: "120px", marginBottom: "10px", display: "flex"}}>
-                            <div style={{ width: "25%", margin: "10px", border: "1px solid black",
+                            <div style={{ width: "25%", margin: "10px", borderTop: "1px solid black",
                                  display: "flex",        // Enable flexbox
                                  justifyContent: "center", // Center horizontally
                                  alignItems: "center",
@@ -181,10 +191,10 @@ function StudentWishlist() {
                                
                                 
                             </div>
-                            <div style={{width:"40%" , margin: "10px", border: "1px solid black"}}>
+                            <div style={{width:"40%" , margin: "10px", borderTop: "1px solid black"}}>
                                
                             </div>
-                            <div style={{width:"15%" , margin: "10px", border: "1px solid black",
+                            <div style={{width:"15%" , margin: "10px", borderTop: "1px solid black",
                                 display: "flex",        // Enable flexbox
                                 justifyContent: "center", // Center horizontally
                                 alignItems: "center",
@@ -243,9 +253,10 @@ function StudentWishlist() {
                       }}>
                       
                           
-                          <img  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
+                          <img onClick={()=>handleOnClick(items.course)} src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
                               height: "100px",
                               width:"150px",  
+                              cursor:"pointer",
                               objectFit: "cover"}} />
                       
                       </div>
@@ -255,10 +266,14 @@ function StudentWishlist() {
                          <h6>Rating</h6>
                       </div>
                       <div style={{width:"15%" , margin: "10px", borderRight: "5px solid black"}}>
-                         <p><Link onClick={()=>handleWishlistRemove(items.id)}>Remove</Link></p> 
-                          <Link onClick={()=> addToCart(
-                            course.id
-                          )}>Add To Cart</Link>
+                      {items?.id && (
+              <p><Link onClick={() => handleWishlistRemove(items.id)}>Remove</Link></p>
+                      )}
+                         {learnings?.some(p => p.course === course.id) ? (
+    <Link to="/mylearning">Go to My Learnings</Link>
+  ) : (
+    <Link onClick={() => addToCart(course.id)}>Add to Cart</Link>
+  )}
                       </div>
                       <div style={{width:"25%", margin: "10px"}}>
                       <h6 style={{fontWeight:"bold"}}>Price <span style={{ marginLeft: "50px" }}>

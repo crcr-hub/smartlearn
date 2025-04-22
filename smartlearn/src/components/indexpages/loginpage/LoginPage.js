@@ -13,10 +13,12 @@ import {
     MDBCheckbox
   }
   from 'mdb-react-ui-kit';
-  import { useNavigate } from 'react-router-dom';
+  import { Link, useNavigate } from 'react-router-dom';
 
 
   import { loginUser } from '../../../redux/authSlices';
+import NavbarTop from '../NavbarTop';
+import Footer from '../Footer';
 
 function LoginPage() {
     const dispatch = useDispatch(); // Initialize the dispatch function to dispatch actions
@@ -33,6 +35,7 @@ function LoginPage() {
   };
 
   return (
+ 
     <MDBContainer className='my-5'>
     <MDBCard>
 
@@ -54,7 +57,7 @@ function LoginPage() {
 
                         <div className="d-flex justify-content-between mx-4 mb-4">
                         <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
-                        <a href="!#">Forgot password?</a>
+                        <Link to={"/forgotpwd"}>Forgot password?</Link>
                         </div>
 
                         {/* <MDBBtn className="mb-4 w-100"    style={{
@@ -73,6 +76,9 @@ function LoginPage() {
                 >
                   Sign in
                 </button>
+                <div className="text-center" >
+                               <Link  to="/register"><p>Don't have an Account? SignUp Here</p></Link> 
+                </div>
                     </form>
                     </MDBCardBody>
                     </div>
@@ -83,6 +89,7 @@ function LoginPage() {
 
     </MDBCard>
   </MDBContainer>
+  
   )
 }
 

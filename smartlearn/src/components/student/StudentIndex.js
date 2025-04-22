@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { viewAllTeachers, viewCategory, viewCourses } from '../../redux/authSlices'
+import { averageRating, viewAllTeachers, viewCategory, viewCourses } from '../../redux/authSlices'
 import { Link } from 'react-router-dom';
 
 function StudentIndex() {
@@ -11,20 +11,35 @@ function StudentIndex() {
     const {courses,loading:courserLoaading,error:courseError} = useSelector((state)=>state.auth)
     const {teachers, loading:teacherLoading, error:teacherError} = useSelector((state) =>state.auth)
     const {  category:categories, loading, error } = useSelector((state) => state.auth);
-    
+     const {average_rating : averageRatings} = useSelector((state)=>state.auth);
+     
     useEffect (()=>{
          dispatch (viewCategory());
          dispatch(viewCourses());
           dispatch (viewAllTeachers());
-        },[dispatch])
+          
+        },[dispatch]);
+
+
+        useEffect(() => {
+          if (courses && Array.isArray(courses)) {
+            console.log("Courses:", courses);
+            courses.forEach(course => {
+              dispatch(averageRating(course.id));
+            });
+          }
+        }, [dispatch, courses]);
+        
+        useEffect(() => {
+          console.log("Average Ratings:", averageRatings);
+        }, [averageRatings]);
+        
+    
         const [blockStatus,setBlockstatus] = useState();
        
-        console.log("courses", courses);
-        console.log("teachers", teachers);
+        
 
     const categoryArray = Array.isArray(categories) ? categories : [];
-    console.log("categories", categoryArray);
-    
     const teacherArray = Array.isArray(teachers) ? teachers : [];
 
   
@@ -113,6 +128,36 @@ function StudentIndex() {
                                     {course.offer_price}</span></p>
                           
                               </small>
+
+
+                              {course && averageRatings && averageRatings.hasOwnProperty(course.id) && (
+  <div className="mt-1">
+    <span style={{ fontSize: '14px', color: '#ffa534' }}>
+      {Array.from({ length: 5 }, (_, i) => {
+        const rating = averageRatings[course.id];
+        return (
+          <svg
+            key={i}
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill={i < Math.round(rating) ? "gold" : "lightgray"}
+            className="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.32-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.63.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+          </svg>
+        );
+      })}
+      <span style={{ marginLeft: '6px', color: '#333', fontSize: '13px' }}>
+        ({averageRatings[course.id]?.toFixed(1)})
+      </span>
+    </span>
+  </div>
+)}
+
+
+
                             </div>
                           </div>
                         </div>

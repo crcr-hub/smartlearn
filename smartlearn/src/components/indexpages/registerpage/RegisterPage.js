@@ -13,7 +13,7 @@ import {
   }
   from 'mdb-react-ui-kit';
 import { useDispatch } from 'react-redux';
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
 import { addStudent } from '../../../redux/authSlices';
 import { lastDayOfDecade, quartersInYear } from 'date-fns';
 
@@ -248,7 +248,7 @@ function RegisterPage() {
 
               <div className="text-center">
 
-                <p>Already have Account? SignIn Here</p>
+               <Link  to="/loginpage"><p>Already have Account? SignIn Here</p></Link> 
 
                
 

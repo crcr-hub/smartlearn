@@ -3,8 +3,8 @@ import StudentNavbar from '../StudentNavbar'
 import CourseDetails from '../pages/CourseDetails'
 import StudentFooter from '../StudentFooter'
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToCart, AddToWishlist, FetchCart } from '../../../redux/authSlices';
-import { useNavigate } from 'react-router-dom';
+import { AddToCart, AddToWishlist, FetchCart, fetchLearningCourse } from '../../../redux/authSlices';
+import { Link, useNavigate } from 'react-router-dom';
 
 function CourseDetailsPage() {
   const dispatch = useDispatch()
@@ -14,9 +14,10 @@ function CourseDetailsPage() {
   const {cart} = useSelector((state)=> state.auth)
   const { teacherprofile } = useSelector((state) => state.auth);
   const isInCart = Array.isArray(cart.cart) && cart.cart.some((item) => item.course === (course?.course?.id || ""));
-
+const {learnings} = useSelector((state)=>state.auth)
 
   useEffect(() => {
+      dispatch(fetchLearningCourse());
     if (user?.user_id) {
       dispatch(FetchCart(user.user_id));
     }
@@ -92,38 +93,57 @@ function CourseDetailsPage() {
             {course?.course?.offer_price? course.course.offer_price:"Loading"} 
             </h5>
         </div>
-        {isInCart ? (
-                <button  onClick={gotoCart}
-                  style={{
-                    width: "100%",
-                    marginBottom: "10px",
-                    padding: "10px",
-                    backgroundColor: "darkblue",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Go to Cart
-      </button>
-            ) : (
-              <button
-              onClick={addToCart}
-              style={{
-                width: "100%",
-                marginBottom: "10px",
-                padding: "10px",
-                backgroundColor: "darkblue",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
-              }}
-            >
-              Add to Cart
-            </button>
-          )}
+        {learnings?.some(p => p.course === course.course.id) ? (
+  <Link to="/mylearning" style={{ 
+    display: "inline-block", 
+    textAlign: "center", 
+    width: "100%", 
+    padding: "10px", 
+    backgroundColor: "green", 
+    color: "white", 
+    textDecoration: "none", 
+    borderRadius: "4px",
+    marginBottom: "10px"
+  }}>
+    Go to My Learnings
+  </Link>
+) : isInCart ? (
+  <button
+    onClick={gotoCart}
+    style={{
+      width: "100%",
+      marginBottom: "10px",
+      padding: "10px",
+      backgroundColor: "darkblue",
+      color: "white",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "pointer",
+    }}
+  >
+    Go to Cart
+  </button>
+) : (
+  <button
+    onClick={addToCart}
+    style={{
+      width: "100%",
+      marginBottom: "10px",
+      padding: "10px",
+      backgroundColor: "darkblue",
+      color: "white",
+      border: "none",
+      borderRadius: "4px",
+      cursor: "pointer",
+    }}
+  >
+    Add to Cart
+  </button>
+)}
+
+
+
+       
    
         <button onClick={addToWishlist}
           style={{ 

@@ -42,6 +42,10 @@ import ProfilePage from '../components/student/screen/ProfilePage';
 import StudentPrivateRoute from '../components/privateRoutes/StudentPrivateRoute';
 import TeacherPrivateRoute from '../components/privateRoutes/TeacherPrivateRoute';
 import TeacherTransaction from '../components/teacher/pages/TeacherTransaction';
+import ForgetPassword1 from '../components/indexpages/ForgetPassword1';
+import VerifyOtp from '../components/indexpages/VerifyOtp';
+import ResetPwd from '../components/indexpages/ResetPwd';
+import Pro from '../components/student/screen/Pro';
 
 function IndexLayout() {
   return (
@@ -53,6 +57,9 @@ function IndexLayout() {
           <Route path = "register" element= {<Register/>} />
           <Route path= "tregister" element = {<TeacherRegister/>}/>
           <Route path='/teacherregister' element={<TeacherRegister/>}/>
+          <Route path='/forgotpwd' element={<ForgetPassword1/>} />
+          <Route path='/verify-otp' element={<VerifyOtp/>} />
+          <Route path='/resetpwd' element={<ResetPwd/>}/>
           {/* <Route path = "/tutor/*" element = {<TutorLayout/>}/> */}
           <Route path = "/admin/*" element = {<AdminLayout/>}/>
           <Route path = '/home/' element={<StudentPrivateRoute><HomePage/></StudentPrivateRoute>} />
