@@ -58,33 +58,41 @@ function TutorList() {
 
 
 
-                        {tutorlist.map((tut,index)=>(
-                            <div key={index} style={{ display: "flex" }}>
-                            <div style={{ borderBottom: "1px solid", padding: "10px", width: "60%" }}>
-                              <h6>
-                                <span style={{ marginRight: "10px" }}>{tut.tutor.name}</span>
-                                
-                              </h6>
-                              <p>Courses: {tut.courses.map((courses)=>courses +",   ")} </p>
-                            </div>
-                            <div style={{ marginTop: "10px" }}>
-
-
-                            {tut.tutor.block_status === true ? (
-        <span style={{ color: "red", fontWeight: "bold" }}>Tutor Unavailable</span>
-      ) : (
-        <button
-          onClick={() => handleSendButton(tut.tutor.id, tut.tutor.name)}
-          type="button"
-          className="btn btn-info"
-        >
-          Send Message
-        </button>
-      )}
-                           
-                            </div>
+                    {tutorlist.map((tut, index) => (
+                        <div key={index} style={{ display: "flex" }}>
+                          <div style={{ borderBottom: "1px solid", padding: "10px", width: "60%" }}>
+                            <h6>
+                              <span style={{ marginRight: "10px" }}>
+                                {tut?.tutor?.name || "Unknown Tutor"}
+                              </span>
+                            </h6>
+                            <p>
+                              Courses:{" "}
+                              {tut?.courses?.length > 0
+                                ? tut.courses.join(", ")
+                                : "No courses available"}
+                            </p>
                           </div>
-                        ))}
+                          <div style={{ marginTop: "10px" }}>
+                            {tut?.tutor?.block_status === true ? (
+                              <span style={{ color: "red", fontWeight: "bold" }}>
+                                Tutor Unavailable
+                              </span>
+                            ) : (
+                              <button
+                                onClick={() =>
+                                  handleSendButton(tut?.tutor?.id, tut?.tutor?.name || "")
+                                }
+                                type="button"
+                                className="btn btn-info"
+                              >
+                                Send Message
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+
                    
 
                     </div>
