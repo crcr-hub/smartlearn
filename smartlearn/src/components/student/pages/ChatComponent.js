@@ -121,7 +121,7 @@ const handleSendMessage = async () => {
         <section className='col-md-9'>
           <div>
             <div>
-            <div style={{ width: "700px", padding: "10px" }}>
+            <div style={{ width: "700px", padding: "10px",border: "1px solid black" }}>
                 {/* Chat Header */}
                 <div style={{marginBottom:"10px", width: "100%", height: "40px", backgroundColor:"grey",  textAlign: "center", color: "white", fontWeight: "bold", lineHeight: "40px" }}>
                     {tutorName}
@@ -189,7 +189,7 @@ const handleSendMessage = async () => {
 
             </div>
             <div style={{display:"flex"}}>
-                    <input style={{width:"650px"}} className="form-control"
+                    <input style={{width:"570px"}} className="form-control"
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}

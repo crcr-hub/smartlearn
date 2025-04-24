@@ -46,6 +46,7 @@ import ForgetPassword1 from '../components/indexpages/ForgetPassword1';
 import VerifyOtp from '../components/indexpages/VerifyOtp';
 import ResetPwd from '../components/indexpages/ResetPwd';
 import Pro from '../components/student/screen/Pro';
+import StudentCourseList from '../components/teacher/pages/StudentCourseList';
 
 function IndexLayout() {
   return (
@@ -72,12 +73,14 @@ function IndexLayout() {
           <Route path='/select' element={<TeacherPrivateRoute><TeacherSelectACoursePage/></TeacherPrivateRoute>} />
           <Route path='/add_module/:id' element={<TeacherPrivateRoute><TeacherAddModulPage/></TeacherPrivateRoute>} />
           <Route path='/teachermessage' element={<TeacherPrivateRoute><TecherMessage/></TeacherPrivateRoute>} />
-          <Route path='/liststudent' element ={<TeacherPrivateRoute><StudentListPage/></TeacherPrivateRoute>} />
+          <Route path='/liststudent/:sid' element ={<TeacherPrivateRoute><StudentListPage/></TeacherPrivateRoute>} />
           <Route path='/mycourse' element={<TeacherPrivateRoute><TeacherMyCourse/></TeacherPrivateRoute>} />
           <Route path = '/tutorchat/:sid' element={<TeacherPrivateRoute><TutorChatComponent/></TeacherPrivateRoute>} />
           <Route path='/tutrecent_m' element ={<TeacherPrivateRoute><TutorRecentMessagesPage/></TeacherPrivateRoute>} />
           <Route path='/teacherchat/:sid' element={<TeacherPrivateRoute><TeacherChatComponetPage/></TeacherPrivateRoute>} />
           <Route path = '/teacherTransactions' element={<TeacherPrivateRoute><TeacherTransaction/></TeacherPrivateRoute>} />
+          <Route path = '/tutorcourse' element={<TeacherPrivateRoute><StudentCourseList/></TeacherPrivateRoute>}/>
+
 
           <Route path='/videoplayer/:courseId' element={<StudentPrivateRoute><VideoPlayerPage/></StudentPrivateRoute>} />
           <Route path='/coursedetails/:id' element={<StudentPrivateRoute><CourseDetailsPage/></StudentPrivateRoute>}/>

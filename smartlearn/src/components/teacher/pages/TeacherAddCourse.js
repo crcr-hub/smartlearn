@@ -109,6 +109,7 @@ function TeacherAddCourse() {
       setCourseData({ ...courseData, image: croppedFile });
       const updatedCourseData = { ...courseData, image: croppedFile,role:'teacher' };
       dispatch(addCourses({ updatedCourseData, navigate }));
+      navigate('/mycourse')
     };
 
     const handleAddModule = async (e) => {

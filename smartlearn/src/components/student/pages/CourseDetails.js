@@ -9,7 +9,7 @@ function CourseDetails() {
     const { id } = useParams();
     const dispatch = useDispatch();
      const {learnings} = useSelector((state)=>state.auth)
-    const { course, courseLoading, courseError } = useSelector((state) => state.auth); // Assuming course details are in state
+    const { course } = useSelector((state) => state.auth); // Assuming course details are in state
     const { teacherprofile } = useSelector((state) => state.auth);
     const { modules } = useSelector((state) => state.auth);
     const {average_rating} = useSelector((state)=>state.auth)
@@ -20,10 +20,14 @@ function CourseDetails() {
     const courseRating = average_rating?.average_rating ?? 0;
     
 
+
+
+    console.log("Component1sadfasdf rendering with ID:", course,id);
+   
+
     const StarRating = ({ rating }) => {
-      console.log("average rating",rating)
+  
       const validRating = Number.isFinite(rating) ? rating : 0; // Ensure rating is a number
-      
       const maxStars = 5;
       const fullStars = Math.floor(validRating); 
       const hasHalfStar = validRating % 1 !== 0; 
@@ -40,16 +44,16 @@ function CourseDetails() {
     
 
 
-    useEffect(()=>{
-       dispatch(fetchLearningCourse());
-         if (id) {
-                  dispatch(fetchCourse(id)); // Fetch the course data to edit
-                }
-    },[dispatch, id]);
+
+
+
+
+
 
     useEffect(() => {
-      const courseId = course?.course?.id;
-      if (courseId) {
+      
+      if (course && course.course && course.course.id) {
+        const courseId = course.course.id;
         dispatch(fetchModules(courseId));
         dispatch(averageRating(courseId));
         dispatch(getAllFeedback(courseId));
@@ -57,11 +61,20 @@ function CourseDetails() {
     }, [dispatch, course]);
     
 
-    useEffect(() => {
-      if (course.course && course.course.teacher) {
-        dispatch(fetchTeacherProfile(course.course.teacher)); // Fetch teacher profile when course is available
-      }
-    }, [dispatch, course]);
+
+
+    
+    
+
+  useEffect(() => {
+    console.log("teahcereddssss",id)
+    if (course && course.course && course.course.teacher) {
+      const id = course.course.teacher
+      dispatch(fetchTeacherProfile(id));
+    }
+  }, [dispatch, course]);
+  
+    
   return (
 
 
@@ -79,8 +92,17 @@ function CourseDetails() {
       <StarRating rating={courseRating} /> Rating
       </p>
       <p style={{ fontWeight: "20px", color: "white" }}>
-        Created by {teacherprofile ? teacherprofile.first_name + " " + teacherprofile.last_name : ""}
-      </p>
+  Created by{" "}
+  {teacherprofile?.user?.block_status ? (
+    "Tutor Unavailable"
+  ) : teacherprofile?.teacher ? (
+    `${teacherprofile.teacher.first_name} ${teacherprofile.teacher.last_name}`
+  ) : (
+    "Loading..."
+  )}
+</p>
+
+
     </div>
   </div>
 

@@ -41,7 +41,9 @@ function RecentMessages() {
                         recentMessage.recent_messages.map((msg,index)=>{
                             const sproid = msg.sender_profile.profile_id;
                             const rproid = msg.recipient_profile.profile_id;
+                            
                             const pid = profile.id
+                            const isBlocked = sproid !== pid ? msg.sender_profile.block_status : msg.recipient_profile.block_status;
                             const profileid = sproid !== pid ? msg.sender_profile.profile_id:msg.recipient_profile.profile_id;
                             const tutorname = sproid !== pid ? msg.sender_profile.first_name : msg.recipient_profile.first_name;
                             const tutorId = sproid !== pid ? msg.sender_profile.id : msg.recipient_profile.id;
@@ -49,16 +51,32 @@ function RecentMessages() {
                             
                            
                             return(
-                                <div onClick={() => {handleSendButton(profileid,tutorname,tutorId);
-                                    changeIsRead(msg.room_id);
+                               
+                               
+                               
+                               
+                               
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                        marginBottom: "5px",
+                                        border: "1px solid black",
+                                        padding: "10px",
+                                        borderRadius: "5px",
+                                        width: "400px",
+                                        cursor: isBlocked ? "default" : "pointer"
+                                    }}
+                                    onClick={
+                                        isBlocked
+                                        ? undefined
+                                        : () => {
+                                            handleSendButton(profileid, tutorname, tutorId);
+                                            changeIsRead(msg.room_id);
+                                            }
+                                    }>
 
-                                }}  
-                                style={{display:"flex",
-                                    justifyContent: "space-between", // Push elements apart
-                                    alignItems: "center",
-                                    marginBottom:"5px", cursor:"pointer", 
-                                    border: "1px solid black", padding: "10px",
-                                    borderRadius: "5px",width:"400px"}}>
 
                                 <div style={{ display: "flex", alignItems: "center" }}>
                                 <svg style={{marginTop:"5px",marginRight:"10px"}}  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-rolodex" viewBox="0 0 16 16">
@@ -70,15 +88,20 @@ function RecentMessages() {
                                        
                                         <p>{msg.sender_profile.first_name}
                                         <span style={{marginLeft:"5px"}}>{msg.sender_profile.last_name}</span>
-                                        
+                                        <span style={{ marginLeft:"10px", color: isBlocked ? "red" : "green" }}>
+                                                {isBlocked ? "Blocked" : "Active"}
+                                                </span>
                                         </p>
+                                        
                                        
                                     ):(
                                         
                                         <p>{msg.recipient_profile.first_name}
                                          <span style={{marginLeft:"5px"}}>{msg.recipient_profile.last_name}</span>
-                                        
-                                        </p>
+                                         <span style={{ marginLeft:"10px", color: isBlocked ? "red" : "green" }}>
+                                            {isBlocked ? "Unavailable" : ""}
+                                            </span>
+                                     </p>
                                         
                                         
                                     ) }

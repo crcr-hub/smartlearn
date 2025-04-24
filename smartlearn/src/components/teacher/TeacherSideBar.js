@@ -22,14 +22,20 @@ function TeacherSideBar() {
                         <Link to="/select" className={`list-group-item list-group-item-action ${
                     location.pathname === "/select" || location.pathname.startsWith("/add_module/") ? "active" : ""
                   }`} >Modules</Link>
+
+
                         <Link to="/teacherprofile" className={`list-group-item list-group-item-action ${
                     location.pathname === "/teacherprofile" ? "active" : ""
                   }`}>Profile settings</Link>
+
+
                         <Link to="" className='list-group-item list-group-item-action'>Change Password</Link>
                         
-                        <Link to="/liststudent" className={`list-group-item list-group-item-action ${
-                    location.pathname === "/liststudent" ? "active" : ""
+                        <Link to="/tutorcourse" className={`list-group-item list-group-item-action ${
+                    location.pathname === "/tutorcourse" || location.pathname .startsWith('/liststudent') ? "active" : ""
                   }`}>List Your Students</Link>
+
+
                         <Link to="/tutrecent_m" className={`list-group-item list-group-item-action ${
                     location.pathname === "/tutrecent_m" ? "active" : "" }`}>Recent Messages</Link>
                     

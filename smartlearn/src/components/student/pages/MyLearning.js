@@ -12,7 +12,7 @@ function MyLearning() {
     const dispatch = useDispatch()
 
     
-    console.log(learnings)
+    console.log("teacherssss",teachers)
     useEffect(() => {
         //Ensure user is available and fetch courses only when user_id exists
           dispatch(fetchLearningCourse());

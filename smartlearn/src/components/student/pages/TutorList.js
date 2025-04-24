@@ -5,8 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserTutors } from '../../../redux/authSlices';
 import { useNavigate } from 'react-router-dom';
 
+
+
+
 function TutorList() {
     const {tutorlist} = useSelector((state) => state.auth);
+
+    console.log("tutorslist",tutorlist)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     useEffect(()=>{
@@ -19,6 +24,27 @@ function TutorList() {
         // Navigate to the chat page with the tutor's ID and name as route parameters
         navigate(`/chat/${id}`, { state: { tutorName } });
     }
+
+
+
+    const groupedTutors = tutorlist.reduce((acc, curr) => {
+        const tutorId = curr.tutor.id;
+      
+        if (!acc[tutorId]) {
+          acc[tutorId] = {
+            tutor: curr.tutor,
+            courses: [curr.course_name],
+          };
+        } else {
+          acc[tutorId].courses.push(curr.course_name);
+        }
+      
+        return acc;
+      }, {});
+
+      const uniqueTutors = Object.values(groupedTutors);
+
+      
   return (
     <div>
       <StudentNavbar/>
@@ -29,21 +55,38 @@ function TutorList() {
                 <section className='col-md-9'>
                     List of the tutors
                     <div style={{}}>
-                        {tutorlist.map((tut,index)=>(
-                    <div style={{display:"flex"}}>
-                           <div key={index} style={{ borderBottom:"1px solid",padding:"10px",width:"60%" }}>
-                           <h6>
-                               <span style={{ marginRight: "10px" }}>{tut.tutor.name}</span>
-                               {tut.tutor.email}
-                           </h6>
-                           <p>Course: {tut.course_name} {tut.tutor.id}</p>
-                       </div>
-                       <div style={{marginTop:"10px"}}>
-                        <button onClick={() => handleSendButton(tut.tutor.id,tut.tutor.name)}  type="button" className="btn btn-info">Send Message</button>
-                       </div>
-                    </div>
 
+
+
+                        {tutorlist.map((tut,index)=>(
+                            <div key={index} style={{ display: "flex" }}>
+                            <div style={{ borderBottom: "1px solid", padding: "10px", width: "60%" }}>
+                              <h6>
+                                <span style={{ marginRight: "10px" }}>{tut.tutor.name}</span>
+                                
+                              </h6>
+                              <p>Courses: {tut.courses.join(", ")}</p>
+                            </div>
+                            <div style={{ marginTop: "10px" }}>
+
+
+                            {tut.tutor.block_status === true ? (
+        <span style={{ color: "red", fontWeight: "bold" }}>Tutor Unavailable</span>
+      ) : (
+        <button
+          onClick={() => handleSendButton(tut.tutor.id, tut.tutor.name)}
+          type="button"
+          className="btn btn-info"
+        >
+          Send Message
+        </button>
+      )}
+                           
+                            </div>
+                          </div>
                         ))}
+                   
+
                     </div>
                 </section>
             </div>

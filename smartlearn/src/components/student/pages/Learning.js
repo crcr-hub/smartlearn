@@ -193,7 +193,6 @@ useEffect(() => {
 const hasSubmitted = useRef(false); // Track submission status
 useEffect(() => {
 
-console.log("workingnnnnnnn",totalTime,"watched",watchedTime)
   const checkAndSubmitProgress = async () => {
     if (!sortedModules || sortedModules.length === 0 || !moduleId) return;
 
@@ -201,7 +200,6 @@ console.log("workingnnnnnnn",totalTime,"watched",watchedTime)
     const isLastModule = moduleId === lastModuleId;
 
     if (isLastModule && watchedTime >= totalTime && totalTime > 0 && !hasSubmitted.current) {
-      console.log("Last module fully watched! Saving progress...");
       hasSubmitted.current = true; // Mark as submitted
       await submitProgression(); 
       await dispatch(fetchProgress(mycourse.id)); 
@@ -265,7 +263,6 @@ console.log("workingnnnnnnn",totalTime,"watched",watchedTime)
   
   useEffect(() => {
     if (playerRef.current && selectedVideoUrl) {
-      console.log("url",selectedVideoUrl)
             const player = playerRef.current;
             player.pause(); // Pause the current video
             player.src({ 

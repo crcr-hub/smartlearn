@@ -247,7 +247,23 @@ export const updateApprove = createAsyncThunk('admin/updateApprove',
       return response.data;
 
     } catch(error){
-      return rejectWithValue(error.response?.data || 'Failed to fetch notification');
+      return rejectWithValue(error.response?.data || 'Failed to update');
+    }
+  }
+);
+
+
+
+
+export const updateCourseStatus = createAsyncThunk('admin/updateHold',
+  async({ cid, holdData },{rejectWithValue})=>{
+    try{
+      const response = await axiosInstance.patch(`/update_status/${cid}/`,holdData); 
+      console.log("from authslice",response.data)
+      return response.data;
+
+    } catch(error){
+      return rejectWithValue(error.response?.data || 'Failed to make hold');
     }
   }
 );
@@ -412,6 +428,7 @@ export const teacherBlockStatus = createAsyncThunk( 'auth/teacherBlockStatus',
 // fetch teacher profile
 export const fetchTeacherProfile = createAsyncThunk('auth/fetchTeacherProfile', async (id, { rejectWithValue }) => {
   try {
+    console.log("woooorrrkkinninininggggg")
     const response = await axiosInstance.get(`/teacher_profile/${id}/`);
     return response.data;
   } catch (error) {
@@ -480,7 +497,7 @@ export const updateStudentData = createAsyncThunk( 'auth/updateStudentData',
     });
 
 
-//.................................... courrses ------------------------------------------------------------
+//........................................courses ------------------------------------------------------------
 
 export const addCategory = createAsyncThunk('auth/addCategory',
     async({catData, navigate}, { rejectWithValue }) =>{
@@ -522,6 +539,18 @@ export const updateCategoryData = createAsyncThunk( 'auth/updateCategoryData',
     }
   });
 
+
+
+export const getCourseStatus = createAsyncThunk('auth/getCourseStatus',
+  async(id,{rejectWithValue}) =>{
+    try{
+      const response = await axiosInstance.get(`/status/${id}`);
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.response?.data || 'Failed to get status');
+    }
+  });
+
   export const addCourses = createAsyncThunk('auth/addCourses',
     async({updatedCourseData,module, navigate}, { rejectWithValue }) =>{
       try {
@@ -548,13 +577,7 @@ export const updateCategoryData = createAsyncThunk( 'auth/updateCategoryData',
             'Content-Type': 'multipart/form-data', // Ensure the correct content type
           },
         });
-        if(updatedCourseData.role === 'teacher'){
-          navigate('/tutordashboard');
-        }
         
-        else{
-          navigate('/admin/viewcourses');
-        }
         
      
         Swal.fire({
@@ -657,6 +680,7 @@ export const updateCategoryData = createAsyncThunk( 'auth/updateCategoryData',
 
     export const fetchCourse = createAsyncThunk('course/fetchCourse', async (id, { rejectWithValue }) => {
       try {
+        console.log("wrokkinidnfignjsidfjg")
         const response = await axiosInstance.get(`/course/${id}/`);
         return response.data;
       } catch (error) {
@@ -666,9 +690,7 @@ export const updateCategoryData = createAsyncThunk( 'auth/updateCategoryData',
 
     export const fetchTutorCourse = createAsyncThunk('course/fetchtutorCourse', async (teacher_id, { rejectWithValue }) => {
       try {
-
         const response = await axiosInstance.get(`/tutorcourse/${teacher_id}/`);
-        
         return response.data;
       } catch (error) {
         return rejectWithValue(error.response?.data || 'Failed to fetch course');
@@ -984,14 +1006,26 @@ export const fetchUserTutors = createAsyncThunk("tutors/fetchUserTutors", async 
   }
 });
 
-export const fetchTutorsStudent = createAsyncThunk("tutors/fetchTutorsStudent", async (_, { rejectWithValue }) => {
+export const fetchTutorsStudent = createAsyncThunk("tutors/fetchTutorsStudent", 
+  async (sid, { rejectWithValue }) => {
   try {
-    const response = await axiosInstance.get(`/get_students/`);
+    const response = await axiosInstance.get(`/get_students/${sid}/`);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data);
   }
 });
+
+
+export const getTutorCourse = createAsyncThunk("tutor/getTutorCourse",
+  async(_,{rejectWithValue})=>{
+    try{
+      const response = await axiosInstance.get('/tutor_course/');
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.responese.data)
+    }
+  });
 
 // ............................................. Messages...................................
 
@@ -1258,6 +1292,8 @@ const initialState = {
   adminDashboardData : null,
   teacherTransaction : null,
   transactions_data : null,
+  status_data :null,
+  tutorCourse : null,
 };
 
 // Slice
@@ -1266,13 +1302,13 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess: (state, action) => {
-      // 🔥 Clear old user data first
+      // Clear old user data first
       localStorage.removeItem("user");
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
       sessionStorage.clear();
 
-      // ✅ Store new user data
+      // Store new user data
       localStorage.setItem("user", JSON.stringify(action.payload.user));
       localStorage.setItem("access", action.payload.access);
       localStorage.setItem("refresh", action.payload.refresh);
@@ -1309,19 +1345,6 @@ const authSlice = createSlice({
     },
 
     loadUser: (state) => {
-      // const token = localStorage.getItem('access');
-      // if (token) {
-      //   try {
-      //     const user = jwtDecode(token);
-      //     state.user = user;
-      //     state.access = token;
-      //     state.isAuthenticated = true;
-      //   } catch (error) {
-      //     console.error("Token decoding failed", error);
-      //     state.user = null;
-      //     state.access = null;
-      //     state.isAuthenticated = false;
-      //   }
 
 
       const token = localStorage.getItem("access");
@@ -1338,11 +1361,33 @@ const authSlice = createSlice({
           state.isAuthenticated = false;
         }
       }
-    }
+    },
+    clearStatusData: (state) => {
+      state.status_data = null;
+    },
+  
   },
+
+
+ 
   extraReducers: (builder) => {
     builder
-
+    .addCase(getTutorCourse.pending,(state)=>{
+      state.loading = true;
+      state.error = null
+    })
+    .addCase(getTutorCourse.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.tutorCourse = action.payload;
+    })
+    .addCase(getCourseStatus.pending,(state)=>{
+      state.loading = true;
+      state.error = null
+    })
+    .addCase(getCourseStatus.fulfilled,(state, action)=>{
+      state.loading = false;
+      state.status_data= action.payload;
+    })
     .addCase(transactions.pending,(state)=>{
       state.loading = true;
       state.error = null;
@@ -2014,5 +2059,5 @@ const authSlice = createSlice({
   
 });
 
-export const { logout,loadUser  } = authSlice.actions;
+export const { logout,loadUser,clearStatusData  } = authSlice.actions;
 export default authSlice.reducer;

@@ -3,12 +3,14 @@ import StudentNavbar from '../StudentNavbar'
 import CourseDetails from '../pages/CourseDetails'
 import StudentFooter from '../StudentFooter'
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToCart, AddToWishlist, FetchCart, fetchLearningCourse } from '../../../redux/authSlices';
-import { Link, useNavigate } from 'react-router-dom';
+import { AddToCart, AddToWishlist, FetchCart, fetchCourse, fetchLearningCourse } from '../../../redux/authSlices';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import CourseDetailsNPage from '../pages/CourseDetailsNPage';
 
 function CourseDetailsPage() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { id } = useParams();
   const { course, courseLoading, courseError } = useSelector((state) => state.auth); // Assuming course details are in state
   const {user} = useSelector((state)=> state.auth)
   const {cart} = useSelector((state)=> state.auth)
@@ -16,8 +18,17 @@ function CourseDetailsPage() {
   const isInCart = Array.isArray(cart.cart) && cart.cart.some((item) => item.course === (course?.course?.id || ""));
 const {learnings} = useSelector((state)=>state.auth)
 
+
+
+useEffect(()=>{
+  console.log("iddddddddd",course)
+  dispatch(fetchCourse(id));
+},[dispatch])
+
   useEffect(() => {
+   
       dispatch(fetchLearningCourse());
+       dispatch(fetchCourse(id));
     if (user?.user_id) {
       dispatch(FetchCart(user.user_id));
     }
@@ -57,7 +68,7 @@ const {learnings} = useSelector((state)=>state.auth)
     <StudentNavbar />
     <div style={{ display: "flex", flex: 1 }}>
       <div style={{ flex: 1 }}>
-        <CourseDetails />
+        <CourseDetails id={id} />
       </div>
       {/* Sidebar positioned on the right */}
       <div

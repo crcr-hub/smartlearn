@@ -80,7 +80,7 @@ function ViewModules() {
                   <th>Module Number</th>
                   <th>Topic</th>
                   <th>Subtopic</th>
-                  <th>Media URL</th>
+                  <th>Media </th>
                   <th>Media Status</th> {/* Action column for buttons */}
                 </tr>
               </thead>

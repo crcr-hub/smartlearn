@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { addCourses, addModule, fetchCourse, fetchModules, publishCourse, updateModule } from '../../../redux/authSlices';
+import { addCourses, addModule, fetchCourse, fetchModules, fetchTutorCourse, publishCourse, updateModule } from '../../../redux/authSlices';
 import TeacherSideBar from '../TeacherSideBar';
 import Cropper from 'react-easy-crop';
 
@@ -24,6 +24,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
           const [editingRow, setEditingRow] = useState(null); // Tracks the row being edited
           const [editData, setEditData] = useState({}); // Stores the data being edited
           const [rowLoading, setRowLoading] = useState(null);
+            const { user: teacher } = useSelector((state) => state.auth);
 
           const handleEditClick = (module) => {
             setEditingRow(module.id); // Set the current row in edit mode
@@ -86,7 +87,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
             return () => clearInterval(interval);
           }, [dispatch, id, pollingActive]);
      
-          console.log("coursessssss",course)
+         
 
 
           const handleAddModule = async () => {
@@ -114,18 +115,34 @@ const TeacherAddModul = ({ selectedCourseId }) => {
      
      
      
-          const publishButton = ()=>{
-            console.log("button is working")
+          const publishButton = () => {
             if (modules.length === 0) {
               alert("You must add at least one module before publishing the course.");
               return;
             }
-            if (course && course.course.id){
+          
+            if (course && course.course.id) {
               dispatch(publishCourse(course.course.id))
+                .unwrap()
+                .then(() => {
+                  // Optional: If teacher.profile_id is available, fetch updated data
+                  if (teacher?.profile_id) {
+                    dispatch(fetchTutorCourse(teacher.profile_id))
+                      .unwrap()
+                      .then(() => {
+                        navigate('/mycourse');
+                      });
+                  } else {
+                    navigate('/mycourse'); // fallback if teacher data isn't ready
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error publishing course:", error);
+                  alert("Something went wrong while publishing.");
+                });
             }
-      
-        navigate('/tutordashboard')
-      }
+          };
+          
           
 
   return (
@@ -292,15 +309,29 @@ const TeacherAddModul = ({ selectedCourseId }) => {
       </td>
     </tr>
    
-    {course.course && course.course.visible_status === "waiting" && (
-  <tr>
-    <td>
+    {course.course && (
+  <>
+    {(course.course.visible_status === "Private" ||
+      course.course.visible_status === "private" ||
+      course.course.visible_status === "Hold") && (
+      <tr>
+        <td></td>
+        <td>
+          <button className="btn btn-primary" onClick={publishButton}>
+            {course.course.visible_status === "Hold" ? "Resubmit" : "Publish Now"}
+          </button>
+        </td>
+      </tr>
+    )}
 
-    </td>
-    <td>
-      <button className="btn btn-primary" onClick={publishButton}>Publish Now</button>
-    </td>
-  </tr>
+    {course.course.visible_status === "Rejected" && (
+      <tr>
+        <td colSpan="2" style={{ color: "red", fontWeight: "bold" }}>
+          Your course has been rejected. Please contact the admin.
+        </td>
+      </tr>
+    )}
+  </>
 )}
 
     
