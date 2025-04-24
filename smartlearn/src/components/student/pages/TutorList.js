@@ -65,7 +65,7 @@ function TutorList() {
                                 <span style={{ marginRight: "10px" }}>{tut.tutor.name}</span>
                                 
                               </h6>
-                              <p>Courses: {tut.courses.join(", ")}</p>
+                              <p>Courses: {tut.courses.map((courses)=>courses +",   ")} </p>
                             </div>
                             <div style={{ marginTop: "10px" }}>
 
