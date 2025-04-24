@@ -14,6 +14,7 @@ class StudentProfile(models.Model):
     place = models.CharField(max_length=500, null=True)
     image = models.ImageField(upload_to="user_images",null = True, blank=True)
     mobile = models.CharField(max_length=15, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
 class Cart(models.Model):
     user = models.ForeignKey('api.User', on_delete= models.CASCADE)

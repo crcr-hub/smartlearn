@@ -1,5 +1,6 @@
 from student import views
 from django.urls import path
+from .views import ChangePasswordView,GetUserTutors
 urlpatterns = [
     path('add_cart/', views.add_cart, name="category"),
     path('fetch_cart/<int:id>',views.fetch_cart,name="fetch_cart"),
@@ -11,7 +12,7 @@ urlpatterns = [
     path('fetch_learnings/',views.fetchLearnings,name='fetch_learnings'),
     path('fetchmycourse/<int:id>',views.fetchMyCourse,name='fetchmycourse'),
     path('comment/',views.comment,name='comment'),
-    path('get_tutor/',views.get_user_tutors,name='get_tutor'),
+    path('get_tutor/',GetUserTutors.as_view(),name='get_tutor'),
     path('recent_messages/',views.recent_messages,name='recent_messages'),
     path('handle_comment/<int:cid>',views.handle_comment,name='handle_comment'),
     path('changeIsRead/<int:room_id>', views.changeIsRead, name="changeIsRead"),
@@ -21,6 +22,7 @@ urlpatterns = [
     path('all_feedback/<int:cid>',views.all_feedback,name='all_feedback'),
     path("upload-image/", views.upload_image, name="upload-image"),
     path('uprofile/<int:pid>',views.update_profile,name='uprofile'),
+    path('changepwd/',ChangePasswordView.as_view(),name='changepwd'),
     
     
     ]

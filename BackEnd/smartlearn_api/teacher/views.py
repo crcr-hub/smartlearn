@@ -7,9 +7,11 @@ from rest_framework import status
 from .serializer import TeacherProfileSerializer
 from .models import TeacherProfile
 from courses.models import Courses
+from courses.serializer import CourseSerializer
 from student.models import EnrolledCourses, Order_items,StudentProfile
-from student.serializer import StudentProfileSerializer
+from student.serializer import EnrolledCourseSerializer, StudentProfileSerializer
 from api.models import AdminNotification
+from api.serializer import UserSerializer
 # Create your views here.
 @api_view(['GET'])
 def list_allteachers(request):
@@ -23,24 +25,95 @@ def list_allteachers(request):
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-@api_view(['GET'])
-def teacher_profile(request,id):
-    try:
-        teacher = TeacherProfile.objects.get(id=id)  # Fetch a single teacher
-        teacher_data = TeacherProfileSerializer(teacher)
-        return Response(teacher_data.data, status=status.HTTP_200_OK)
+# @api_view(['GET'])
+# def teacher_profile(request,id):
+#     try:
+#         teacher = TeacherProfile.objects.get(id=id)  # Fetch a single teacher
+#         teacher_data = TeacherProfileSerializer(teacher)
+#         return Response(teacher_data.data, status=status.HTTP_200_OK)
        
        
-    except TeacherProfile.DoesNotExist:
-        return Response({"message": "No teacher found."}, status=status.HTTP_404_NOT_FOUND)
+#     except TeacherProfile.DoesNotExist:
+#         return Response({"message": "No teacher found."}, status=status.HTTP_404_NOT_FOUND)
     
-    except Exception as e:
-        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#     except Exception as e:
+#         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+class TeacherProfileDetail(APIView):
+    permission_classes = [AllowAny]
+    print("working")
+    def get(self, request, id):
+        try:
+            teacher = TeacherProfile.objects.get(id=id)
+            serializer = TeacherProfileSerializer(teacher)
+            user_serializer = UserSerializer(teacher.user)
+            return Response({
+                "teacher": serializer.data,
+                "user": user_serializer.data
+            }, status=status.HTTP_200_OK)
+
+        except TeacherProfile.DoesNotExist:
+            return Response({"message": "No teacher found."}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 
 
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+
+class GetCourseTutor(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        try:
+            teacher = TeacherProfile.objects.get(user=request.user)
+        except TeacherProfile.DoesNotExist:
+            return Response({"error": "Teacher profile not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        courses = Courses.objects.filter(teacher=teacher)
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+class GetTutorStudents(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, sid):
+        try:
+            teacher_profile = TeacherProfile.objects.get(user=request.user)
+            course = Courses.objects.filter(id=sid, teacher=teacher_profile).first()
+            if not course:
+                return Response({"error": "Course not found or not authorized."}, status=status.HTTP_404_NOT_FOUND)
+
+            enrolled_students = EnrolledCourses.objects.filter(course=course).select_related('user')
+            serializer = EnrolledCourseSerializer(enrolled_students, many=True)
+            data = serializer.data
+
+            # Inject first_name and last_name from StudentProfile into each item
+            for i, enrolled in enumerate(enrolled_students):
+                profile = getattr(enrolled.user, 'studentprofile', None)
+                if profile:
+                    data[i]['student_id'] = profile.id
+                    data[i]['first_name'] = profile.first_name
+                    data[i]['last_name'] = profile.last_name
+                else:
+                    data[i]['student_id'] = ""
+                    data[i]['first_name'] = ""
+                    data[i]['last_name'] = ""
+
+            return Response(data, status=status.HTTP_200_OK)
+
+        except TeacherProfile.DoesNotExist:
+            return Response({"error": "Teacher not found."}, status=status.HTTP_404_NOT_FOUND)
+
+
 
 @api_view(['GET'])
 def get_tutors_student(request):
@@ -56,24 +129,6 @@ def get_tutors_student(request):
     enrolled_students = EnrolledCourses.objects.filter(
         course__teacher=teacher_profile).select_related('user', 'course')
 
-    # students_data = []
-    # for enrollment in enrolled_students:
-    #     student_profile = StudentProfile.objects.filter(user=enrollment.user).first()
-    #     if student_profile:
-    #         students_data.append({
-    #             "student_id": student_profile.id,
-    #             "first_name": student_profile.first_name,
-    #             "last_name": student_profile.last_name,
-    #             "course_id": enrollment.course.id,
-    #             "course_name": enrollment.course.name  # Assuming course has a 'name' field
-    #         })
-        
-    # students = StudentProfile.objects.filter(
-    #     user__role='student',  # Ensuring we only get students
-    #     user__enrolledcourses__course__teacher=teacher_profile
-    # ).distinct()
-
-    # serializer = StudentProfileSerializer(students, many=True)
     students_data = {}
 
     for enrollment in enrolled_students:

@@ -6,7 +6,7 @@ from api.models import User
 class StudentProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProfile
-        fields = ['id','first_name', 'last_name','place','gender','place','mobile','qualification']
+        fields = ['id','first_name', 'last_name','place','gender','place','mobile','qualification','date']
 
 class CartSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset = User.objects.all())

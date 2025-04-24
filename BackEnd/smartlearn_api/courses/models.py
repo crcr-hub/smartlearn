@@ -16,9 +16,11 @@ def upload_to(instance, filename):
     return 'courses/{filename}'.format(filename=filename)
 
 class Courses(models.Model):
-    PUBLIC = 'public'
-    PRIVATE = 'private'
-    WAITING = 'waiting'
+    PUBLIC = 'Public'
+    PRIVATE = 'Private'
+    WAITING = 'Waiting'
+    PUTONHOLD = 'Hold'
+    REJECTED = 'Rejected'
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     teacher = models.ForeignKey(TeacherProfile, on_delete=models.CASCADE,related_name="courses")
     name = models.CharField(max_length=500,null=True,blank=True)
@@ -29,8 +31,33 @@ class Courses(models.Model):
     price =models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     offer_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     cover_text = models.CharField(max_length=1000, null=True,blank=True)
-    VISIBLE_CHOICES = [(PUBLIC, 'Public'),(PRIVATE, 'Private'),(WAITING,'waiting')]
-    visible_status = models.CharField(max_length=10,choices=VISIBLE_CHOICES,default='waiting')
+    VISIBLE_CHOICES = [(PUBLIC, 'Public'),(PRIVATE, 'Private'),(WAITING,'Waiting'),(PUTONHOLD,'Hold'),(REJECTED,'Rejected')]
+    visible_status = models.CharField(max_length=100,choices=VISIBLE_CHOICES,default='Private')
+
+
+class CourseStatus(models.TextChoices):
+    PUBLIC = 'Public', 'Public'
+    PRIVATE = 'Private', 'Private'
+    WAITING = 'Waiting', 'Waiting'
+    PUTONHOLD = 'Hold', 'Hold'
+    REJECTED = 'Rejected', 'Rejected'
+
+
+class Status(models.Model):
+    PUBLIC = 'Public'
+    PUTONHOLD = 'Hold'
+    REJECTED = 'Rejected'
+    PRIVATE = 'private'
+    WAITING = 'Waiting'
+    course = models.ForeignKey(Courses,on_delete=models.CASCADE)
+    course_status = models.CharField(
+        max_length=20,
+        choices=CourseStatus.choices,
+        default=CourseStatus.PRIVATE
+    )
+    reason = models.CharField(max_length=50000,null=True,blank=True)
+    required = models.CharField(max_length=50000,null=True,blank=True)
+    date = models.DateField(auto_now_add=True)
 
 
 import subprocess
@@ -69,39 +96,6 @@ def trigger_m3u8_processing(sender, instance, **kwargs):
     elif instance.media and instance.media.endswith(".m3u8"):  # New instance with media
         process_m3u8_duration.delay(instance.id, instance.media)
     
-    # def save(self, *args, **kwargs):
-    #     if self.media and self.media.endswith(".m3u8"):  
-    #         try:
-    #             # 🔹 Step 1: Fetch M3U8 content
-    #             response = requests.get(self.media, timeout=10)
-    #             if response.status_code != 200:
-    #                 print(" M3U8 file is not accessible")
-    #                 self.total_time = None
-    #             else:
-    #                 m3u8_obj = m3u8.loads(response.text)
-
-    #                 # 🔹 Step 2: Check if it's a master playlist
-    #                 if m3u8_obj.playlists:
-    #                     print("🔍 Detected master playlist, selecting first variant")
-    #                     first_variant_url = urljoin(self.media, m3u8_obj.playlists[0].uri)
-
-    #                     # Fetch the actual media playlist
-    #                     response = requests.get(first_variant_url, timeout=10)
-    #                     m3u8_obj = m3u8.loads(response.text)
-
-    #                 # 🔹 Step 3: Extract segment durations
-    #                 total_duration = sum(segment.duration for segment in m3u8_obj.segments)
-    #                 if total_duration > 60:
-    #                     total_duration -= 60
-    #                 print(f"Extracted Duration: {total_duration} seconds")
-    #                 self.total_time = int(total_duration)
-                    
-
-    #         except Exception as e:
-    #             print(f" Error calculating duration for M3U8: {e}")
-    #             self.total_time = None
-
-    #     super().save(*args, **kwargs)
 
 class RatingStar(models.Model):
     course = models.ForeignKey(Courses,on_delete=models.CASCADE)

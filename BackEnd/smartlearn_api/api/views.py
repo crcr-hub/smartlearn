@@ -7,8 +7,8 @@ from django.contrib.auth import authenticate
 
 from django.db.models import Count
 from django.utils.timezone import now
-from courses.models import Courses
-from courses.serializer import CourseSerializer
+from courses.models import Courses, Status
+from courses.serializer import CourseSerializer, StatusSerializer
 from student.models import EnrolledCourses, Order_items, StudentProfile,Notification
 from student.serializer import StudentProfileSerializer
 from teacher.models import TeacherProfile
@@ -24,6 +24,9 @@ from .models import User,UserStatus,AdminNotification
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.dispatch import receiver
 from django.shortcuts import get_object_or_404
+from .models import PasswordResetOTP
+from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 
 @api_view(['GET'])
 def getRoutes(request):
@@ -94,16 +97,21 @@ def get_user_details(request):
 
     return Response(user_data)
 
-class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    permission_classes = (AllowAny,)
-    serializer_class = RegisterSerializer
+# class RegisterView(generics.CreateAPIView):
+#     queryset = User.objects.all()
+#     permission_classes = (AllowAny,)
+#     serializer_class = RegisterSerializer
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
+    permission_classes = (AllowAny,)
 
     def create(self, request, *args, **kwargs):
         # Pass the request data to the serializer for validation and saving
+        email = request.data.get('email')
+        if User.objects.filter(email=email).exists():
+            return Response({"error": "Email already registered."}, status=status.HTTP_400_BAD_REQUEST)
+
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()  # Calls the create() method in the serializer
@@ -111,6 +119,69 @@ class RegisterView(generics.CreateAPIView):
         else:
             print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+User = get_user_model()
+
+class SendOTPView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        try:
+            user = User.objects.get(email=email)
+            otp_instance = PasswordResetOTP.objects.create(user=user)
+            print("OTp      :",otp_instance.otp)
+            # send_mail(
+            #     'Your OTP for Password Reset',
+            #     f'Your OTP is {otp_instance.otp}',
+            #     settings.EMAIL_HOST_USER,
+            #     [email],
+            #     fail_silently=False,
+            # )
+            return Response({'message': 'OTP sent to email'}, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'error': 'User with this email does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class VerifyOTPView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        otp = request.data.get('otp')
+        print("ots",otp,email)
+
+        try:
+            user = User.objects.get(email=email)
+            otp_instance = PasswordResetOTP.objects.filter(user=user, otp=otp, is_verified=False).latest('created_at')
+            # Optional: check time validity here
+            otp_instance.is_verified = True
+            otp_instance.save()
+            print("verified")
+            return Response({'message': 'OTP verified'}, status=status.HTTP_200_OK)
+        except (User.DoesNotExist, PasswordResetOTP.DoesNotExist):
+            return Response({'error': 'Invalid OTP or Email'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+from django.contrib.auth.hashers import make_password
+
+class ResetPasswordView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        new_password = request.data.get('password')
+        
+        try:
+            user = User.objects.get(email=email)
+            otp_verified = PasswordResetOTP.objects.filter(user=user, is_verified=True).exists()
+
+            if otp_verified:
+                user.password = make_password(new_password)
+                user.save()
+                return Response({'message': 'Password reset successful'}, status=status.HTTP_200_OK)
+            else:
+                return Response({'error': 'OTP not verified'}, status=status.HTTP_400_BAD_REQUEST)
+        except User.DoesNotExist:
+            return Response({'error': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
 
 @receiver(user_logged_in)
 def set_online_status(sender, request, user, **kwargs):
@@ -123,7 +194,6 @@ def set_online_status(sender, request, user, **kwargs):
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
-
     def post(self, request):
         try:
             refresh_token = request.data.get("refresh")
@@ -153,13 +223,17 @@ def adminNotificattions(request):
         serializer_data = AdminNotificationSerializer(notif, many=True)
         return Response(serializer_data.data, status=status.HTTP_200_OK)
     
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def pending_courses(request):
-    if request.method == 'GET':
-        courses = Courses.objects.filter(visible_status = 'private')
+
+
+class PendingCoursesView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        courses = Courses.objects.exclude(Q(visible_status='public') 
+                                          | Q(visible_status='private') | 
+                                          Q(visible_status='Private') |
+                                          Q(visible_status='Public'))
         serializer = CourseSerializer(courses, many=True)
-        return Response({"courses":serializer.data}, status=status.HTTP_200_OK)
+        return Response({"courses": serializer.data}, status=status.HTTP_200_OK)
     
 
 @api_view(['PATCH'])
@@ -170,6 +244,40 @@ def update_approve(request,cid):
     courses.save()
     return Response({"courses":courses.name}, status=status.HTTP_200_OK)
 
+
+class ApproveCourseView(APIView):
+    permission_classes = [IsAuthenticated]
+    def patch(self, request, cid):
+        course = get_object_or_404(Courses, id=cid)
+        course.visible_status = 'Public'
+        course.save()
+        Status.objects.create(
+            course=course,
+            course_status='Public',
+            reason=None,
+            required=None
+        )
+        return Response({"courses": course.name}, status=status.HTTP_200_OK)
+
+
+class StatusCourseView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, cid):
+        course = get_object_or_404(Courses, id=cid)
+        course.visible_status = request.data.get('course_status')
+        course.save()
+        data = request.data.copy()
+        data['course'] = course.id  # include course foreign key
+        serializer = StatusSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            
+            return Response({"course": course.name}, status=status.HTTP_200_OK)
+        else:
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PATCH'])
@@ -379,16 +487,13 @@ def handle_notification(request,id):
         #     print(notification_data)
         #     return Response({"notification":notification_data})
     elif request.method == 'PUT':
-        print("from put",user_id)
         teacher = TeacherProfile.objects.filter(id=user_id).first()
         student = StudentProfile.objects.filter(id=user_id).first()
         actual_user_id = teacher.user.id if teacher else student.user.id if student else None
-        print("actual Id,",actual_user_id)
         if actual_user_id:
             unread_notifications = Notification.objects.filter(sender_id = actual_user_id,recipient_id=request.user.id)
-            print("Unread Notifications Count:", unread_notifications)
             updated_count = Notification.objects.filter(sender_id=actual_user_id,recipient_id=request.user.id, is_read=False).update(is_read=True)
-            print("updated",updated_count)
+
             return Response({"message": f"{updated_count} notifications marked as read."})
         else:
             return Response({"error": "User not found"}, status=400)

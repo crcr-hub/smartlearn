@@ -19,8 +19,13 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         if user.block_status and user.role == 'teacher':
             raise AuthenticationFailed({
-                "detail": "Your account is pending approval. Please contact the administrator.",
+                "detail": "pending approval",
             })
+        elif user.block_status:
+             raise AuthenticationFailed({
+                "detail": "blocked",
+            })
+
         
         token = super().get_token(user)
         return token  # No extra claims added
@@ -106,10 +111,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         if attrs['password'] != attrs['password2']:
             raise serializers.ValidationError({"password": "Password Fields Didn't Match"})
         return attrs
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("A user with this email is already registered.")
+        return value
+
 
     def create(self, validated_data):
-        print("Creating user...")
-
+      
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],

@@ -1,6 +1,9 @@
 from api import views
 from django.urls import path,include
-from .views import CustomTokenObtainPairView, RegisterView, LogoutView
+from .views import (CustomTokenObtainPairView, RegisterView, LogoutView,SendOTPView,
+                    VerifyOTPView,ResetPasswordView,PendingCoursesView,ApproveCourseView,
+                    StatusCourseView
+                    )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -23,14 +26,18 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name="Logout"),
     path('notification/<int:id>',views.handle_notification,name="notification"),
     path('adnotification/',views.adminNotificattions,name='adnotification'),
-    path('pendingcourses',views.pending_courses,name='pendingcourses'),
-    path('update_approve/<int:cid>/',views.update_approve,name='update_approve'),
+    path('pendingcourses',PendingCoursesView.as_view(),name='pendingcourses'),
+    path('update_approve/<int:cid>/',ApproveCourseView.as_view(),name='update_approve'),
+    path('update_status/<int:cid>/',StatusCourseView.as_view(),name='update_status'),
     path('clear_admin_notification',views.clear_admin_notification,name='clear_admin_notification'),
     path("create-order/", views.create_order, name="create-order"),
     path('admin_dashboard/',views.admin_dashboard,name='admin_dashboard'),
     path("reports/<str:report_type>/", views.reports_view, name="reports"),
     path('teachertransaction/<int:tid>/',views.tutorTransaction,name='teachertransaction'),
     path('transactions/',views.transactions,name='transactions'),
+    path('sentOtp/',SendOTPView.as_view(),name='sendOtp'),
+    path('verifyOtp/',VerifyOTPView.as_view(),name='verifyOtp'),
+    path('resetPwd/',ResetPasswordView.as_view(),name='resetPwd'),
     path('', include('courses.urls')),
     path('',include('teacher.urls')),
     path('', include('student.urls')),

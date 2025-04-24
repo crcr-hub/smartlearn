@@ -14,8 +14,8 @@ from django.http import QueryDict
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .serializer import CategorySerializer,CourseSerializer,ModuleSerializer
-from .models import Category,Courses,Modules, RatingStar
+from .serializer import CategorySerializer,CourseSerializer,ModuleSerializer, StatusSerializer
+from .models import Category,Courses,Modules, RatingStar, Status
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from django.db.models import Avg
@@ -62,20 +62,38 @@ class CourseView(APIView):
         serializer = CourseSerializer(data=request.data)
         if serializer.is_valid():
             course = serializer.save()
+            status_data = {'course': course.id} 
+            status_serializer = StatusSerializer(data=status_data)
+            if status_serializer.is_valid():
+                status_serializer.save()
+            else:
+                print(status_serializer.errors)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request):
         """Retrieve all Courses"""
-        courses = Courses.objects.filter(visible_status = 'public')
+        courses = Courses.objects.filter(visible_status__iexact='public')
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class CourseStatus(APIView):
+    def get(self,request,cid):
+        status_data = Status.objects.filter(course= cid)
+        
+        if not status_data.exists():
+            return Response({"message": "No status data found for this course."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = StatusSerializer(status_data, many=True)
+        print("status data",serializer.data)
+        return Response(serializer.data, status = status.HTTP_200_OK)
 
 class CourseByTeacherView(APIView):
     def get(self, request, teacher_id):
-        courses = Courses.objects.filter(teacher__id=teacher_id)  # Use teacher__id to filter by TeacherProfile ID
+        courses = Courses.objects.filter(teacher__id=teacher_id) 
         serializer = CourseSerializer(courses, many=True)
+        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     
@@ -114,6 +132,7 @@ def handle_courses(request, id):
         course = Courses.objects.get(id =id)
         if request.method == 'GET':
             # Serialize and return teacher data
+            print("getttinginignigningin")
             serializer = CourseSerializer(course)
             course_data = {
             'course': serializer.data
@@ -136,20 +155,59 @@ def handle_courses(request, id):
 
 
 
-@api_view(['POST'])
-def publish_course(request,cid):
-    course = get_object_or_404(Courses, id=cid)
+# class PublishCourseView(APIView):
+#     permission_classes = [IsAuthenticated]
 
-    # Ensure the course has at least one module before publishing
-    course.visible_status = 'private'  # Change to 'published' if necessary
-    course.save()
-    AdminNotification.objects.create(
-                sender=request.user,  # Assuming user is authenticated
-                course=course,
-                message=f"New course '{course.name}' submitted for approval."
-            )
-    
-    return Response({"success": "Course published successfully", "status": course.visible_status}, status=200)
+#     def post(self, request, cid):
+#         course = get_object_or_404(Courses, id=cid)
+#         course.visible_status = 'Waiting' 
+#         course.save()
+
+#         AdminNotification.objects.create(
+#             sender=request.user,
+#             course=course,
+#             message=f"New course '{course.name}' submitted for approval."
+#         )
+#         Status.objects.create(
+#             course=course,
+#             course_status='Waiting',
+#             reason=None,
+#             required=None
+#         )
+
+#         return Response(
+#             {
+#                 "success": "Course published successfully",
+#                 "status": course.visible_status
+#             },
+#             status=status.HTTP_200_OK
+#         )
+
+class PublishCourseView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, cid):
+        course = get_object_or_404(Courses, id=cid)
+
+        # Set visible status
+        course.visible_status = 'waiting' 
+        course.save()
+        status_data = {'course': course.id,'course_status':'Waiting'} 
+        status_serializer = StatusSerializer(data=status_data)
+        if status_serializer.is_valid():
+            status_serializer.save()
+        else:
+            print(status_serializer.errors)
+        AdminNotification.objects.create(
+            sender=request.user,
+            course=course,
+            message=f"New course '{course.name}' submitted for approval."
+        )
+
+        return Response({
+            "success": "Course published successfully",
+            "status": course.visible_status
+        }, status=status.HTTP_200_OK)
 
 
 import uuid
@@ -245,21 +303,12 @@ class ModuleView(APIView):
             return Response({"error": "Video file is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Save the uploaded file temporarily
-        # video_path = default_storage.save(f"videos/{video_file.name}", video_file)
+        video_path = default_storage.save(f"videos/{video_file.name}", video_file)
 
 
 
 
-        video_name = f"{uuid.uuid4().hex}_{video_file.name}"
-        video_path = os.path.join("videos", video_name)  # this will be stored in DB
-        full_path = os.path.join(settings.MEDIA_ROOT, video_path)  # this is the real path
-
-        os.makedirs(os.path.dirname(full_path), exist_ok=True)  # ensure videos/ folder exists
-
-        with open(full_path, 'wb+') as destination:
-            for chunk in video_file.chunks():
-                destination.write(chunk)
-
+        
 
 
 

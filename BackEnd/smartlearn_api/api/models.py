@@ -53,3 +53,17 @@ class AdminNotification(models.Model):
     message = models.TextField(default="New course submitted for approval.",blank=True) 
     timestamp = models.DateTimeField(auto_now_add =True)
     is_seen = models.BooleanField(default=False)
+
+from django.contrib.auth import get_user_model
+import random
+
+class PasswordResetOTP(models.Model):
+    user = models.ForeignKey('api.User', on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_verified = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if not self.otp:
+            self.otp = f"{random.randint(100000, 999999)}"
+        super().save(*args, **kwargs)

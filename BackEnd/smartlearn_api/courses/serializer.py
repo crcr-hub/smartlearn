@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category,Courses,Modules,RatingStar
+from .models import Category,Courses,Modules,RatingStar,Status
 from api.models import User
 from teacher.models import TeacherProfile
 from student.models import StudentProfile
@@ -20,7 +20,16 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Courses
         fields = ['id','category','category_title','cover_text','teacher','name','description','requirements','images','date_created','price'
                   ,'offer_price','visible_status']
-    
+
+class StatusSerializer(serializers.ModelSerializer):
+    course = serializers.PrimaryKeyRelatedField(queryset =Courses.objects.all() )
+    class Meta:
+        model = Status
+        fields = '__all__'
+        extra_kwargs = {
+            'reason': {'required': False, 'allow_blank': True, 'allow_null': True},
+            'required': {'required': False, 'allow_blank': True, 'allow_null': True},
+        }
 
 class ModuleSerializer(serializers.ModelSerializer):
     course = serializers.PrimaryKeyRelatedField(queryset =Courses.objects.all() )

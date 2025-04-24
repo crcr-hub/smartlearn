@@ -18,8 +18,34 @@ from django.shortcuts import get_object_or_404
 from django.db import transaction
 from collections import defaultdict
 from django.db.models import Max ,Q
+from rest_framework.views import APIView
+from django.contrib.auth.hashers import check_password, make_password
 
 # Create your views here.
+
+
+
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('new_password')
+        print(user,current_password)
+
+        if not current_password or not new_password:
+            return Response({'error': 'Both current and new passwords are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not check_password(current_password, user.password):
+            return Response({'error': 'Incorrect current password'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.password = make_password(new_password)
+        user.save()
+
+        return Response({'message': 'Password changed successfully'}, status=status.HTTP_200_OK)
+
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -384,6 +410,32 @@ def get_user_tutors(request):
     ]
     return Response(data)
 
+class GetUserTutors(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        enrolled_courses = EnrolledCourses.objects.filter(user = request.user).select_related('course__teacher')
+        tutors_dict = {}
+        for course in enrolled_courses:
+            teacher = course.course.teacher
+            user = teacher.user
+
+            if teacher.id not in tutors_dict:
+                tutors_dict[teacher.id] = {
+                    "tutor": {
+                        "id": teacher.id,
+                        "name": f"{teacher.first_name} {teacher.last_name}",
+                        "email": user.email,
+                        "block_status": user.block_status,
+                    },
+                    "courses": [course.course.name]
+                }
+            else:
+                tutors_dict[teacher.id]["courses"].append(course.course.name)
+
+        return Response(list(tutors_dict.values()), status=status.HTTP_200_OK)
+    
+
+
 
 @api_view(['POST'])
 def changeIsRead(request,room_id):
@@ -405,7 +457,7 @@ def recent_messages(request):
     def get_profile(user_id):
         """ Helper function to get user profile details """
         student = StudentProfile.objects.filter(user__id=user_id).first()
-        tutor = TeacherProfile.objects.filter(user__id=user_id).first()
+        tutor = TeacherProfile.objects.select_related('user').filter(user__id=user_id).first()
 
         if student:
             return {
@@ -419,6 +471,7 @@ def recent_messages(request):
                 "profile_id": tutor.id,
                 "first_name": tutor.first_name,
                 "last_name": tutor.last_name,
+                "block_status": tutor.user.block_status
                 
             }
         return None

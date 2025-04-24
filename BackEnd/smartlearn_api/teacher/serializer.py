@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from api.serializer import UserSerializer
 from teacher.models import TeacherProfile
 
 class TeacherProfileSerializer(serializers.ModelSerializer):
