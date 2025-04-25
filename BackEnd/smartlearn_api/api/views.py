@@ -9,7 +9,7 @@ from django.db.models import Count
 from django.utils.timezone import now
 from courses.models import Courses, Status
 from courses.serializer import CourseSerializer, StatusSerializer
-from student.models import EnrolledCourses, Order_items, StudentProfile,Notification
+from student.models import EnrolledCourses, Order, Order_items, StudentProfile,Notification
 from student.serializer import StudentProfileSerializer
 from teacher.models import TeacherProfile
 from teacher.serializer import TeacherProfileSerializer
@@ -57,45 +57,88 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     
 
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_user_details(request):
-    user = request.user
-    user_data = {
-        "user_id": user.id,
-        "username": user.username,
-        "email": user.email,
-        "role": user.role,
-        "is_superuser": user.is_superuser,
-        "block_status": user.block_status,
-    }
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def get_user_details(request):
+#     user = request.user
+#     user_data = {
+#         "user_id": user.id,
+#         "username": user.username,
+#         "email": user.email,
+#         "role": user.role,
+#         "is_superuser": user.is_superuser,
+#         "block_status": user.block_status,
+#     }
 
-    # Check if user is a student
-    if hasattr(user, 'studentprofile'):
-        student_profile = user.studentprofile
-        user_data.update({
-            "first_name": student_profile.first_name,
-            "last_name": student_profile.last_name,
-            "place": student_profile.place,
-            "qualification":student_profile.qualification,
-            "mobile":student_profile.mobile,
-        })
+#     # Check if user is a student
+#     if hasattr(user, 'studentprofile'):
+#         student_profile = user.studentprofile
+#         user_data.update({
+#             "first_name": student_profile.first_name,
+#             "last_name": student_profile.last_name,
+#             "place": student_profile.place,
+#             "qualification":student_profile.qualification,
+#             "mobile":student_profile.mobile,
+#         })
 
-    # Check if user is a teacher
-    if hasattr(user, 'teacherprofile'):
-        teacher_profile = user.teacherprofile
-        user_data.update({
-            "profile_id": teacher_profile.id,
-            "first_name": teacher_profile.first_name,
-            "last_name": teacher_profile.last_name,
-            "place": teacher_profile.place,
-            "gender": teacher_profile.gender,
-            "qualification": teacher_profile.qualification,
-            "experience": teacher_profile.experience,
-            "experience_in": teacher_profile.experience_in,
-        })
+#     # Check if user is a teacher
+#     if hasattr(user, 'teacherprofile'):
+#         teacher_profile = user.teacherprofile
+#         user_data.update({
+#             "profile_id": teacher_profile.id,
+#             "first_name": teacher_profile.first_name,
+#             "last_name": teacher_profile.last_name,
+#             "place": teacher_profile.place,
+#             "gender": teacher_profile.gender,
+#             "qualification": teacher_profile.qualification,
+#             "experience": teacher_profile.experience,
+#             "experience_in": teacher_profile.experience_in,
+#         })
 
-    return Response(user_data)
+#     return Response(user_data)
+
+
+
+class UserDetailsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        user_data = {
+            "user_id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "role": user.role,
+            "is_superuser": user.is_superuser,
+            "block_status": user.block_status,
+        }
+
+        # Check if user is a student
+        if hasattr(user, 'studentprofile'):
+            student_profile = user.studentprofile
+            user_data.update({
+                "first_name": student_profile.first_name,
+                "last_name": student_profile.last_name,
+                "place": student_profile.place,
+                "qualification": student_profile.qualification,
+                "mobile": student_profile.mobile,
+            })
+
+        # Check if user is a teacher
+        if hasattr(user, 'teacherprofile'):
+            teacher_profile = user.teacherprofile
+            user_data.update({
+                "profile_id": teacher_profile.id,
+                "first_name": teacher_profile.first_name,
+                "last_name": teacher_profile.last_name,
+                "place": teacher_profile.place,
+                "gender": teacher_profile.gender,
+                "qualification": teacher_profile.qualification,
+                "experience": teacher_profile.experience,
+                "experience_in": teacher_profile.experience_in,
+            })
+
+        return Response(user_data)
 
 # class RegisterView(generics.CreateAPIView):
 #     queryset = User.objects.all()
@@ -132,14 +175,14 @@ class SendOTPView(APIView):
             user = User.objects.get(email=email)
             otp_instance = PasswordResetOTP.objects.create(user=user)
             print("OTp      :",otp_instance.otp)
-            # send_mail(
-            #     'Your OTP for Password Reset',
-            #     f'Your OTP is {otp_instance.otp}',
-            #     settings.EMAIL_HOST_USER,
-            #     [email],
-            #     fail_silently=False,
-            # )
-            return Response({'message': 'OTP sent to email'}, status=status.HTTP_200_OK)
+            send_mail(
+                'Your OTP for Password Reset',
+                f'Your OTP is {otp_instance.otp}',
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=False,
+            )
+            return Response({'message':otp_instance.otp }, status=status.HTTP_200_OK)
         except User.DoesNotExist:
             return Response({'error': 'User with this email does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -215,6 +258,15 @@ def update_online_status(sender,request,user,**kwargs):
 
 
 
+class AdminNotificationsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        # Retrieve all admin notifications that are not seen
+        notifications = AdminNotification.objects.filter(is_seen=False)
+        serializer = AdminNotificationSerializer(notifications, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def adminNotificattions(request):
@@ -236,13 +288,7 @@ class PendingCoursesView(APIView):
         return Response({"courses": serializer.data}, status=status.HTTP_200_OK)
     
 
-@api_view(['PATCH'])
-@permission_classes([IsAuthenticated])
-def update_approve(request,cid):
-    courses = get_object_or_404(Courses, id=cid)
-    courses.visible_status = 'public'
-    courses.save()
-    return Response({"courses":courses.name}, status=status.HTTP_200_OK)
+
 
 
 class ApproveCourseView(APIView):
@@ -280,11 +326,13 @@ class StatusCourseView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PATCH'])
-@permission_classes([IsAuthenticated])
-def clear_admin_notification(request):
-    AdminNotification.objects.filter(is_seen=False).update(is_seen=True)  #  Bulk update
-    return Response({"success": "success"}, status=status.HTTP_200_OK)
+
+
+class ClearAdminNotificationView(APIView):
+    permission_classes = [IsAuthenticated]
+    def patch(self, request, *args, **kwargs):
+        AdminNotification.objects.filter(is_seen=False).update(is_seen=True)
+        return Response({"success": "success"}, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -622,8 +670,118 @@ def admin_dashboard(request):
     except Exception as e:
         print(e)
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
 
+
+class AdminDashboardView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            today = now().date()
+            
+            # Initialize revenue and statistics trackers
+            total_revenue = 0
+            last_week_revenue = 0
+            today_revenue = 0
+            this_month_revenue = 0
+
+            # Calculate the current week (Sunday to Sunday)
+            current_week_start = today - timedelta(days=today.weekday())  # Last Sunday
+            current_month_start = today.replace(day=1)  # First day of the current month
+
+            # Query for all orders
+            orders = Order.objects.all()
+
+            # Loop through each order and its related order items
+            for order in orders:
+                # Access the related order_items using the reverse relation
+                order_items = Order_items.objects.filter(order=order)
+
+                for order_item in order_items:
+                    # Total revenue (admin share 10%)
+                    total_revenue += order_item.Offer_price * Decimal(0.10)
+
+                    # Today's revenue (admin share 10%)
+                    if order.date.date() == today:
+                        today_revenue += order_item.Offer_price * Decimal(0.10)
+
+                    # Last week's revenue (last Sunday to this Sunday)
+                    if current_week_start <= order.date.date() <= today:
+                        last_week_revenue += order_item.Offer_price * Decimal(0.10)
+
+                    # This month's revenue (admin share 10%)
+                    if current_month_start <= order.date.date():
+                        this_month_revenue += order_item.Offer_price * Decimal(0.10)
+
+            # Top 10 courses by number of orders
+            top_courses = (
+                Order_items.objects
+                .values('course__id', 'course__name')
+                .annotate(student_count=Count('order__user', distinct=True))
+                .order_by('-student_count')[:10]
+            )
+
+            top_courses_data = [
+                {
+                    'course_id': course['course__id'],
+                    'course_name': course['course__name'],
+                    'student_count': course['student_count']
+                }
+                for course in top_courses
+            ]
+
+            # Monthly data (Revenue and number of students per month)
+            monthly_data = (
+                Order_items.objects
+                .annotate(month=TruncMonth('order__date'))
+                .values('month')
+                .annotate(
+                    revenue=Sum('Offer_price') * Decimal(0.10),
+                    students=Count('order__user', distinct=True)
+                )
+                .order_by('month')
+            )
+
+            monthly_revenue_students = [
+                {
+                    'month': entry['month'].strftime('%b') if entry['month'] else 'unknown',
+                    'revenue': entry['revenue'] or 0,
+                    'students': entry['students'] or 0
+                }
+                for entry in monthly_data
+            ]
+
+            # Latest Orders (fetch the last 10 orders)
+            latest_orders = (
+                Order_items.objects
+                .select_related('order', 'course', 'order__user', 'order__user__studentprofile')
+                .order_by('-order__date')[:10]
+            )
+
+            latest_orders_data = [
+                {
+                    'order_id': order_item.order.id,
+                    'date': order_item.order.date.strftime('%Y-%m-%d %H:%M'),
+                    'student_name': order_item.order.user.studentprofile.first_name,
+                    'course_name': order_item.course.name
+                }
+                for order_item in latest_orders
+            ]
+
+            # Return the aggregated data as a response
+            return Response({
+                'total_revenue': total_revenue,
+                'last_week_revenue': last_week_revenue,
+                'today_revenue': today_revenue,
+                'this_month': this_month_revenue,
+                'monthly_revenue_students': monthly_revenue_students,
+                'top_courses': top_courses_data,
+                'latest_orders': latest_orders_data,
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            print(e)
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET', 'PUT','PATCH'])
 @permission_classes([IsAuthenticated])
