@@ -27,8 +27,9 @@ import boto3
 import subprocess
 from celery import shared_task
 from django.conf import settings
+import logging
 
-
+logger = logging.getLogger(__name__)
 s3_client = boto3.client(
     "s3",
     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
@@ -64,10 +65,13 @@ class CourseView(APIView):
             course = serializer.save()
             status_data = {'course': course.id} 
             status_serializer = StatusSerializer(data=status_data)
+            logger.debug(f"Status Serializer: {status_serializer}")
+            print(status_serializer)
             if status_serializer.is_valid():
                 status_serializer.save()
             else:
                 print(status_serializer.errors)
+                logger.error(f"Status Serializer Errors: {status_serializer.errors}")
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
