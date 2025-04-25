@@ -8,7 +8,7 @@ function CourseDetailsNPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
    const {learnings} = useSelector((state)=>state.auth)
-  const { course, courseLoading, courseError } = useSelector((state) => state.auth); // Assuming course details are in state
+  const { course } = useSelector((state) => state.auth); // Assuming course details are in state
   const { teacherprofile } = useSelector((state) => state.auth);
   const { modules } = useSelector((state) => state.auth);
   const {average_rating} = useSelector((state)=>state.auth)
@@ -52,8 +52,6 @@ function CourseDetailsNPage() {
     }, [dispatch, course]);
 
 
-
-    console.log(course.course)
       useEffect(() => {
         if (course && course.course && course.course.teacher) {
           const id = course.course.teacher

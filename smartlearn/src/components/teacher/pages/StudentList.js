@@ -30,7 +30,7 @@ function StudentList() {
 
           <section className='col-md-9'>
           <div style={{}}>
-                        {studentlist?.map((item,index)=>(
+          {studentlist?.length > 0 ? (studentlist?.map((item,index)=>(
                     <div style={{display:"flex"}}>
                            <div key={index} style={{ borderBottom:"1px solid",padding:"10px",width:"60%" }}>
                            <h6>
@@ -44,7 +44,7 @@ function StudentList() {
                        </div>
                     </div>
 
-                        ))}
+                        ))):("No Students are Registered")}
                     </div>
       </section>
     </div>

@@ -30,6 +30,7 @@ import ReportPage from '../components/admin/ReportPage';
 import AdminPrivateRoute from '../components/privateRoutes/AdminPrivateRoute';
 import ViewTeacherTransactions from '../components/admin/teacher/ViewTeacherTransactions';
 import Transactions from '../components/admin/Transactions';
+import STransaction from '../components/admin/STransaction';
 
 
 
@@ -72,7 +73,7 @@ function AdminLayout() {
           <Route path="/viewmodule/:id" element={<AdminPrivateRoute ><ViewModules/> </AdminPrivateRoute> }/>
           <Route path="/pendingcourses" element = {<AdminPrivateRoute ><PendingCourses/></AdminPrivateRoute>}/>
           <Route path="/reports" element={<AdminPrivateRoute ><ReportPage/></AdminPrivateRoute>} />
-          
+          <Route path="/stransaction/:sid" element={<AdminPrivateRoute><STransaction/></AdminPrivateRoute>} />
         </Route>
       </Routes>
 

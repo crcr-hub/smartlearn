@@ -5,7 +5,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { setActiveRoom } from '../../../redux/chatSlice';
 import TeacherSideBar from '../TeacherSideBar';
 import { handleNotification } from '../../../redux/authSlices';
-import { Paperclip } from "lucide-react";
+
 
 const TutorChatComponent = () => {
     const { sid } = useParams(); // Get sid from URL
@@ -30,26 +30,6 @@ const TutorChatComponent = () => {
     const messages = activeRoom ? rooms[activeRoom] : [];
     const {tprofile} = useSelector((state)=>state.auth) 
    
-    // useEffect(() => {
-    //     // Unique room name for tutor-student chat
-
-    //     if (user?.user_id){
-    //         dispatch(handleNotification(user.user_id));
-    //     }
-    //     if (tprofile?.id && sid){
-    //     const roomName = `chat_tutor_${tprofile.id}_student_${sid}`;
-    //     dispatch(setActiveRoom(roomName));
-    //     const socket = dispatch(connectWebSocket(roomName));
-    //     socketRef.current = socket;
-
-    //     return () => {
-    //         if (socketRef.current) {
-    //             socketRef.current.close(); // Close WebSocket on unmount
-    //             socketRef.current = null;
-    //         }
-    //     };
-    // }
-    // }, [dispatch, sid]);
 
     useEffect(() => {
         // Restore active room from localStorage

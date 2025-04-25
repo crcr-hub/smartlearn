@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 function TutorList() {
     const {tutorlist} = useSelector((state) => state.auth);
-
-    console.log("tutorslist",tutorlist)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     useEffect(()=>{

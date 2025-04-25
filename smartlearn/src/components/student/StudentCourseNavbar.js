@@ -12,8 +12,6 @@ function StudentCourseNavbar() {
     const progress = progressPercentage.progress
     const {feedback} = useSelector((state)=>state.auth)
     const [showModal, setShowModal] = useState(false);
-    console.log(progress)
-    console.log( "Feedbackddddddddd:", feedback);
     const handleSubmit = async (rating, feedback) => {
        
         

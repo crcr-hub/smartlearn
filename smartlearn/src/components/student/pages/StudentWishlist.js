@@ -21,7 +21,7 @@ function StudentWishlist() {
        const {teachers} = useSelector((state)=>state.auth)
 
          
-      console.log("Lerating courses",wishlist)
+
        useEffect (()=>{
         dispatch(fetchLearningCourse());
            if (user.user_id){
@@ -87,7 +87,6 @@ function StudentWishlist() {
 
 
       const handleOnClick =(courseId)=>{
-        console.log("course id::",courseId)
         navigate(`/coursedetails/${courseId}`)
       }
 

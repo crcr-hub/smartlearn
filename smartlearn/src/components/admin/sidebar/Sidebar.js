@@ -345,9 +345,12 @@ const Sidebar = () => {
   
           <div className="sidebar-menu sidebar-menu2">
             <ul className="menu-list">
+            <li className="menu-item"></li>
              
               <li className="menu-item">
-                <Link to="/admin/transactions"  className="menu-link">
+                <Link to="/admin/transactions"  className={`menu-link ${
+                    location.pathname === "/admin/transactions" || location.pathname.startsWith("/admin/teachertransactions/") || location.pathname.startsWith("/admin/stransaction/") ? "active" : ""
+                  }`}>
                   <span className="menu-link-icon">
                     <MdOutlinePayment size={20} />
                   </span>

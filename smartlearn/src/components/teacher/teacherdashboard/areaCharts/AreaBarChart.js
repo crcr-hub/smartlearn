@@ -83,7 +83,7 @@ const AreaBarChart = ({cardInfo}) => {
   };
 
   return (
-    <div className="bar-chart">
+    <div className="bar-chart" style={{ width: "90%" }}>
       <div className="bar-chart-info">
         <h5 className="bar-chart-title">Total Revenue</h5>
         <div className="chart-info-data">

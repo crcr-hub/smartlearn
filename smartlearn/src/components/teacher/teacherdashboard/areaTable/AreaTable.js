@@ -13,7 +13,7 @@ const TABLE_HEADS = [
 
 const AreaTable = ({cardInfo}) => {
   return (
-    <section className="content-area-table">
+    <section className="content-area-table" style={{width:"110%"}}>
       <div className="data-table-info">
         <h4 className="data-table-title">Latest Orders</h4>
       </div>

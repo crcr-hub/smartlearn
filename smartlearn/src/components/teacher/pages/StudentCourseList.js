@@ -10,8 +10,6 @@ function StudentCourseList() {
     const {tutorCourse} = useSelector((state)=>state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    console.log(tutorCourse)
     useEffect(()=>{
         dispatch(getTutorCourse());
     },[dispatch])

@@ -6,7 +6,6 @@ import { fetchTeacher, updateTeacherData } from '../../../redux/authSlices';
 function UpdateTeacher() {
 
     const {id} = useParams();
-    console.log("id:",id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const  {teacher:teachers,loading,error} = useSelector((state)=>state.auth) 
@@ -52,7 +51,7 @@ function UpdateTeacher() {
             
             dispatch(fetchTeacher(id));
         },[dispatch,id]);
-        console.log(teachers)
+
     const handleSubmit =(e) =>{
         e.preventDefault();
         const updatedData = { ...userData, username: userData.email }

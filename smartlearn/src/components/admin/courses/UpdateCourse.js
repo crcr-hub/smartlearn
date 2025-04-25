@@ -22,11 +22,10 @@ function UpdateCourse() {
     const {course,loading,error} = useSelector((state)=>state.auth);
     const {user:teachers, loading:teacherLoading, error:teacherError} = useSelector((state)=>state.auth)
     const {category,loading:categoryLoading,error:categoryError} = useSelector((state)=>state.auth)
-    console.log("category",id)
+   
 
     useEffect(() => {
         if (course) {
-            console.log("hhhhhh",course)
             const { name, description, category,teacher,images,requirements } = course.course;
             setCourseData({
                 name: name || "",
@@ -48,7 +47,6 @@ function UpdateCourse() {
         dispatch(viewTeachers)
     },[dispatch])
 
-    console.log("teacher",teachers)
 
     useEffect(()=>{
         dispatch(viewCategory)
@@ -144,7 +142,6 @@ function UpdateCourse() {
                 {Array.isArray(category) && category.length > 0 ? (
                     category.map((cat) => (
                     <option key={cat.id} value={cat.id}>
-                        {console.log(cat.id,cat.title,category)}
                         {cat.id === courseData.category ? cat.title : cat.title} {/* Display category name */}
                     </option>
                     ))

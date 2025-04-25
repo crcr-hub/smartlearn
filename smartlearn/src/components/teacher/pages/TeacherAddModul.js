@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { addCourses, addModule, fetchCourse, fetchModules, fetchTutorCourse, publishCourse, updateModule } from '../../../redux/authSlices';
+import {  addModule, fetchCourse, fetchModules, fetchTutorCourse, publishCourse, updateModule } from '../../../redux/authSlices';
 import TeacherSideBar from '../TeacherSideBar';
-import Cropper from 'react-easy-crop';
+
 
 
 

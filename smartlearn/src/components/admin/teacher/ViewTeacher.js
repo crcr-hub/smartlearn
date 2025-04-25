@@ -42,9 +42,7 @@ function ViewTeacher() {
             console.error('Error updating block status:', error);
         });
 };
-    useEffect(() => {
-        console.log('Updated teachers:', teachers);
-      }, [teachers]);
+  
 
 
   return (

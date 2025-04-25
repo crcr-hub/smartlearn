@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { averageRating, fetchCourse, fetchLearningCourse, fetchModules, fetchTeacher, fetchTeacherProfile, getAllFeedback } from '../../../redux/authSlices';
+import { useParams } from 'react-router-dom';
+import { averageRating,  fetchModules,  fetchTeacherProfile, getAllFeedback } from '../../../redux/authSlices';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 
@@ -20,9 +20,6 @@ function CourseDetails() {
     const courseRating = average_rating?.average_rating ?? 0;
     
 
-
-
-    console.log("Component1sadfasdf rendering with ID:", course,id);
    
 
     const StarRating = ({ rating }) => {
@@ -67,7 +64,6 @@ function CourseDetails() {
     
 
   useEffect(() => {
-    console.log("teahcereddssss",id)
     if (course && course.course && course.course.teacher) {
       const id = course.course.teacher
       dispatch(fetchTeacherProfile(id));

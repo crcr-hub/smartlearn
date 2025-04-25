@@ -38,7 +38,7 @@ const AreaTop = () => {
     }, []);
   
     return (
-      <section className="content-area-top">
+      <section className="content-area-top" style={{width:"110%"}}>
         <div className="area-top-l">
           <button
             className="sidebar-open-btn"

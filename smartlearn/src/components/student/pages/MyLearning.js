@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchLearningCourse, fetchMyCourse, viewCourses } from '../../../redux/authSlices'
+import { fetchLearningCourse, viewCourses } from '../../../redux/authSlices'
 import { Link } from 'react-router-dom'
 
 function MyLearning() {
@@ -12,7 +12,7 @@ function MyLearning() {
     const dispatch = useDispatch()
 
     
-    console.log("teacherssss",teachers)
+  
     useEffect(() => {
         //Ensure user is available and fetch courses only when user_id exists
           dispatch(fetchLearningCourse());

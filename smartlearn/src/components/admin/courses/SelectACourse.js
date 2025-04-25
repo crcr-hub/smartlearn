@@ -24,7 +24,7 @@ function SelectACourse() {
               useEffect(()=>{
                   dispatch(viewCourses());
               },[dispatch])
-              console.log(courseArray)
+    
 
   return (
     <div style={{ width: "800px", marginTop: "50px", marginLeft: "100px" }}>

@@ -12,7 +12,6 @@ function Report() {
   }, [reportType]);
 
   const fetchReport = () => {
-    console.log("working..........")
     setLoading(true);
     axiosInstance.get(`/reports/${reportType}/`)
       .then(response => {
@@ -23,7 +22,7 @@ function Report() {
         console.error("Error fetching reports:", error);
         setLoading(false);
       });
-      console.log(reportData)
+      
   };
   return (
     <div>

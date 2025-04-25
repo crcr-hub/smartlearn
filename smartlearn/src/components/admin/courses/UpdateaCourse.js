@@ -33,7 +33,6 @@ function UpdateaCourse() {
   
     // Fetch categories, teachers, and course details on mount
     useEffect(() => {
-     console.log(course)
       dispatch(viewCategory());
       dispatch(viewTeachers());
     
@@ -43,7 +42,6 @@ function UpdateaCourse() {
     }, [dispatch, id]);
   
     useEffect(() => {
-      console.log("hhhhhh",course)
       if (course && course.course) {
         const { name, description, category, teacher, images, requirements, price, offer_price } = course.course;
        

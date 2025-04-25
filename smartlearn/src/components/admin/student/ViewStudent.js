@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchStudent, updateBlockStatus, viewStudent } from '../../../redux/authSlices'
+import {  updateBlockStatus, viewStudent } from '../../../redux/authSlices'
 import { Link, useNavigate } from 'react-router-dom';
 
 function ViewStudent() {
@@ -9,7 +9,6 @@ function ViewStudent() {
     const navigate = useNavigate()
 
     const {  userlist:students, loading, error } = useSelector((state) => state.auth);
-    // console.log("Students:", students);
     const studentArray = Array.isArray(students) ? students : [];
     const [currentPage, setCurrentPage] = useState(1);
     const studentsPerPage = 15;
@@ -41,9 +40,7 @@ function ViewStudent() {
     
         
     };
-    useEffect(() => {
-        console.log('Updated students:', students);
-      }, [students]);
+   
             
   return (
             <div>
@@ -86,7 +83,7 @@ function ViewStudent() {
                   <td>{student.profile.qualification}</td>
                   <td>{student.profile.place}</td>
                   <td>{student.profile.mobile}</td>
-                  <td>{student.profile.date.split('T')[0]}</td>
+                  <td>{student.profile.date ? student.profile.date : 'N/A'}</td>
                   <td>
                     {/* <Link To={`/student/${student.user.id}`}  className="btn btn-warning btn-sm">Update</Link> */}
                     <Link to={`/admin/student/${student.user.id}`} className="btn btn-warning btn-sm">Update</Link>

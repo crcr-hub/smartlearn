@@ -2,14 +2,13 @@ import React, { useEffect } from 'react'
 import StudentNavbar from '../StudentNavbar'
 import StudentSideBar from '../StudentSideBar'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeIsReadStatus, handleNotification, recentMessages, updateNotification } from '../../../redux/authSlices'
+import { changeIsReadStatus,  recentMessages, updateNotification } from '../../../redux/authSlices'
 import { useNavigate } from 'react-router-dom'
 
 function RecentMessages() {
     const {recentMessage} = useSelector((state)=>state.auth)
      const {profile}  = useSelector((state)=>state.auth)
      const navigate = useNavigate()
-    console.log(recentMessage)
     const dispatch = useDispatch()
     useEffect (()=>{
         dispatch(recentMessages())

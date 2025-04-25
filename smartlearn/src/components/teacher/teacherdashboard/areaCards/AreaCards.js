@@ -7,7 +7,7 @@ const AreaCards = ({cardInfo}) => {
   const hoursRemaining = 24 - currentHour; // Hours left in the day
 
     return (
-      <section className="content-area-cards">
+      <section className="content-area-cards"  style={{width:"115%"}}>
         <AreaCard
           colors={["#e4e8ef", "#475be8"]}
           percentFillValue={percentageOfDayPassed}

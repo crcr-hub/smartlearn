@@ -34,7 +34,6 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
     
  
  const StarRating = ({ rating }) => {
-      console.log("average rating",rating)
       const validRating = Number.isFinite(rating) ? rating : 0; // Ensure rating is a number
       
       const maxStars = 5;
@@ -153,40 +152,6 @@ useEffect(() => {
   };
 }, []);
 
-
-// const hasSubmitted = useRef(false); // Track submission status
-
-// useEffect(() => {
-//   console.log("workingnnnnnnn", totalTime, "watched", watchedTime);
-
-//   const checkAndSubmitProgress = async () => {
-//     if (!sortedModules || sortedModules.length === 0 || !moduleId) return;
-
-//     const lastModuleId = sortedModules[sortedModules.length - 1]?.id;
-//     const isLastModule = moduleId === lastModuleId;
-
-//     if (isLastModule && watchedTime >= totalTime && totalTime > 0 && !hasSubmitted.current) {
-//       console.log("Last module fully watched! Saving progress...");
-//       hasSubmitted.current = true; // Mark as submitted
-//       try {
-//         await submitProgression(); 
-//         await dispatch(fetchProgress(mycourse.id)); 
-//       } catch (error) {
-//         console.error("Error submitting progress:", error);
-//         hasSubmitted.current = false; // Reset in case of failure
-//       }
-//     }
-//   };
-
-//   // Run the function
-//   checkAndSubmitProgress();
-
-//   return () => {
-//     // Cleanup to prevent multiple submissions
-//     hasSubmitted.current = false;
-//   };
-
-// }, [watchedTime, totalTime, moduleId, sortedModules]);
 
 
 
@@ -389,7 +354,7 @@ useEffect(() => {
   
   const renderComments = (comments, parentId = null) => {
     const filteredComments = comments.filter((comment) => comment.parent === parentId);
-    console.log("Filtered Comments:", filteredComments);
+
   
     if (filteredComments.length === 0) {
       return null; // If no comments, return nothing

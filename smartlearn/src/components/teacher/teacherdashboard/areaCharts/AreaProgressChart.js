@@ -3,7 +3,7 @@ const AreaProgressChart = ({ cardInfo }) => {
   const maxStudentCount = Math.max(...(cardInfo?.top_courses?.map(course => course.student_count) || [1]));
   console.log("Max Student Count:", maxStudentCount);
   return (
-    <div className="progress-bar">
+    <div className="progress-bar" >
       <div className="progress-bar-info">
         <h4 className="progress-bar-title">Most Purchased Courses</h4>
       </div>

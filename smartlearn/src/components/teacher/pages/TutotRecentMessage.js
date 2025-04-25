@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import TeacherSideBar from '../TeacherSideBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { changeIsReadStatus, recentMessages, recentTMessages, updateNotification } from '../../../redux/authSlices'
+import { changeIsReadStatus, recentMessages,  updateNotification } from '../../../redux/authSlices'
 
 function TutotRecentMessage() {
     const { recentMessage } = useSelector((state) => state.auth);

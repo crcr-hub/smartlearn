@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate,Link } from "react-router-dom";
-import { fetchCategory, viewCategory } from "../../../redux/authSlices";
+import {  viewCategory } from "../../../redux/authSlices";
 
 function ViewCategory() {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-
     const {  category:categories, loading, error } = useSelector((state) => state.auth);
     
     useEffect (()=>{
@@ -14,30 +12,10 @@ function ViewCategory() {
         const [blockStatus,setBlockstatus] = useState();
 
     const categoryArray = Array.isArray(categories) ? categories : [];
-  // Handle Block/Unblock
-    // const handleBlockUnblock = (userId, currentStatus) => {
-    //     const newStatus = !currentStatus; // Toggle block/unblock status
-    //     console.log("insideeeeeee",userId,currentStatus,"new:",newStatus)
-    //     dispatch(updateBlockStatus({userId, blockStatus: newStatus}))
-    //     .unwrap()
-    //     .then((response) => {
-    //         console.log('Successfully updated:', response);
-    //     console.log("working")
-    //   navigate('/admin/viewstudent'); // Navigate after update
-    // })
-    // .catch((error) => {
-    //   console.error('Error updating block status:', error);
-    // });
-    // // Log response
-    
+  
   
 
     
-        
-    // };
-    // useEffect(() => {
-    //     console.log('Updated students:', students);
-    //   }, [students]);
   return (
     <div>
       <table class="table">

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import TeacherSideBar from '../TeacherSideBar'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchTutorCourse } from '../../../redux/authSlices';
 import TeacherDashboardScreen from '../screen/DashboardScreen';
 

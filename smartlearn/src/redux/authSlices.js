@@ -194,6 +194,18 @@ export const transactions = createAsyncThunk("admin/transactions",
   }
 )
 
+export const StudentTransaction = createAsyncThunk("admin/StudentTransaction",
+  async(sid,{rejectWithValue})=>{
+    try{
+      const response = await axiosInstance.get(`/student_transaction/${sid}/`);
+      return response.data
+
+    }catch(error){
+      return rejectWithValue(error.responese?.data) || 'failed to fetch the details'
+    }
+  }
+)
+
 export const teacherTransaction = createAsyncThunk("admin/teachertransaction",
   async(tid,{rejectWithValue}) =>{
     try{
@@ -680,7 +692,6 @@ export const getCourseStatus = createAsyncThunk('auth/getCourseStatus',
 
     export const fetchCourse = createAsyncThunk('course/fetchCourse', async (id, { rejectWithValue }) => {
       try {
-        console.log("wrokkinidnfignjsidfjg")
         const response = await axiosInstance.get(`/course/${id}/`);
         return response.data;
       } catch (error) {
@@ -1294,6 +1305,7 @@ const initialState = {
   transactions_data : null,
   status_data :null,
   tutorCourse : null,
+  studentTransaction_data : null,
 };
 
 // Slice
@@ -1372,6 +1384,14 @@ const authSlice = createSlice({
  
   extraReducers: (builder) => {
     builder
+    .addCase(StudentTransaction.pending,(state)=>{
+      state.loading = true;
+      state.error = null
+    })
+    .addCase(StudentTransaction.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.studentTransaction_data = action.payload;
+    })
     .addCase(getTutorCourse.pending,(state)=>{
       state.loading = true;
       state.error = null

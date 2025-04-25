@@ -6,9 +6,8 @@ import { fetchTutorsStudent } from '../../../redux/authSlices'
 function TecherMessage() {
     const dispatch = useDispatch()
     const {studentlist} = useSelector((state)=>state.auth)
-    console.log(studentlist)
+
     useEffect(()=>{
-        console.log("working")
         dispatch(fetchTutorsStudent())
     },[dispatch])
   return (

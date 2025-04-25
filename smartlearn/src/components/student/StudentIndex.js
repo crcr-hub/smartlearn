@@ -23,7 +23,6 @@ function StudentIndex() {
 
         useEffect(() => {
           if (courses && Array.isArray(courses)) {
-            console.log("Courses:", courses);
             courses.forEach(course => {
               dispatch(averageRating(course.id));
             });

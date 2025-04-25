@@ -71,7 +71,7 @@ function ViewCourses() {
      
   
     const courseArray = Array.isArray(courses)?courses:[];
-    console.log("Coursesss are",courses,fetchedTeachers)
+
 
     useEffect(()=>{
         dispatch(viewCourses());

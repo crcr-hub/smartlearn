@@ -25,7 +25,6 @@ function UpdatedCat() {
     // Handle category data updates when the category changes
     useEffect(() => {
         if (category?.category) {
-            console.log(category)
             const { title, description, visible_status } = category.category;
             setCatData({
                 title: title || "",
@@ -35,30 +34,6 @@ function UpdatedCat() {
         }
     }, [category]);
 
-    // const [catData, setCatData] = useState({
-    //     title: "",
-    //     description: "",
-    //     visible_status: "",
-    // });
-
-    // useEffect(() => {
-    
-    //     const { id, title } = category.category || {}; // Destructure safely
-    //         console.log("Category ID:", id);
-    //         console.log("Category Title:", title);
-        
-    //     if (category) {
-    //     console.log("thishs",category.category);
-    //     setCatData((prevData) => ({
-    //         ...prevData,
-
-    //         title: category.title || "",
-    //         description: category.description || "",
-    //         visible_status: category.visible_status || "",
-           
-    //     }));
-    //     }
-    // }, [category]);
 
         useEffect(() => {
             dispatch(fetchCategory(id));

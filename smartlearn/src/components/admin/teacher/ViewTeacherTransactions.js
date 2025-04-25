@@ -55,10 +55,10 @@ function ViewTeacherTransactions() {
      <tr>
         <td></td>
         <td></td>
-        <td>Grand Total</td>
-        <td>{data?.grand_totals?.total_teacher_share}</td>
-        <td>{data?.grand_totals?.total_admin_share}</td>
-        <td>{data?.grand_totals?.total_teacher_share + 
+        <td style={{fontWeight:'bold'}}>Grand Total</td>
+        <td style={{fontWeight:'bold'}}>{data?.grand_totals?.total_teacher_share}</td>
+        <td style={{fontWeight:'bold'}}>{data?.grand_totals?.total_admin_share}</td>
+        <td style={{fontWeight:'bold'}}>{data?.grand_totals?.total_teacher_share + 
        data?.grand_totals?.total_admin_share
             }</td>
      </tr>

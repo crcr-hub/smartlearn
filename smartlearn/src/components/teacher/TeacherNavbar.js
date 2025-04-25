@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
-import { fetchTutorProfile, handleNotification, logout, logoutUser, recentMessages } from '../../redux/authSlices';
+import { fetchTutorProfile, handleNotification,  logoutUser, recentMessages } from '../../redux/authSlices';
 function TeacherNavbar() {
 
     const dispatch = useDispatch();
@@ -9,7 +9,7 @@ function TeacherNavbar() {
     const {tprofile} = useSelector((state)=>state.auth) 
      const {notifications} = useSelector((state)=>state.auth)
       const {user} = useSelector((state)=> state.auth)
-  console.log("profile",tprofile)
+
     useEffect(()=>{
       dispatch(fetchTutorProfile());
       if (user?.user_id) {

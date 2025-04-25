@@ -11,8 +11,6 @@ function PendingCourses() {
     const { category, loading:categoryLoading, error:categoryError } = useSelector((state) => state.auth);
     const {  userlist:fetchedTeachers, loading:teacherLoading, error:teacherError } = useSelector((state) => state.auth);
     const teachers = Array.isArray(fetchedTeachers) ? fetchedTeachers : [];
-    
-    console.log(aprovalcourses)
     const courseArray = Array.isArray(aprovalcourses)?aprovalcourses:[];
     useEffect(()=>{
         dispatch(pendingCourses())

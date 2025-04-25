@@ -19,7 +19,6 @@ function TeacherUpdateCourse() {
     const { user:teacher } = useSelector((state) => state.auth);
     const { course, courseLoading, courseError } = useSelector((state) => state.auth); // Assuming course details are in state
   
-    // console.log("iiiiii",id,course,teacher,category)
     // States for course data
     const [courseData, setCourseData] = useState({
       category: "",
@@ -116,7 +115,7 @@ useEffect(() => {
                 setCourseData({ ...courseData, image: croppedFile });
                 const updatedCourseData = { ...courseData, image: croppedFile,role:'teacher' };
               
-                console.log("Updated Course Data:", updatedCourseData);
+               
                 // Use the updateCourse action instead of addCourses
                 dispatch(updateCourse({ id,updatedCourseData}));
                 navigate('/mycourse')

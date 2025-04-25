@@ -1,99 +1,3 @@
-// // redux/chatThunks.js
-// import { handleNotification, recentMessages } from './authSlices';
-// import { addMessage, setMessages } from './chatSlice';
-
-
-// const sockets = {};
-// export const connectWebSocket = (roomName) => (dispatch) => {
-//   // Open WebSocket connection
-//   if (sockets[roomName]) {
-//     console.log(`Already connected to room: ${roomName}`);
-//     return sockets[roomName];  // Return existing connection
-//   }
-
-
-//   const token = localStorage.getItem('access');  // Retrieve the access token from localStorage
-//   if (!token) {
-//     console.error('No token found in localStorage');
-//     return;
-//   }
-//   const socketUrl = `ws://localhost:8000/ws/chat/${roomName}/?token=${token}`;
-
-//   const socket = new WebSocket(socketUrl);
-
-//   socket.onopen = () => {
-//     console.log("Connected to WebSocket");
-//     console.log(`Connected to the room: ${roomName}`);
-//     // Optionally send a join message if required
-//     socket.send(
-//       JSON.stringify({ type: "join", roomName })
-//     );
-//   };
-
-//   socket.onmessage = (event) => {
-//     try {
-//       const message = JSON.parse(event.data);
-//       if (message.type === "old_messages") {
-//         console.log("Received old messages:", message.messages);
-//         dispatch(setMessages({ roomName, messages: message.messages })); 
-//       } else if(message.type === "notification"){
-//         console.log("Received old messages................:", message);
-       
-//           dispatch(handleNotification(message.reciepient));
-        
-//       } else if (message.sender && (message.message || message.image)) {
-//         // ✅ Now handles both text and image messages
-//         const messagePayload = {
-//           roomName: roomName,
-//           message: message.message || null, // Can be empty
-//           sender: message.sender,
-//           sender_username: message.sender_username || "Unknown",
-//           time_stamp: message.timestamp,
-//           image: message.image || null, // ✅ Image support
-//         };
-  
-//         console.log("Dispatching message:", messagePayload);
-  
-//         dispatch(addMessage(messagePayload)); //  Dispatch message correctly
-       
-//       } else {
-//         console.warn("Received message with unexpected format", message);
-//       }
-//     } catch (error) {
-//       console.error("Error parsing WebSocket message:", error);
-//     }
-//   };
-  
-  
-
-//   socket.onerror = (error) => {
-//     console.error("WebSocket error", error);
-//   };
-
-//   socket.onclose = () => {
-//     console.log("WebSocket connection closed");
-//     delete sockets[roomName];
-//   };
-
-//   return socket;
-// };
-
-
-
-// export const sendMessage = (socket, message, senderId, recipientId, image = null) => {
-//   return () => {
-//     const payload = {
-//       message, // Text message
-//       sender_id: senderId, 
-//       recipient_id: recipientId,
-//       image, // Image URL
-//     };
-
-//     socket.send(JSON.stringify(payload));
-//   };
-// };
-
-
 
 
 // redux/chatThunks.js
@@ -107,7 +11,6 @@ const retryCounts = {}; // Track retry attempts per room
 
 export const connectWebSocket = (roomName) => (dispatch) => {
   if (sockets[roomName]) {
-    console.log(`Already connected to room: ${roomName}`);
     return sockets[roomName];  
   }
 
@@ -124,7 +27,6 @@ export const connectWebSocket = (roomName) => (dispatch) => {
     sockets[roomName] = socket; 
 
     socket.onopen = () => {
-      console.log(`Connected to the room: ${roomName}`);
       retryCounts[roomName] = 0; // Reset retry count on successful connection
       socket.send(JSON.stringify({ type: "join", roomName }));
     };

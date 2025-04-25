@@ -33,7 +33,6 @@ function ViewModules() {
 
   // Initialize Video.js when modal opens
   useEffect(() => {
-    console.log("url",videoUrl)
     if (showModal && videoRef.current && !playerRef.current) {
       playerRef.current = videojs(videoRef.current, {
         autoplay: true,

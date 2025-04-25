@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
-import { AddToCart, AddToWishlist, FetchCart, fetchCartCourses, fetchCourse, FetchWishlist, removeCartItem, removeWishlistItem } from '../../../redux/authSlices';
-import CourseDetails from './CourseDetails';
+import { AddToCart, AddToWishlist, FetchCart, fetchCartCourses, FetchWishlist, removeCartItem, removeWishlistItem } from '../../../redux/authSlices';
 import "./StudentCart.css"
 
 function StudentCart() {

@@ -28,7 +28,6 @@ const [userData,setUserData] = useState({
 
 
 useEffect(() => {
-    console.log(student?.profile?.first_name);
     if (student?.profile && student?.user) {
 
         setUserData((prevData) => ({
