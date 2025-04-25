@@ -3,7 +3,7 @@ from django.urls import path,include
 from .views import (CustomTokenObtainPairView, RegisterView, LogoutView,SendOTPView,
                     VerifyOTPView,ResetPasswordView,PendingCoursesView,ApproveCourseView,
                     StatusCourseView,UserDetailsView,ClearAdminNotificationView,AdminNotificationsView,
-                    AdminDashboardView
+                    AdminDashboardView,AdminTransactions,SingleStudentTransaction
                     )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -34,7 +34,8 @@ urlpatterns = [
     path('admin_dashboard/',AdminDashboardView.as_view(),name='admin_dashboard'),
     path("reports/<str:report_type>/", views.reports_view, name="reports"),
     path('teachertransaction/<int:tid>/',views.tutorTransaction,name='teachertransaction'),
-    path('transactions/',views.transactions,name='transactions'),
+    path('student_transaction/<int:sid>/',SingleStudentTransaction.as_view(),name='student_transaction'),
+    path('transactions/',AdminTransactions.as_view(),name='transactions'),
     path('sentOtp/',SendOTPView.as_view(),name='sendOtp'),
     path('verifyOtp/',VerifyOTPView.as_view(),name='verifyOtp'),
     path('resetPwd/',ResetPasswordView.as_view(),name='resetPwd'),

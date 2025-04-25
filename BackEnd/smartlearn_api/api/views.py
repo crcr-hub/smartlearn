@@ -267,14 +267,7 @@ class AdminNotificationsView(APIView):
         serializer = AdminNotificationSerializer(notifications, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def adminNotificattions(request):
-    if request.method == 'GET':
-        notif = AdminNotification.objects.filter(is_seen = False)
-        serializer_data = AdminNotificationSerializer(notif, many=True)
-        return Response(serializer_data.data, status=status.HTTP_200_OK)
-    
+
 
 
 class PendingCoursesView(APIView):
@@ -502,38 +495,7 @@ def handle_notification(request,id):
                     "notification_type": notification_type,
                 })
             return Response({"notification":notification_data})
-        # else:
-        #     notifications = (Notification.objects
-        #     .filter(recipient_id=user_id,is_read = False)
-        #     .values("sender_id", "sender__username", "notification_type") 
-        #     .annotate(message_count=Count("id"))
-        #     )
-
-        #     # for n in notifications:
-        #     #     print(n.notification_type)
-        #     print(notifications)
-        #     notification_data = []
-
-        #     for n in notifications:
-        #         sender_id = n["sender_id"]
-        #         notification_type = n["notification_type"]
-                
-        #         # Fetch sender's first name based on whether they are a teacher or student
-        #         sender_profile = TeacherProfile.objects.filter(user_id=sender_id).first() or \
-        #                         StudentProfile.objects.filter(user_id=sender_id).first()
-
-        #         sender_name = sender_profile.first_name if sender_profile else "Unknown"
-
-        #         notification_data.append({
-        #             "sender_id": sender_id,
-        #             "sender_username": n["sender__username"],
-        #             "sender_first_name": sender_name,  # First name from Teacher or Student profile
-        #             "message_count": n["message_count"],
-        #             "notification_type": notification_type,
-        #         })
-
-        #     print(notification_data)
-        #     return Response({"notification":notification_data})
+       
     elif request.method == 'PUT':
         teacher = TeacherProfile.objects.filter(id=user_id).first()
         student = StudentProfile.objects.filter(id=user_id).first()
@@ -580,96 +542,6 @@ from datetime import timedelta
 from decimal import Decimal
 from django.db.models.functions import TruncMonth
 from django.db.models import Sum, Count  
-
-@api_view(['GET', 'PUT','PATCH'])
-@permission_classes([IsAuthenticated])
-def admin_dashboard(request):
-    try:
-        enrolled_courses = EnrolledCourses.objects.all()
-        today = now().date()
-
-        total_revenue = 0
-        last_week_revenue = 0
-        today_revenue = 0
-        this_month_revenue = 0
-        current_week = today-timedelta(days = today.weekday())
-        current_month = today.replace(day=1)
-
-        for enrolled in enrolled_courses:
-            for item in enrolled.order.all():
-                total_revenue += item.Offer_price * Decimal(0.10)
-
-                if item.order.date.date() == today:
-                    today_revenue += item.Offer_price * Decimal(0.10)
-
-                if current_week <= item.order.date.date() <= today:
-                    last_week_revenue += item.Offer_price * Decimal(0.10)
-                if current_month <= item.order.date.date():
-                    this_month_revenue += item.Offer_price * Decimal(0.10)
-        
-        top_courses = (
-            enrolled_courses
-            .values('course__id','course__name')
-            .annotate(student_count = Count('user'))
-            .order_by('-student_count')[:10]
-        )
-
-        top_courses_data =[
-            {
-                'course_id': course['course__id'],
-                'course_name':course['course__name'],
-                'student_count':course['student_count']
-            }
-            for course in top_courses
-        ]
-
-        monthly_data=(
-            enrolled_courses
-            .annotate(month=TruncMonth('order__order__date'))
-            .values('month')
-            .annotate(
-                revenue = Sum('order__Offer_price') * Decimal(0.10),
-                students = Count('user',distinct=True)
-            )
-            .order_by('month')
-        )
-
-        monthly_revenue_students = [
-            {
-                'month' : entry['month'].strftime('%b') if entry['month'] else'unknown',
-                'revenue': entry['revenue'] or 0,
-                'students': entry['students'] or 0
-            }
-            for entry in monthly_data
-        ]
-        latest_orders = (
-                    Order_items.objects
-                    .select_related('order', 'course', 'order__user', 'order__user__studentprofile')
-                    .order_by('-order__date')[:10]
-                )
-
-        latest_orders_data = [
-                    {
-                        'order_id': order_item.order.id,
-                        'date': order_item.order.date.strftime('%Y-%m-%d %H:%M'),
-                        'student_name': order_item.order.user.studentprofile.first_name,
-                        'course_name': order_item.course.name
-                    }
-                    for order_item in latest_orders
-                ]
-        return Response({
-                    'total_revenue': total_revenue,
-                    'last_week_revenue': last_week_revenue,
-                    'today_revenue': today_revenue,
-                    'this_month' : this_month_revenue,
-                    'monthly_revenue_students': monthly_revenue_students,
-                    'top_courses':top_courses_data,
-                    'latest_orders':latest_orders_data,
-                }, status=status.HTTP_200_OK)
-        
-    except Exception as e:
-        print(e)
-        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class AdminDashboardView(APIView):
@@ -843,20 +715,7 @@ def reports_view(request, report_type):
             teachers.append(teacher_data)
 
         return JsonResponse({"teachers": teachers})
-        # teachers = []
-        # courses = Courses.objects.select_related("teacher")
-        
-        # for course in courses:
-        #     teacher_data = {
-        #         "teacher_name": course.teacher.full_name if hasattr(course, "teacher") else "N/A",
-        #         "registered_date": course.teacher.user.date_joined.strftime("%Y-%m-%d") if hasattr(course.teacher, "user") else "N/A",
-        #         "course_name": course.course_name,
-        #         "total_students": EnrolledCourses.objects.filter(course=course).count(),
-        #         "total_income": Order_items.objects.filter(course=course).aggregate(Sum("Offer_price"))["Offer_price__sum"] or 0,
-        #     }
-        #     teachers.append(teacher_data)
-        
-        # return JsonResponse({"teachers": teachers})
+       
 
     elif report_type == "courses":
         courses = []
@@ -922,9 +781,7 @@ def tutorTransaction(request,tid):
         "total_teacher_share": total_teacher_share,
         "total_admin_share": total_admin_share
     }
-  
 
-    
     return Response({
         "courses": response_data,
         "grand_totals": grand_totals
@@ -932,41 +789,106 @@ def tutorTransaction(request,tid):
         
 
 
-@api_view(['GET'])
-def transactions(request):
-    print("okkkkkk")
-   
-    teachers = TeacherProfile.objects.annotate(
-        course_count=Count('courses',filter=Q(courses__visible_status='public'), distinct=True),
-        student_count=Count('courses__order_items__order__user', distinct=True),
-        total_revenue=Coalesce(Sum('courses__order_items__Offer_price'), Value(0), output_field=DecimalField()),
-    ).annotate(
-        teacher_share=F('total_revenue') * Decimal('0.9'),
-        admin_share=F('total_revenue') * Decimal('0.1')
-    )
+class SingleStudentTransaction(APIView):
+    permission_classes = [IsAuthenticated]
 
-    total_teacher_share = teachers.aggregate(total=Sum('teacher_share'))['total'] or 0
-    total_admin_share = teachers.aggregate(total=Sum('admin_share'))['total'] or 0
-    grand_total = teachers.aggregate(total = Sum('total_revenue'))['total'] or 0
+    def get(self, request, sid):
+        try:
+            # Get all orders made by the student
+            student = StudentProfile.objects.get(id=sid)
+            student_name = student.first_name + " " + student.last_name
+            user = student.user
+            orders = Order.objects.filter(user=user)
+           
+            order_items = Order_items.objects.filter(order__in=orders).select_related('course')
+            grand_total_price = Decimal(0)
+            grand_teacher_share = Decimal(0)
+            grand_admin_share = Decimal(0)
+            
+            data = []
+            for item in order_items:
+                data.append({
+                    'course_name': item.course.name,
+                    'offer_price': item.Offer_price,
+                    'teacher_name':item.course.teacher.first_name + ' ' + item.course.teacher.last_name,
+                    'payment_type' :item.order.payment_type,
+                    'teacher_share': item.Offer_price * Decimal(0.90),
+                    'admin_share': item.Offer_price * Decimal(0.10),
+                    'ordered_at': item.created_at.strftime('%Y-%m-%d %H:%M'),
+                })
+                grand_total_price += item.Offer_price
+                grand_teacher_share += item.Offer_price * Decimal(0.90)
+                grand_admin_share += item.Offer_price * Decimal(0.10)
 
-    # Prepare the response data
-    response = [
-        {
-            'teacher_id': teacher.id,
-            'teacher_name': teacher.first_name,
-            'teacher_lastname':teacher.last_name,
-            'course_count': teacher.course_count,
-            'student_count': teacher.student_count,
-            'total_revenue': teacher.total_revenue,
-            'teacher_share': teacher.teacher_share,
-            'admin_share': teacher.admin_share,
-        }
-        for teacher in teachers
-    ]
-    response_data ={'response':response,
-                    'teacher_share':total_teacher_share,
-                    'admin_share':total_admin_share,
-                    'grand_total':grand_total
+            return Response({'student_id': sid, 'transactions': data,
+                              'grand_totals': {
+                                  'student_name':student_name,
+                    'grand_total_price': grand_total_price,
+                    'grand_teacher_share': grand_teacher_share,
+                    'grand_admin_share': grand_admin_share
+                }
+                             }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            print(e)
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class AdminTransactions(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            order_items = Order_items.objects.select_related(
+                'order', 'order__user', 'order__user__studentprofile'
+            ).all()
+
+            student_transactions = {}
+
+            # Grand totals
+            grand_total_price = Decimal(0)
+            grand_teacher_share = Decimal(0)
+            grand_admin_share = Decimal(0)
+            
+
+            for order_item in order_items:
+                order = order_item.order
+                student = order.user.studentprofile
+
+                if student.id not in student_transactions:
+                    student_transactions[student.id] = {
+                        'student_id':student.id,
+                        'student_name': student.first_name + " " + student.last_name,
+                        'total_courses': 0,
+                        'total_price': Decimal(0),
+                        'teacher_share': Decimal(0),
+                        'admin_share': Decimal(0),
                     }
 
-    return Response(response_data)
+                # Update per-student
+                student_transactions[student.id]['total_courses'] += 1
+                student_transactions[student.id]['total_price'] += order_item.Offer_price
+                teacher_share = order_item.Offer_price * Decimal(0.90)
+                admin_share = order_item.Offer_price * Decimal(0.10)
+                student_transactions[student.id]['teacher_share'] += teacher_share
+                student_transactions[student.id]['admin_share'] += admin_share
+
+                # Update grand totals
+                grand_total_price += order_item.Offer_price
+                grand_teacher_share += teacher_share
+                grand_admin_share += admin_share
+
+            student_transactions_list = list(student_transactions.values())
+
+            return Response({
+                'student_transactions': student_transactions_list,
+                'grand_totals': {
+                    'grand_total_price': grand_total_price,
+                    'grand_teacher_share': grand_teacher_share,
+                    'grand_admin_share': grand_admin_share
+                }
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            print(e)
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
