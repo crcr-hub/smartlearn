@@ -1,13 +1,15 @@
 from student import views
 from django.urls import path
-from .views import ChangePasswordView,GetUserTutors
+from .views import (ChangePasswordView,GetUserTutors,AddToCartView,FetchCartView,GetCoursesView,WishlistView,AddWishlistView,
+                    HandleStudentProfileView
+                    )
 urlpatterns = [
-    path('add_cart/', views.add_cart, name="category"),
-    path('fetch_cart/<int:id>',views.fetch_cart,name="fetch_cart"),
-    path('profile/',views.handle_profile,name='profile'),
-    path('cartcourses/', views.get_courses, name='cartcourses'),
-    path('add_wishlist/',views.add_wishlist,name="addwishlist"),
-    path('fetch_wishlist/<int:id>',views.fetch_wishlist,name="fech_wishlist"),
+    path('add_cart/', AddToCartView.as_view(), name="category"),
+    path('fetch_cart/<int:id>',FetchCartView.as_view(),name="fetch_cart"),
+    path('profile/',HandleStudentProfileView.as_view(),name='profile'),
+    path('cartcourses/', GetCoursesView.as_view(), name='cartcourses'),
+    path('add_wishlist/',AddWishlistView.as_view(),name="addwishlist"),
+    path('fetch_wishlist/<int:id>',WishlistView.as_view(),name="fech_wishlist"),
     path('place_order/',views.place_order,name='place_order'),
     path('fetch_learnings/',views.fetchLearnings,name='fetch_learnings'),
     path('fetchmycourse/<int:id>',views.fetchMyCourse,name='fetchmycourse'),

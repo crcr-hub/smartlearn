@@ -153,7 +153,7 @@ class RegisterView(generics.CreateAPIView):
         # Pass the request data to the serializer for validation and saving
         email = request.data.get('email')
         if User.objects.filter(email=email).exists():
-            return Response({"error": "Email already registered."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "Rigistered with us"}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():

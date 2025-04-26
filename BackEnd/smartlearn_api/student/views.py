@@ -47,178 +47,181 @@ class ChangePasswordView(APIView):
 
 
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def handle_profile(request):
-    try:
-        if request.method == 'GET':
+class HandleStudentProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
             user = request.user
             profile = StudentProfile.objects.get(user=user)
-            serializer =StudentProfileSerializer(profile)
-            return Response(serializer.data, status=200)
-        
-    except Exception as e:
-        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            serializer = StudentProfileSerializer(profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except StudentProfile.DoesNotExist:
+            return Response({'error': 'Student profile not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def add_wishlist(request):
-    try:
-   
-        user = request.user
-        course_id = request.data.get("courseId")
-        if not course_id:
-            return Response({'error': 'Course ID is required'}, status=status.HTTP_400_BAD_REQUEST)
-        
-        # Retrieve the course instance
-        course = Courses.objects.get(id=course_id)
-        
-        # Create a new cart entry
-        wishlist, created = Wishlist.objects.get_or_create(user=user, course=course)
-        
-        if created:
-            return Response({'message': 'Course added to wishlist successfully'}, status=status.HTTP_201_CREATED)
-        else:
-            return Response({'message': 'Course already exists in the wishlist'}, status=status.HTTP_200_OK)
-    
-    except Wishlist.DoesNotExist:
-        return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
-    except Exception as e:
-        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    except:
-        return Response({'error': ' not found'}, status=status.HTTP_404_NOT_FOUND)
+class AddWishlistView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            user = request.user
+            course_id = request.data.get("courseId")
+            if not course_id:
+                return Response({'error': 'Course ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+            course = Courses.objects.get(id=course_id)
+
+            wishlist, created = Wishlist.objects.get_or_create(user=user, course=course)
+            if created:
+                return Response({'message': 'Course added to wishlist successfully'}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({'message': 'Course already exists in the wishlist'}, status=status.HTTP_200_OK)
+
+        except Courses.DoesNotExist:
+            return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+class WishlistView(APIView):
+    permission_classes = [IsAuthenticated]
 
-
-@api_view(['GET','DELETE'])
-@permission_classes([IsAuthenticated])
-def fetch_wishlist(request,id):
-    try:
-        if request.method == 'GET':
+    def get(self, request, id):
+        try:
             wishlist = Wishlist.objects.filter(user_id=id).select_related('course')
             if not wishlist.exists():
-                return Response({"message": "No wishlist items found for this user."}, status=404)
+                return Response({"message": "No wishlist items found for this user."}, status=status.HTTP_404_NOT_FOUND)
+            
+            serializer = WishlistSerializer(wishlist, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-            serializer =WishlistSerializer(wishlist, many=True)
-            return Response(serializer.data, status=200)
-        elif request.method == 'DELETE':
+    def delete(self, request, id):
+        try:
             wishlist_item_id = request.data.get('wishlist_item_id')
             if not wishlist_item_id:
-                return Response({"error": "Cart item ID is required"}, status=400)
+                return Response({"error": "Wishlist item ID is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Get and delete the specific cart item
             wishlist_item = get_object_or_404(Wishlist, id=wishlist_item_id)
             wishlist_item.delete()
 
-            # Fetch the updated cart after deletion
             updated_wishlist = Wishlist.objects.filter(user_id=id).select_related('course')
             serializer = WishlistSerializer(updated_wishlist, many=True)
 
-            # Recalculate total price and offer price
-            return Response(serializer.data, status=200)
-
-    except Exception as e:
-        print("Error:", str(e))
-        return Response({"error": str(e)}, status=500)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+class AddToCartView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            user = request.user
+            course_id = request.data.get("courseId")
+
+            if not course_id:
+                return Response({'error': 'Course ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Check if the course is already purchased
+            if Order_items.objects.filter(order__user=user, course_id=course_id).exists():
+                return Response({'message': 'You have already purchased this course.'}, status=status.HTTP_200_OK)
+
+            # Check if course exists
+            try:
+                course = Courses.objects.get(id=course_id)
+            except Courses.DoesNotExist:
+                return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
+
+            # Add to cart
+            cart, created = Cart.objects.get_or_create(user=user, course=course)
+            if created:
+                return Response({'message': 'Course added to cart successfully'}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({'message': 'Course already exists in the cart'}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def add_cart(request): 
-    try:
-        user = request.user
-        course_id = request.data.get("courseId")
-        if not course_id:
-            return Response({'error': 'Course ID is required'}, status=status.HTTP_400_BAD_REQUEST)
-        
-        if Order_items.objects.filter(order__user=user, course_id=course_id).exists():
-            return Response({'message': 'You have already purchased this course.'}, status=status.HTTP_200_OK)
-
-        
-        # Retrieve the course instance
-        course = Courses.objects.get(id=course_id)
-        
-        # Create a new cart entry
-        cart, created = Cart.objects.get_or_create(user=user, course=course)
-        if created:
-            return Response({'message': 'Course added to cart successfully'}, status=status.HTTP_201_CREATED)
-        
-        else:
-            return Response({'message': 'Course already exists in the cart'}, status=status.HTTP_200_OK)
-    except Courses.DoesNotExist:
-        print("Unexpected error:", str(e))
-        return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
-    except Exception as e:
-        print("Unexpected error:", str(e))
-        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    except:
-        print("Unexpected error:", str(e))
-        return Response({'error': ' not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
-@api_view(['GET','DELETE'])
-@permission_classes([IsAuthenticated])
-def fetch_cart(request,id):
-    try:
-        if request.method == 'GET':
+class FetchCartView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, id):
+        try:
             cart = Cart.objects.filter(user_id=id).select_related('course')
             if not cart.exists():
-                return Response({"message": "No cart items found for this user."}, status=404)
-            else:
-                serializer =CartSerializer(cart, many=True)
-                total_price = sum(items.course.price for items in cart) 
-                total_offer_price = sum(items.course.offer_price for items in cart)
-                discount = abs(total_price - total_offer_price)
-                return Response({
-                    "cart": serializer.data,
-                    "total_price": total_price,
-                    "offer_total":total_offer_price,
-                    "discount" :discount
-                })
-        elif request.method == 'DELETE':
-            cart_item_id = request.data.get('cart_item_id')
-            if not cart_item_id:
-                return Response({"error": "Cart item ID is required"}, status=400)
+                return Response({"message": "No cart items found for this user."}, status=status.HTTP_404_NOT_FOUND)
 
-            # Get and delete the specific cart item
-            cart_item = get_object_or_404(Cart, id=cart_item_id)
-            cart_item.delete()
-
-            # Fetch the updated cart after deletion
-            updated_cart = Cart.objects.filter(user_id=id).select_related('course')
-            serializer = CartSerializer(updated_cart, many=True)
-
-            # Recalculate total price and offer price
-            total_price = sum(items.course.price for items in updated_cart)
-            total_offer_price = sum(items.course.offer_price for items in updated_cart)
+            serializer = CartSerializer(cart, many=True)
+            total_price = sum(item.course.price for item in cart)
+            total_offer_price = sum(item.course.offer_price for item in cart)
             discount = abs(total_price - total_offer_price)
 
             return Response({
                 "cart": serializer.data,
                 "total_price": total_price,
                 "offer_total": total_offer_price,
-                "discount" :discount  })
-    except Exception as e:
-        return Response({"error": str(e)}, status=500)
+                "discount": discount
+            }, status=status.HTTP_200_OK)
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_courses(request):
-    course_ids = request.GET.get('ids', None)
-    if not course_ids:
-        return Response({"error": "No course IDs provided."}, status=400)
-    try:
-        course_ids = [int(course_id) for course_id in course_ids.split(",")]
-    except ValueError:
-        return Response({"error": "Invalid course ID format."}, status=400)
-    courses = Courses.objects.filter(id__in=course_ids)
-    serializer = CourseSerializer(courses, many=True)
-    return Response(serializer.data)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def delete(self, request, id):
+        try:
+            cart_item_id = request.data.get('cart_item_id')
+            if not cart_item_id:
+                return Response({"error": "Cart item ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+            cart_item = get_object_or_404(Cart, id=cart_item_id)
+            cart_item.delete()
+
+            updated_cart = Cart.objects.filter(user_id=id).select_related('course')
+            serializer = CartSerializer(updated_cart, many=True)
+
+            total_price = sum(item.course.price for item in updated_cart)
+            total_offer_price = sum(item.course.offer_price for item in updated_cart)
+            discount = abs(total_price - total_offer_price)
+
+            return Response({
+                "cart": serializer.data,
+                "total_price": total_price,
+                "offer_total": total_offer_price,
+                "discount": discount
+            }, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+
+class GetCoursesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        course_ids = request.GET.get('ids', None)
+        if not course_ids:
+            return Response({"error": "No course IDs provided."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            course_ids = [int(course_id) for course_id in course_ids.split(",")]
+        except ValueError:
+            return Response({"error": "Invalid course ID format."}, status=status.HTTP_400_BAD_REQUEST)
+
+        courses = Courses.objects.filter(id__in=course_ids)
+        serializer = CourseSerializer(courses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -593,7 +596,6 @@ def fetchProgress(request,cid):
 def handleFeedback(request,cid):
     course_id = cid
     if request.method == 'POST':
-        print(request.data)
         star = request.data.get('star')
         feedback = request.data.get('feedback')
         user = request.user
@@ -619,7 +621,6 @@ def handleFeedback(request,cid):
             feedback_entry = RatingStar.objects.get(id=cid)
         except RatingStar.DoesNotExist:
             return Response({"error": "Feedback not found"}, status=404)
-        print("newwwwwww",feedback_data)
         new_star = request.data.get('star', feedback_entry.star)  # Keep old value if not provided
         new_feedback = request.data.get('feedback', feedback_entry.feedback)
 
