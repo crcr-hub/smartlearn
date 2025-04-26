@@ -46,7 +46,6 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
     
     return { user, access, refresh };
    } catch (error) {
-    console.log(error.response.data)
     if (error.response?.data?.detail === "pending approval") {
       Swal.fire({
         title: 'Account Pending Approval',
@@ -165,7 +164,6 @@ export const changePassword = createAsyncThunk("auth/changePassword",
   async(passwordData,{rejectWithValue}) =>{
     try{
       const response = await axiosInstance.post('/changepwd/',passwordData);
-      console.log(response.data)
       return response.data
     }catch(error){
       if (error.response && error.response.data) {
@@ -243,7 +241,6 @@ export const updateApprove = createAsyncThunk('admin/updateApprove',
   async(cid,{rejectWithValue})=>{
     try{
       const response = await axiosInstance.patch(`/update_approve/${cid}/`); 
-      console.log("from authslice",response.data.courses)
       if (response?.data?.courses) {
         Swal.fire({
           title: 'Success',
@@ -271,7 +268,6 @@ export const updateCourseStatus = createAsyncThunk('admin/updateHold',
   async({ cid, holdData },{rejectWithValue})=>{
     try{
       const response = await axiosInstance.patch(`/update_status/${cid}/`,holdData); 
-      console.log("from authslice",response.data)
       return response.data;
 
     } catch(error){
@@ -317,7 +313,6 @@ export const addStudent = createAsyncThunk('auth/addStudent',
     return response.data;
   } catch (error) {
     const errorData = error.response?.data;
-    console.log("errorr", error.response, errorData);
     let message = 'Registration failed';
     if (typeof errorData === 'string') {
       message = errorData;
@@ -325,7 +320,7 @@ export const addStudent = createAsyncThunk('auth/addStudent',
       message = Object.values(errorData).flat().join('\n');
     }
     Swal.fire({
-      title: 'Error while registering',
+      title: errorData,
       text: message,
       icon: 'error',
       toast: true,
@@ -440,7 +435,6 @@ export const teacherBlockStatus = createAsyncThunk( 'auth/teacherBlockStatus',
 // fetch teacher profile
 export const fetchTeacherProfile = createAsyncThunk('auth/fetchTeacherProfile', async (id, { rejectWithValue }) => {
   try {
-    console.log("woooorrrkkinninininggggg")
     const response = await axiosInstance.get(`/teacher_profile/${id}/`);
     return response.data;
   } catch (error) {
@@ -783,7 +777,6 @@ export const updateModule = createAsyncThunk('modules/updateModule', async (edit
     formData.append('media', editedData.media); // Ensure 'media' matches Django's field name
   }
   
-  console.log("foemdataaaaa",formData,editedData)
   const response = await axiosInstance.put(`/module/${editedData.id}/`, formData,{
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -797,7 +790,6 @@ export const updateModule = createAsyncThunk('modules/updateModule', async (edit
 
 export const updateStudentProfile = createAsyncThunk('profile/updateStudentProfile',
   async(updatedData,{rejectWithValue})=>{
-  console.log("id",updatedData.id)
     const response = await axiosInstance.put(`/uprofile/${updatedData.id}`,updatedData)
     return response.data
 }
@@ -962,7 +954,6 @@ export const fetchMyCourse = createAsyncThunk("learnings/fetchMyCourse",async(co
 
 export const updateComment = createAsyncThunk ("comments/updateComment",
   async({ commentId, updatedData },{rejectWithValue})=>{
-    console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
     try{
         const response = await axiosInstance.put(`/handle_comment/${commentId}`,updatedData);
         return response.data

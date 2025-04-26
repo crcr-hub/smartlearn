@@ -14,7 +14,7 @@ import {
   from 'mdb-react-ui-kit';
 import { Link, useNavigate } from 'react-router-dom';
 import {  sentOtp } from '../../redux/authSlices';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import NavbarTop from './NavbarTop';
 import Footer from './Footer';
 import Swal from 'sweetalert2';
