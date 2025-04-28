@@ -13,34 +13,22 @@ from student.serializer import EnrolledCourseSerializer, StudentProfileSerialize
 from api.models import AdminNotification
 from api.serializer import UserSerializer
 # Create your views here.
-@api_view(['GET'])
-def list_allteachers(request):
-    try:
-        teacher = TeacherProfile.objects.all()
-        if not teacher.exists():
-            return Response({"message": "No teachers found."}, status=status.HTTP_404_NOT_FOUND)
-
-        combined_data = TeacherProfileSerializer(teacher, many=True)
-        return Response(combined_data.data, status=status.HTTP_200_OK)
-    except Exception as e:
-        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-# @api_view(['GET'])
-# def teacher_profile(request,id):
-#     try:
-#         teacher = TeacherProfile.objects.get(id=id)  # Fetch a single teacher
-#         teacher_data = TeacherProfileSerializer(teacher)
-#         return Response(teacher_data.data, status=status.HTTP_200_OK)
-       
-       
-#     except TeacherProfile.DoesNotExist:
-#         return Response({"message": "No teacher found."}, status=status.HTTP_404_NOT_FOUND)
-    
-#     except Exception as e:
-#         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 
+
+class ListAllTeachers(APIView):
+    def get(self, request):
+        try:
+            teachers = TeacherProfile.objects.all()
+            if not teachers.exists():
+                return Response({"message": "No teachers found."}, status=status.HTTP_404_NOT_FOUND)
+
+            serializer = TeacherProfileSerializer(teachers, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class TeacherProfileDetail(APIView):
     permission_classes = [AllowAny]
@@ -168,6 +156,22 @@ def get_profile(request):
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
+
+
+
+class GetTeacherProfile(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        try:
+            user = request.user
+            profile = TeacherProfile.objects.get(user=user)
+            serializer = TeacherProfileSerializer(profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except TeacherProfile.DoesNotExist:
+            return Response({'error': 'Teacher profile not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
 
 
 from django.utils.timezone import now
@@ -343,19 +347,3 @@ def tutorTransactions(request):
         
 
 
-# @api_view(['POST'])
-# def sentNotification(request,cid):
-#     try:
-#         course = get_object_or_404(Courses, id=cid)  # Get the course instance
-        
-#         # Create an admin notification
-#         notification = AdminNotification.objects.create(
-#             sender=request.user,  # Tutor sending the request
-#             course=course,  # Store course object instead of just ID
-#             message=f"New course '{course.title}' submitted for approval."
-#         )
-        
-#         return Response({"message": "Notification sent successfully", "notification_id": notification.id}, status=201)
-
-#     except Exception as e:
-#         return Response({"error": str(e)}, status=400)

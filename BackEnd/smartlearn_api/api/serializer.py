@@ -25,69 +25,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
              raise AuthenticationFailed({
                 "detail": "blocked",
             })
-
-        
         token = super().get_token(user)
-        return token  # No extra claims added
-    # def get_token(cls, user):
-    #     if user.block_status and user.role == 'teacher':
-    #         raise AuthenticationFailed({
-    #             "detail": "Your account is pending approval. Please contact the administrator.",
-    #             "block_status": user.block_status,
-    #             "role": user.role,
-    #         })
-    #     token = super().get_token(user)
-        
-    #     # These are claims, you can add custom claims
-
-    #     # Add custom claims
-    #     token['username'] = user.username
-    #     token['email'] = user.email
-    #     token['is_superuser'] = user.is_superuser
-    #     token['role'] = user.role
-    #     token['block_status'] = user.block_status
-
-    #     # Check if the user has a StudentProfile
-    #     try:
-    #         student_profile = user.studentprofile  # Assuming OneToOneField relation
-    #         token['fullsss_name'] = student_profile.full_name
-    #         token['place'] = student_profile.address
-    #         token['image'] = str(student_profile.image)
-    #         token['verified'] = student_profile.verified
-    #     except AttributeError:
-    #         # If no StudentProfile is found, you can handle it here
-    #         token['full_name'] = None
-    #         token['place'] = None
-    #         token['image'] = None
-    #         token['verified'] = None
-    #     # Check for TeacherProfile
-        
-
-    #     if hasattr(user, 'teacherprofile'):
-    #         teacher_profile = user.teacherprofile
-    #         token['profile_id'] = teacher_profile.id
-    #         token['teacher_first_name'] = teacher_profile.first_name
-    #         token['teacher_last_name'] = teacher_profile.last_name
-    #         token['place'] = teacher_profile.place
-    #         token['gender'] = teacher_profile.gender
-    #         token['qualification'] = teacher_profile.qualification
-    #         token['experience'] = teacher_profile.experience
-    #         token['experience_in'] = teacher_profile.experience_in
-           
-    #     else:
-    #         token['profile_id'] = None
-    #         token['teacher_first_name'] = None
-    #         token['teacher_last_name'] = None
-    #         token['teacher_verified'] = None
-    #         token['teacher_image'] = None
-    #         token['place'] = None
-    #         token['gender'] = None
-    #         token['qualification'] = None
-    #         token['experience'] = None
-    #         token['experience_in'] = None
-    #     return token
-
-
+        return token  
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -118,7 +57,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
-      
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
