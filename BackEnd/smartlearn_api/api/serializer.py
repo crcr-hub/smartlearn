@@ -19,11 +19,13 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         if user.block_status and user.role == 'teacher':
             raise AuthenticationFailed({
-                "detail": "pending approval",
+                "detail": "please contact the administrator for further assistance.",
+                "title":"Account Pending Approval",
             })
         elif user.block_status:
              raise AuthenticationFailed({
-                "detail": "blocked",
+                "detail": "Please contact the administrator for further assistance.",
+                "title":"Account Blocked",
             })
         token = super().get_token(user)
         return token  

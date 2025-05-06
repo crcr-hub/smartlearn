@@ -150,12 +150,12 @@ class RegisterView(generics.CreateAPIView):
         # Pass the request data to the serializer for validation and saving
         email = request.data.get('email')
         if User.objects.filter(email=email).exists():
-            return Response({"error": "Rigistered with us"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "You are already Rigistered with us"}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()  # Calls the create() method in the serializer
-            return Response({"message": "User registered successfully", "user": user.username}, status=status.HTTP_201_CREATED)
+            return Response({"user": user.username,"message": "Registered successfully"}, status=status.HTTP_201_CREATED)
         else:
             print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -196,7 +196,6 @@ class VerifyOTPView(APIView):
             # Optional: check time validity here
             otp_instance.is_verified = True
             otp_instance.save()
-            print("verified")
             return Response({'message': 'OTP verified'}, status=status.HTTP_200_OK)
         except (User.DoesNotExist, PasswordResetOTP.DoesNotExist):
             return Response({'error': 'Invalid OTP or Email'}, status=status.HTTP_400_BAD_REQUEST)
@@ -461,8 +460,10 @@ def handle_teacher(request, id):
 
 
 @api_view(['GET','PUT'])
+@permission_classes([IsAuthenticated])
 def handle_notification(request,id):
     user_id = id
+   
     if request.method == 'GET':
         if request.user.id == user_id:
             notifications = (Notification.objects
@@ -470,7 +471,7 @@ def handle_notification(request,id):
             .values("sender_id", "sender__username", "notification_type") 
             .annotate(message_count=Count("id"))
             )
-
+    
             # for n in notifications:
             #     print(n.notification_type)
             notification_data = []
@@ -491,6 +492,7 @@ def handle_notification(request,id):
                     "message_count": n["message_count"],
                     "notification_type": notification_type,
                 })
+                print("yes ",notification_data)
             return Response({"notification":notification_data})
        
     elif request.method == 'PUT':
@@ -543,11 +545,9 @@ from django.db.models import Sum, Count
 
 class AdminDashboardView(APIView):
     permission_classes = [IsAuthenticated]
-
     def get(self, request):
         try:
             today = now().date()
-            
             # Initialize revenue and statistics trackers
             total_revenue = 0
             last_week_revenue = 0
@@ -660,16 +660,12 @@ def reports_view(request, report_type):
     if report_type == "students":
         students = []
         enrolled_students = EnrolledCourses.objects.select_related("user", "course")
-        
         for entry in enrolled_students:
             # Get the student's profile
             student_profile = StudentProfile.objects.filter(user=entry.user).first()
-
             student_name = f"{student_profile.first_name} {student_profile.last_name}" if student_profile else "Unknown"
-
             # Get all offer prices for this course from Order_items
             offer_price = entry.order.filter(course=entry.course).values_list("Offer_price", flat=True).first() or "N/A"
-
             student_data = {
                 "student_name": student_name,
                 "course_name": entry.course.name,
@@ -679,15 +675,11 @@ def reports_view(request, report_type):
                 "total_income": Order_items.objects.filter(course=entry.course).aggregate(Sum("Offer_price"))["Offer_price__sum"] or 0,
             }
 
-            students.append(student_data)
-
-  
-        
+            students.append(student_data) 
         return JsonResponse({"students": students})
 
     elif report_type == "teachers":
         teachers = []
-
         all_teachers = TeacherProfile.objects.annotate(course_count=Count("courses"))
         for teacher in all_teachers:
             courses = Courses.objects.filter(teacher=teacher)
@@ -708,16 +700,11 @@ def reports_view(request, report_type):
                     for course in courses
                 ],
             }
-
             teachers.append(teacher_data)
-
         return JsonResponse({"teachers": teachers})
-       
-
     elif report_type == "courses":
         courses = []
         all_courses = Courses.objects.annotate(modules_count=Count("modules"))
-
         for course in all_courses:
             total_students = EnrolledCourses.objects.filter(course=course).count()
             total_income = Order_items.objects.filter(course=course).aggregate(Sum("Offer_price"))["Offer_price__sum"] or 0
@@ -730,9 +717,7 @@ def reports_view(request, report_type):
                 "modules_count": course.modules_count,  # Now correctly counted
             }
             courses.append(course_data)
-        
         return JsonResponse({"courses": courses})
-
     return JsonResponse({"error": "Invalid report type"}, status=400)
     
 from django.db.models import Count, F, ExpressionWrapper, DecimalField,Value, Q
@@ -833,7 +818,6 @@ class SingleStudentTransaction(APIView):
 
 class AdminTransactions(APIView):
     permission_classes = [IsAuthenticated]
-
     def get(self, request):
         try:
             order_items = Order_items.objects.select_related(

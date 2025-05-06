@@ -66,11 +66,9 @@ class CourseView(APIView):
             status_data = {'course': course.id} 
             status_serializer = StatusSerializer(data=status_data)
             logger.debug(f"Status Serializer: {status_serializer}")
-            print(status_serializer)
             if status_serializer.is_valid():
                 status_serializer.save()
             else:
-                print(status_serializer.errors)
                 logger.error(f"Status Serializer Errors: {status_serializer.errors}")
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
@@ -85,10 +83,8 @@ class CourseView(APIView):
 class CourseStatus(APIView):
     def get(self,request,cid):
         status_data = Status.objects.filter(course= cid)
-        
         if not status_data.exists():
             return Response({"message": "No status data found for this course."}, status=status.HTTP_404_NOT_FOUND)
-
         serializer = StatusSerializer(status_data, many=True)
         print("status data",serializer.data)
         return Response(serializer.data, status = status.HTTP_200_OK)
@@ -104,7 +100,6 @@ class CourseByTeacherView(APIView):
 @api_view(['GET', 'PUT','PATCH'])
 @permission_classes([IsAuthenticated])
 def handle_category(request, id):
-    
     try:
         # Fetch the student's profile
         category = Category.objects.get(id =id)
@@ -159,37 +154,9 @@ def handle_courses(request, id):
 
 
 
-# class PublishCourseView(APIView):
-#     permission_classes = [IsAuthenticated]
-
-#     def post(self, request, cid):
-#         course = get_object_or_404(Courses, id=cid)
-#         course.visible_status = 'Waiting' 
-#         course.save()
-
-#         AdminNotification.objects.create(
-#             sender=request.user,
-#             course=course,
-#             message=f"New course '{course.name}' submitted for approval."
-#         )
-#         Status.objects.create(
-#             course=course,
-#             course_status='Waiting',
-#             reason=None,
-#             required=None
-#         )
-
-#         return Response(
-#             {
-#                 "success": "Course published successfully",
-#                 "status": course.visible_status
-#             },
-#             status=status.HTTP_200_OK
-#         )
 
 class PublishCourseView(APIView):
     permission_classes = [IsAuthenticated]
-
     def post(self, request, cid):
         course = get_object_or_404(Courses, id=cid)
 
@@ -308,14 +275,6 @@ class ModuleView(APIView):
 
         # Save the uploaded file temporarily
         video_path = default_storage.save(f"videos/{video_file.name}", video_file)
-
-
-
-
-        
-
-
-
         # Convert request.data to a mutable dictionary (avoid copying files)
         mutable_data = request.data.dict() if isinstance(request.data, QueryDict) else dict(request.data)
 

@@ -32,10 +32,9 @@ class ListAllTeachers(APIView):
 
 class TeacherProfileDetail(APIView):
     permission_classes = [AllowAny]
-    print("working")
-    def get(self, request, id):
+    def get(self, request, tid):
         try:
-            teacher = TeacherProfile.objects.get(id=id)
+            teacher = TeacherProfile.objects.get(id=tid)
             serializer = TeacherProfileSerializer(teacher)
             user_serializer = UserSerializer(teacher.user)
             return Response({
@@ -298,6 +297,7 @@ def tutor_dashboard(request):
 from django.db.models import Count, F, ExpressionWrapper, DecimalField,Value
 from django.db.models.functions import Coalesce
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def tutorTransactions(request):
     user = request.user
    

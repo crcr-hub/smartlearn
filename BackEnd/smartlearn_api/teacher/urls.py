@@ -6,7 +6,7 @@ from .views import TeacherProfileDetail,GetCourseTutor,GetTutorStudents,ListAllT
 
 urlpatterns = [
     path('all_teachers/', ListAllTeachers.as_view(), name="all_teachers"),
-    path('teacher_profile/<int:id>/',TeacherProfileDetail.as_view(),name="teacher_profile"),
+    path('teacher_profile/<int:tid>/',TeacherProfileDetail.as_view(),name="teacher_profile"),
     path('get_students/<int:sid>/',GetTutorStudents.as_view(),name='get_students'),
     path('t_profile/',GetTeacherProfile.as_view(),name='t_profile'),
     path('recent_tmessages/',recent_messages,name='recent_tmessages'),
