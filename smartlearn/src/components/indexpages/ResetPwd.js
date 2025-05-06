@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import side1 from "../../assets/images/side1.jpg"
 import {
-    MDBBtn,
     MDBContainer,
     MDBCard,
     MDBCardBody,
@@ -9,12 +8,11 @@ import {
     MDBRow,
     MDBCol,
     MDBInput,
-    MDBCheckbox
   }
   from 'mdb-react-ui-kit';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {  ResetPassword, sentOtp, verifyOtp } from '../../redux/authSlices';
-import { useDispatch, useSelector } from 'react-redux';
+import {  ResetPassword} from '../../redux/authSlices';
+import { useDispatch } from 'react-redux';
 import NavbarTop from './NavbarTop';
 import Footer from './Footer';
 import Swal from 'sweetalert2';
@@ -49,8 +47,7 @@ function ResetPwd() {
                     if (ResetPassword.fulfilled.match(resultAction)) {
                       Swal.fire({
                         icon: 'success',
-                        title: 'OTP sent!',
-                        text: 'SuccessFully Change',
+                        text: 'SuccessFully Changed',
                         toast: true,
                         position: 'top-end',
                         timer: 3000,

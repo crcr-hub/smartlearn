@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
-import { FetchCart, fetchStudentProfile, handleNotification, logout, logoutUser, recentMessages } from '../../redux/authSlices';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { FetchCart, fetchStudentProfile, handleNotification, logoutUser, recentMessages } from '../../redux/authSlices';
+
 function StudentNavbar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -12,7 +10,7 @@ function StudentNavbar() {
     const {cart} = useSelector((state)=> state.auth)
     const {profile}  = useSelector((state)=>state.auth)
     const {notifications} = useSelector((state)=>state.auth)
- 
+    console.log("from navbar",user)
     const count = cart?.cart?.length || 0;
     useEffect(() => {
   
@@ -53,7 +51,7 @@ function StudentNavbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <input style={{width:"400px"}} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn btn-outline-success" type="submit">Search</button>
         </form>
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0"   >

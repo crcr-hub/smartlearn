@@ -90,7 +90,7 @@ const AreaBarChart = ({cardInfo}) => {
           <div className="info-data-value">{`₹${cardInfo?.total_revenue || "0.00"}`}</div>
           <div className="info-data-text">
             <FaArrowUpLong />
-            <p>5% than last month.</p>
+           
           </div>
         </div>
       </div>

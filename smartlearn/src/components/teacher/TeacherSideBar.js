@@ -29,7 +29,9 @@ function TeacherSideBar() {
                   }`}>Profile settings</Link>
 
 
-                        <Link to="" className='list-group-item list-group-item-action'>Change Password</Link>
+                        <Link to="/tchangepwd"  className={`list-group-item list-group-item-action ${
+                    location.pathname === "/tchangepwd"  ? "active" : ""
+                  }`}>Change Password</Link>
                         
                         <Link to="/tutorcourse" className={`list-group-item list-group-item-action ${
                     location.pathname === "/tutorcourse" || location.pathname .startsWith('/liststudent') ? "active" : ""

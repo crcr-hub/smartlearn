@@ -14,7 +14,6 @@ const ChatComponent = () => {
     const location = useLocation();
     const tutorName = location.state?.tutorName || 'Tutor'; 
     const [message, setMessage] = useState('');
-    const [image, setImage] = useState(null);
     const [selectedFile,setSelectedFile] = useState(null)
     const {user} = useSelector((state)=> state.auth)
     const dispatch = useDispatch();

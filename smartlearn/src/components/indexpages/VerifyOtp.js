@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import side1 from "../../assets/images/side1.jpg"
 import {
-    MDBBtn,
     MDBContainer,
     MDBCard,
     MDBCardBody,
@@ -9,12 +8,11 @@ import {
     MDBRow,
     MDBCol,
     MDBInput,
-    MDBCheckbox
   }
   from 'mdb-react-ui-kit';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {  sentOtp, verifyOtp } from '../../redux/authSlices';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import NavbarTop from './NavbarTop';
 import Footer from './Footer';
 import Swal from 'sweetalert2';
@@ -34,8 +32,7 @@ function VerifyOtp() {
               if (verifyOtp.fulfilled.match(resultAction)) {
                 Swal.fire({
                   icon: 'success',
-                  title: 'OTP sent!',
-                  text: 'Success',
+                  text: 'Verified',
                   toast: true,
                   position: 'top-end',
                   timer: 3000,
@@ -79,9 +76,6 @@ function VerifyOtp() {
                     <MDBInput wrapperClass='mb-4' label='Enter your OTP' id='form1' type='text' value={otp}
                 onChange={(e) => setOtp(e.target.value)}/>
                    
-
-                   
-
 
             <button type='submit'
               className="btn btn-primary mb-4 w-100" 

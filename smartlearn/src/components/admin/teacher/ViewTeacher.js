@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate,Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { teacherBlockStatus, viewCourses, viewTeachers } from '../../../redux/authSlices';
 
 function ViewTeacher() {
 
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const {  userlist:teachers, loading, error } = useSelector((state) => state.auth);
+    const {  userlist:teachers } = useSelector((state) => state.auth);
     const {courses} = useSelector((state)=>state.auth)
    
    
@@ -24,9 +22,6 @@ function ViewTeacher() {
       }
       return courses.filter((course) => course.teacher === teacherId).length;
       };
-
-        
-    const [blockStatus,setBlockstatus] = useState();
 
     const teacherArray = Array.isArray(teachers) ? teachers : [];
    

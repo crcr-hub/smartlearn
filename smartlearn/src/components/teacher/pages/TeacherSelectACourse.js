@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TeacherSideBar from '../TeacherSideBar'
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { fetchTutorCourse } from '../../../redux/authSlices';
 
 function TeacherSelectACourse() {

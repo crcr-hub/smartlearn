@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTeacherProfile } from '../../../redux/authSlices';
-import { Link } from 'react-router-dom';
 
 
 function MiddlePortion({ courseData, modules, onSelectVideo }) {

@@ -20,11 +20,10 @@ function AddaCourse() {
     });
   
     const { category, loading, error } = useSelector((state) => state.auth);
-    const { user, loading: teacherLoading, error: teacherError } = useSelector((state) => state.auth);
+    const { user,  error: teacherError } = useSelector((state) => state.auth);
   
     // States for cropping
     const [image, setImage] = useState(null);
-    const [croppedImage, setCroppedImage] = useState(null);
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);

@@ -1,8 +1,7 @@
 import React,{ useState } from 'react'
 import side from "../../../assets/images/side.jpg"
-import { useDispatch, useSelector } from 'react-redux'; 
+import { useDispatch } from 'react-redux'; 
 import {
-    MDBBtn,
     MDBContainer,
     MDBCard,
     MDBCardBody,
@@ -14,15 +13,12 @@ import {
   }
   from 'mdb-react-ui-kit';
   import { Link, useNavigate } from 'react-router-dom';
-
-
   import { loginUser } from '../../../redux/authSlices';
-import NavbarTop from '../NavbarTop';
-import Footer from '../Footer';
+
 
 function LoginPage() {
     const dispatch = useDispatch(); // Initialize the dispatch function to dispatch actions
-  const { loading, error } = useSelector(state => state.auth);  // Get loading and error from auth state
+  
   const navigate = useNavigate(); 
 
   const [email, setEmail] = useState('');  // Local state for email
@@ -59,12 +55,7 @@ function LoginPage() {
                         <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
                         <Link to={"/forgotpwd"}>Forgot password?</Link>
                         </div>
-
-                        {/* <MDBBtn className="mb-4 w-100"    style={{
-                                                  transform: 'none',
-                                                  boxShadow: 'none',
-                                                  transition: 'none'
-                                                }}>Sign in</MDBBtn> */}
+ 
 
                 <button type='submit'
                   className="btn btn-primary mb-4 w-100" 

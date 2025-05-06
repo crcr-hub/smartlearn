@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import React from 'react';
 
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet} from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
   

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link} from 'react-router-dom'
 import './NavbarTop.css';
 import { useDispatch } from 'react-redux';
 import { viewCategory } from '../../redux/authSlices';
@@ -8,13 +8,12 @@ import { useSelector } from 'react-redux';
 function NavbarTop() {
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
-    const {  category:categories, loading, error } = useSelector((state) => state.auth);
+    const {  category:categories} = useSelector((state) => state.auth);
     
     useEffect (()=>{
          dispatch (viewCategory());},[dispatch])
-        const [blockStatus,setBlockstatus] = useState();
+       
 
     const categoryArray = Array.isArray(categories) ? categories : [];
   return (

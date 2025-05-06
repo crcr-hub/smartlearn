@@ -10,9 +10,9 @@ function StudentWishlist() {
        const dispatch = useDispatch()
        const {user} = useSelector((state)=>state.auth)
        const {cart} = useSelector((state)=>state.auth)
-       const {courses,loading:courserLoaading,error:courseError} = useSelector((state)=>state.auth)
+       const {courses} = useSelector((state)=>state.auth)
        const {learnings} = useSelector((state)=>state.auth)
-       const { cartCourseDetails, loading } = useSelector((state) => state.auth);
+       const { cartCourseDetails} = useSelector((state) => state.auth);
        const {wishlist} = useSelector((state)=>state.auth)
    
       
@@ -143,7 +143,7 @@ function StudentWishlist() {
                                         }}>
                                         
                                             
-                                            <img onClick={()=>handleOnClick(course.id)}   src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
+                                            <img onClick={()=>handleOnClick(course.id)}   src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
                                                 height: "100px",
                                                 cursor:"pointer",
                                                 width:"150px",  
@@ -201,7 +201,6 @@ function StudentWishlist() {
                             <h5 style={{fontWeight:"bold"}}> Grand Total</h5>
                             </div>
                             <div style={{width:"25%", margin: "10px", border: "1px solid black",
-                                margin: "10px",
                                 display: "flex",        // Enable flexbox
                                 justifyContent: "center", // Center horizontally
                                 alignItems: "center",
@@ -252,9 +251,9 @@ function StudentWishlist() {
                       }}>
                       
                           
-                          <img onClick={()=>handleOnClick(items.course)} src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
+                          <img onClick={()=>handleOnClick(items.course)} src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
                               height: "100px",
-                              width:"150px",  
+                               width:"150px",  
                               cursor:"pointer",
                               objectFit: "cover"}} />
                       

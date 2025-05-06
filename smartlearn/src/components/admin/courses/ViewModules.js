@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import {  fetchCourse, fetchModules } from '../../../redux/authSlices';
 import { useDispatch, useSelector } from 'react-redux';
 import 'video.js/dist/video-js.css'
@@ -10,7 +10,7 @@ function ViewModules() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { modules } = useSelector((state) => state.auth);
-    const { course, courseLoading, courseError } = useSelector((state) => state.auth); 
+    const { course, courseLoading } = useSelector((state) => state.auth); 
     // const sortedModules = [...modules].sort((a, b) => a.number - b.number);
     const sortedModules = React.useMemo(
         () => [...modules].sort((a, b) => a.number - b.number),

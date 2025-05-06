@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AreaCards, AreaCharts, AreaTable, AreaTop } from "../../../components/admin";
-import AdminNavbar from "../AdminNavbar";
+import { AreaCards, AreaCharts,  AreaTop } from "../../../components/admin";
 import { useEffect } from "react";
-import { adminDashboard, tutorDashboard } from "../../../redux/authSlices";
+import { adminDashboard } from "../../../redux/authSlices";
 
 
 const Dashboard = () => {
@@ -18,7 +17,7 @@ const Dashboard = () => {
       <AreaTop cardInfo={adminDashboardData} />
       <AreaCards cardInfo={adminDashboardData}/>
       <AreaCharts cardInfo={adminDashboardData}/>
-      {/* <AreaTable cardInfo={adminDashboardData}/> */}
+     
     </div>
   );
 };

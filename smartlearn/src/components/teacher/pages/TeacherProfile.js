@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import TeacherSideBar from '../TeacherSideBar'
-import { Label } from 'recharts'
 import { useSelector } from 'react-redux';
 
 function TeacherProfile() {
@@ -33,8 +32,8 @@ function TeacherProfile() {
         if (teacher) {
          
             const initialProfileData = {
-                first_name: teacher.teacher_first_name || '',
-                last_name: teacher.teacher_last_name || '',
+                first_name: teacher.first_name || '',
+                last_name: teacher.last_name || '',
                 place: teacher.place || "",
                 gender : teacher.gender || "",
                 experience : teacher.experience || "",
@@ -48,6 +47,7 @@ function TeacherProfile() {
         }
 
     },[])
+
     const handleEditClick = () => {
         setIsEditing(true);
     };

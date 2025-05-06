@@ -14,7 +14,6 @@ const TutorChatComponent = () => {
     const {user} = useSelector((state)=> state.auth)
 
     const [message, setMessage] = useState('');
-    const [image, setImage] = useState(null);
     const [selectedFile,setSelectedFile] = useState(null)
     const dispatch = useDispatch();
  

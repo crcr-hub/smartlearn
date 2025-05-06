@@ -10,14 +10,13 @@ function TeacherUpdateCourse() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
       const [image, setImage] = useState(null);
-        const [croppedImage, setCroppedImage] = useState(null);
         const [crop, setCrop] = useState({ x: 0, y: 0 });
         const [zoom, setZoom] = useState(1);
         const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
     const { id } = useParams(); // Get course ID from URL params
     const { category, loading, error } = useSelector((state) => state.auth);
     const { user:teacher } = useSelector((state) => state.auth);
-    const { course, courseLoading, courseError } = useSelector((state) => state.auth); // Assuming course details are in state
+    const { course } = useSelector((state) => state.auth); // Assuming course details are in state
   
     // States for course data
     const [courseData, setCourseData] = useState({

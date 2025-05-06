@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import StudentNavbar from '../StudentNavbar'
 import StudentFooter from '../StudentFooter'
 import { useDispatch, useSelector } from 'react-redux'
-import { changePassword, fetchStudentProfile, logout, ResetPassword, updateStudentProfile } from '../../../redux/authSlices'
-import { useLocation } from 'react-router-dom'
+import { changePassword, fetchStudentProfile, logout, updateStudentProfile } from '../../../redux/authSlices'
 import Swal from 'sweetalert2';
 
 function ProfilePage() {
     
-            const location = useLocation()
+         
             const { profile } = useSelector((state) => state.auth)
             const [isEditing, setIsEditing] = useState(false)
             const [isPwdEditing, setIsPwdEditing] = useState(false)

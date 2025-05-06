@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom'
 
 function MyLearning() {
     const {learnings} = useSelector((state)=>state.auth)
-    const {user} = useSelector((state)=>state.auth)
-    const {courses,loading:courserLoaading,error:courseError} = useSelector((state)=>state.auth)
-    const {teachers, loading:teacherLoading, error:teacherError} = useSelector((state) =>state.auth)
+    const {courses} = useSelector((state)=>state.auth)
+    const {teachers} = useSelector((state) =>state.auth)
     const teacherArray = Array.isArray(teachers) ? teachers : [];
     const dispatch = useDispatch()
 

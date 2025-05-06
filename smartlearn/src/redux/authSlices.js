@@ -1,31 +1,33 @@
-import { createSlice, createAsyncThunk, asyncThunkCreator } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../utils/axiosInstances';
 import Swal from 'sweetalert2';
 import {jwtDecode} from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
-import { act } from 'react';
-import axios from 'axios';
+
+
 
 // Thunks
 // Login --------------------------------------------------------------------------------------------------------------------
 
 
-export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, password, navigate }, { rejectWithValue }) => {
+export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, password, navigate }, { rejectWithValue ,dispatch}) => {
   try {
 
-    const response = await axiosInstance.post('/token/', { email, password });
-    const { access, refresh } = response.data;
-    const decodedUser = jwtDecode(access);
 
-    // Clear previous session data
+
     localStorage.clear();
     sessionStorage.clear();
+    const response = await axiosInstance.post('/token/', { email, password });
+    const { access, refresh } = response.data;
+    
+
+
 
     // Store tokens
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", refresh);
 
     //  Fetch user details separately after login
+
     const userResponse = await axiosInstance.get('/user-details/', {
       headers: { Authorization: `Bearer ${access}` },
     });
@@ -33,7 +35,14 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
     const user = userResponse.data; // Full user details
 
     localStorage.setItem("user", JSON.stringify(user));
+    
+    dispatch(loginSuccess({ user, access, refresh }));
+    window.localStorage.setItem('userLoggedIn', 'true');
   
+
+
+    console.log("from auth slice",user)
+
     if (user.is_superuser){
         navigate('/admin/adminhome')
     }
@@ -41,15 +50,15 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
       navigate('/home')
     }
     else if (user.role === 'teacher' ){
-      navigate('/tutorhome')
+      navigate('/tutordashboard')
     }
     
     return { user, access, refresh };
    } catch (error) {
-    if (error.response?.data?.detail === "pending approval") {
+    if(error.response?.data?.detail && error.response?.data?.title) {
       Swal.fire({
-        title: 'Account Pending Approval',
-        text: 'Please contact the administrator for further assistance.',
+        title: error.response.data.title,
+        text: error.response.data.detail,
         icon: 'warning',
         toast: true,
         timer: 6000,
@@ -57,18 +66,6 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
         timerProgressBar: true,
         showConfirmButton: false,
       });
-    }
-      else if(error.response?.data?.detail === "blocked") {
-        Swal.fire({
-          title: 'Account Blocked',
-          text: 'Please contact the administrator for further assistance.',
-          icon: 'warning',
-          toast: true,
-          timer: 6000,
-          position: 'top-right',
-          timerProgressBar: true,
-          showConfirmButton: false,
-        });
     } else {
       Swal.fire({
         title: 'Login Failed',
@@ -106,7 +103,7 @@ export const sentOtp = createAsyncThunk('auth/sentOtp',
         const response = await axiosInstance.post('/verifyOtp/', {email,otp});
         return response.data
       }catch(error){
-        return rejectWithValue(error.response?.data || 'Failed to sent Otp')
+        return rejectWithValue(error.response?.data || 'Failed to verify Otp')
       }
     });
 
@@ -138,13 +135,10 @@ export const viewAllTeachers = createAsyncThunk('auth/viewAllTeachers', async (_
 export const registerUser = createAsyncThunk('auth/registerUser', async ({ userData, navigate }, { rejectWithValue }) => {
   try {
     const response = await axiosInstance.post('/register/', userData);
-    const { access, refresh } = response.data;
-
-
     navigate('/admin/addstudent' );
     return  response.data ;
   } catch (error) {
-    const errorData = error.response?.data;
+   
     Swal.fire({
       title: 'Registration failed',
       icon: 'error',
@@ -301,7 +295,8 @@ export const addStudent = createAsyncThunk('auth/addStudent',
     }
    
     Swal.fire({
-      title: 'Registered successfully',
+      title: 'Success',
+      text:response.data.user + " " + response.data.message,
       icon: 'success',
       toast: true,
       timer: 2000,
@@ -311,8 +306,10 @@ export const addStudent = createAsyncThunk('auth/addStudent',
     });
    
     return response.data;
+    
   } catch (error) {
-    const errorData = error.response?.data;
+    console.log("from auth slice",error)
+    const errorData = error.response?.data.error;
     let message = 'Registration failed';
     if (typeof errorData === 'string') {
       message = errorData;
@@ -320,7 +317,7 @@ export const addStudent = createAsyncThunk('auth/addStudent',
       message = Object.values(errorData).flat().join('\n');
     }
     Swal.fire({
-      title: errorData,
+      title: "Failed",
       text: message,
       icon: 'error',
       toast: true,
@@ -433,7 +430,8 @@ export const teacherBlockStatus = createAsyncThunk( 'auth/teacherBlockStatus',
 
 
 // fetch teacher profile
-export const fetchTeacherProfile = createAsyncThunk('auth/fetchTeacherProfile', async (id, { rejectWithValue }) => {
+export const fetchTeacherProfile = createAsyncThunk('auth/fetchTeacherProfile',
+   async (id, { rejectWithValue }) => {
   try {
     const response = await axiosInstance.get(`/teacher_profile/${id}/`);
     return response.data;
@@ -1240,8 +1238,9 @@ export const adminDashboard = createAsyncThunk("report/adminDashboard",
         } catch (error) {
           console.error("Logout API failed", error);
         } finally {
+          
           dispatch(logout());
-          navigate('/'); // Redirect to login after logout
+          navigate('loginpage'); // Redirect to login after logout
         }
       };
 
@@ -1286,7 +1285,6 @@ const initialState = {
   feedback:null,
   allfeedback:null,
   average_rating : null,
-  isAuthenticated: !!localStorage.getItem('access'),
   adminnotification : null,
   aprovalcourses : null,
   order : null,
@@ -1322,18 +1320,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
     },
     logout: (state) => {
-      // state.user = null;
-      // state.access = null;
-      // state.refresh = null;
-
-      // localStorage.removeItem("user");
-      // localStorage.removeItem("access");
-      // localStorage.removeItem("refresh");
     
-      // sessionStorage.clear();
-      // window.location.href = "/";
-
-
       state.user = null;
       state.access = null;
       state.refresh = null;
@@ -1342,9 +1329,10 @@ const authSlice = createSlice({
       localStorage.removeItem("user");
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
+      localStorage.setItem("logout", Date.now());
 
       sessionStorage.clear();
-      window.location.href = "/";
+      window.location.href = "loginpage";
     },
 
     loadUser: (state) => {
@@ -2070,5 +2058,5 @@ const authSlice = createSlice({
   
 });
 
-export const { logout,loadUser,clearStatusData  } = authSlice.actions;
+export const { logout,loadUser,clearStatusData,loginSuccess  } = authSlice.actions;
 export default authSlice.reducer;

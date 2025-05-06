@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import side from "../../assets/images/side.jpg"
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { viewAllTeachers, viewCategory, viewCourses, viewTeachers } from '../../redux/authSlices';
+import { viewAllTeachers, viewCategory, viewCourses } from '../../redux/authSlices';
 function IndexCourses() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {courses,loading:courserLoaading,error:courseError} = useSelector((state)=>state.auth)
-    const {teachers, loading:teacherLoading, error:teacherError} = useSelector((state) =>state.auth)
-    const {  category:categories, loading, error } = useSelector((state) => state.auth);
+    const {courses} = useSelector((state)=>state.auth)
+    const {teachers} = useSelector((state) =>state.auth)
+    const {  category:categories } = useSelector((state) => state.auth);
     
     useEffect (()=>{
          dispatch (viewCategory());
          dispatch(viewCourses());
           dispatch (viewAllTeachers());
         },[dispatch])
-        const [blockStatus,setBlockstatus] = useState();
 
     const categoryArray = Array.isArray(categories) ? categories : [];
     

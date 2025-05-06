@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
-import { clearStatusData, fetchCategory, getCourseStatus, updateCourseStatus, viewCategory, viewCourses, viewTeachers } from '../../../redux/authSlices'
+import { Link } from 'react-router-dom'
+import { clearStatusData,  getCourseStatus, updateCourseStatus, viewCategory, viewCourses, viewTeachers } from '../../../redux/authSlices'
 import './drawers.css'
-
+import image16 from "../../../assets/images/image16.jpg";
 
 
 function ViewCourses() {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const {courses,loading,error} = useSelector((state)=>state.auth)
-    const { category, loading:categoryLoading, error:categoryError } = useSelector((state) => state.auth);
+    const {courses} = useSelector((state)=>state.auth)
+    const { category } = useSelector((state) => state.auth);
     const {  userlist:fetchedTeachers} = useSelector((state) => state.auth);
-    const {  user:fetchedTeacherss, loading:teacherLoading, error:teacherError } = useSelector((state) => state.auth);
     const teachers = Array.isArray(fetchedTeachers) ? fetchedTeachers : [];
     
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -83,8 +81,13 @@ function ViewCourses() {
             }, [dispatch]);
 
     const getCategoryTitle = (categoryId) => {
-        const categoryItem = category.find((cat) => cat.id === categoryId);
-        return categoryItem ? categoryItem.title : "Unknown Category";
+
+
+      if (!Array.isArray(category)) return "Unknown Category";
+      const categoryItem = category.find((cat) => cat.id === categoryId);
+      return categoryItem ? categoryItem.title : "Unknown Category";
+        // const categoryItem = category.find((cat) => cat.id === categoryId);
+        // return categoryItem ? categoryItem.title : "Unknown Category";
             };
 
     const getTeacherName = (teacherId) => {
@@ -130,7 +133,9 @@ function ViewCourses() {
           <tr key={course.id}>
             <td>{course.id}</td>
             <td>{course.name}</td>
-            <td>{course.description}</td>
+            <td>{course.description.split(' ').length > 20 ? 
+            course.description.split(' ').slice(0,20).join(' ') +' '+ '....':
+              course.description}</td>
             <td>{Array.isArray(course.teacher)
                 ? course.teacher.map((teacherId) => (
                     <span key={teacherId}>{getCategoryTitle(teacherId)}</span>
@@ -151,10 +156,6 @@ function ViewCourses() {
                           ? " Waiting For approval "
                           : course.visible_status}</Link> 
                       </td>
-
-
-
-
             <td>
             {course.images ? (
                 <img
@@ -167,14 +168,11 @@ function ViewCourses() {
                     )}
             </td>
             <td>
-          
-            
-              
               <Link
-                to={`/admin/course/${course.id}`}
-                className="btn btn-warning btn-sm"
+                to={`/admin/viewacourse/${course.id}`}
+                className="btn btn-primary btn-sm"
               >
-                Update
+                View 
               </Link>
 
               <button

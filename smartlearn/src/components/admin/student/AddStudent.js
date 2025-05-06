@@ -23,9 +23,7 @@ function AddStudent() {
       mobile :""
     })
 
-    const handleChange = (e) => {
-      setUserData({ ...userData, [e.target.name]: e.target.value });
-    };
+   
   
     const handleSubmit = (e) => {
       e.preventDefault();

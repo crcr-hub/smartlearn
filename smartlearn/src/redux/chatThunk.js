@@ -1,7 +1,7 @@
 
 
 // redux/chatThunks.js
-import { handleNotification, recentMessages } from './authSlices';
+import { handleNotification } from './authSlices';
 import { addMessage, setMessages } from './chatSlice';
 
 const sockets = {};

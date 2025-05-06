@@ -6,7 +6,7 @@ import { fetchTeacher, teacherTransaction } from '../../../redux/authSlices';
 function ViewTeacherTransactions() {
     const {id} = useParams();
     const dispatch = useDispatch()
-    const  {teacher,loading,error} = useSelector((state)=>state.auth) 
+    const  {teacher} = useSelector((state)=>state.auth) 
     const  {teacherTransaction : data} = useSelector((state)=>state.auth)
 
     useEffect(()=>{

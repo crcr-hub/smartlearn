@@ -8,23 +8,17 @@ import {
     MdOutlineAttachMoney,
     MdOutlineBarChart,
     MdOutlineClose,
-    MdOutlineCurrencyExchange,
     MdOutlineGridView,
     MdOutlineLogout,
-    MdOutlineMessage,
     MdOutlinePayment,
-    MdOutlinePeople,
-    MdOutlineSettings,
-    MdOutlineShoppingBag,
   } from "react-icons/md";
-  import { MDBIcon } from 'mdb-react-ui-kit';
 
   import { MDBAccordion, MDBAccordionItem } from 'mdb-react-ui-kit';
   import {useLocation, Link } from "react-router-dom";
   import "./Sidebar.scss"
   import { SidebarContext } from "../../../context/SidebarContext";
   import { useDispatch } from 'react-redux';
-  import { logout, logoutUser } from "../../../redux/authSlices";
+  import { logoutUser } from "../../../redux/authSlices";
   import { useNavigate } from "react-router-dom";
   
 const Sidebar = () => {
@@ -282,7 +276,7 @@ const Sidebar = () => {
           marginLeft: "-50px", // Align it to the left by removing any left margin
         }}>
                 <Link to="/admin/viewcourses" className={`menu-link ${
-                    location.pathname === "/admin/viewcourses" ? "active" : ""
+                    location.pathname === "/admin/viewcourses" || location.pathname.startsWith('/admin/viewacourse') ? "active" : ""
                   }`}>
                   <span className="menu-link-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window-sidebar" viewBox="0 0 16 16">

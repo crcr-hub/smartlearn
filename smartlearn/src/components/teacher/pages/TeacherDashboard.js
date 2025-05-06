@@ -8,7 +8,6 @@ import TeacherDashboardScreen from '../screen/DashboardScreen';
 
 function TeacherDashboard() {
   const dispatch = useDispatch();
-  const { tutorcourses, loading, error } = useSelector((state) => state.auth);
   const {user:teacher} = useSelector((state)=>state.auth)
  
   useEffect(()=>{

@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import side from "../../../assets/images/side.jpg"
 import {
-    MDBBtn,
     MDBContainer,
     MDBCard,
     MDBCardBody,
     MDBInput,
-    MDBIcon,
     MDBRow,
     MDBCol,
-    MDBCheckbox,MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem
   }
 from 'mdb-react-ui-kit';
 import { useDispatch } from 'react-redux';
-import { Form, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { addStudent } from '../../../redux/authSlices';
 function TeacherRegisterPage() {
       
@@ -305,175 +302,7 @@ function TeacherRegisterPage() {
              </MDBCard>
            </MDBCol>
    
-          
-
-{/* 
-
- <MDBCol col="6">
-            <MDBCard className="my-5 cascading-right" style={{ background: "hsla(0, 0%, 100%, 0.55)", backdropFilter: "blur(30px)" }}>
-              <MDBCardBody className="p-3 shadow-5 text-center">
-                <h2 className="fw-bold mb-3">Register With Us</h2>
-
-                <MDBRow>
-                  <MDBCol col="6">
-                    <MDBInput
-                      wrapperClass="mb-2"
-                      label="First Name"
-                      value={userData.first_name}
-                      onChange={(e) => setUserData({ ...userData, first_name: e.target.value })}
-                    />
-
-                    {errors.first_name && <span style={{ color: "red" }}>{errors.first_name}</span>}
-                  </MDBCol>
-
-                  <MDBCol col="6">
-                    <MDBInput
-                      wrapperClass="mb-2"
-                      label="Last Name"
-                      value={userData.last_name}
-                      onChange={(e) => setUserData({ ...userData, last_name: e.target.value })}
-                    />
-                    {errors.last_name && <span style={{ color: "red" }}>{errors.last_name}</span>}
-                  </MDBCol>
-                </MDBRow>
-
-                <MDBRow>
-                  
-                  <MDBCol col="6">
-                    <select className="form-select" value={userData.gender} onChange={(e) => setUserData({ ...userData, gender: e.target.value })}>
-                      <option value="">Choose..</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Other">Other</option>
-                    </select>
-                    {errors.gender && <span style={{ color: "red" }}>{errors.gender}</span>}
-                  </MDBCol>
-
-                  <MDBCol col="6">
-                    <MDBInput
-                      wrapperClass="mb-2"
-                      label="Qualification"
-                      value={userData.qualification}
-                      onChange={(e) => setUserData({ ...userData, qualification: e.target.value })}
-                    />
-                    {errors.qualification && <span style={{ color: "red" }}>{errors.qualification}</span>}
-                  </MDBCol>
-                </MDBRow>
-
-                <MDBInput wrapperClass="mb-2" label="Place" value={userData.place} onChange={(e) => setUserData({ ...userData, place: e.target.value })} />
-                {errors.place && <span style={{ color: "red" }}>{errors.place}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Mobile" value={userData.mobile} onChange={(e) => setUserData({ ...userData, mobile: e.target.value })} />
-                {errors.mobile && <span style={{ color: "red" }}>{errors.mobile}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Experience" value={userData.experience} onChange={(e) => setUserData({ ...userData, experience: e.target.value })} />
-                {errors.experience && <span style={{ color: "red" }}>{errors.experience}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Experience In" value={userData.experience_in} onChange={(e) => setUserData({ ...userData, experience_in: e.target.value })} />
-                {errors.experience_in && <span style={{ color: "red" }}>{errors.experience_in}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Email" value={userData.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
-                {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
-
-                <button className="btn btn-primary w-100 mb-2" style={{ height: '40px' }} type="submit">
-          Register
-        </button>
-                
-                {/* <MDBBtn className="w-100 mb-2" size="md" type="submit">
-                  Register
-                </MDBBtn> */}
-              {/* </MDBCardBody>
-            </MDBCard>
-          </MDBCol> */}
-
  
-
-
-
-{/* ................... */}
-
-
-
-
-{/* <MDBCol col="6">
-            <MDBCard className="my-5 cascading-right" style={{ background: "hsla(0, 0%, 100%, 0.55)", backdropFilter: "blur(30px)" }}>
-              <MDBCardBody className="p-3 shadow-5 text-center">
-                <h2 className="fw-bold mb-3">Register With Us</h2>
-
-                <MDBRow>
-                  <MDBCol col="6">
-                    <MDBInput
-                      wrapperClass="mb-2"
-                      label="First Name"
-                      value={userData.first_name}
-                      onChange={(e) => setUserData({ ...userData, first_name: e.target.value })}
-                    />
-                    {errors.first_name && <span style={{ color: "red" }}>{errors.first_name}</span>}
-                  </MDBCol>
-
-                  <MDBCol col="6">
-                    <MDBInput
-                      wrapperClass="mb-2"
-                      label="Last Name"
-                      value={userData.last_name}
-                      onChange={(e) => setUserData({ ...userData, last_name: e.target.value })}
-                    />
-                    {errors.last_name && <span style={{ color: "red" }}>{errors.last_name}</span>}
-                  </MDBCol>
-                </MDBRow>
-
-                <MDBRow>
-                  <MDBCol col="6">
-                    <select className="form-select" value={userData.gender} onChange={(e) => setUserData({ ...userData, gender: e.target.value })}>
-                      <option value="">Choose..</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Other">Other</option>
-                    </select>
-                    {errors.gender && <span style={{ color: "red" }}>{errors.gender}</span>}
-                  </MDBCol>
-
-                  <MDBCol col="6">
-                    <MDBInput
-                      wrapperClass="mb-2"
-                      label="Qualification"
-                      value={userData.qualification}
-                      onChange={(e) => setUserData({ ...userData, qualification: e.target.value })}
-                    />
-                    {errors.qualification && <span style={{ color: "red" }}>{errors.qualification}</span>}
-                  </MDBCol>
-                </MDBRow>
-
-                <MDBInput wrapperClass="mb-2" label="Place" value={userData.place} onChange={(e) => setUserData({ ...userData, place: e.target.value })} />
-                {errors.place && <span style={{ color: "red" }}>{errors.place}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Mobile" value={userData.mobile} onChange={(e) => setUserData({ ...userData, mobile: e.target.value })} />
-                {errors.mobile && <span style={{ color: "red" }}>{errors.mobile}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Experience" value={userData.experience} onChange={(e) => setUserData({ ...userData, experience: e.target.value })} />
-                {errors.experience && <span style={{ color: "red" }}>{errors.experience}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Experience In" value={userData.experience_in} onChange={(e) => setUserData({ ...userData, experience_in: e.target.value })} />
-                {errors.experience_in && <span style={{ color: "red" }}>{errors.experience_in}</span>}
-
-                <MDBInput wrapperClass="mb-2" label="Email" value={userData.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
-                {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
-
-                <button className="btn btn-primary w-100 mb-2" style={{ height: '40px' }} type="submit">
-          Register
-        </button>
-                
-                {/* <MDBBtn className="w-100 mb-2" size="md" type="submit">
-                  Register
-                </MDBBtn> */}
-              {/* </MDBCardBody>
-            </MDBCard>
-          </MDBCol> */} 
-
-
-{/*...............end l..............*/}
-
-
    
          </MDBRow>
          </form>

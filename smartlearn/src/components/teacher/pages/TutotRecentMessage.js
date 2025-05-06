@@ -37,7 +37,6 @@ function TutotRecentMessage() {
                    {recentMessage?.recent_messages?.length > 0 ? (
                        recentMessage.recent_messages.map((msg,index)=>{
                            const sproid = msg.sender_profile.profile_id;
-                           const rproid = msg.recipient_profile.profile_id;
                            const pid = profile.profile_id;
                            const profileid = sproid !== pid ? msg.sender_profile.profile_id: msg.recipient_profile.profile_id;
                            const studentName = sproid !== pid ? msg.sender_profile.first_name : msg.recipient_profile.first_name;

@@ -7,7 +7,7 @@ function UpdateStudent() {
     const {id} = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const  {student,loading,error} = useSelector((state)=>state.auth) 
+    const  {student} = useSelector((state)=>state.auth) 
 
 // if (loading) return <p>Loading...</p>;
 // if (error) return <p>Error: {error}</p>;

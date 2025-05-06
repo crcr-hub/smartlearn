@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { adminNotification, clearAdminNotification, clearStatusData, getCourseStatus, pendingCourses, updateApprove, updateCourseStatus, updateHold, viewCategory, viewTeachers } from '../../../redux/authSlices'
+import { adminNotification, clearAdminNotification, clearStatusData, getCourseStatus, pendingCourses, updateApprove, updateCourseStatus,  viewCategory, viewTeachers } from '../../../redux/authSlices'
 import './drawers.css'
 
 function PendingCourses() {
     const dispatch = useDispatch()
     const aprovalcourses = useSelector((state) => state.auth.aprovalcourses) || { courses: [] };
 
-    const { category, loading:categoryLoading, error:categoryError } = useSelector((state) => state.auth);
-    const {  userlist:fetchedTeachers, loading:teacherLoading, error:teacherError } = useSelector((state) => state.auth);
+    const { category} = useSelector((state) => state.auth);
+    const {  userlist:fetchedTeachers } = useSelector((state) => state.auth);
     const teachers = Array.isArray(fetchedTeachers) ? fetchedTeachers : [];
     const courseArray = Array.isArray(aprovalcourses)?aprovalcourses:[];
     useEffect(()=>{
@@ -81,17 +81,6 @@ function PendingCourses() {
   }
 
 
-
-  // Swal.fire({
-  //   title: 'Warning',
-  //   text: response.data.courses +' '+'Course put on Hold!',
-  //   icon: 'warning',
-  //   toast: true,
-  //   timer: 6000,
-  //   position: 'top-right',
-  //   timerProgressBar: true,
-  //   showConfirmButton: false,
-  // });
 
  
 
@@ -246,7 +235,9 @@ const handleCancelReject = (cid) =>{
         <tr key={course.id}>
          
           <td>{course.name}</td>
-          <td>{course.description}</td>
+          <td>{course.description.split(' ').length > 20 ? 
+            course.description.split(' ').slice(0,20).join(' ') +' '+ '....':
+              course.description}</td>
           <td>
             {Array.isArray(course.teacher)
               ? course.teacher.map((teacherId) => (
@@ -279,7 +270,9 @@ const handleCancelReject = (cid) =>{
               "No Image"
             )}
           </td>
-          <td> <Link to={`/admin/viewmodule/${course.id}`}>View Modules</Link></td>
+          <td> <Link to={`/admin/viewacourse/${course.id}`}>Course</Link><br></br>
+          <Link to={`/admin/viewmodule/${course.id}`}>Modules</Link>
+          </td>
           <td>
   {(course.visible_status === "Waiting" || course.visible_status === "waiting")  && (
     <>

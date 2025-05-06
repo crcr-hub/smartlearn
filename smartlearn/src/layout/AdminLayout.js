@@ -9,7 +9,6 @@ import { Dashboard} from "../components/admin/screens";
 
 import { useContext, useEffect } from "react";
 import AddStudent from '../components/admin/student/AddStudent';
-import PrivateRoute from '../components/PrivateRoute';
 import ViewStudent from '../components/admin/student/ViewStudent';
 import UpdateStudent from '../components/admin/student/UpdateStudent';
 import AddTeacher from '../components/admin/teacher/AddTeacher';
@@ -20,9 +19,6 @@ import ViewCategory from '../components/admin/courses/ViewCategory';
 import UpdatedCat from '../components/admin/courses/UpdatedCat';
 import AddCourse from '../components/admin/courses/AddCourse';
 import ViewCourses from '../components/admin/courses/ViewCourses';
-import UpdateCourse from '../components/admin/courses/UpdateCourse';
-import AddaCourse from '../components/admin/courses/AddaCourse';
-import UpdateaCourse from '../components/admin/courses/UpdateaCourse';
 import SelectACourse from '../components/admin/courses/SelectACourse';
 import ViewModules from '../components/admin/courses/ViewModules';
 import PendingCourses from '../components/admin/courses/PendingCourses';
@@ -31,6 +27,7 @@ import AdminPrivateRoute from '../components/privateRoutes/AdminPrivateRoute';
 import ViewTeacherTransactions from '../components/admin/teacher/ViewTeacherTransactions';
 import Transactions from '../components/admin/Transactions';
 import STransaction from '../components/admin/STransaction';
+import ViewaCourse from '../components/admin/courses/ViewaCourse';
 
 
 
@@ -65,10 +62,8 @@ function AdminLayout() {
           <Route path = "viewcategory" element = {<AdminPrivateRoute ><ViewCategory/></AdminPrivateRoute> }/>
           <Route path = "category/:id" element = {<AdminPrivateRoute ><UpdatedCat/></AdminPrivateRoute> }/>
           <Route path = "addcourse" element = {<AdminPrivateRoute ><AddCourse/></AdminPrivateRoute> }/>
-          <Route path = "addcourses" element = {<AdminPrivateRoute ><AddaCourse/></AdminPrivateRoute> }/>
           <Route path = "viewcourses" element = {<AdminPrivateRoute ><ViewCourses/></AdminPrivateRoute> }/>
-          <Route path = "courses/:id" element = {<AdminPrivateRoute ><UpdateCourse/></AdminPrivateRoute> }/>
-          <Route path = "course/:id" element = {<AdminPrivateRoute ><UpdateaCourse/></AdminPrivateRoute> }/>
+          <Route path = "/viewacourse/:cid" element = {<AdminPrivateRoute><ViewaCourse/></AdminPrivateRoute>} />
           <Route path="/selectcourse" element={<AdminPrivateRoute ><SelectACourse/> </AdminPrivateRoute> }/>
           <Route path="/viewmodule/:id" element={<AdminPrivateRoute ><ViewModules/> </AdminPrivateRoute> }/>
           <Route path="/pendingcourses" element = {<AdminPrivateRoute ><PendingCourses/></AdminPrivateRoute>}/>

@@ -11,7 +11,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
           const dispatch = useDispatch();
           const { id } = useParams();
           const { modules } = useSelector((state) => state.auth);
-          const { course, courseLoading, courseError } = useSelector((state) => state.auth); 
+          const { course, courseLoading } = useSelector((state) => state.auth); 
           const sortedModules = [...modules].sort((a, b) => a.number - b.number);
           const [videoUploading, setVideoUploading] = useState(false);
           const [newModule, setNewModule] = useState({
@@ -20,7 +20,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
             number: null,
             media: "",
           });
-          const [loading, setLoading] = useState(false);
+  
           const [editingRow, setEditingRow] = useState(null); // Tracks the row being edited
           const [editData, setEditData] = useState({}); // Stores the data being edited
           const [rowLoading, setRowLoading] = useState(null);

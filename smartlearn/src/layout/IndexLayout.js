@@ -4,9 +4,7 @@ import Home from '../components/indexpages/Home';
 import Login from '../components/indexpages/screen/Login';
 import Register from '../components/indexpages/screen/Register';
 import AdminLayout from './AdminLayout';
-import TutorLayout from './TutorLayout';
 import HomePage from '../components/student/screen/HomePage';
-import TeacherHomePage from '../components/teacher/screen/TeacherHomePage';
 import TeacherDashboardPage from '../components/teacher/screen/TeacherDashboardPage';
 
 import TeacherRegister from '../components/indexpages/screen/TeacherRegister';
@@ -14,20 +12,15 @@ import TeacherRegister from '../components/indexpages/screen/TeacherRegister';
 import TeacherAddCoursePage from '../components/teacher/screen/TeacherAddCoursePage';
 import TeacherUpdateCoursePage from '../components/teacher/screen/TeacherUpdateCoursePage';
 import TeacherProfilePage from '../components/teacher/screen/TeacherProfilePage';
-import VideoPlayer from '../components/student/pages/VideoPlayer';
 import VideoPlayerPage from '../components/student/screen/VideoPlayerPage';
 import CourseDetailsPage from '../components/student/screen/CourseDetailsPage';
-import TeacherAddModul from '../components/teacher/pages/TeacherAddModul';
-import TeacherSelectACourse from '../components/teacher/pages/TeacherSelectACourse';
 import TeacherSelectACoursePage from '../components/teacher/screen/TeacherSelectACoursePage';
 import TeacherAddModulPage from '../components/teacher/screen/TeacherAddModulPage';
-import CourseDetails from '../components/indexpages/screen/CourseDetails';
 import StudentCartPage from '../components/student/screen/StudentCartPage';
 import StudentWishlistPage from '../components/student/screen/StudentWishlistPage';
 import BillingDetailsPage from '../components/student/screen/BillingDetailsPage';
 import MyLearningPage from '../components/student/screen/MyLearningPage';
 import Learning from '../components/student/pages/Learning';
-import ChatComponent from '../components/student/pages/ChatComponent';
 import ChatComponentPage from '../components/student/screen/ChatComponentPage';
 import TutorList from '../components/student/pages/TutorList';
 import TutorChatComponent from '../components/teacher/pages/TutorChatComponent';
@@ -36,7 +29,6 @@ import StudentListPage from '../components/teacher/screen/StudentListPage';
 import TeacherChatComponetPage from '../components/teacher/screen/TeacherChatComponetPage';
 import RecentMessages from '../components/student/pages/RecentMessages';
 import TutorRecentMessagesPage from '../components/teacher/screen/TutorRecentMessagesPage';
-import PrivateRoute from '../components/PrivateRoute';
 import TeacherMyCourse from '../components/teacher/screen/TeacherMyCourse';
 import ProfilePage from '../components/student/screen/ProfilePage';
 import StudentPrivateRoute from '../components/privateRoutes/StudentPrivateRoute';
@@ -45,12 +37,12 @@ import TeacherTransaction from '../components/teacher/pages/TeacherTransaction';
 import ForgetPassword1 from '../components/indexpages/ForgetPassword1';
 import VerifyOtp from '../components/indexpages/VerifyOtp';
 import ResetPwd from '../components/indexpages/ResetPwd';
-import Pro from '../components/student/screen/Pro';
 import StudentCourseList from '../components/teacher/pages/StudentCourseList';
+import TeacherChangePwdPage from '../components/teacher/screen/TeacherChangePwdPage';
 
 function IndexLayout() {
   return (
-<Router>
+
       <Routes>
        
           <Route path="/" element={<Home/>} />
@@ -61,11 +53,10 @@ function IndexLayout() {
           <Route path='/forgotpwd' element={<ForgetPassword1/>} />
           <Route path='/verify-otp' element={<VerifyOtp/>} />
           <Route path='/resetpwd' element={<ResetPwd/>}/>
-          {/* <Route path = "/tutor/*" element = {<TutorLayout/>}/> */}
           <Route path = "/admin/*" element = {<AdminLayout/>}/>
           <Route path = '/home/' element={<StudentPrivateRoute><HomePage/></StudentPrivateRoute>} />
 
-          <Route path = '/tutorhome' element={<TeacherPrivateRoute><TeacherHomePage/></TeacherPrivateRoute>} />
+      
           <Route path='/tutordashboard' element={<TeacherPrivateRoute><TeacherDashboardPage/></TeacherPrivateRoute>}/>
           <Route path='/teacheraddcourse' element={<TeacherPrivateRoute><TeacherAddCoursePage/></TeacherPrivateRoute>}/>
           <Route path='/teacherupdatecourse/:id' element={<TeacherPrivateRoute><TeacherUpdateCoursePage/></TeacherPrivateRoute>}/>
@@ -80,7 +71,7 @@ function IndexLayout() {
           <Route path='/teacherchat/:sid' element={<TeacherPrivateRoute><TeacherChatComponetPage/></TeacherPrivateRoute>} />
           <Route path = '/teacherTransactions' element={<TeacherPrivateRoute><TeacherTransaction/></TeacherPrivateRoute>} />
           <Route path = '/tutorcourse' element={<TeacherPrivateRoute><StudentCourseList/></TeacherPrivateRoute>}/>
-
+          <Route path = '/tchangepwd' element={<TeacherPrivateRoute><TeacherChangePwdPage/></TeacherPrivateRoute>}/>
 
           <Route path='/videoplayer/:courseId' element={<StudentPrivateRoute><VideoPlayerPage/></StudentPrivateRoute>} />
           <Route path='/coursedetails/:id' element={<StudentPrivateRoute><CourseDetailsPage/></StudentPrivateRoute>}/>
@@ -100,7 +91,7 @@ function IndexLayout() {
           {/* <Route path="*" element={<PageNotFound />} /> */}
        
       </Routes>
-      </Router>
+      
   )
 }
 

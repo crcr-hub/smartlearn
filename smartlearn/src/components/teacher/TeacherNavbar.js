@@ -11,7 +11,9 @@ function TeacherNavbar() {
       const {user} = useSelector((state)=> state.auth)
 
     useEffect(()=>{
+      
       dispatch(fetchTutorProfile());
+      console.log("notification get working")
       if (user?.user_id) {
       dispatch(handleNotification(user.user_id));
        const interval = setInterval(() => {
@@ -24,6 +26,7 @@ function TeacherNavbar() {
 
 
     useEffect(() => {
+      console.log("getting notificaiton")
       if (notifications?.notification?.some(notif => notif.notification_type === "message")) {
         dispatch(recentMessages());
       }
@@ -47,9 +50,7 @@ function TeacherNavbar() {
         </form>
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0"   >
             <li className="nav-item">
-            <Link className="nav-link " aria-current="page" to="/tutorhome">
-            Home
-            </Link>
+           
             </li>
             
 

@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate,Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {  viewCategory } from "../../../redux/authSlices";
 
 function ViewCategory() {
     const dispatch = useDispatch()
-    const {  category:categories, loading, error } = useSelector((state) => state.auth);
+    const {  category:categories } = useSelector((state) => state.auth);
     
     useEffect (()=>{
          dispatch (viewCategory());},[dispatch])
-        const [blockStatus,setBlockstatus] = useState();
 
     const categoryArray = Array.isArray(categories) ? categories : [];
   
@@ -36,7 +35,7 @@ function ViewCategory() {
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          {categoryArray.map((category) => (
+          {categoryArray?.map((category) => (
             <tr key={category.id}>
               <td>{category.id}</td>
               <td>{category.title}</td>
@@ -51,23 +50,7 @@ function ViewCategory() {
                 >
                   Update
                 </Link>
-                {/* <button onClick={()=>(dispatch(fetchCategory({ id: category.id, navigate })))} className="btn btn-danger btn-sm">
-                            Update
-                        </button> */}
-{/* 
-                <button
-                  onClick={() => {
-                    console.log("Student:", student); // Debug the full student object
-                    console.log("Block Status:", student.user.block_status);
-                    handleBlockUnblock(
-                      student.user.id,
-                      student.user.block_status
-                    );
-                  }}
-                  className="btn btn-danger btn-sm"
-                >
-                  {student.user.block_status ? "Unblock" : "Block"}
-                </button> */}
+              
               </td>
             </tr>
           ))}

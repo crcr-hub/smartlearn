@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import videojs from "video.js";
-import ReactPlayer from "react-player"; // For Option 1
 import "video.js/dist/video-js.css";
-import Hls from 'hls.js';
 import "./videoPlayer.css";
 
 const VideoPlayer = ({ videoUrl }) => {
@@ -11,7 +9,6 @@ const VideoPlayer = ({ videoUrl }) => {
 
   useEffect(() => {
     if (!videoNode.current) return;
-  
     if (!playerRef.current) {
       playerRef.current = videojs(videoNode.current, {
         muted: false,

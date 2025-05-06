@@ -6,8 +6,8 @@ import { viewCourses } from '../../../redux/authSlices';
 function SelectACourse() {
   const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { tutorcourses, loading, error } = useSelector((state) => state.auth);
-     const {courses,courseloading,courseerror} = useSelector((state)=>state.auth)
+    const {loading, error } = useSelector((state) => state.auth);
+     const {courses} = useSelector((state)=>state.auth)
         const [courseID, setCourseID] = useState({
           id: "", 
         });

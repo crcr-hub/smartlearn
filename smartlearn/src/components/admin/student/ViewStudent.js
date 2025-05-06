@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {  updateBlockStatus, viewStudent } from '../../../redux/authSlices'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function ViewStudent() {
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const {  userlist:students, loading, error } = useSelector((state) => state.auth);
+    const {  userlist:students } = useSelector((state) => state.auth);
     const studentArray = Array.isArray(students) ? students : [];
     const [currentPage, setCurrentPage] = useState(1);
     const studentsPerPage = 15;
@@ -19,7 +17,7 @@ function ViewStudent() {
     const totalPages = Math.ceil(studentArray.length / studentsPerPage);
     useEffect (()=>{
         dispatch (viewStudent());},[dispatch])
-        const [blockStatus,setBlockstatus] = useState();
+       
 
    
   // Handle Block/Unblock
@@ -33,12 +31,7 @@ function ViewStudent() {
     .catch((error) => {
       console.error('Error updating block status:', error);
     });
-    // Log response
-    
-  
-
-    
-        
+    // Log response   
     };
    
             

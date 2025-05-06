@@ -1,21 +1,18 @@
 import React, { useState } from 'react'
 import side from "../../../assets/images/side.jpg"
 import {
-    MDBBtn,
     MDBContainer,
     MDBCard,
     MDBCardBody,
     MDBInput,
-    MDBIcon,
     MDBRow,
     MDBCol,
-    MDBCheckbox,MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem
   }
   from 'mdb-react-ui-kit';
 import { useDispatch } from 'react-redux';
-import { Form, Link, useNavigate } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 import { addStudent } from '../../../redux/authSlices';
-import { lastDayOfDecade, quartersInYear } from 'date-fns';
+
 
 function RegisterPage() {
   const dispatch = useDispatch()

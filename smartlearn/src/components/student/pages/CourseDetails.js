@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { averageRating,  fetchModules,  fetchTeacherProfile, getAllFeedback } from '../../../redux/authSlices';
+import { averageRating,  fetchCourse,  fetchModules,  fetchTeacherProfile, getAllFeedback } from '../../../redux/authSlices';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-
+import image17 from "../../../assets/images/image17.jpg";
 
 function CourseDetails() {
     const { id } = useParams();
@@ -41,14 +41,8 @@ function CourseDetails() {
     
 
 
-
-
-
-
-
-
     useEffect(() => {
-      
+       dispatch(fetchCourse(id));
       if (course && course.course && course.course.id) {
         const courseId = course.course.id;
         dispatch(fetchModules(courseId));
@@ -56,11 +50,6 @@ function CourseDetails() {
         dispatch(getAllFeedback(courseId));
       }
     }, [dispatch, course]);
-    
-
-
-
-    
     
 
   useEffect(() => {
@@ -76,7 +65,12 @@ function CourseDetails() {
 
 
 <div>
-  <div className='main' style={{ backgroundColor: "darkblue", height: "300px", position: "relative" }}>
+  <div className='main' style={{ backgroundImage: `url(${image17})`,
+  
+  backgroundSize: "cover",         // Makes the image cover the entire container
+  backgroundRepeat: "no-repeat",   // Prevents repeating
+  backgroundPosition: "center", 
+  height: "300px", position: "relative" }}>
     <div className="container" style={{ paddingTop: "50px" }}>
       <h2 style={{ fontWeight: "20px", color: "white" }}>
         {course.course ? course.course.name : ""}

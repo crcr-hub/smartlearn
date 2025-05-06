@@ -1,6 +1,5 @@
 import React from 'react'
 import TeacherNavbar from '../TeacherNavbar'
-import TeacherSideBar from '../TeacherSideBar'
 import TeacherDashboard from '../pages/TeacherDashboard'
 import Footer from '../../indexpages/Footer'
 

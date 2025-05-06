@@ -11,7 +11,7 @@ function CourseDetailsPage() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { id } = useParams();
-  const { course, courseLoading, courseError } = useSelector((state) => state.auth); // Assuming course details are in state
+  const { course } = useSelector((state) => state.auth); // Assuming course details are in state
   const {user} = useSelector((state)=> state.auth)
   const {cart} = useSelector((state)=> state.auth)
   const { teacherprofile } = useSelector((state) => state.auth);
@@ -21,7 +21,7 @@ const {learnings} = useSelector((state)=>state.auth)
 
 
 useEffect(()=>{
-  console.log("iddddddddd",course)
+   console.log("iddddddddd",course)
   dispatch(fetchCourse(id));
 },[dispatch])
 

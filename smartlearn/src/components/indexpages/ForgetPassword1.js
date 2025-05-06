@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import side1 from "../../assets/images/side1.jpg"
 import {
-    MDBBtn,
     MDBContainer,
     MDBCard,
     MDBCardBody,
@@ -9,7 +8,6 @@ import {
     MDBRow,
     MDBCol,
     MDBInput,
-    MDBCheckbox
   }
   from 'mdb-react-ui-kit';
 import { Link, useNavigate } from 'react-router-dom';
@@ -79,11 +77,7 @@ function ForgetPassword1() {
 
                        
 
-                        {/* <MDBBtn className="mb-4 w-100"    style={{
-                                                  transform: 'none',
-                                                  boxShadow: 'none',
-                                                  transition: 'none'
-                                                }}>Sign in</MDBBtn> */}
+                      
 
                 <button type='submit'
                   className="btn btn-primary mb-4 w-100" 

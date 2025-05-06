@@ -10,8 +10,8 @@ function StudentCart() {
     const navigate = useNavigate()
     const {user} = useSelector((state)=>state.auth)
     const {cart} = useSelector((state)=>state.auth)
-    const {courses,loading:courserLoaading,error:courseError} = useSelector((state)=>state.auth)
-    const { cartCourseDetails, loading } = useSelector((state) => state.auth);
+    const {courses} = useSelector((state)=>state.auth)
+    const { cartCourseDetails } = useSelector((state) => state.auth);
      const {wishlist} = useSelector((state)=>state.auth)
 
    
@@ -124,7 +124,7 @@ function StudentCart() {
                             }}>
                             
                                 
-                                <img onClick={()=>handleOnClick(course.id)}  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
+                                <img onClick={()=>handleOnClick(course.id)}  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
                                     height: "100px",
                                     cursor:"pointer",
                                     width:"150px",  
@@ -244,7 +244,7 @@ function StudentCart() {
                                   }}>
                                   
                                       
-                                      <img onClick={()=>handleOnClick(items.course)}  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{width: "100%",    // Make the image take the full width of the div
+                                      <img onClick={()=>handleOnClick(items.course)}  src={course?.images? `https://mysmartlearn.com/${course.images}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
                                           height: "100px",
                                           width:"150px", 
                                           cursor:"pointer", 

@@ -7,7 +7,7 @@ import './drawer.css'
 
 function MyCourse() {
   const dispatch = useDispatch();
-  const { tutorcourses, loading, error } = useSelector((state) => state.auth);
+  const { tutorcourses } = useSelector((state) => state.auth);
   const { user: teacher } = useSelector((state) => state.auth);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [showDrawer, setShowDrawer] = useState(false);
