@@ -1,7 +1,7 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
-from django.utils.timezone import localtime
+from django.utils.timezone import localtime,now
 from .models import ChatRoom,Message,StudentProfile,Notification
 from teacher.models import TeacherProfile
 from django.contrib.auth import get_user_model
@@ -255,7 +255,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         "from_user": sender.id,
                         "reciever" : reciever.id,
                         "image" : image_url,
-                        "timestamp": datetime.now().isoformat()
+                       "timestamp": localtime(now()).isoformat()
                     }
                 )
                 print(f"User {reciever.id} is online but in a different chat room: {ONLINE_USERS[reciever.id]}")
@@ -271,7 +271,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'message': message_content,
                     'sender': user_id,
                     "image":image_url,
-                    'timestamp': datetime.now().isoformat(),
+                    "timestamp": localtime(now()).isoformat(),
                     'is_read':  message.is_read
                 }
             )

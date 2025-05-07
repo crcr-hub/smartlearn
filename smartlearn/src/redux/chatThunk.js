@@ -19,7 +19,7 @@ export const connectWebSocket = (roomName) => (dispatch) => {
     console.error('No token found in localStorage');
     return;
   }
-
+  //ws://localhost:8000
   const socketUrl = `wss://mysmartlearn.com/ws/chat/${roomName}/?token=${token}`;
 
   const createSocket = () => {

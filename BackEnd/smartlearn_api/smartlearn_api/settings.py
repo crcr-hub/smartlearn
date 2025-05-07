@@ -138,7 +138,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 LANGUAGE_CODE = 'en-us'
 
 USE_I18N = True
-USE_TZ = True  # Enables timezone-aware datetimes
+USE_TZ = True  
 TIME_ZONE = 'Asia/Kolkata'
 
 
