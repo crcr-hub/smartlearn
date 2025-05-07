@@ -33,6 +33,7 @@ def getRoutes(request):
     routes = [
         '/api/token/',
         '/api/token/refresh/',
+        '/api/test-time/'
     ]
     return Response(routes)
 
@@ -873,3 +874,10 @@ class AdminTransactions(APIView):
         except Exception as e:
             print(e)
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+from django.utils.timezone import localtime, now
+def test_time(request):
+    current_time = localtime(now())  # Will reflect TIME_ZONE setting
+    return JsonResponse({
+        'server_time': current_time.strftime('%Y-%m-%d %H:%M:%S')
+    })
