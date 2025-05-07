@@ -1,7 +1,7 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
-
+from django.utils.timezone import localtime
 from .models import ChatRoom,Message,StudentProfile,Notification
 from teacher.models import TeacherProfile
 from django.contrib.auth import get_user_model
@@ -200,7 +200,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 "recipient_profile_id": recipient_profile_id,
                 "content": msg["content"],
                 "image":msg["image"],
-                "timestamp": msg["timestamp"],
+                "timestamp": localtime(msg["timestamp"]).isoformat(),
                 "is_read" : msg["is_read"]
             })
         return formatted_messages
