@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import {  addModule, fetchCourse, fetchModules, fetchTutorCourse, publishCourse, updateModule } from '../../../redux/authSlices';
 import TeacherSideBar from '../TeacherSideBar';
+import videojs from 'video.js';
+import 'video.js/dist/video-js.css';
 
 
 
@@ -143,7 +145,49 @@ const TeacherAddModul = ({ selectedCourseId }) => {
             }
           };
           
+       
+
           
+                  // Modal and video state
+            const [showModal, setShowModal] = useState(false);
+            const [videoUrl, setVideoUrl] = useState('');
+            const videoRef = useRef(null);
+            const playerRef = useRef(null);
+          
+            // Initialize Video.js when modal opens
+            useEffect(() => {
+              if (showModal && videoRef.current && !playerRef.current) {
+                playerRef.current = videojs(videoRef.current, {
+                  autoplay: true,
+                  controls: true,
+                  responsive: true,
+                  fluid: true,
+                  sources: [
+                    {
+                      src: videoUrl,
+                      type: 'application/x-mpegURL', // for HLS streaming
+                    },
+                  ],
+                });
+              }
+          
+              return () => {
+                if (playerRef.current) {
+                  playerRef.current.dispose();
+                  playerRef.current = null;
+                }
+              };
+            }, [showModal, videoUrl]);
+
+            const openModal = (url) => {
+              setVideoUrl(url);
+              setShowModal(true);
+            };
+          
+            const closeModal = () => {
+              setShowModal(false);
+              setVideoUrl('');
+            };
 
   return (
     <div className='container mt-4'>
@@ -163,6 +207,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
                     <th>Topic</th>
                     <th>Subtopic</th>
                     <th style={{ width: "100px" }}>Media URL</th>
+                    <th>View</th>
                     <th style={{ width: "100px" }}>Action</th> 
                   </tr>
                 </thead>
@@ -203,6 +248,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
                 onChange={(e) => setEditData({ ...editData, media: e.target.files[0] })}
               />
             </td>
+            <td>--------</td>
                 <td>
                   <button className="btn btn-success" onClick={handleSaveClick}>
                     Save
@@ -237,6 +283,20 @@ const TeacherAddModul = ({ selectedCourseId }) => {
             ) : (
               <span style={{ color: "blue" }}>Uploading... Please wait</span>
             )}
+            </td>
+            <td>
+            
+                  <>
+                  {module.processing_status ==="Completed"?
+                 <button
+                 className="btn btn-primary"
+                 onClick={() => openModal(module.media)}
+               >
+                 Play
+               </button> : "--------"
+                  }
+                  </>
+                
             </td>
                 <td  style={{width:"250px"}}>
                   <button
@@ -301,6 +361,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
                 onChange={(e) => setNewModule({ ...newModule, media: e.target.files[0] })}
               />
             </td>
+            <td>--------</td>
      
       <td>
         <button className="btn btn-primary" onClick={handleAddModule}>Add Next</button>
@@ -337,6 +398,51 @@ const TeacherAddModul = ({ selectedCourseId }) => {
     
   </tbody>
 </table>
+
+
+
+{showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,0.8)',
+            zIndex: 1000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div style={{ position: 'relative', width: '80%', maxWidth: '900px' }}>
+          <button
+            onClick={closeModal}
+            style={{
+              position: 'absolute',
+              top: '-40px',
+              right: '0',
+              fontSize: '2rem',
+              color: '#fff',
+              backgroundColor: 'transparent',
+              border: 'none',
+              zIndex: 1001,
+              cursor: 'pointer',
+            }}
+          >
+            &times;
+          </button>
+
+            <video
+              ref={videoRef}
+              className="video-js vjs-default-skin"
+              controls
+              playsInline
+            />
+          </div>
+        </div>
+      )}   
            
           </div>
             </section></div>

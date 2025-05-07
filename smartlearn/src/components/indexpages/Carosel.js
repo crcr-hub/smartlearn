@@ -14,14 +14,13 @@ function Carosel() {
 
     <div className="carousel-inner" >
       <div className="carousel-item active" data-bs-interval="4500">
-        <img src={image1}   className="d-block "  style={{ width: "100%",height:"400px" }} alt="..." />
+        <img src={image16}   className="d-block "  style={{ width: "100%",height:"400px" }} alt="..." />
         <div className="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
+         
         </div>
       </div>
       <div className="carousel-item" data-bs-interval="4000">
-      <img src={image16}   className="d-block w-100" alt="..."  style={{ width: "100%",height:"400px" }} />
+      <img src={image1}   className="d-block w-100" alt="..."  style={{ width: "100%",height:"400px" }} />
         <div className="carousel-caption d-none d-md-block">
          
         </div>
