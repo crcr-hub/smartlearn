@@ -378,6 +378,7 @@ def comment(request):
         return Response(nested_comments, status=200)
     
 @api_view(['DELETE','PUT'])
+@permission_classes([IsAuthenticated])
 def handle_comment(request,cid):
     comment = get_object_or_404(Comments,id=cid)
     if request.method == 'DELETE':
@@ -394,6 +395,7 @@ def handle_comment(request,cid):
     
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_user_tutors(request):
     if not request.user.is_authenticated:
         return Response({"error": "User not authenticated"}, status=403)
@@ -640,6 +642,7 @@ def all_feedback(request,cid):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def update_profile(request,pid):
     if request.method == 'PUT':
         print(request.data)
@@ -653,4 +656,47 @@ def update_profile(request,pid):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        
+
+from decimal import Decimal
+
+class SingleTransaction(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request,cid):
+            try:
+                course = Courses.objects.get(id=cid)
+            except Courses.DoesNotExist:
+                return Response({'error': 'Course not found'}, status=404)
+            
+            course_order = Order_items.objects.filter(course=course).select_related('order')
+            orders_data = []
+            grand_total_price = Decimal(0)
+            grand_teacher_share = Decimal(0)
+            grand_admin_share = Decimal(0)
+            for items in course_order:
+                
+                order = items.order
+                student_profile = getattr(order.user,'studentprofile',None)
+                orders_data.append({
+                'order_id': order.id,
+                'student_name':student_profile.first_name + " " + student_profile.last_name,
+                'date1': order.date.strftime('%Y-%m-%d   %H:%M:%S'),
+                'total_price': order.total_price,
+                'payment_type': order.payment_type,
+                'payment_id': order.payment_id,
+                'offer_price': items.Offer_price,
+                'tutor_share':items.Offer_price * Decimal(0.90),
+                'admin_share': items.Offer_price * Decimal(0.10) ,
+                'original_price': items.price,
+                'ordered_at': items.created_at,})
+                grand_total_price += items.Offer_price
+                grand_teacher_share += items.Offer_price * Decimal(0.90)
+                grand_admin_share += items.Offer_price * Decimal(0.10)
+
+            return Response({
+                'orders': orders_data,
+                'grand_total': grand_total_price,
+                'grand_tutor': grand_teacher_share,
+                'grand_admin': grand_admin_share
+            })
+
+

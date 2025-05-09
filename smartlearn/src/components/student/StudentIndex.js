@@ -27,9 +27,7 @@ function StudentIndex() {
           }
         }, [dispatch, courses]);
         
-        useEffect(() => {
-          console.log("Average Ratings:", averageRatings);
-        }, [averageRatings]);
+
         
  
     const categoryArray = Array.isArray(categories) ? categories : [];

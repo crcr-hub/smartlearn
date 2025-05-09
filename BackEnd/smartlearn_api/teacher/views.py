@@ -318,7 +318,7 @@ def tutorTransactions(request):
 
     total_teacher_share = courses.aggregate(total=Sum('teacher_share'))['total'] or 0
     total_admin_share = courses.aggregate(total=Sum('admin_share'))['total'] or 0
-    print("shares",total_teacher_share,total_admin_share)
+   
     # Prepare the response data
     response_data = [
         {

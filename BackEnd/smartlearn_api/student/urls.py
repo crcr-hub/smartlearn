@@ -1,7 +1,7 @@
 from student import views
 from django.urls import path
 from .views import (ChangePasswordView,GetUserTutors,AddToCartView,FetchCartView,GetCoursesView,WishlistView,AddWishlistView,
-                    HandleStudentProfileView
+                    HandleStudentProfileView,SingleTransaction
                     )
 urlpatterns = [
     path('add_cart/', AddToCartView.as_view(), name="category"),
@@ -25,6 +25,7 @@ urlpatterns = [
     path("upload-image/", views.upload_image, name="upload-image"),
     path('uprofile/<int:pid>',views.update_profile,name='uprofile'),
     path('changepwd/',ChangePasswordView.as_view(),name='changepwd'),
+    path('singleT/<int:cid>',SingleTransaction.as_view(),name='singleT'),
     
     
     ]

@@ -19,7 +19,7 @@ function BillingDetails() {
     user_pincode: "",
     total_price: cart.offer_total,
   });
-  console.log(billData)
+
   const orderTotal = cart.offer_total ? cart.offer_total.toFixed(2) : "10.00"; // Fallback to $10 if undefined
 
   useEffect(() => {
@@ -60,7 +60,7 @@ function BillingDetails() {
   };
 
   const handlePaypalPayment = (details, data) => {
-    console.log("PayPal Payment Successful:", details, data);
+   
     const updatedBillData = {
       ...billData,
       payment: "paypal",

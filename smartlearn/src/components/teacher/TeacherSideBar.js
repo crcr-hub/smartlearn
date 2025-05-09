@@ -42,7 +42,7 @@ function TeacherSideBar() {
                     location.pathname === "/tutrecent_m" ? "active" : "" }`}>Recent Messages</Link>
                     
                     <Link to="/teacherTransactions" className={`list-group-item list-group-item-action ${
-                    location.pathname === "/teacherTransactions" ? "active" : "" }`}>Transactions</Link>
+                    location.pathname === "/teacherTransactions" || location.pathname.startsWith('/singleT') ? "active" : "" }`}>Transactions</Link>
                     </div>
                    
                 </div>

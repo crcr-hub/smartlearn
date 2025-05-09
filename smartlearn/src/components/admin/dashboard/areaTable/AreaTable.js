@@ -2,7 +2,7 @@ import AreaTableAction from "./AreaTableAction";
 import "./AreaTable.scss";
 
 const TABLE_HEADS = [
-  "Order ID",
+  "No.",
   "Date",
   "Student name",
   "Course",
@@ -27,10 +27,10 @@ const AreaTable = ({cardInfo}) => {
             </tr>
           </thead>
           <tbody>
-            {cardInfo?.latest_orders?.map((dataItem) => {
+            {cardInfo?.latest_orders?.map((dataItem,index) => {
               return (
                 <tr  key={dataItem.order_id}>
-                 <td>{dataItem.order_id}</td>
+                 <td>{index+1}</td>
                   <td>{dataItem.date}</td>
                   <td>{dataItem.student_name}</td>
                   <td>{dataItem.course_name}</td>

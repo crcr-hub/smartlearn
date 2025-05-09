@@ -29,8 +29,11 @@ function App() {
            } else if (parsedUser.role === "student") {
              navigate("/home");
            } else if (parsedUser.role === "teacher") {
-             navigate("/tutorhome");
+             navigate("/tutordashboard");
+           }else{
+            navigate("/loginpage");
            }
+
          }
        }
      };

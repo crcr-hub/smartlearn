@@ -503,6 +503,19 @@ export const updateStudentData = createAsyncThunk( 'auth/updateStudentData',
 
 //........................................courses ------------------------------------------------------------
 
+
+export const singleTransaction = createAsyncThunk('auth/singleTransaction',
+  async(cid,{rejectWithValue})=>{
+    try{
+      const response = await axiosInstance.get(`/singleT/${cid}`);
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.responese?.data || "failed to fetch the details")
+    }
+  }
+)
+
+
 export const addCategory = createAsyncThunk('auth/addCategory',
     async({catData, navigate}, { rejectWithValue }) =>{
       try {
@@ -1240,7 +1253,7 @@ export const adminDashboard = createAsyncThunk("report/adminDashboard",
         } finally {
           
           dispatch(logout());
-          navigate('loginpage'); // Redirect to login after logout
+          navigate('/loginpage'); // Redirect to login after logout
         }
       };
 
@@ -1295,6 +1308,7 @@ const initialState = {
   status_data :null,
   tutorCourse : null,
   studentTransaction_data : null,
+  singleTransaction_data : null,
 };
 
 // Slice
@@ -1332,7 +1346,7 @@ const authSlice = createSlice({
       localStorage.setItem("logout", Date.now());
 
       sessionStorage.clear();
-      window.location.href = "loginpage";
+      window.location.href = "/loginpage";
     },
 
     loadUser: (state) => {
@@ -1363,6 +1377,14 @@ const authSlice = createSlice({
  
   extraReducers: (builder) => {
     builder
+    .addCase(singleTransaction.pending,(state)=>{
+      state.loading = true;
+      state.error = null
+    })
+    .addCase(singleTransaction.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.singleTransaction_data = action.payload;
+    })
     .addCase(StudentTransaction.pending,(state)=>{
       state.loading = true;
       state.error = null

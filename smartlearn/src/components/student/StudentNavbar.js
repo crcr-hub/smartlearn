@@ -10,7 +10,6 @@ function StudentNavbar() {
     const {cart} = useSelector((state)=> state.auth)
     const {profile}  = useSelector((state)=>state.auth)
     const {notifications} = useSelector((state)=>state.auth)
-    console.log("from navbar",user)
     const count = cart?.cart?.length || 0;
     useEffect(() => {
   

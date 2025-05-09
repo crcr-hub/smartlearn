@@ -15,6 +15,7 @@ function ReportPage() {
   const [loading, setLoading] = useState(false);
   const [sortBy, setSortBy] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
+  console.log("report",reportData)
 
   useEffect(() => {
     fetchReport();
@@ -81,8 +82,8 @@ function ReportPage() {
       case 'students':
         return [
           { value: 'student_name', label: 'Student Name' },
-          { value: 'enrolled_date', label: 'Enrolled Date' },
-          { value: 'course_name', label: 'Course Name' },
+          { value: 'register_date', label: 'Enrolled Date' },
+          { value: 'no_course', label: 'No Course' },
         ];
       case 'teachers':
         return [
@@ -109,13 +110,13 @@ function ReportPage() {
     doc.text(`Report: ${reportType.charAt(0).toUpperCase() + reportType.slice(1)}`, 20, 10);
   
     const headers = {
-      students: ["Student Name", "Course", "Enrolled Date", "Purchased Price", "Teacher"],
+      students: ["Student Name", "Number of Courses", "Enrolled Date"],
       teachers: ["Teacher Name", "Number of Courses", "Total Students"],
       courses: ["Course Name", "Teacher", "Total Students", "Total Income", "Modules Count"],
     };
   
     const keyMapping = {
-        students: ["student_name", "course_name", "enrolled_date", "offer_price", "teacher"],
+        students: ["student_name", "no_course", "register_date"],
         teachers: ["teacher_name", "course_count", "total_students"],
         courses: ["course_name", "teacher", "total_students", "total_income", "modules_count"],
       };
@@ -135,13 +136,13 @@ function ReportPage() {
   // Generate Excel
   const downloadExcel = () => {
     const headers = {
-      students: ["Student Name", "Course", "Enrolled Date", "Purchased Price", "Teacher"],
+      students: ["Student Name", "Number of Courses", "Enrolled Date"],
       teachers: ["Teacher Name", "Number of Courses", "Total Students"],
       courses: ["Course Name", "Teacher", "Total Students", "Total Income", "Modules Count"],
     };
   
     const keyMapping = {
-      students: ["student_name", "course_name", "enrolled_date", "offer_price", "teacher"],
+      students: ["student_name", "no_course", "register_date"],
       teachers: ["teacher_name", "course_count", "total_students"],
       courses: ["course_name", "teacher", "total_students", "total_income", "modules_count"],
     };
@@ -231,10 +232,9 @@ function ReportPage() {
               {reportType === 'students' && (
                 <>
                   <th>Student Name</th>
-                  <th>Course</th>
+                  <th>No.Course</th>
                   <th>Enrolled Date</th>
-                  <th>Purchased Price</th>
-                  <th>Teacher</th>
+                 
                 </>
               )}
               {reportType === 'teachers' && (
@@ -262,10 +262,9 @@ function ReportPage() {
                 {reportType === 'students' && (
                   <>
                     <td>{item.student_name}</td>
-                    <td>{item.course_name}</td>
-                    <td>{item.enrolled_date}</td>
-                    <td>₹{Number(item.offer_price).toLocaleString('en-IN')}</td>
-                    <td>{item.teacher}</td>
+                    <td>{item.no_course}</td>
+                    <td>{item.register_date}</td>
+                   
                   </>
                 )}
                 {reportType === 'teachers' && (

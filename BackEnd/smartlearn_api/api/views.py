@@ -656,27 +656,41 @@ class AdminDashboardView(APIView):
 @api_view(['GET', 'PUT','PATCH'])
 @permission_classes([IsAuthenticated])
 def reports_view(request, report_type):
-    print("typessssss",report_type)
     """API to return reports based on selected type"""
     if report_type == "students":
         students = []
-        enrolled_students = EnrolledCourses.objects.select_related("user", "course")
-        for entry in enrolled_students:
-            # Get the student's profile
-            student_profile = StudentProfile.objects.filter(user=entry.user).first()
-            student_name = f"{student_profile.first_name} {student_profile.last_name}" if student_profile else "Unknown"
-            # Get all offer prices for this course from Order_items
-            offer_price = entry.order.filter(course=entry.course).values_list("Offer_price", flat=True).first() or "N/A"
+        registered_users = User.objects.select_related("studentprofile")
+        for st in registered_users:
+            course_count = EnrolledCourses.objects.filter(user=st).count()
+            student = getattr(st, "studentprofile", None)
+            if student is None:
+                continue 
             student_data = {
-                "student_name": student_name,
-                "course_name": entry.course.name,
-                "enrolled_date": entry.starting_date.strftime("%Y-%m-%d"),
-                "offer_price": offer_price,  # Now a single value
-                "teacher": entry.course.teacher.first_name if hasattr(entry.course, "teacher") else "N/A",
-                "total_income": Order_items.objects.filter(course=entry.course).aggregate(Sum("Offer_price"))["Offer_price__sum"] or 0,
-            }
+                "student_name": f"{student.first_name} {student.last_name}",
+                "no_course" : course_count,
+                "register_date": student.date,
 
-            students.append(student_data) 
+            }
+            students.append(student_data)
+
+
+        # enrolled_students = EnrolledCourses.objects.select_related("user", "course")
+        # for entry in enrolled_students:
+        #     # Get the student's profile
+        #     student_profile = StudentProfile.objects.filter(user=entry.user).first()
+        #     student_name = f"{student_profile.first_name} {student_profile.last_name}" if student_profile else "Unknown"
+        #     # Get all offer prices for this course from Order_items
+        #     offer_price = entry.order.filter(course=entry.course).values_list("Offer_price", flat=True).first() or "N/A"
+        #     student_data = {
+        #         "student_name": student_name,
+        #         "course_name": entry.course.name,
+        #         "enrolled_date": entry.starting_date.strftime("%Y-%m-%d"),
+        #         "offer_price": offer_price,  # Now a single value
+        #         "teacher": entry.course.teacher.first_name if hasattr(entry.course, "teacher") else "N/A",
+        #         "total_income": Order_items.objects.filter(course=entry.course).aggregate(Sum("Offer_price"))["Offer_price__sum"] or 0,
+        #     }
+
+        #     students.append(student_data) 
         return JsonResponse({"students": students})
 
     elif report_type == "teachers":
@@ -687,7 +701,7 @@ def reports_view(request, report_type):
             total_students = EnrolledCourses.objects.filter(course__in=courses).count()
             
             teacher_data = {
-                "teacher_name": teacher.first_name,
+                "teacher_name":  f"{teacher.first_name} {teacher.last_name}",
                 "email": teacher.user.email,
                 "total_students": total_students,
                 "course_count": teacher.course_count,

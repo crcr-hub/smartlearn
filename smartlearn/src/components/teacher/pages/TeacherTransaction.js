@@ -4,6 +4,7 @@ import { tutorTransactions } from '../../../redux/authSlices'
 import TeacherSideBar from '../TeacherSideBar'
 import TeacherNavbar from '../TeacherNavbar'
 import Footer from '../../indexpages/Footer'
+import { Link } from 'react-router-dom'
 
 function TeacherTransaction() {
     const {teacherTransaction:data} = useSelector((state)=>state.auth)
@@ -39,7 +40,11 @@ function TeacherTransaction() {
   <tbody class="table-group-divider">
   {data?.courses?.map((course) => (
           <tr key={course.course_id}>
-            <td>{course.course_name}</td>
+            <td>
+              <Link to={`/singleT/${course.course_id}`}>
+              {course.course_name}
+              </Link>
+              </td>
             <td>{course.purchase_count}</td>
             <td>{course.offer_price}</td>
             <td>{course.teacher_share}</td>
@@ -50,12 +55,12 @@ function TeacherTransaction() {
      <tr>
         <td></td>
         <td></td>
-        <td>Grand Total</td>
-        <td>{data?.grand_totals?.total_teacher_share}</td>
-        <td>{data?.grand_totals?.total_admin_share}</td>
-        <td>{data?.grand_totals?.total_teacher_share + 
+        <td><h6>Grand Total</h6></td>
+        <td><h6>{data?.grand_totals?.total_teacher_share}</h6></td>
+        <td><h6>{data?.grand_totals?.total_admin_share}</h6></td>
+        <td><h6>{data?.grand_totals?.total_teacher_share + 
        data?.grand_totals?.total_admin_share
-            }</td>
+            }</h6></td>
      </tr>
     
     

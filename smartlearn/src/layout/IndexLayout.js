@@ -39,6 +39,7 @@ import VerifyOtp from '../components/indexpages/VerifyOtp';
 import ResetPwd from '../components/indexpages/ResetPwd';
 import StudentCourseList from '../components/teacher/pages/StudentCourseList';
 import TeacherChangePwdPage from '../components/teacher/screen/TeacherChangePwdPage';
+import SingleTransaction from '../components/teacher/screen/SingleTransaction';
 
 function IndexLayout() {
   return (
@@ -72,6 +73,7 @@ function IndexLayout() {
           <Route path = '/teacherTransactions' element={<TeacherPrivateRoute><TeacherTransaction/></TeacherPrivateRoute>} />
           <Route path = '/tutorcourse' element={<TeacherPrivateRoute><StudentCourseList/></TeacherPrivateRoute>}/>
           <Route path = '/tchangepwd' element={<TeacherPrivateRoute><TeacherChangePwdPage/></TeacherPrivateRoute>}/>
+          <Route path='/singleT/:cid' element={<TeacherPrivateRoute><SingleTransaction/></TeacherPrivateRoute>}/>
 
           <Route path='/videoplayer/:courseId' element={<StudentPrivateRoute><VideoPlayerPage/></StudentPrivateRoute>} />
           <Route path='/coursedetails/:id' element={<StudentPrivateRoute><CourseDetailsPage/></StudentPrivateRoute>}/>
@@ -85,10 +87,10 @@ function IndexLayout() {
           <Route path='/tutorlist' element = {<StudentPrivateRoute><TutorList/></StudentPrivateRoute>} />
           <Route path='/sprofile' element ={<StudentPrivateRoute><ProfilePage/></StudentPrivateRoute>} />
           
-          {/* <Route path="/viewuser" element = {<ViewUser />} /> */}
+         
        
-          <Route path="*" element={<div>404 - Page Not Found</div>} />
-          {/* <Route path="*" element={<PageNotFound />} /> */}
+          <Route path="*" element={<div>Loading</div>} />
+       
        
       </Routes>
       
