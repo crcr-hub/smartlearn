@@ -261,7 +261,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 print(f"User {reciever.id} is online but in a different chat room: {ONLINE_USERS[reciever.id]}")
             else:
                 await create_notification(sender, reciever, message_content)
-                print(f"User {reciever.id} is logged in from notification")
+                print(f"User {reciever.id} is logged in but not in any chatroom from notification")
                 await self.channel_layer.group_send(
                    f"notifications_{reciever.id}",
                     {
@@ -341,7 +341,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         print(f"User {self.user.id} disconnected from NotificationConsumer.")
 
     async def new_notification(self, event):
-        print("NotificationConsumer sending notification:", event)
+        print("NotificationConsumer sending notification: ", event)
         await self.send(text_data=json.dumps({
             "type": "notification",
             "message": event["message"],
