@@ -457,6 +457,8 @@ def handle_teacher(request, id):
     except TeacherProfile.DoesNotExist:
         return Response({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
 
+import logging
+logger = logging.getLogger(__name__)
 
 
 
@@ -469,6 +471,9 @@ def handle_notification(request,id):
         print("DEBUG - request.user:", request.user)
         print("DEBUG - request.user.is_authenticated:", request.user.is_authenticated)
         print("DEBUG - request headers:", request.headers)
+        logger.debug(f"DEBUG - request.user: {request.user}")
+        logger.debug(f"DEBUG - request.user.is_authenticated: {request.user.is_authenticated}")
+        logger.debug(f"DEBUG - request headers: {request.headers}")
 
         print(user_id,type(user_id),request.user.id)
         if request.user.id == user_id:
