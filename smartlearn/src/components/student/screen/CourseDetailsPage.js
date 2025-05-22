@@ -3,9 +3,9 @@ import StudentNavbar from '../StudentNavbar'
 import CourseDetails from '../pages/CourseDetails'
 import StudentFooter from '../StudentFooter'
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToCart, AddToWishlist, FetchCart, fetchCourse, fetchLearningCourse } from '../../../redux/authSlices';
+import { AddToCart, AddToWishlist,  FetchCart,  fetchStCourse } from '../../../redux/authSlices';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import CourseDetailsNPage from '../pages/CourseDetailsNPage';
+
 
 function CourseDetailsPage() {
   const dispatch = useDispatch()
@@ -13,47 +13,33 @@ function CourseDetailsPage() {
   const { id } = useParams();
   const { course } = useSelector((state) => state.auth); // Assuming course details are in state
   const {user} = useSelector((state)=> state.auth)
-  const {cart} = useSelector((state)=> state.auth)
-  const { teacherprofile } = useSelector((state) => state.auth);
-  const isInCart = Array.isArray(cart.cart) && cart.cart.some((item) => item.course === (course?.course?.id || ""));
-const {learnings} = useSelector((state)=>state.auth)
 
+ useEffect(()=>{
+        dispatch(fetchStCourse(id))
+    },[dispatch])
 
-
-useEffect(()=>{
-   console.log("iddddddddd",course)
-  dispatch(fetchCourse(id));
-},[dispatch])
-
-  useEffect(() => {
-   
-      dispatch(fetchLearningCourse());
-       dispatch(fetchCourse(id));
-    if (user?.user_id) {
-      dispatch(FetchCart(user.user_id));
-    }
-  }, [dispatch, user?.user_id]);
-
-
+  const goToWishlist = () =>{
+    navigate('/wishlist')
+  }
   const addToWishlist = () =>{
     if(user?.user_id){
      
       const wishlistData = { userId: user.user_id, courseId: course?.course? course.course.id :null };
-      dispatch(AddToWishlist(wishlistData))
+      dispatch(AddToWishlist(wishlistData)).then(() => {
+      dispatch(fetchStCourse(id));
+    });
     }
-   
-    
   }
 
 
 
   const addToCart = ()=>{
     if(user?.user_id){
-     
     const cartData = { userId: user.user_id, courseId: course?.course? course.course.id :null };
     dispatch(AddToCart(cartData)).then(() => {
       // Re-fetch the cart to update the UI
-      dispatch(FetchCart(user.user_id));
+      dispatch(fetchStCourse(id));
+       dispatch(FetchCart());
     });
   }
   else{
@@ -104,8 +90,10 @@ useEffect(()=>{
             {course?.course?.offer_price? course.course.offer_price:"Loading"} 
             </h5>
         </div>
-        {learnings?.some(p => p.course === course.course.id) ? (
-  <Link to="/mylearning" style={{ 
+
+        {course.is_enrolled?
+        <>
+         <Link to="/mylearning" style={{ 
     display: "inline-block", 
     textAlign: "center", 
     width: "100%", 
@@ -118,8 +106,10 @@ useEffect(()=>{
   }}>
     Go to My Learnings
   </Link>
-) : isInCart ? (
-  <button
+        </>:(
+          course.in_cart?
+          <>
+           <button
     onClick={gotoCart}
     style={{
       width: "100%",
@@ -134,8 +124,10 @@ useEffect(()=>{
   >
     Go to Cart
   </button>
-) : (
-  <button
+          </>
+          :
+          <>
+          <button
     onClick={addToCart}
     style={{
       width: "100%",
@@ -150,13 +142,32 @@ useEffect(()=>{
   >
     Add to Cart
   </button>
-)}
-
-
-
+          </>
+        )
+      }
        
-   
-        <button onClick={addToWishlist}
+
+
+{course.in_wishlist?
+<>
+<button onClick={goToWishlist}
+          style={{ 
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "green",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Go to Wishlist
+        </button>
+</>
+
+:
+<>
+<button onClick={addToWishlist}
           style={{ 
             width: "100%",
             padding: "10px",
@@ -169,6 +180,11 @@ useEffect(()=>{
         >
           Add to Wishlist
         </button>
+</>
+}
+       
+   
+      
         
       </div>
     </div>

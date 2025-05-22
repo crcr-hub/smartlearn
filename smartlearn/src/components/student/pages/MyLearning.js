@@ -1,24 +1,36 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchLearningCourse, viewCourses } from '../../../redux/authSlices'
+import { fetchLearningCourse } from '../../../redux/authSlices'
 import { Link } from 'react-router-dom'
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 function MyLearning() {
     const {learnings} = useSelector((state)=>state.auth)
-    const {courses} = useSelector((state)=>state.auth)
-    const {teachers} = useSelector((state) =>state.auth)
-    const teacherArray = Array.isArray(teachers) ? teachers : [];
+
     const dispatch = useDispatch()
 
-    
-  
     useEffect(() => {
         //Ensure user is available and fetch courses only when user_id exists
           dispatch(fetchLearningCourse());
-          dispatch(viewCourses());
+  
       }, []);
       
-
+    const StarRating = ({ rating }) => {
+  
+      const validRating = Number.isFinite(rating) ? rating : 0; // Ensure rating is a number
+      const maxStars = 5;
+      const fullStars = Math.floor(validRating); 
+      const hasHalfStar = validRating % 1 !== 0; 
+      const emptyStars = maxStars - fullStars - (hasHalfStar ? 1 : 0); 
+    
+      return (
+        <span style={{ color: "gold", fontSize: "20px" }}>
+          {[...Array(fullStars)].map((_, i) => <FaStar key={i} />)}
+          {hasHalfStar && <FaStarHalfAlt />}
+          {[...Array(emptyStars)].map((_, i) => <FaRegStar key={i} />)}
+        </span>
+      );
+    };
 
 
   return (
@@ -27,11 +39,9 @@ function MyLearning() {
 
             <h2 style={{fontWeight:"bold"}}>My Learning</h2>
            
-            {learnings && learnings.length > 0 ? (
-                    learnings.map((items, index) => {
-                      const course = courses?.find((course) => course.id === items.course);
-                      const teacher = teachers?.find((teacher) => teacher.id === course?.teacher);
-
+            {learnings && learnings.courses.length > 0 ? (
+                    learnings.courses.map((items, index) => {
+                     
                       return (
                         <div
                           key={index}
@@ -53,12 +63,12 @@ function MyLearning() {
                           >
                             <Link
                               style={{ textDecoration: "none", color: "inherit" }}
-                              to={`/learning/${course?.id}`}
+                              to={`/learning/${items?.course_id}`}
                             >
                               <img
                                 src={
-                                  course?.images
-                                    ? `https://mysmartlearn.com/${course.images}`
+                                  items?.image
+                                    ? `https://mysmartlearn.com/${items.image}`
                                     : null
                                 }
                                 className="card-img-top"
@@ -80,15 +90,17 @@ function MyLearning() {
                           >
                             <Link
                               style={{ textDecoration: "none", color: "inherit" }}
-                              to={`/learning/${course?.id}`}
+                              to={`/learning/${items?.id}`}
                             >
                               <h5 style={{ fontWeight: "bold" }}>
-                                {course?.name ? course.name : ""}
+                                {items?.course_name? items.course_name: ""}
                               </h5>
                               <h6>
-                                by :{teacher?.first_name ? teacher.first_name : ""}
+                                by :{items?.by ? items.by : ""}
                               </h6>
-                              <h6>Rating</h6>
+                              <p style={{ fontWeight: "20px", color: "white" }}>
+      <StarRating rating={items.rating} /> Rating
+      </p>
                             </Link>
                           </div>
                         </div>

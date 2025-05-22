@@ -32,6 +32,9 @@ function RegisterPage() {
       })
   const [errors, setErrors] = useState({});    
   const containsHTMLTags = (input) => /<[^>]*>/.test(input);
+  const hasAlphabets = (text) => /[a-zA-Z]/.test(text);
+  const hasLettersOrNumbers = (text) => /[a-zA-Z0-9]/.test(text);
+
   const validate = () => {
         let newErrors = {};
     
@@ -40,21 +43,32 @@ function RegisterPage() {
         else if (containsHTMLTags(userData.first_name)){
           newErrors.first_name = "Invalid input (No HTML tags allowed)";
 
-        }
+        }else if (!hasAlphabets(userData.first_name)) {
+          newErrors.first_name = "First name must contain at least one alphabet";
+        } 
         if (!userData.last_name) {newErrors.last_name = "Last name is required";}
         else if (containsHTMLTags(userData.last_name)) {
           newErrors.last_name = "Invalid input (No HTML tags allowed)";
-      }
+      }else if (!hasAlphabets(userData.last_name)) {
+        newErrors.last_name = "Last name must contain at least one alphabet";
+      } 
+      
         if (userData.gender === "") newErrors.gender = "Gender is required";
-        if (!userData.qualification) newErrors.qualification = "Qualification is required";
-        if (!userData.place) newErrors.place = "Place is required";
+        if (!userData.qualification) {newErrors.qualification = "Qualification is required";}
+        else if(!hasLettersOrNumbers(userData.qualification)){
+          newErrors.qualification = "Qualification must contain a character";
+        }
+        if (!userData.place) {newErrors.place = "Place is required";}
+        else if (!hasLettersOrNumbers(userData.place)){
+          newErrors.place = "Place must contain a Character"
+        }
         if (!userData.mobile){newErrors.mobile = "Mobile number is required";} 
         else if (!/^\d{10}$/.test(userData.mobile)){newErrors.mobile = "Mobile number must be 10 digits";} 
         
         if (!userData.email) {newErrors.email = "Email is required";}
         else if (!/\S+@\S+\.\S+/.test(userData.email)) {newErrors.email = "Enter a valid email";}
         if (!userData.password){ newErrors.password = "Password is required";}
-        else if (userData.password.length < 6) {newErrors.password = "Password must be at least 6 characters";}
+        else if (userData.password.length < 8) {newErrors.password = "Password must be at least 8 characters";}
         if (userData.password !== userData.password2) newErrors.password2 = "Passwords do not match";
     
         setErrors(newErrors);

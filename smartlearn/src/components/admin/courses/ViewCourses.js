@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { clearStatusData,  getCourseStatus, updateCourseStatus, viewCategory, viewCourses, viewTeachers } from '../../../redux/authSlices'
 import './drawers.css'
-import image16 from "../../../assets/images/image16.jpg";
+
 
 
 function ViewCourses() {

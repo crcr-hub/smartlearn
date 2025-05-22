@@ -19,6 +19,7 @@ export const connectWebSocket = (roomName) => (dispatch) => {
     console.error('No token found in localStorage');
     return;
   }
+  //wss://mysmartlearn.com
   //ws://localhost:8000
   const socketUrl = `wss://mysmartlearn.com/ws/chat/${roomName}/?token=${token}`;
 
@@ -34,13 +35,23 @@ export const connectWebSocket = (roomName) => (dispatch) => {
     socket.onmessage = (event) => {
       try {
         const message = JSON.parse(event.data);
+        if (message.type === "join") {
+          // Handle the join message type (no 'message' key expected)
+          console.log(`User joined room: ${message.roomName}`);
+          return; // No further processing for 'join' type messages
+        }
         if (message.type === "old_messages") {
+         
           dispatch(setMessages({ roomName, messages: message.messages })); 
+
         } else if (message.type === "notification") {
-          dispatch(handleNotification(message.recipient));
+
+        
+          dispatch(handleNotification(message.reciepient));
         } else if (message.sender && (message.message || message.image)) {
           dispatch(addMessage({
             roomName,
+            
             message: message.message || null,
             sender: message.sender,
             sender_username: message.sender_username || "Unknown",
@@ -84,7 +95,7 @@ export const connectWebSocket = (roomName) => (dispatch) => {
 export const sendMessage = (socket, message, senderId, recipientId, image = null) => {
   return () => {
     if (socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({ message, sender_id: senderId, recipient_id: recipientId, image }));
+      socket.send(JSON.stringify({ message, sender_id: senderId, recipient_id: recipientId, image}));
     } else {
       console.warn("WebSocket is not open. Message not sent.");
     }

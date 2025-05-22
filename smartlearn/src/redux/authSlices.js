@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../utils/axiosInstances';
 import Swal from 'sweetalert2';
 import {jwtDecode} from 'jwt-decode';
+import { connectNotificationSocket } from './notificationThunk';
 
 
 
@@ -38,10 +39,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
     
     dispatch(loginSuccess({ user, access, refresh }));
     window.localStorage.setItem('userLoggedIn', 'true');
-  
 
-
-    console.log("from auth slice",user)
 
     if (user.is_superuser){
         navigate('/admin/adminhome')
@@ -309,12 +307,18 @@ export const addStudent = createAsyncThunk('auth/addStudent',
     
   } catch (error) {
     console.log("from auth slice",error)
-    const errorData = error.response?.data.error;
+    const errorData =  error.response?.data;
     let message = 'Registration failed';
     if (typeof errorData === 'string') {
       message = errorData;
     } else if (errorData && typeof errorData === 'object') {
-      message = Object.values(errorData).flat().join('\n');
+      // Combine all validation error messages
+       const firstField = Object.keys(errorData)[0];
+        const firstMessageArray = errorData[firstField];
+
+        if (Array.isArray(firstMessageArray) && firstMessageArray.length > 0) {
+          message = `${firstField}: ${firstMessageArray[0]}`;
+        }
     }
     Swal.fire({
       title: "Failed",
@@ -695,6 +699,19 @@ export const getCourseStatus = createAsyncThunk('auth/getCourseStatus',
     });
 
 
+
+    export const fetchStCourse = createAsyncThunk('course/fetchStCourse', async (id, { rejectWithValue }) => {
+      try {
+        console.log("inside authslice")
+        const response = await axiosInstance.get(`/stcourse/${id}/`);
+        return response.data;
+      } catch (error) {
+        return rejectWithValue(error.response?.data || 'Failed to fetch course');
+      }
+    });
+
+
+
     export const fetchCourse = createAsyncThunk('course/fetchCourse', async (id, { rejectWithValue }) => {
       try {
         const response = await axiosInstance.get(`/course/${id}/`);
@@ -816,6 +833,27 @@ export const fetchTutorProfile = createAsyncThunk('profile/fetchTutorProfile', a
   return response.data;
 });
 
+export const updateTProfile = createAsyncThunk('profile/updateTProfile',
+  async(updatedData,{rejectWithValue})=>{
+    const response = await axiosInstance.put('/t_profile/',updatedData)
+    return response.data
+  }
+)
+// ----------------------fetch order------------------------------
+export const fetchOrder = createAsyncThunk('orders/fetchOrder',
+  async (_,{rejectWithValue})=>{
+    const response = await axiosInstance.get('/order/');
+    return response.data
+  }
+)
+
+export const fetchReciept = createAsyncThunk('reciept/fetchReciept',
+async(oid,{rejectWithValue}) =>{
+  const response = await axiosInstance.get(`/receipt/${oid}`);
+  return response.data
+}  
+)
+
 //......................................................Addto Cart and wishlist..........
 
 export const AddToCart = createAsyncThunk('cart/AddToCart', async (cartData,{ rejectWithValue }) => {
@@ -873,13 +911,12 @@ export const AddToWishlist = createAsyncThunk('wishlist/AddToWishlist', async (w
 }
 });
 export const FetchWishlist = createAsyncThunk('wishlist/FetchWishlist', async (userID,{ rejectWithValue }) => {
-
-  const response = await axiosInstance.get(`/fetch_wishlist/${userID}`);
+  const response = await axiosInstance.get(`/fetch_wishlist/`);
   return response.data;
 });
 
 export const FetchCart = createAsyncThunk('cart/FetchCart', async (userID,{ rejectWithValue }) => {
-  const response = await axiosInstance.get(`/fetch_cart/${userID}`);
+  const response = await axiosInstance.get(`/fetch_cart/`);
   return response.data;
 });
 
@@ -890,7 +927,7 @@ export const fetchCartCourses = createAsyncThunk("cart/fetchCartCourses",async (
 );
 export const removeCartItem = createAsyncThunk("cart/removeCartItem",async ({ cart_item_id, user_id },{ rejectWithValue }) => {
   try {
-    const response = await axiosInstance.delete(`/fetch_cart/${user_id}`, {
+    const response = await axiosInstance.delete(`/fetch_cart/`, {
       data: { cart_item_id }
     });
     if (response.data) {
@@ -907,7 +944,7 @@ export const removeCartItem = createAsyncThunk("cart/removeCartItem",async ({ ca
 export const removeWishlistItem = createAsyncThunk("cart/removeWishlistItem",async ({ wishlist_item_id, user_id },{ rejectWithValue }) => {
   try {
     
-    const response = await axiosInstance.delete(`/fetch_wishlist/${user_id}`, {
+    const response = await axiosInstance.delete(`/fetch_wishlist/`, {
       data: { wishlist_item_id }
     });
     if (response.data) {
@@ -1309,6 +1346,8 @@ const initialState = {
   tutorCourse : null,
   studentTransaction_data : null,
   singleTransaction_data : null,
+  order_items : null,
+  reciept_data : null,
 };
 
 // Slice
@@ -1377,6 +1416,26 @@ const authSlice = createSlice({
  
   extraReducers: (builder) => {
     builder
+    .addCase(fetchReciept.pending,(state)=>{
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(fetchReciept.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.reciept_data = action.payload;
+    })
+    .addCase(fetchOrder.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.order_items = action.payload
+    })
+    .addCase(fetchOrder.pending,(state)=>{
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(fetchOrder.rejected,(state,action)=>{
+      state.loading = false;
+      state.error = action.payload;
+    })
     .addCase(singleTransaction.pending,(state)=>{
       state.loading = true;
       state.error = null
@@ -1830,6 +1889,20 @@ const authSlice = createSlice({
       .addCase(addCourses.rejected, (state, action) => {
         state.error = action.payload;
       })
+
+      .addCase(fetchStCourse.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchStCourse.fulfilled, (state, action) => {
+        state.course = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchStCourse.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      })
+
       .addCase(fetchCourse.pending, (state) => {
         state.loading = true;
         state.error = null;

@@ -4,6 +4,7 @@ import IndexLayout from "./layout/IndexLayout";
 import { loginSuccess, logout } from "./redux/authSlices";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { connectNotificationSocket } from "./redux/notificationThunk";
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
        if (user && access && refresh) {
          const parsedUser = JSON.parse(user);
          dispatch(loginSuccess({ user: parsedUser, access, refresh }));
+         if (parsedUser.role === "student" || parsedUser.role === "teacher") {
+          dispatch(connectNotificationSocket());
+        }
  
          // Avoid navigating if already at destination
          if (location.pathname === "/loginpage" || location.pathname === "/") {

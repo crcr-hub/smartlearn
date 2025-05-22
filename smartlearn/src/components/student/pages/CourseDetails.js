@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { averageRating,  fetchCourse,  fetchModules,  fetchTeacherProfile, getAllFeedback } from '../../../redux/authSlices';
+import { averageRating,  fetchModules,  fetchStCourse,  getAllFeedback } from '../../../redux/authSlices';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import image17 from "../../../assets/images/image17.jpg";
 
 function CourseDetails() {
     const { id } = useParams();
     const dispatch = useDispatch();
-     const {learnings} = useSelector((state)=>state.auth)
     const { course } = useSelector((state) => state.auth); // Assuming course details are in state
-    const { teacherprofile } = useSelector((state) => state.auth);
     const { modules } = useSelector((state) => state.auth);
     const {average_rating} = useSelector((state)=>state.auth)
     const {allfeedback} =useSelector((state)=>state.auth)
@@ -40,24 +38,19 @@ function CourseDetails() {
     };
     
 
-
-    useEffect(() => {
-       dispatch(fetchCourse(id));
-      if (course && course.course && course.course.id) {
+     useEffect(() => {
+    //    dispatch(fetchCourse(id));
+       if (course && course.course && course.course.id) {
         const courseId = course.course.id;
-        dispatch(fetchModules(courseId));
+         dispatch(fetchStCourse(courseId));
+         dispatch(fetchModules(courseId));
         dispatch(averageRating(courseId));
-        dispatch(getAllFeedback(courseId));
-      }
-    }, [dispatch, course]);
+         dispatch(getAllFeedback(courseId));
+     }
+     }, [dispatch]);
     
 
-  useEffect(() => {
-    if (course && course.course && course.course.teacher) {
-      const id = course.course.teacher
-      dispatch(fetchTeacherProfile(id));
-    }
-  }, [dispatch, course]);
+
   
     
   return (
@@ -83,12 +76,10 @@ function CourseDetails() {
       </p>
       <p style={{ fontWeight: "20px", color: "white" }}>
   Created by{" "}
-  {teacherprofile?.user?.block_status ? (
-    "Tutor Unavailable"
-  ) : teacherprofile?.teacher ? (
-    `${teacherprofile.teacher.first_name} ${teacherprofile.teacher.last_name}`
-  ) : (
-    "Loading..."
+  {course?.teacher_name? (
+    course.teacher_name
+  ) :
+    ("Loading..."
   )}
 </p>
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { fetchTutorProfile, handleNotification,  logoutUser, recentMessages } from '../../redux/authSlices';
+import { connectNotificationSocket } from '../../redux/notificationThunk';
 function TeacherNavbar() {
 
     const dispatch = useDispatch();
@@ -16,21 +17,22 @@ function TeacherNavbar() {
       console.log("notification get working")
       if (user?.user_id) {
       dispatch(handleNotification(user.user_id));
-       const interval = setInterval(() => {
-                dispatch(handleNotification(user.user_id));
-              }, 10000); // 10 seconds
+      //dispatch(connectNotificationSocket())
+      //  const interval = setInterval(() => {
+      //           dispatch(handleNotification(user.user_id));
+      //         }, 10000); // 10 seconds
         
-              // Cleanup function to clear the interval on unmount
-              return () => clearInterval(interval);
+      //         // Cleanup function to clear the interval on unmount
+      //         return () => clearInterval(interval);
     }},[dispatch])
 
 
-    useEffect(() => {
-      console.log("getting notificaiton")
-      if (notifications?.notification?.some(notif => notif.notification_type === "message")) {
-        dispatch(recentMessages());
-      }
-    }, [notifications, dispatch]);
+    // useEffect(() => {
+    //   console.log("getting notificaiton")
+    //   if (notifications?.notification?.some(notif => notif.notification_type === "message")) {
+    //     dispatch(recentMessages());
+    //   }
+    // }, [notifications, dispatch]);
 
         const handleLogout = () => {
           dispatch(logoutUser(navigate));

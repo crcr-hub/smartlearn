@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { FetchCart, fetchStudentProfile, handleNotification, logoutUser, recentMessages } from '../../redux/authSlices';
+import { connectNotificationSocket } from '../../redux/notificationThunk';
 
 function StudentNavbar() {
     const dispatch = useDispatch();
@@ -10,29 +11,32 @@ function StudentNavbar() {
     const {cart} = useSelector((state)=> state.auth)
     const {profile}  = useSelector((state)=>state.auth)
     const {notifications} = useSelector((state)=>state.auth)
-    const count = cart?.cart?.length || 0;
+    const count = cart?.cart_data?.length || 0;
     useEffect(() => {
   
       if (user?.user_id) {
         dispatch(FetchCart(user.user_id));
         dispatch(fetchStudentProfile());
         dispatch(handleNotification(user.user_id));
-       
-        const interval = setInterval(() => {
-          dispatch(handleNotification(user.user_id));
-        }, 10000); // 10 seconds
-  
-        // Cleanup function to clear the interval on unmount
-        return () => clearInterval(interval);
+
       
       }
     }, [dispatch, user?.user_id]);
 
     useEffect(() => {
-      if (notifications?.notification?.some(notif => notif.notification_type === "message")) {
-        dispatch(recentMessages());
+      if (notifications?.length > 0) {
+        // Trigger any action when notifications are updated, such as showing a toast or alert
+        console.log('New notification received:', notifications[notifications.length - 1]);
+        // Example: Displaying a toast notification (use any toast library like react-toastify)
+        // toast.info(`New notification: ${notifications[notifications.length - 1].message}`);
       }
-    }, [notifications, dispatch]);
+    }, [notifications]); 
+
+    // useEffect(() => {
+    //   if (notifications?.notification?.some(notif => notif.notification_type === "message")) {
+    //     dispatch(recentMessages());
+    //   }
+    // }, [notifications, dispatch]);
 
 
 
@@ -207,6 +211,14 @@ function StudentNavbar() {
                   <li>
                     <Link className="dropdown-item" to="/cartpage">
                       Cart
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <Link className='dropdown-item' to='/order'>
+                    Purchase History
                     </Link>
                   </li>
                   <li>

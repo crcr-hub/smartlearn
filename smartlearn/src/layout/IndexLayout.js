@@ -40,6 +40,8 @@ import ResetPwd from '../components/indexpages/ResetPwd';
 import StudentCourseList from '../components/teacher/pages/StudentCourseList';
 import TeacherChangePwdPage from '../components/teacher/screen/TeacherChangePwdPage';
 import SingleTransaction from '../components/teacher/screen/SingleTransaction';
+import PurchaseHistory from '../components/student/screen/PurchaseHistory';
+import ReceiptPage from '../components/student/screen/ReceiptPage';
 
 function IndexLayout() {
   return (
@@ -86,8 +88,8 @@ function IndexLayout() {
           <Route path='/recent_m' element={<StudentPrivateRoute><RecentMessages/></StudentPrivateRoute>} />
           <Route path='/tutorlist' element = {<StudentPrivateRoute><TutorList/></StudentPrivateRoute>} />
           <Route path='/sprofile' element ={<StudentPrivateRoute><ProfilePage/></StudentPrivateRoute>} />
-          
-         
+          <Route path='/order' element={<StudentPrivateRoute><PurchaseHistory/></StudentPrivateRoute>} />
+         <Route path='/receipt/:oid' element={<StudentPrivateRoute><ReceiptPage/></StudentPrivateRoute>}/>
        
           <Route path="*" element={<div>Loading</div>} />
        

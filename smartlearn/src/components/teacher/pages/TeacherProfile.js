@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import TeacherSideBar from '../TeacherSideBar'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTutorProfile, updateTProfile } from '../../../redux/authSlices';
 
 function TeacherProfile() {
      // State to toggle between view and edit modes
-     const {user:teacher} = useSelector((state) =>state.auth)
+     const {tprofile:teacher} = useSelector((state) =>state.auth)
      const [isEditing, setIsEditing] = useState(false);
 
      // State to store the profile details
      const [profileData, setProfileData] = useState({
         
-            first_name: 'Somntihh',
+            first_name: 'Something',
             last_name: 'Your Last Name',
             place :"",
             qualification:"",
@@ -28,6 +29,13 @@ function TeacherProfile() {
         experience_in:"",
         gender:"", 
     });
+
+    const dispatch = useDispatch()
+        
+    useEffect(() => {
+        dispatch(fetchTutorProfile()); // Fetch profile data on mount
+    }, [])
+
     useEffect(()=>{
         if (teacher) {
          
@@ -46,8 +54,10 @@ function TeacherProfile() {
             setOriginalProfileData(initialProfileData);
         }
 
-    },[])
+    },[teacher,dispatch])
 
+
+    console.log("dattas",teacher,profileData)
     const handleEditClick = () => {
         setIsEditing(true);
     };
@@ -56,6 +66,8 @@ function TeacherProfile() {
     const handleSaveClick = () => {
         setIsEditing(false);
         setOriginalProfileData(profileData);
+        dispatch(updateTProfile(profileData))
+        dispatch(fetchTutorProfile());
         // Here you can handle saving the updated data to the server or local state
        
     };
