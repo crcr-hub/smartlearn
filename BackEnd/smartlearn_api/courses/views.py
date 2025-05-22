@@ -86,14 +86,12 @@ class CourseStatus(APIView):
         if not status_data.exists():
             return Response({"message": "No status data found for this course."}, status=status.HTTP_404_NOT_FOUND)
         serializer = StatusSerializer(status_data, many=True)
-        print("status data",serializer.data)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
 class CourseByTeacherView(APIView):
     def get(self, request, teacher_id):
         courses = Courses.objects.filter(teacher__id=teacher_id) 
         serializer = CourseSerializer(courses, many=True)
-        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     

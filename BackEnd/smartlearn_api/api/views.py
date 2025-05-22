@@ -477,8 +477,9 @@ def handle_notification(request,id):
 
         print(user_id,type(user_id),request.user.id)
         if request.user.id == user_id:
+            user = request.user
             notifications = (Notification.objects
-            .filter(recipient_id=user_id,is_read = False)
+            .filter(recipient=user,is_read = False)
             .values("sender_id", "sender__username", "notification_type") 
             .annotate(message_count=Count("id"))
             )
