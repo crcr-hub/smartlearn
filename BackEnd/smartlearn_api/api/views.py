@@ -466,6 +466,10 @@ def handle_notification(request,id):
     user_id = int(id)
     
     if request.method == 'GET':
+        print("DEBUG - request.user:", request.user)
+        print("DEBUG - request.user.is_authenticated:", request.user.is_authenticated)
+        print("DEBUG - request headers:", request.headers)
+
         print(user_id,type(user_id),request.user.id)
         if request.user.id == user_id:
             notifications = (Notification.objects
