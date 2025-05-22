@@ -149,9 +149,9 @@ class RegisterView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         # Pass the request data to the serializer for validation and saving
-        email = request.data.get('email')
-        if User.objects.filter(email=email).exists():
-            return Response({"error": "You are already Rigistered with us"}, status=status.HTTP_400_BAD_REQUEST)
+        # email = request.data.get('email')
+        # if User.objects.filter(email=email).exists():
+        #     return Response({"error": "You are already Rigistered with us"}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -463,9 +463,10 @@ def handle_teacher(request, id):
 @api_view(['GET','PUT'])
 @permission_classes([IsAuthenticated])
 def handle_notification(request,id):
-    user_id = id
-   
+    user_id = int(id)
+    
     if request.method == 'GET':
+        print(user_id,type(user_id),request.user.id)
         if request.user.id == user_id:
             notifications = (Notification.objects
             .filter(recipient_id=user_id,is_read = False)
@@ -507,6 +508,7 @@ def handle_notification(request,id):
             return Response({"message": f"{updated_count} notifications marked as read."})
         else:
             return Response({"error": "User not found"}, status=400)
+
     return Response({"error": "Invalid request"}, status=400)
 
 

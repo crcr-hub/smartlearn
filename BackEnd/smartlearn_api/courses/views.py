@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from api.models import AdminNotification
-from student.models import StudentProfile,Notification
+from student.models import Cart, EnrolledCourses, StudentProfile,Notification, Wishlist
 from student.serializer import StudentProfileSerializer
 from teacher.models import TeacherProfile
 from teacher.serializer import TeacherProfileSerializer
@@ -122,16 +122,41 @@ def handle_category(request, id):
     return Response({'error': 'category not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
+
+class StudentCourse(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request,cid):
+        user = request.user
+        try:
+            course = Courses.objects.select_related('teacher').get(id = cid)
+        except Courses.DoesNotExist:
+            return Response({'error': 'Course not found'}, status=status.HTTP_404_NOT_FOUND)
+        in_wishlist = Wishlist.objects.filter(user = user,course = course).exists()
+        in_cart = Cart.objects.filter(user = user,course = course).exists()
+        in_enrolled = EnrolledCourses.objects.filter(user = user,course = course).exists()
+        tutor = course.teacher
+        if tutor.user.block_status:
+            teacher_name = 'Unavailable'
+        else:
+            teacher_name = f"{tutor.first_name} {tutor.last_name}"
+        serializer = CourseSerializer(course)
+        course_data = {
+            'course': serializer.data,
+            'teacher_name':teacher_name,
+            'in_wishlist':in_wishlist,
+            'in_cart':in_cart,
+            "is_enrolled":in_enrolled
+            }
+        return Response(course_data, status=status.HTTP_200_OK)
+        
+
 @api_view(['GET', 'PUT','PATCH'])
 @permission_classes([IsAuthenticated])
-def handle_courses(request, id):
+def handle_courses(request, cid):
     parser_classes = [MultiPartParser, FormParser]
     try:
-        # Fetch the student's profile
-        course = Courses.objects.get(id =id)
+        course = Courses.objects.get(id = cid)
         if request.method == 'GET':
-            # Serialize and return teacher data
-            print("getttinginignigningin")
             serializer = CourseSerializer(course)
             course_data = {
             'course': serializer.data

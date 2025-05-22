@@ -6,7 +6,7 @@ from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 from api.middleware import JWTAuthMiddleware
-# from student.routing import websocket_urlpatterns  # Replace 'your_app' with your actual app name
+# from student.routing import websocket_urlpatterns  
 
 
 

@@ -7,6 +7,7 @@ from student.models import StudentProfile
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 from api.models import User,AdminNotification
+import re
 
 # User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
@@ -48,9 +49,22 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('email', 'username', 'password', 'password2', 'block_status','role', 'first_name', 'last_name', 'gender', 'place', 'mobile', 'qualification', 'experience','experience_in')
 
+    def validate_first_name(self, value):
+        if not re.search(r'[a-zA-Z]', value):
+            raise serializers.ValidationError("First name must contain at least one alphabet.")
+        return value
+
+    def validate_last_name(self, value):
+        if not re.search(r'[a-zA-Z]', value):
+            raise serializers.ValidationError("Last name must contain at least one alphabet.")
+        return value
+    
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
             raise serializers.ValidationError({"password": "Password Fields Didn't Match"})
+        
+        if len(set(attrs['password'])) == 1:
+            raise serializers.ValidationError({"password": "Password can't be all the same character."})
         return attrs
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():

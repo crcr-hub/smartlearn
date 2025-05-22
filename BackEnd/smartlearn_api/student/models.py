@@ -31,13 +31,14 @@ class Order(models.Model):
     user_housename = models.CharField(max_length=500, null=True, blank=True)
     user_city = models.CharField(max_length=500,blank=True)
     user_pincode = models.CharField(max_length=1000,null=True,blank=True)
+    user_state = models.CharField(max_length=1000,blank=True,null=True)
     date = models.DateTimeField(auto_now=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     payment_type = models.CharField(max_length=500,null=True, blank=True)
     payment_id = models.CharField(max_length=1000,blank=True,null=True)
 
 class Order_items(models.Model):
-    order = models.ForeignKey(Order,on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,related_name='my_order_items')
     course = models.ForeignKey(Courses,on_delete=models.CASCADE,related_name='order_items')
     price = models.DecimalField(max_digits=6, decimal_places=2,null=True)
     Offer_price = models.DecimalField(max_digits=6, decimal_places=2,null=True)

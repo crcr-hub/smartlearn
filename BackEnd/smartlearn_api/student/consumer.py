@@ -248,7 +248,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 #  Notify the user in their current room
                 await self.channel_layer.group_send(
-                    f"user_{reciever.id}",
+                     f"notifications_{reciever.id}",
                     {
                         "type": "new_notification",
                         "message": message_content,
@@ -261,13 +261,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 print(f"User {reciever.id} is online but in a different chat room: {ONLINE_USERS[reciever.id]}")
             else:
                 await create_notification(sender, reciever, message_content)
-                print(f"User {reciever.id} is logged in")
+                print(f"User {reciever.id} is logged in from notification")
+                await self.channel_layer.group_send(
+                   f"notifications_{reciever.id}",
+                    {
+                        "type": "new_notification",
+                        "message": message_content,
+                        "from_user": sender.id,
+                        "reciever" : reciever.id,
+                        "image" : image_url,
+                       "timestamp": localtime(now()).isoformat()
+                    }
+                )
 
         print(f"User joined room: {self.room_group_name}")
         await self.channel_layer.group_send(
            self.room_group_name,
                 {
-                     "type": 'sendMessage',
+                    "type": 'sendMessage',
                     'message': message_content,
                     'sender': user_id,
                     "image":image_url,
@@ -279,17 +290,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
 
 
-    async def new_notification(self, event):
-        """Send a notification to the user in their current chat room."""
-        print("Sending notification:", event)
-        await self.send(text_data=json.dumps({
-            "type": "notification",
-            "message": event["message"],
-            "from_user": event["from_user"],
-            "reciepient" : event['reciever'],
-            "image" : event['image'],
-            "timestamp": event["timestamp"]
-        }))
 
 
     async def disconnect(self, close_code):  
@@ -317,6 +317,39 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
 
 
+
+
+class NotificationConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.user = self.scope["user"]
+        if self.user.is_anonymous:
+            await self.close()
+        else:
+            self.group_name = f"notifications_{self.user.id}"
+            await self.channel_layer.group_add(
+                self.group_name,
+                self.channel_name
+            )
+            await self.accept()
+            print(f"User {self.user.id} connected to NotificationConsumer.")
+
+    async def disconnect(self, close_code):
+        await self.channel_layer.group_discard(
+            self.group_name,
+            self.channel_name
+        )
+        print(f"User {self.user.id} disconnected from NotificationConsumer.")
+
+    async def new_notification(self, event):
+        print("NotificationConsumer sending notification:", event)
+        await self.send(text_data=json.dumps({
+            "type": "notification",
+            "message": event["message"],
+            "from_user": event["from_user"],
+            "reciepient": event["reciever"],
+            "image": event["image"],
+            "timestamp": event["timestamp"]
+        }))
 
 
 # class ChatConsumer(AsyncWebsocketConsumer):

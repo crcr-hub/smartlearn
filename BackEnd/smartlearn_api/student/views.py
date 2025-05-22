@@ -89,18 +89,45 @@ class AddWishlistView(APIView):
 class WishlistView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, id):
+    def get(self, request):
         try:
-            wishlist = Wishlist.objects.filter(user_id=id).select_related('course')
+            user = request.user
+            wishlist = Wishlist.objects.filter(user=user).select_related('course')
+            list_course = []
+            for items in wishlist:
+                is_enrolled = EnrolledCourses.objects.filter(user=user,course=items.course).exists()
+                in_cart = Cart.objects.filter(user=user,course=items.course).exists()
+                star_ratings = RatingStar.objects.filter(course = items.course)
+                if star_ratings.exists():
+                    average = sum([rating.star for rating in star_ratings]) / star_ratings.count()
+                    average_rating = round(average, 1)
+                else:
+                    average_rating = None
+                if items.course.teacher.user.block_status:
+                    teacher_name = 'Unavilable'
+                else:
+                    teacher_name = f"{items.course.teacher.first_name} {items.course.teacher.last_name}"
+
+                list_course.append({
+                    'id':items.course.id,
+                    'wid':items.id,
+                    "course_name":items.course.name,
+                    'image':items.course.images.url,
+                    'by':teacher_name,
+                    'rating':average_rating,
+                    'price':items.course.price,
+                    'offer_price':items.course.offer_price,
+                    'in_cart':in_cart,
+                    'is_enrolled':is_enrolled,
+                })
             if not wishlist.exists():
-                return Response({"message": "No wishlist items found for this user."}, status=status.HTTP_404_NOT_FOUND)
-            
-            serializer = WishlistSerializer(wishlist, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+                list_course = []
+                return Response(list_course, status=status.HTTP_200_OK)
+            return Response(list_course, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def delete(self, request, id):
+    def delete(self, request):
         try:
             wishlist_item_id = request.data.get('wishlist_item_id')
             if not wishlist_item_id:
@@ -109,10 +136,7 @@ class WishlistView(APIView):
             wishlist_item = get_object_or_404(Wishlist, id=wishlist_item_id)
             wishlist_item.delete()
 
-            updated_wishlist = Wishlist.objects.filter(user_id=id).select_related('course')
-            serializer = WishlistSerializer(updated_wishlist, many=True)
-
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response( status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -155,19 +179,51 @@ class AddToCartView(APIView):
 class FetchCartView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, id):
+    def get(self, request):
         try:
-            cart = Cart.objects.filter(user_id=id).select_related('course')
-            if not cart.exists():
-                return Response({"message": "No cart items found for this user."}, status=status.HTTP_404_NOT_FOUND)
-
+            user = request.user
+            cart = Cart.objects.filter(user=user).select_related('course')
+            if not cart.exists():            
+                return Response({
+                    "cart_data": [],
+                    "total_price": 0,
+                    "offer_total": 0,
+                    "discount": 0
+                }, status=status.HTTP_200_OK)
+            
+            cart_data = []
+            for items in cart:
+                
+                in_wishlist = Wishlist.objects.filter(user=user,course=items.course).exists()
+                star_ratings = RatingStar.objects.filter(course = items.course)
+                if star_ratings.exists():
+                    average = sum([rating.star for rating in star_ratings]) / star_ratings.count()
+                    average_rating = round(average, 1)
+                else:
+                    average_rating = None
+                if items.course.teacher.user.block_status:
+                    teacher_name = 'Unavailable'
+                else:
+                    teacher_name = f"{items.course.teacher.first_name} {items.course.teacher.last_name}"
+                cart_data.append({
+                    'id':items.course.id,
+                    'cid':items.id,
+                    "course_name":items.course.name,
+                    'image':items.course.images.url,
+                    'by':teacher_name,
+                    'rating':average_rating,
+                    'price':items.course.price,
+                    'offer_price':items.course.offer_price,
+                    'in_wishlist':in_wishlist,
+                })
+            
             serializer = CartSerializer(cart, many=True)
             total_price = sum(item.course.price for item in cart)
             total_offer_price = sum(item.course.offer_price for item in cart)
             discount = abs(total_price - total_offer_price)
 
             return Response({
-                "cart": serializer.data,
+                "cart_data":cart_data,
                 "total_price": total_price,
                 "offer_total": total_offer_price,
                 "discount": discount
@@ -176,28 +232,20 @@ class FetchCartView(APIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def delete(self, request, id):
+    def delete(self, request):
+        
         try:
+            user = request.user
             cart_item_id = request.data.get('cart_item_id')
             if not cart_item_id:
                 return Response({"error": "Cart item ID is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-            cart_item = get_object_or_404(Cart, id=cart_item_id)
+            cart_item = get_object_or_404(Cart,user=user, id=cart_item_id)
             cart_item.delete()
 
-            updated_cart = Cart.objects.filter(user_id=id).select_related('course')
-            serializer = CartSerializer(updated_cart, many=True)
 
-            total_price = sum(item.course.price for item in updated_cart)
-            total_offer_price = sum(item.course.offer_price for item in updated_cart)
-            discount = abs(total_price - total_offer_price)
 
-            return Response({
-                "cart": serializer.data,
-                "total_price": total_price,
-                "offer_total": total_offer_price,
-                "discount": discount
-            }, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK)
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -210,18 +258,66 @@ class GetCoursesView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        course_ids = request.GET.get('ids', None)
-        if not course_ids:
-            return Response({"error": "No course IDs provided."}, status=status.HTTP_400_BAD_REQUEST)
+        user = request.user
+        cart_items = Cart.objects.filter(user = user)
+        if not cart_items:
+            return Response({"error": "No courses in cart"}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            course_ids = [int(course_id) for course_id in course_ids.split(",")]
+            course_ids = [item.course.id for item in cart_items if item.course]
         except ValueError:
             return Response({"error": "Invalid course ID format."}, status=status.HTTP_400_BAD_REQUEST)
-
+        cart_courses = []
         courses = Courses.objects.filter(id__in=course_ids)
+        for items in courses:
+            if items.teacher.user.block_status:
+                teacher_name = 'Unavailable'
+            else:
+                teacher_name = f"{items.teacher.first_name} {items.teacher.last_name}"
+
+
+            cart_courses.append({
+                'id':items.id,
+                'course_name':items.name,
+                'teacher_name':teacher_name,
+                'images':items.images.url,
+                 'offer_price':items.offer_price,
+                 'price':items.price,
+                
+            })
         serializer = CourseSerializer(courses, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(cart_courses, status=status.HTTP_200_OK)
+
+import razorpay
+from django.conf import settings
+
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_razorpay_order(request):
+    user = request.user
+
+    cart_items = Cart.objects.filter(user=user)
+    if not cart_items.exists():
+        return Response({'error': 'Your cart is empty!'}, status=400)
+
+    total_price = sum(item.course.offer_price for item in cart_items)
+    amount = int(total_price * 100)  # Convert to paisa
+
+    client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+    
+    data = {
+        "amount": amount,
+        "currency": "INR",
+        "payment_capture": 1,
+    }
+
+    try:
+        order = client.order.create(data=data)
+        return Response(order)
+    except Exception as e:
+        return Response({'error': str(e)}, status=500)
 
 
 @api_view(['POST'])
@@ -233,14 +329,33 @@ def place_order(request):
     if not cart_items.exists():
         return Response({'error': 'Your cart is empty!'}, status=400)
     try:
+         # Razorpay verification
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+
+        # Only verify if payment method is razorpay
+        if request.data['payment'] == 'razorpay':
+            params_dict = {
+                'razorpay_order_id': request.data['order_id'],
+                'razorpay_payment_id': request.data['payment_id'],
+                'razorpay_signature': request.data['signature'],
+            }
+
+            try:
+                client.utility.verify_payment_signature(params_dict)
+            except razorpay.errors.SignatureVerificationError:
+                return Response({'error': 'Payment verification failed!'}, status=400)
+
+        total_price = sum(item.course.offer_price for item in cart_items)
         with transaction.atomic():
             order = Order.objects.create(
                 user=user,
                 user_housename=request.data['user_housename'],
                 user_city=request.data['user_city'],
                 user_pincode=request.data['user_pincode'],
-                total_price=request.data['total_price'],
+                user_state = request.data['user_state'],
+                total_price=total_price,
                 payment_type = request.data['payment'],
+                payment_id = request.data['payment_id']
             )
             order_items_list = []  # Store created order items
             enrolled_courses_dict = {} 
@@ -282,17 +397,43 @@ def fetchLearnings(request):
     print("learningdata",serializer.data)
     return Response(serializer.data)
 
+
+class FetchLearnings(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        user = request.user
+        learning_courses =  EnrolledCourses.objects.filter(user=user).select_related('course')
+        courses = []
+        for items in learning_courses:
+            star_ratings = RatingStar.objects.filter(course = items.course)
+            if star_ratings.exists():
+                average = sum([rating.star for rating in star_ratings]) / star_ratings.count()
+                average_rating = round(average, 1)
+            else:
+                average_rating = None
+            courses.append({
+                "course_id":items.course.id,
+                "course_name":items.course.name,
+                "by":items.course.teacher.first_name + " "+items.course.teacher.last_name,
+                "rating":average_rating,
+                "image":items.course.images.url if items.course.images else None,
+            })
+        
+        return Response({"courses":courses},status=status.HTTP_200_OK)
+
+
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def fetchMyCourse(request,id):
+def fetchMyCourse(request,cid):
     user = request.user
     try:
         # Ensure the user is enrolled in the course
-        enrolled_course = EnrolledCourses.objects.get(user=user, course=id)
-        course = Courses.objects.get(id=id)
+        enrolled_course = EnrolledCourses.objects.get(user=user, course=cid)
+        course = Courses.objects.get(id=cid)
         course_serializer = CourseSerializer(course)
 
-        modules = Modules.objects.filter(course=id)
+        modules = Modules.objects.filter(course=cid)
         module_serializer = ModuleSerializer(modules, many=True)
         first_module_video_url = None
         if modules.exists():
@@ -448,6 +589,7 @@ def changeIsRead(request,room_id):
     return Response({"message": "Successfully changed"})
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def recent_messages(request):
     user = request.user
     try:
@@ -512,8 +654,6 @@ def recent_messages(request):
                 "is_read":last_message.is_read,
                 "room_id":last_message.room_id
             })
-
-    print("recent messages", recent_conversations)
     return Response({"recent_messages": recent_conversations})
 
 
@@ -645,9 +785,9 @@ def all_feedback(request,cid):
 @permission_classes([IsAuthenticated])
 def update_profile(request,pid):
     if request.method == 'PUT':
-        print(request.data)
+        user = request.user
         try:
-            profile_data = StudentProfile.objects.get(id=pid)
+            profile_data = StudentProfile.objects.get(user = user)
         except StudentProfile.DoesNotExist:
             return Response({"error": "Profile not found"}, status=status.HTTP_404_NOT_FOUND)
         serializer = StudentProfileSerializer(profile_data,data = request.data,partial=True)
@@ -700,3 +840,63 @@ class SingleTransaction(APIView):
             })
 
 
+
+class OrderHIstory(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        user = request.user
+        orders = Order.objects.filter(user= user).prefetch_related('my_order_items')
+        order_data = []
+        for items in orders:
+            courses = []
+            for orderitems in items.my_order_items.all():
+                courses.append({
+                    'course':orderitems.course.name,
+                })
+
+            order_data.append({
+                'oid':items.id,
+                'date':items.date,
+                'housename':items.user_housename,
+                'city':items.user_city,
+                'pincode':items.user_pincode,
+                'courses':courses,
+                'total':items.total_price,
+                'type':items.payment_type,
+            })
+        print("order data",order_data)
+        return Response(order_data,status=status.HTTP_200_OK)
+
+
+from rest_framework.exceptions import NotFound
+class Reciept(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request,oid):
+        user = request.user
+        try:
+            order = Order.objects.get(id=oid, user=user)
+        except Order.DoesNotExist:
+            return Response({'error': 'Invalid request.'}, status=status.HTTP_404_NOT_FOUND)
+        orderitems = Order_items.objects.filter(order = order)
+        orderdata = []
+        grandTotal = 0
+       
+        address ={
+            'housename':order.user_housename,
+            'city':order.user_city,
+            'state':order.user_state,
+            'pincode':order.user_pincode
+        }
+        for items in orderitems:
+                orderdata.append({
+                    'course':items.course.name,
+                    'price':items.price,
+                    'offer_price':items.Offer_price,
+                    'item': 1,
+                    'date':items.order.date,
+                    'payment_id':items.order.payment_id,
+                    'type':items.order.payment_type,
+                })
+                grandTotal += items.Offer_price
+        return Response({'data':orderdata,'total':grandTotal,'address':address},status=status.HTTP_200_OK)
+       
