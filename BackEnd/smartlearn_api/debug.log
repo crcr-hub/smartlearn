@@ -3610,3 +3610,271 @@
 [2025-05-22 21:20:11,029] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_pytesttester.py first seen with mtime 1740508215.3572886
 [2025-05-22 21:20:11,029] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0001_initial.py first seen with mtime 1734683619.3928845
 [2025-05-22 21:20:11,029] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0001_initial.py first seen with mtime 1734683619.3928845
+[2025-05-22 21:22:07,829] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,841] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,842] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,842] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,843] INFO [django.channels.server:168] [mHTTP OPTIONS /api/logout/ 200 [0.01, 127.0.0.1:8051][0m
+[2025-05-22 21:22:07,843] INFO [django.channels.server:168] [mHTTP OPTIONS /api/logout/ 200 [0.01, 127.0.0.1:8051][0m
+[2025-05-22 21:22:07,846] DEBUG [daphne.http_protocol:166] HTTP b'POST' request for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,886] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,887] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,887] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,887] INFO [django.channels.server:168] [mHTTP POST /api/logout/ 200 [0.04, 127.0.0.1:8051][0m
+[2025-05-22 21:22:07,887] INFO [django.channels.server:168] [mHTTP POST /api/logout/ 200 [0.04, 127.0.0.1:8051][0m
+[2025-05-22 21:22:07,903] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,907] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8056]
+[2025-05-22 21:22:07,908] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8057]
+[2025-05-22 21:22:07,910] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8058]
+[2025-05-22 21:22:07,945] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8062]
+[2025-05-22 21:22:07,971] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8057]
+[2025-05-22 21:22:07,972] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8057]
+[2025-05-22 21:22:07,973] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8057]
+[2025-05-22 21:22:07,973] INFO [django.channels.server:168] [mHTTP OPTIONS /api/courses/ 200 [0.07, 127.0.0.1:8057][0m
+[2025-05-22 21:22:07,973] INFO [django.channels.server:168] [mHTTP OPTIONS /api/courses/ 200 [0.07, 127.0.0.1:8057][0m
+[2025-05-22 21:22:07,977] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8058]
+[2025-05-22 21:22:07,978] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8058]
+[2025-05-22 21:22:07,978] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8058]
+[2025-05-22 21:22:07,979] INFO [django.channels.server:168] [mHTTP OPTIONS /api/all_teachers/ 200 [0.07, 127.0.0.1:8058][0m
+[2025-05-22 21:22:07,979] INFO [django.channels.server:168] [mHTTP OPTIONS /api/all_teachers/ 200 [0.07, 127.0.0.1:8058][0m
+[2025-05-22 21:22:07,980] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,981] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,981] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8051]
+[2025-05-22 21:22:07,982] INFO [django.channels.server:168] [mHTTP OPTIONS /api/category/ 200 [0.08, 127.0.0.1:8051][0m
+[2025-05-22 21:22:07,982] INFO [django.channels.server:168] [mHTTP OPTIONS /api/category/ 200 [0.08, 127.0.0.1:8051][0m
+[2025-05-22 21:22:07,983] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8057]
+[2025-05-22 21:22:07,987] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8058]
+[2025-05-22 21:22:07,990] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8056]
+[2025-05-22 21:22:07,991] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8056]
+[2025-05-22 21:22:07,991] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8056]
+[2025-05-22 21:22:07,992] INFO [django.channels.server:168] [mHTTP OPTIONS /api/category/ 200 [0.08, 127.0.0.1:8056][0m
+[2025-05-22 21:22:07,992] INFO [django.channels.server:168] [mHTTP OPTIONS /api/category/ 200 [0.08, 127.0.0.1:8056][0m
+[2025-05-22 21:22:08,012] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,014] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,016] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,017] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.07, 127.0.0.1:8062][0m
+[2025-05-22 21:22:08,017] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.07, 127.0.0.1:8062][0m
+[2025-05-22 21:22:08,024] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,038] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8058]
+[2025-05-22 21:22:08,039] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8058]
+[2025-05-22 21:22:08,039] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8058]
+[2025-05-22 21:22:08,039] INFO [django.channels.server:168] [mHTTP GET /api/all_teachers/ 200 [0.05, 127.0.0.1:8058][0m
+[2025-05-22 21:22:08,039] INFO [django.channels.server:168] [mHTTP GET /api/all_teachers/ 200 [0.05, 127.0.0.1:8058][0m
+[2025-05-22 21:22:08,046] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8057]
+[2025-05-22 21:22:08,046] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8057]
+[2025-05-22 21:22:08,048] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8057]
+[2025-05-22 21:22:08,049] INFO [django.channels.server:168] [mHTTP GET /api/courses/ 200 [0.07, 127.0.0.1:8057][0m
+[2025-05-22 21:22:08,049] INFO [django.channels.server:168] [mHTTP GET /api/courses/ 200 [0.07, 127.0.0.1:8057][0m
+[2025-05-22 21:22:08,056] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,057] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,059] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,059] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.04, 127.0.0.1:8062][0m
+[2025-05-22 21:22:08,059] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.04, 127.0.0.1:8062][0m
+[2025-05-22 21:22:08,062] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,076] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,077] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,077] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8062]
+[2025-05-22 21:22:08,078] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8062][0m
+[2025-05-22 21:22:08,078] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8062][0m
+[2025-05-22 21:22:09,377] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\exceptions.py first seen with mtime 1735058425.3391156
+[2025-05-22 21:22:09,377] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\exceptions.py first seen with mtime 1735058425.3391156
+[2025-05-22 21:22:09,381] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\session.py first seen with mtime 1734683620.035886
+[2025-05-22 21:22:09,381] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\session.py first seen with mtime 1734683620.035886
+[2025-05-22 21:22:09,400] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\utils.py first seen with mtime 1735058425.3484006
+[2025-05-22 21:22:09,400] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\utils.py first seen with mtime 1735058425.3484006
+[2025-05-22 21:22:09,405] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\jwks_client.py first seen with mtime 1735058425.3473988
+[2025-05-22 21:22:09,405] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\jwks_client.py first seen with mtime 1735058425.3473988
+[2025-05-22 21:22:09,408] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\algorithms.py first seen with mtime 1735058425.3371136
+[2025-05-22 21:22:09,408] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\algorithms.py first seen with mtime 1735058425.3371136
+[2025-05-22 21:22:09,419] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\api_jwt.py first seen with mtime 1735058425.3391156
+[2025-05-22 21:22:09,419] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\api_jwt.py first seen with mtime 1735058425.3391156
+[2025-05-22 21:22:09,423] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\api_jwk.py first seen with mtime 1735058425.3381155
+[2025-05-22 21:22:09,423] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\api_jwk.py first seen with mtime 1735058425.3381155
+[2025-05-22 21:22:09,428] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\warnings.py first seen with mtime 1735058425.3493993
+[2025-05-22 21:22:09,428] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\warnings.py first seen with mtime 1735058425.3493993
+[2025-05-22 21:22:09,444] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\backends.py first seen with mtime 1735058425.4824576
+[2025-05-22 21:22:09,444] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\backends.py first seen with mtime 1735058425.4824576
+[2025-05-22 21:22:09,451] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\serializers.py first seen with mtime 1734683620.2951734
+[2025-05-22 21:22:09,451] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\serializers.py first seen with mtime 1734683620.2951734
+[2025-05-22 21:22:09,458] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\jwk_set_cache.py first seen with mtime 1735058425.346398
+[2025-05-22 21:22:09,458] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\jwk_set_cache.py first seen with mtime 1735058425.346398
+[2025-05-22 21:22:09,464] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\cookie.py first seen with mtime 1734683620.0348852
+[2025-05-22 21:22:09,464] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\cookie.py first seen with mtime 1734683620.0348852
+[2025-05-22 21:22:09,472] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\__init__.py first seen with mtime 1735058425.3361187
+[2025-05-22 21:22:09,472] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\__init__.py first seen with mtime 1735058425.3361187
+[2025-05-22 21:22:09,475] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\api_jws.py first seen with mtime 1735058425.3381155
+[2025-05-22 21:22:09,475] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\api_jws.py first seen with mtime 1735058425.3381155
+[2025-05-22 21:22:09,478] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\state.py first seen with mtime 1735058425.4854608
+[2025-05-22 21:22:09,478] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\state.py first seen with mtime 1735058425.4854608
+[2025-05-22 21:22:09,482] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\types.py first seen with mtime 1735058425.3484006
+[2025-05-22 21:22:09,482] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\jwt\types.py first seen with mtime 1735058425.3484006
+[2025-05-22 21:22:09,496] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\fallback.py first seen with mtime 1734683620.035886
+[2025-05-22 21:22:09,496] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\fallback.py first seen with mtime 1734683620.035886
+[2025-05-22 21:22:09,958] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8062]
+[2025-05-22 21:22:09,973] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8062]
+[2025-05-22 21:22:09,974] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8062]
+[2025-05-22 21:22:09,975] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8062]
+[2025-05-22 21:22:09,975] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8062][0m
+[2025-05-22 21:22:09,975] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8062][0m
+[2025-05-22 21:23:19,692] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8203]
+[2025-05-22 21:23:19,721] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8203]
+[2025-05-22 21:23:19,722] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8203]
+[2025-05-22 21:23:19,723] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8203]
+[2025-05-22 21:23:19,724] INFO [django.channels.server:168] [mHTTP OPTIONS /api/token/ 200 [0.03, 127.0.0.1:8203][0m
+[2025-05-22 21:23:19,724] INFO [django.channels.server:168] [mHTTP OPTIONS /api/token/ 200 [0.03, 127.0.0.1:8203][0m
+[2025-05-22 21:23:19,728] DEBUG [daphne.http_protocol:166] HTTP b'POST' request for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,445] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,445] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,446] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,446] INFO [django.channels.server:168] [mHTTP POST /api/token/ 200 [1.72, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,446] INFO [django.channels.server:168] [mHTTP POST /api/token/ 200 [1.72, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,449] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,455] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,455] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,456] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,456] INFO [django.channels.server:168] [mHTTP OPTIONS /api/user-details/ 200 [0.01, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,456] INFO [django.channels.server:168] [mHTTP OPTIONS /api/user-details/ 200 [0.01, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,458] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,470] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,470] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,471] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,471] INFO [django.channels.server:168] [mHTTP GET /api/user-details/ 200 [0.01, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,471] INFO [django.channels.server:168] [mHTTP GET /api/user-details/ 200 [0.01, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,624] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,629] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,632] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,641] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,657] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,657] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,658] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,659] INFO [django.channels.server:168] [mHTTP OPTIONS /api/tutor_dashboard/ 200 [0.03, 127.0.0.1:8227][0m
+[2025-05-22 21:23:21,659] INFO [django.channels.server:168] [mHTTP OPTIONS /api/tutor_dashboard/ 200 [0.03, 127.0.0.1:8227][0m
+[2025-05-22 21:23:21,659] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,660] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,660] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,660] INFO [django.channels.server:168] [mHTTP OPTIONS /api/notification/80 200 [0.03, 127.0.0.1:8226][0m
+[2025-05-22 21:23:21,660] INFO [django.channels.server:168] [mHTTP OPTIONS /api/notification/80 200 [0.03, 127.0.0.1:8226][0m
+[2025-05-22 21:23:21,661] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,662] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,662] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,662] INFO [django.channels.server:168] [mHTTP OPTIONS /api/t_profile/ 200 [0.04, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,662] INFO [django.channels.server:168] [mHTTP OPTIONS /api/t_profile/ 200 [0.04, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,663] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,663] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,664] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,664] INFO [django.channels.server:168] [mHTTP OPTIONS /api/tutorcourse/8/ 200 [0.02, 127.0.0.1:8228][0m
+[2025-05-22 21:23:21,664] INFO [django.channels.server:168] [mHTTP OPTIONS /api/tutorcourse/8/ 200 [0.02, 127.0.0.1:8228][0m
+[2025-05-22 21:23:21,668] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,669] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,670] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,670] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,697] DEBUG [api.views:474] DEBUG - request.user: evana@gmail.com
+[2025-05-22 21:23:21,697] DEBUG [api.views:475] DEBUG - request.user.is_authenticated: True
+[2025-05-22 21:23:21,699] DEBUG [api.views:476] DEBUG - request headers: {'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDE1NjAwLCJpYXQiOjE3NDc5MjkyMDAsImp0aSI6IjE3M2VjZmY5MmQ1ZjRhMDFiNjQyMjcyNjMxOGJmZTRhIiwidXNlcl9pZCI6ODB9.ZCiOwNTNDYH4Au5npzRajGYiahCzv-kliyikdk49EFU', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'Accept': 'application/json, text/plain, */*', 'Sec-Ch-Ua': '"Chromium";v="136", "Microsoft Edge";v="136", "Not.A/Brand";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Origin': 'http://localhost:3000', 'Sec-Fetch-Site': 'cross-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:3000/', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'en-US,en;q=0.9,en-IN;q=0.8'}
+[2025-05-22 21:23:21,710] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,711] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,712] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8226]
+[2025-05-22 21:23:21,714] INFO [django.channels.server:168] [mHTTP GET /api/t_profile/ 200 [0.04, 127.0.0.1:8226][0m
+[2025-05-22 21:23:21,714] INFO [django.channels.server:168] [mHTTP GET /api/t_profile/ 200 [0.04, 127.0.0.1:8226][0m
+[2025-05-22 21:23:21,722] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,723] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,724] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8228]
+[2025-05-22 21:23:21,725] INFO [django.channels.server:168] [mHTTP GET /api/notification/80 200 [0.06, 127.0.0.1:8228][0m
+[2025-05-22 21:23:21,725] INFO [django.channels.server:168] [mHTTP GET /api/notification/80 200 [0.06, 127.0.0.1:8228][0m
+[2025-05-22 21:23:21,731] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,731] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,732] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8227]
+[2025-05-22 21:23:21,732] INFO [django.channels.server:168] [mHTTP GET /api/tutorcourse/8/ 200 [0.06, 127.0.0.1:8227][0m
+[2025-05-22 21:23:21,732] INFO [django.channels.server:168] [mHTTP GET /api/tutorcourse/8/ 200 [0.06, 127.0.0.1:8227][0m
+[2025-05-22 21:23:21,749] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,749] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,750] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8203]
+[2025-05-22 21:23:21,750] INFO [django.channels.server:168] [mHTTP GET /api/tutor_dashboard/ 200 [0.08, 127.0.0.1:8203][0m
+[2025-05-22 21:23:21,750] INFO [django.channels.server:168] [mHTTP GET /api/tutor_dashboard/ 200 [0.08, 127.0.0.1:8203][0m
+[2025-05-22 21:23:22,561] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\tzdata\__init__.py first seen with mtime 1734683617.523618
+[2025-05-22 21:23:22,561] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\tzdata\__init__.py first seen with mtime 1734683617.523618
+[2025-05-22 21:23:22,571] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\tzdata\zoneinfo\Asia\__init__.py first seen with mtime 1734683617.7096808
+[2025-05-22 21:23:22,571] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\tzdata\zoneinfo\Asia\__init__.py first seen with mtime 1734683617.7096808
+[2025-05-22 21:23:22,629] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\tzdata\zoneinfo\__init__.py first seen with mtime 1734683617.545585
+[2025-05-22 21:23:22,629] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\tzdata\zoneinfo\__init__.py first seen with mtime 1734683617.545585
+[2025-05-22 21:23:31,443] DEBUG [daphne.http_protocol:166] HTTP b'POST' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,522] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,523] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,523] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,524] INFO [django.channels.server:168] [mHTTP POST /api/logout/ 200 [0.08, 127.0.0.1:8253][0m
+[2025-05-22 21:23:31,524] INFO [django.channels.server:168] [mHTTP POST /api/logout/ 200 [0.08, 127.0.0.1:8253][0m
+[2025-05-22 21:23:31,571] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,573] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8256]
+[2025-05-22 21:23:31,574] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8255]
+[2025-05-22 21:23:31,604] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,604] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,609] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,611] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.04, 127.0.0.1:8253][0m
+[2025-05-22 21:23:31,611] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.04, 127.0.0.1:8253][0m
+[2025-05-22 21:23:31,619] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,626] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8255]
+[2025-05-22 21:23:31,626] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8255]
+[2025-05-22 21:23:31,626] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8255]
+[2025-05-22 21:23:31,627] INFO [django.channels.server:168] [mHTTP GET /api/all_teachers/ 200 [0.05, 127.0.0.1:8255][0m
+[2025-05-22 21:23:31,627] INFO [django.channels.server:168] [mHTTP GET /api/all_teachers/ 200 [0.05, 127.0.0.1:8255][0m
+[2025-05-22 21:23:31,630] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8256]
+[2025-05-22 21:23:31,631] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8256]
+[2025-05-22 21:23:31,631] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8256]
+[2025-05-22 21:23:31,632] INFO [django.channels.server:168] [mHTTP GET /api/courses/ 200 [0.06, 127.0.0.1:8256][0m
+[2025-05-22 21:23:31,632] INFO [django.channels.server:168] [mHTTP GET /api/courses/ 200 [0.06, 127.0.0.1:8256][0m
+[2025-05-22 21:23:31,639] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,640] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,640] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,640] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8253][0m
+[2025-05-22 21:23:31,640] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8253][0m
+[2025-05-22 21:23:31,643] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,656] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,658] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,659] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:31,662] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8253][0m
+[2025-05-22 21:23:31,662] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8253][0m
+[2025-05-22 21:23:32,904] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:32,917] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:32,918] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:32,918] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:32,920] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8253][0m
+[2025-05-22 21:23:32,920] INFO [django.channels.server:168] [mHTTP GET /api/category/ 200 [0.02, 127.0.0.1:8253][0m
+[2025-05-22 21:23:40,745] DEBUG [daphne.http_protocol:166] HTTP b'POST' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,511] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,512] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,512] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,512] INFO [django.channels.server:168] [mHTTP POST /api/token/ 200 [1.77, 127.0.0.1:8253][0m
+[2025-05-22 21:23:42,512] INFO [django.channels.server:168] [mHTTP POST /api/token/ 200 [1.77, 127.0.0.1:8253][0m
+[2025-05-22 21:23:42,517] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,530] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,531] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,531] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,532] INFO [django.channels.server:168] [mHTTP GET /api/user-details/ 200 [0.01, 127.0.0.1:8253][0m
+[2025-05-22 21:23:42,532] INFO [django.channels.server:168] [mHTTP GET /api/user-details/ 200 [0.01, 127.0.0.1:8253][0m
+[2025-05-22 21:23:42,673] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8256]
+[2025-05-22 21:23:42,674] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,675] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8255]
+[2025-05-22 21:23:42,680] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 8284]
+[2025-05-22 21:23:42,726] DEBUG [api.views:474] DEBUG - request.user: evana@gmail.com
+[2025-05-22 21:23:42,727] DEBUG [api.views:475] DEBUG - request.user.is_authenticated: True
+[2025-05-22 21:23:42,730] DEBUG [api.views:476] DEBUG - request headers: {'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4MDE1NjIxLCJpYXQiOjE3NDc5MjkyMjEsImp0aSI6IjVhYTU0NTk3NzFhMjQxYWVhMDBlMGQyMjk1M2M1Y2Y4IiwidXNlcl9pZCI6ODB9.UsmwrEzYpT0rOyaDX3v-iSh8P8LfpcXOVMVYbVYqNc0', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'Accept': 'application/json, text/plain, */*', 'Sec-Ch-Ua': '"Chromium";v="136", "Microsoft Edge";v="136", "Not.A/Brand";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Origin': 'https://mysmartlearn.com', 'Sec-Fetch-Site': 'cross-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'en-US,en;q=0.9,en-IN;q=0.8'}
+[2025-05-22 21:23:42,745] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8256]
+[2025-05-22 21:23:42,746] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8256]
+[2025-05-22 21:23:42,748] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8256]
+[2025-05-22 21:23:42,749] INFO [django.channels.server:168] [mHTTP GET /api/t_profile/ 200 [0.08, 127.0.0.1:8256][0m
+[2025-05-22 21:23:42,749] INFO [django.channels.server:168] [mHTTP GET /api/t_profile/ 200 [0.08, 127.0.0.1:8256][0m
+[2025-05-22 21:23:42,755] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8255]
+[2025-05-22 21:23:42,756] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8255]
+[2025-05-22 21:23:42,756] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8255]
+[2025-05-22 21:23:42,759] INFO [django.channels.server:168] [mHTTP GET /api/notification/80 200 [0.08, 127.0.0.1:8255][0m
+[2025-05-22 21:23:42,759] INFO [django.channels.server:168] [mHTTP GET /api/notification/80 200 [0.08, 127.0.0.1:8255][0m
+[2025-05-22 21:23:42,764] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8284]
+[2025-05-22 21:23:42,764] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8284]
+[2025-05-22 21:23:42,765] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8284]
+[2025-05-22 21:23:42,767] INFO [django.channels.server:168] [mHTTP GET /api/tutorcourse/8/ 200 [0.09, 127.0.0.1:8284][0m
+[2025-05-22 21:23:42,767] INFO [django.channels.server:168] [mHTTP GET /api/tutorcourse/8/ 200 [0.09, 127.0.0.1:8284][0m
+[2025-05-22 21:23:42,772] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,772] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,772] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 8253]
+[2025-05-22 21:23:42,773] INFO [django.channels.server:168] [mHTTP GET /api/tutor_dashboard/ 200 [0.10, 127.0.0.1:8253][0m
+[2025-05-22 21:23:42,773] INFO [django.channels.server:168] [mHTTP GET /api/tutor_dashboard/ 200 [0.10, 127.0.0.1:8253][0m

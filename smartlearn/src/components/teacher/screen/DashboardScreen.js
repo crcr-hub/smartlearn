@@ -8,7 +8,6 @@ import { useEffect } from "react";
 const TeacherDashboardScreen = () => {
   const dispatch = useDispatch()
   const {tutordashboardData} = useSelector((state)=>state.auth)
-  console.log(tutordashboardData)
   useEffect (()=>{
     dispatch(tutorDashboard())
   },[dispatch])

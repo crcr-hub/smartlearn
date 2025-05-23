@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { averageRating,  fetchModules,  fetchStCourse,  getAllFeedback } from '../../../redux/authSlices';
+import { averageRating,  fetchCourse,  fetchModules,  fetchStCourse,  getAllFeedback } from '../../../redux/authSlices';
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import image17 from "../../../assets/images/image17.jpg";
 
 function CourseDetails() {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const {coursedetails} = useSelector((state)=>state.auth)
     const { course } = useSelector((state) => state.auth); // Assuming course details are in state
     const { modules } = useSelector((state) => state.auth);
     const {average_rating} = useSelector((state)=>state.auth)
@@ -39,10 +40,9 @@ function CourseDetails() {
     
 
      useEffect(() => {
-    //    dispatch(fetchCourse(id));
+       dispatch(fetchCourse(id));
        if (course && course.course && course.course.id) {
         const courseId = course.course.id;
-         dispatch(fetchStCourse(courseId));
          dispatch(fetchModules(courseId));
         dispatch(averageRating(courseId));
          dispatch(getAllFeedback(courseId));

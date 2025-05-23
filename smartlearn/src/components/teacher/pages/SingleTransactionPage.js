@@ -8,7 +8,6 @@ function SingleTransactionPage() {
     const dispatch = useDispatch()
     const {cid} = useParams()
     const {singleTransaction_data} = useSelector((state)=>state.auth)
-    console.log(singleTransaction_data)
     useEffect(()=>{
         dispatch(singleTransaction(cid))
     },[dispatch])

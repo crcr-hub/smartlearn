@@ -1,7 +1,6 @@
 
 const AreaProgressChart = ({ cardInfo }) => {
   const maxStudentCount = Math.max(...(cardInfo?.top_courses?.map(course => course.student_count) || [1]));
-  console.log("Max Student Count:", maxStudentCount);
   return (
     <div className="progress-bar" >
       <div className="progress-bar-info">
@@ -10,8 +9,7 @@ const AreaProgressChart = ({ cardInfo }) => {
       <div className="progress-bar-list">
         {cardInfo?.top_courses?.map((course, index) => {
           const widthPercentage = maxStudentCount > 0 ? (course.student_count / maxStudentCount) * 100 : 0;
-          console.log(`Course: ${course.course_name}, Width: ${widthPercentage}%`);
-
+         
           return (
             <div className="progress-bar-item" key={course.course_id}>
               <div className="bar-item-info">

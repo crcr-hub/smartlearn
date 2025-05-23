@@ -56,8 +56,6 @@ function TeacherProfile() {
 
     },[teacher,dispatch])
 
-
-    console.log("dattas",teacher,profileData)
     const handleEditClick = () => {
         setIsEditing(true);
     };

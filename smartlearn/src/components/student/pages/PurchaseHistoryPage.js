@@ -7,7 +7,7 @@ function PurchaseHistoryPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {order_items} = useSelector((state)=>state.auth)
-    console.log("order",order_items)
+
     useEffect(()=>{
         dispatch(fetchOrder())
     },[dispatch])

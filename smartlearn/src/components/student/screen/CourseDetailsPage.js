@@ -3,7 +3,7 @@ import StudentNavbar from '../StudentNavbar'
 import CourseDetails from '../pages/CourseDetails'
 import StudentFooter from '../StudentFooter'
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToCart, AddToWishlist,  FetchCart,  fetchStCourse } from '../../../redux/authSlices';
+import { AddToCart, AddToWishlist,  FetchCart,  fetchModules,  fetchStCourse } from '../../../redux/authSlices';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
@@ -39,6 +39,7 @@ function CourseDetailsPage() {
     dispatch(AddToCart(cartData)).then(() => {
       // Re-fetch the cart to update the UI
       dispatch(fetchStCourse(id));
+      dispatch(fetchModules(id))
        dispatch(FetchCart());
     });
   }

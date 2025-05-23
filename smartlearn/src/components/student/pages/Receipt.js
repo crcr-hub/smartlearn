@@ -9,7 +9,7 @@ function Receipt() {
     const dispatch = useDispatch()
     const {reciept_data} = useSelector((state)=>state.auth)
     const {profile}  = useSelector((state)=>state.auth)
-    console.log(reciept_data)
+
     useEffect(()=>{
         dispatch(fetchReciept(oid))
     },[dispatch])

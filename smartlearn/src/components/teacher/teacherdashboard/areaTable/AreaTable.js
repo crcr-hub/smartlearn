@@ -28,7 +28,7 @@ const AreaTable = ({cardInfo}) => {
           </thead>
           <tbody>
             {cardInfo?.latest_orders?.map((dataItem) => {
-              console.log("orderid",dataItem.order_id)
+             
               return (
                 <tr key={dataItem.order_id}>
                   <td>{dataItem.order_id}</td>
