@@ -8,7 +8,6 @@ import image17 from "../../../assets/images/image17.jpg";
 function CourseDetails() {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const {coursedetails} = useSelector((state)=>state.auth)
     const { course } = useSelector((state) => state.auth); // Assuming course details are in state
     const { modules } = useSelector((state) => state.auth);
     const {average_rating} = useSelector((state)=>state.auth)
@@ -41,9 +40,10 @@ function CourseDetails() {
 
      useEffect(() => {
        dispatch(fetchCourse(id));
+       dispatch(fetchModules(id));
        if (course && course.course && course.course.id) {
         const courseId = course.course.id;
-         dispatch(fetchModules(courseId));
+        
         dispatch(averageRating(courseId));
          dispatch(getAllFeedback(courseId));
      }

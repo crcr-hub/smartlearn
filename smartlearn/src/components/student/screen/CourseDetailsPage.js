@@ -16,6 +16,7 @@ function CourseDetailsPage() {
 
  useEffect(()=>{
         dispatch(fetchStCourse(id))
+        dispatch(fetchModules(id))
     },[dispatch])
 
   const goToWishlist = () =>{
