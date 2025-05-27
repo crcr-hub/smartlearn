@@ -8,9 +8,6 @@ import { connectNotificationSocket } from "./redux/notificationThunk";
 
 
 function App() {
-
-
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +41,7 @@ function App() {
         }
       }
       setLoading(false);
-    };
+    }
   
     syncAuth();
   }, [dispatch, navigate, location.pathname]);
