@@ -9,6 +9,7 @@ from django.db.models import Count
 from django.utils.timezone import now
 from courses.models import Courses, Status
 from courses.serializer import CourseSerializer, StatusSerializer
+from .permission import IsAdminUserOnly
 from student.models import EnrolledCourses, Order, Order_items, StudentProfile,Notification
 from student.serializer import StudentProfileSerializer
 from teacher.models import TeacherProfile
@@ -56,47 +57,6 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             user_status.save()
         return response  # Return the token response
     
-
-
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def get_user_details(request):
-#     user = request.user
-#     user_data = {
-#         "user_id": user.id,
-#         "username": user.username,
-#         "email": user.email,
-#         "role": user.role,
-#         "is_superuser": user.is_superuser,
-#         "block_status": user.block_status,
-#     }
-
-#     # Check if user is a student
-#     if hasattr(user, 'studentprofile'):
-#         student_profile = user.studentprofile
-#         user_data.update({
-#             "first_name": student_profile.first_name,
-#             "last_name": student_profile.last_name,
-#             "place": student_profile.place,
-#             "qualification":student_profile.qualification,
-#             "mobile":student_profile.mobile,
-#         })
-
-#     # Check if user is a teacher
-#     if hasattr(user, 'teacherprofile'):
-#         teacher_profile = user.teacherprofile
-#         user_data.update({
-#             "profile_id": teacher_profile.id,
-#             "first_name": teacher_profile.first_name,
-#             "last_name": teacher_profile.last_name,
-#             "place": teacher_profile.place,
-#             "gender": teacher_profile.gender,
-#             "qualification": teacher_profile.qualification,
-#             "experience": teacher_profile.experience,
-#             "experience_in": teacher_profile.experience_in,
-#         })
-
-#     return Response(user_data)
 
 
 
@@ -268,7 +228,7 @@ class AdminNotificationsView(APIView):
 
 
 class PendingCoursesView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminUserOnly]
     def get(self, request):
         courses = Courses.objects.exclude(Q(visible_status='public') 
                                           | Q(visible_status='private') | 
@@ -282,7 +242,7 @@ class PendingCoursesView(APIView):
 
 
 class ApproveCourseView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,IsAdminUserOnly]
     def patch(self, request, cid):
         course = get_object_or_404(Courses, id=cid)
         course.visible_status = 'Public'
@@ -330,7 +290,6 @@ class ClearAdminNotificationView(APIView):
 def list_students(request):
     users_with_student_profile = User.objects.filter(studentprofile__isnull=False).exclude(email='admin@admin.com').select_related('studentprofile')
 
-    # Serialize the users' student profiles
     serialized_users = UserSerializer(users_with_student_profile, many=True)
 
     combined_data = []
@@ -417,13 +376,10 @@ def handle_student(request, id):
 @permission_classes([IsAuthenticated])
 def handle_teacher(request, id):
     try:
-        # Fetch the student's profile
         user = User.objects.get(id =id)
         teacher = TeacherProfile.objects.get(user_id=id)
 
         if request.method == 'GET':
-         
-            # Serialize and return teacher data
             user_data = UserSerializer(user)
             serializer = TeacherProfileSerializer(teacher)
             combined_data = {
@@ -468,15 +424,13 @@ def handle_notification(request,id):
     user_id = int(id)
     
     if request.method == 'GET':
-        print("DEBUG - request.user:", request.user)
-        print("DEBUG - request.user.is_authenticated:", request.user.is_authenticated)
-        print("DEBUG - request headers:", request.headers)
-        logger.debug(f"DEBUG - request.user: {request.user}")
-        logger.debug(f"DEBUG - request.user.is_authenticated: {request.user.is_authenticated}")
-        logger.debug(f"DEBUG - request headers: {request.headers}")
-
-        print(user_id,type(user_id),request.user.id)
         if request.user.id == user_id:
+            print("DEBUG - request.user:", request.user)
+            print("DEBUG - request.user.is_authenticated:", request.user.is_authenticated)
+            print("DEBUG - request headers:", request.headers)
+            logger.debug(f"DEBUG - request.user: {request.user}")
+            logger.debug(f"DEBUG - request.user.is_authenticated: {request.user.is_authenticated}")
+            logger.debug(f"DEBUG - request headers: {request.headers}")
             user = request.user
             notifications = (Notification.objects
             .filter(recipient=user,is_read = False)
@@ -557,7 +511,7 @@ from django.db.models import Sum, Count
 
 
 class AdminDashboardView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,IsAdminUserOnly]
     def get(self, request):
         try:
             today = now().date()
@@ -685,24 +639,6 @@ def reports_view(request, report_type):
             }
             students.append(student_data)
 
-
-        # enrolled_students = EnrolledCourses.objects.select_related("user", "course")
-        # for entry in enrolled_students:
-        #     # Get the student's profile
-        #     student_profile = StudentProfile.objects.filter(user=entry.user).first()
-        #     student_name = f"{student_profile.first_name} {student_profile.last_name}" if student_profile else "Unknown"
-        #     # Get all offer prices for this course from Order_items
-        #     offer_price = entry.order.filter(course=entry.course).values_list("Offer_price", flat=True).first() or "N/A"
-        #     student_data = {
-        #         "student_name": student_name,
-        #         "course_name": entry.course.name,
-        #         "enrolled_date": entry.starting_date.strftime("%Y-%m-%d"),
-        #         "offer_price": offer_price,  # Now a single value
-        #         "teacher": entry.course.teacher.first_name if hasattr(entry.course, "teacher") else "N/A",
-        #         "total_income": Order_items.objects.filter(course=entry.course).aggregate(Sum("Offer_price"))["Offer_price__sum"] or 0,
-        #     }
-
-        #     students.append(student_data) 
         return JsonResponse({"students": students})
 
     elif report_type == "teachers":

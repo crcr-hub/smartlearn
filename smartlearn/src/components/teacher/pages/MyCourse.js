@@ -85,7 +85,10 @@ function MyCourse() {
                     <th>Action</th>
                     <th>Status</th>
                   </tr>
-                  {tutorcourses.map((courses, index) => (
+                  {tutorcourses && tutorcourses.length > 0 ?(
+                  
+                  
+                  tutorcourses.map((courses, index) => (
                     <tr key={index}>
                       <td>{courses.name}</td>
                       <td>{courses.category_title}</td>
@@ -139,7 +142,13 @@ function MyCourse() {
                           : courses.visible_status}</Link> 
                       </td>
                     </tr>
-                  ))}
+                  )
+                
+                )
+              
+              ):
+              <p>No Courses Found</p>
+              }
                 </thead>
               </table>
 

@@ -41,6 +41,10 @@ s3_client = boto3.client(
 
 
 class CategoryView(APIView):
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [IsAuthenticated()]
+        return [AllowAny()]
     def post(self, request):
         """Create a new category"""
         serializer = CategorySerializer(data=request.data)
@@ -58,6 +62,10 @@ class CategoryView(APIView):
 
 class CourseView(APIView):
     parser_classes = [MultiPartParser, FormParser]
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [IsAuthenticated()]
+        return [AllowAny()]
     def post(self, request):
         """Create a new Courses"""
         serializer = CourseSerializer(data=request.data)
@@ -81,6 +89,7 @@ class CourseView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class CourseStatus(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self,request,cid):
         status_data = Status.objects.filter(course= cid)
         if not status_data.exists():
@@ -89,27 +98,29 @@ class CourseStatus(APIView):
         return Response(serializer.data, status = status.HTTP_200_OK)
 
 class CourseByTeacherView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, teacher_id):
-        courses = Courses.objects.filter(teacher__id=teacher_id) 
-        serializer = CourseSerializer(courses, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        user = request.user
+        teacher = TeacherProfile.objects.get(user = user)
+        if teacher_id == teacher.id:
+            courses = Courses.objects.filter(teacher=teacher) 
+            serializer = CourseSerializer(courses, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
     
 @api_view(['GET', 'PUT','PATCH'])
 @permission_classes([IsAuthenticated])
 def handle_category(request, id):
     try:
-        # Fetch the student's profile
         category = Category.objects.get(id =id)
         if request.method == 'GET':
-            # Serialize and return teacher data
             serializer = CategorySerializer(category)
             cat_data = {
             'category': serializer.data
             }
             return Response(cat_data, status=status.HTTP_200_OK)
         elif request.method == 'PUT':
-            #Update the category with new data
             serializer = CategorySerializer(category,data=request.data, partial = True)
             if serializer.is_valid():
                 serializer.save()

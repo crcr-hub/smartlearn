@@ -130,6 +130,7 @@ function TeacherAddCourse() {
             <div><h4 style={{ marginBottom: "50px" }}>Add Course</h4></div>
             <form className="row g-3" onSubmit={handleSubmit}>
                 {/* Category Selector */}
+                <span style={{color:"red"}}>Please note: 10% of the profit from each course sale will be retained by the admin.</span>
                 <div className="col-md-6">
               
                 <label htmlFor="inputState" className="form-label">Select Category</label>

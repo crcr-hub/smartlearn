@@ -20,7 +20,8 @@ function TeacherTransaction() {
     <div className='row'>
         <TeacherSideBar/>
         <section className='col-md-12' style={{width:"75%"}}>
-             
+         <div style={{height:"50px"}}></div>  
+         <span style={{color:"red"}}>Please note: 10% of the profit from each course sale will be retained by the admin.</span>  
 <table class="table">
   <thead  class="table-dark">
     

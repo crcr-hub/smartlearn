@@ -317,7 +317,7 @@ def tutorTransactions(request):
    
     teacher = get_object_or_404(TeacherProfile, user = user)
    # Fetch all courses for the teacher
-    courses = Courses.objects.filter(teacher=teacher,visible_status = 'public').annotate(
+    courses = Courses.objects.filter(teacher=teacher).annotate(
     purchase_count=Count('order_items'),
     total_revenue=Coalesce(Sum('order_items__Offer_price'), Value(0), output_field=DecimalField()),
     teacher_share=ExpressionWrapper(

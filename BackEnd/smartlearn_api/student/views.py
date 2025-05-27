@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from api.models import StudentProfile
 from api.serializer import UserSerializer
-from courses.models import Courses,Modules, RatingStar
+from courses.models import CourseStatus, Courses,Modules, RatingStar, Status
 from courses.serializer import CourseSerializer, ModuleSerializer, RatingSerializer
 from .serializer import( EnrolledCourseSerializer
 ,StudentProfileSerializer,OrderSerializer,OrderItemsSerializer,
@@ -95,9 +95,15 @@ class WishlistView(APIView):
             wishlist = Wishlist.objects.filter(user=user).select_related('course')
             list_course = []
             for items in wishlist:
+                latest_status = Status.objects.filter(course = items.course).order_by('-id').first()
                 is_enrolled = EnrolledCourses.objects.filter(user=user,course=items.course).exists()
                 in_cart = Cart.objects.filter(user=user,course=items.course).exists()
                 star_ratings = RatingStar.objects.filter(course = items.course)
+                if latest_status:
+                     course_status_value = latest_status.course_status
+                else:
+                    course_status_value = 'public'
+                
                 if star_ratings.exists():
                     average = sum([rating.star for rating in star_ratings]) / star_ratings.count()
                     average_rating = round(average, 1)
@@ -119,6 +125,7 @@ class WishlistView(APIView):
                     'offer_price':items.course.offer_price,
                     'in_cart':in_cart,
                     'is_enrolled':is_enrolled,
+                    'status':course_status_value
                 })
             if not wishlist.exists():
                 list_course = []
@@ -192,8 +199,14 @@ class FetchCartView(APIView):
                 }, status=status.HTTP_200_OK)
             
             cart_data = []
+            total_price = 0
+            total_offer_price = 0
             for items in cart:
-                
+                latest_status = Status.objects.filter(course=items.course).order_by('-id').first()
+                if latest_status:
+                    course_status_value = latest_status.course_status
+                else:
+                    course_status_value = 'public'
                 in_wishlist = Wishlist.objects.filter(user=user,course=items.course).exists()
                 star_ratings = RatingStar.objects.filter(course = items.course)
                 if star_ratings.exists():
@@ -215,13 +228,18 @@ class FetchCartView(APIView):
                     'price':items.course.price,
                     'offer_price':items.course.offer_price,
                     'in_wishlist':in_wishlist,
+                    'status':course_status_value,
                 })
+                if course_status_value.lower() == 'public':
+                    total_price += items.course.price
+                    total_offer_price += items.course.offer_price
             
             serializer = CartSerializer(cart, many=True)
-            total_price = sum(item.course.price for item in cart)
-            total_offer_price = sum(item.course.offer_price for item in cart)
+            # total_price = sum(item.course.price for item in cart if Status.objects.filter(course=item.course)).order_by('-date').first() == 'Public' or 'public'
+           
+                
             discount = abs(total_price - total_offer_price)
-
+           
             return Response({
                 "cart_data":cart_data,
                 "total_price": total_price,
@@ -270,11 +288,12 @@ class GetCoursesView(APIView):
         cart_courses = []
         courses = Courses.objects.filter(id__in=course_ids)
         for items in courses:
+            
             if items.teacher.user.block_status:
                 teacher_name = 'Unavailable'
             else:
                 teacher_name = f"{items.teacher.first_name} {items.teacher.last_name}"
-
+            
 
             cart_courses.append({
                 'id':items.id,
@@ -283,6 +302,7 @@ class GetCoursesView(APIView):
                 'images':items.images.url,
                  'offer_price':items.offer_price,
                  'price':items.price,
+                
                 
             })
         serializer = CourseSerializer(courses, many=True)
@@ -324,10 +344,19 @@ def create_razorpay_order(request):
 @permission_classes([IsAuthenticated])
 def place_order(request):
     user = request.user
-    cart_items = Cart.objects.filter(user=user)
-    print("request data",request.data)
+    cart_items = Cart.objects.filter(user=user).select_related('course')
+    
     if not cart_items.exists():
         return Response({'error': 'Your cart is empty!'}, status=400)
+    for items in cart_items:
+        latest_status = Status.objects.filter(course=items.course).order_by('-id').first()
+        course_status_value = latest_status.course_status if latest_status else 'public'
+        if course_status_value.lower() != 'public':
+            return Response({
+                'error': f"Course '{items.course.name}' is not available for purchase. Please remove it from your cart."
+            }, status=400)
+
+       
     try:
          # Razorpay verification
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
