@@ -156,6 +156,7 @@ const TeacherAddModul = ({ selectedCourseId }) => {
           
             // Initialize Video.js when modal opens
             useEffect(() => {
+              console.log("video url",videoUrl)
               if (showModal && videoRef.current && !playerRef.current) {
                 playerRef.current = videojs(videoRef.current, {
                   autoplay: true,
