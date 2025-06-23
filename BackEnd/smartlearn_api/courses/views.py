@@ -237,6 +237,7 @@ def get_module(request,id):
 
             # Check if a new video file is uploaded
             new_media = request.FILES.get("media")
+            video_path = None
             if new_media and module.media:
                 
                 bucket_name = settings.AWS_STORAGE_BUCKET_NAME
@@ -304,6 +305,7 @@ class ModuleView(APIView):
         
         # Check if a video file is uploaded
         video_file = request.FILES.get("media")
+        print("okkkkkk video file",video_file)
         if not video_file:
             return Response({"error": "Video file is required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -322,6 +324,7 @@ class ModuleView(APIView):
             module.save(update_fields=['video_path'])
 
             # 🔹 Trigger Celery to process and upload video
+            print("from here")
             process_video_for_s3.delay(module.id)
             return Response({
                 "message": "Module created. Video processing in background.",
