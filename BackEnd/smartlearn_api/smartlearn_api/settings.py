@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     "mysmartlearn.com",
     "www.mysmartlearn.com",
     "56.228.22.44",
+    "smartlearn-self.vercel.app",
     "127.0.0.1",
     "localhost",
 ]
