@@ -300,6 +300,13 @@ def delete_s3_folder(module_id):
 
 
 class ModuleView(APIView):
+    def options(self, request, *args, **kwargs):
+        """Handle preflight CORS request"""
+        response = Response()
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+        return response
     def post(self, request):
         """Create a new Module and trigger Celery for video processing"""
         
