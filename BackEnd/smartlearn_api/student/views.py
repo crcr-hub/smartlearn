@@ -317,7 +317,7 @@ from django.conf import settings
 @permission_classes([IsAuthenticated])
 def create_razorpay_order(request):
     user = request.user
-
+    print("is authenticated",user)
     cart_items = Cart.objects.filter(user=user)
     if not cart_items.exists():
         return Response({'error': 'Your cart is empty!'}, status=400)
