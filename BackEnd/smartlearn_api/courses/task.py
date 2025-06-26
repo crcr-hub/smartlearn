@@ -36,7 +36,7 @@ def process_video_for_s3(module_id):
         course_name = module.course.name.replace(" ", "_")
         module_folder = f"{module.id}"
 
-        resolutions = [("360p", "640x360"), ("420p", "854x420"), ("720p", "1280x720")]
+        resolutions = [("360p", "640x360"), ("420p", "854x420")] #, ("720p", "1280x720")
         output_dir = f"/tmp/{module_folder}"
         os.makedirs(output_dir, exist_ok=True)
 
