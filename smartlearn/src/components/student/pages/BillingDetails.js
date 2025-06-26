@@ -45,7 +45,7 @@ function BillingDetails() {
       const { data } = await axiosInstance.post('/create_razorpay_order/');
   
       const options = {
-        key: "rzp_test_0ivBD82IWUdsoa",
+        key: "rzp_test_FWtXGgNxjWZOLx",
         amount: data.amount,
         currency: data.currency,
         name: "smartLearn",
