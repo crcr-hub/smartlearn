@@ -17704,3 +17704,585 @@
 [2025-06-26 14:48:41,878] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\locale\uk_UA\LC_MESSAGES\django.mo first seen with mtime 1735058425.5124593
 [2025-06-26 14:48:41,878] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\locale\zh_Hans\LC_MESSAGES\django.mo first seen with mtime 1735058425.5134602
 [2025-06-26 14:48:41,878] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\locale\zh_Hans\LC_MESSAGES\django.mo first seen with mtime 1735058425.5134602
+[2025-06-26 14:48:43,303] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\middleware\common.py first seen with mtime 1734683620.8116877
+[2025-06-26 14:48:43,303] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\middleware\common.py first seen with mtime 1734683620.8116877
+[2025-06-26 14:48:43,304] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\linalg.py first seen with mtime 1740508215.7012897
+[2025-06-26 14:48:43,304] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\linalg.py first seen with mtime 1740508215.7012897
+[2025-06-26 14:48:43,305] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_version.py first seen with mtime 1740508215.6702888
+[2025-06-26 14:48:43,305] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_version.py first seen with mtime 1740508215.6702888
+[2025-06-26 14:48:43,307] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_scalars.py first seen with mtime 1740508216.2412891
+[2025-06-26 14:48:43,307] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_scalars.py first seen with mtime 1740508216.2412891
+[2025-06-26 14:48:43,307] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\fromnumeric.py first seen with mtime 1740508216.0212903
+[2025-06-26 14:48:43,307] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\fromnumeric.py first seen with mtime 1740508216.0212903
+[2025-06-26 14:48:43,308] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\executor.py first seen with mtime 1734683620.7166896
+[2025-06-26 14:48:43,308] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\executor.py first seen with mtime 1734683620.7166896
+[2025-06-26 14:48:43,309] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0012_modules_updated_at.py first seen with mtime 1740686041.9608688
+[2025-06-26 14:48:43,309] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0012_modules_updated_at.py first seen with mtime 1740686041.9608688
+[2025-06-26 14:48:43,310] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_arraysetops_impl.py first seen with mtime 1740508215.6372879
+[2025-06-26 14:48:43,310] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_arraysetops_impl.py first seen with mtime 1740508215.6372879
+[2025-06-26 14:48:43,313] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0001_initial.py first seen with mtime 1735056592.0684702
+[2025-06-26 14:48:43,313] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0001_initial.py first seen with mtime 1735056592.0684702
+[2025-06-26 14:48:43,314] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\scimath.py first seen with mtime 1740508215.6322885
+[2025-06-26 14:48:43,314] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\scimath.py first seen with mtime 1740508215.6322885
+[2025-06-26 14:48:43,316] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\__init__.py first seen with mtime 1734683618.9811952
+[2025-06-26 14:48:43,316] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\__init__.py first seen with mtime 1734683618.9811952
+[2025-06-26 14:48:43,317] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0002_alter_courses_images.py first seen with mtime 1735545908.5537748
+[2025-06-26 14:48:43,317] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0002_alter_courses_images.py first seen with mtime 1735545908.5537748
+[2025-06-26 14:48:43,318] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0021_enrolledcourses_progress.py first seen with mtime 1740034175.9410408
+[2025-06-26 14:48:43,318] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0021_enrolledcourses_progress.py first seen with mtime 1740034175.9410408
+[2025-06-26 14:48:43,319] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0009_alter_user_last_name_max_length.py first seen with mtime 1734683619.3978844
+[2025-06-26 14:48:43,319] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0009_alter_user_last_name_max_length.py first seen with mtime 1734683619.3978844
+[2025-06-26 14:48:43,320] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\__init__.py first seen with mtime 1735023515.155857
+[2025-06-26 14:48:43,320] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\__init__.py first seen with mtime 1735023515.155857
+[2025-06-26 14:48:43,320] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0031_order_user_state_alter_order_items_order.py first seen with mtime 1747898850.0915277
+[2025-06-26 14:48:43,320] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0031_order_user_state_alter_order_items_order.py first seen with mtime 1747898850.0915277
+[2025-06-26 14:48:43,321] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0001_initial.py first seen with mtime 1735058425.5184584
+[2025-06-26 14:48:43,321] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0001_initial.py first seen with mtime 1735058425.5184584
+[2025-06-26 14:48:43,322] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0012_alter_outstandingtoken_user.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,322] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0012_alter_outstandingtoken_user.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,322] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_function_base_impl.py first seen with mtime 1740508215.6452918
+[2025-06-26 14:48:43,322] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_function_base_impl.py first seen with mtime 1740508215.6452918
+[2025-06-26 14:48:43,324] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\db.py first seen with mtime 1737998517.5186298
+[2025-06-26 14:48:43,324] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\db.py first seen with mtime 1737998517.5186298
+[2025-06-26 14:48:43,324] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0002_alter_studentprofile_mobile.py first seen with mtime 1735113982.888076
+[2025-06-26 14:48:43,324] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0002_alter_studentprofile_mobile.py first seen with mtime 1735113982.888076
+[2025-06-26 14:48:43,326] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\views.py first seen with mtime 1734683619.2463708
+[2025-06-26 14:48:43,326] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\views.py first seen with mtime 1734683619.2463708
+[2025-06-26 14:48:43,327] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0003_auto_20171017_2007.py first seen with mtime 1735058425.5194583
+[2025-06-26 14:48:43,327] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0003_auto_20171017_2007.py first seen with mtime 1735058425.5194583
+[2025-06-26 14:48:43,328] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_iotools.py first seen with mtime 1740508215.6502888
+[2025-06-26 14:48:43,328] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_iotools.py first seen with mtime 1740508215.6502888
+[2025-06-26 14:48:43,329] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0007_wishlist.py first seen with mtime 1737039463.5297637
+[2025-06-26 14:48:43,329] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0007_wishlist.py first seen with mtime 1737039463.5297637
+[2025-06-26 14:48:43,331] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\_umath_linalg.cp311-win_amd64.pyd first seen with mtime 1740508215.706291
+[2025-06-26 14:48:43,331] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\_umath_linalg.cp311-win_amd64.pyd first seen with mtime 1740508215.706291
+[2025-06-26 14:48:43,332] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0013_message_is_read_message_recipient_alter_message_room_and_more.py first seen with mtime 1738692374.9466028
+[2025-06-26 14:48:43,332] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0013_message_is_read_message_recipient_alter_message_room_and_more.py first seen with mtime 1738692374.9466028
+[2025-06-26 14:48:43,332] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\matrixlib\defmatrix.py first seen with mtime 1740508215.7362878
+[2025-06-26 14:48:43,332] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\matrixlib\defmatrix.py first seen with mtime 1740508215.7362878
+[2025-06-26 14:48:43,333] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0003_courses_date_created_alter_courses_images.py first seen with mtime 1735582599.7590551
+[2025-06-26 14:48:43,333] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0003_courses_date_created_alter_courses_images.py first seen with mtime 1735582599.7590551
+[2025-06-26 14:48:43,334] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_char_codes.py first seen with mtime 1740508216.2372906
+[2025-06-26 14:48:43,334] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_char_codes.py first seen with mtime 1740508216.2372906
+[2025-06-26 14:48:43,335] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_nested_sequence.py first seen with mtime 1740508216.2412891
+[2025-06-26 14:48:43,335] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_nested_sequence.py first seen with mtime 1740508216.2412891
+[2025-06-26 14:48:43,335] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_scimath_impl.py first seen with mtime 1740508215.6572874
+[2025-06-26 14:48:43,335] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_scimath_impl.py first seen with mtime 1740508215.6572874
+[2025-06-26 14:48:43,336] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0008_order.py first seen with mtime 1737182381.5970807
+[2025-06-26 14:48:43,336] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0008_order.py first seen with mtime 1737182381.5970807
+[2025-06-26 14:48:43,337] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0011_update_proxy_permissions.py first seen with mtime 1734683619.3988848
+[2025-06-26 14:48:43,337] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0011_update_proxy_permissions.py first seen with mtime 1734683619.3988848
+[2025-06-26 14:48:43,338] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\generic\websocket.py first seen with mtime 1737998517.5256293
+[2025-06-26 14:48:43,338] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\generic\websocket.py first seen with mtime 1737998517.5256293
+[2025-06-26 14:48:43,338] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0019_alter_courses_visible_status_and_more.py first seen with mtime 1745430955.84561
+[2025-06-26 14:48:43,338] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0019_alter_courses_visible_status_and_more.py first seen with mtime 1745430955.84561
+[2025-06-26 14:48:43,339] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\core\cache\backends\locmem.py first seen with mtime 1734683620.627688
+[2025-06-26 14:48:43,339] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\core\cache\backends\locmem.py first seen with mtime 1734683620.627688
+[2025-06-26 14:48:43,340] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0019_alter_progress_time_watched.py first seen with mtime 1740021079.5873928
+[2025-06-26 14:48:43,340] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0019_alter_progress_time_watched.py first seen with mtime 1740021079.5873928
+[2025-06-26 14:48:43,340] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0014_alter_courses_teacher.py first seen with mtime 1741857918.389197
+[2025-06-26 14:48:43,340] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0014_alter_courses_teacher.py first seen with mtime 1741857918.389197
+[2025-06-26 14:48:43,341] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0009_rename_city_order_user_city_and_more.py first seen with mtime 1737187494.2178867
+[2025-06-26 14:48:43,341] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0009_rename_city_order_user_city_and_more.py first seen with mtime 1737187494.2178867
+[2025-06-26 14:48:43,341] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\__init__.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,341] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\__init__.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,342] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\stride_tricks.py first seen with mtime 1740508215.6332912
+[2025-06-26 14:48:43,342] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\stride_tricks.py first seen with mtime 1740508215.6332912
+[2025-06-26 14:48:43,343] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\exceptions.py first seen with mtime 1737998517.5196376
+[2025-06-26 14:48:43,343] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\exceptions.py first seen with mtime 1737998517.5196376
+[2025-06-26 14:48:43,344] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0005_modules.py first seen with mtime 1736528686.3002272
+[2025-06-26 14:48:43,344] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0005_modules.py first seen with mtime 1736528686.3002272
+[2025-06-26 14:48:43,344] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\mixins.py first seen with mtime 1740508215.6272902
+[2025-06-26 14:48:43,344] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\mixins.py first seen with mtime 1740508215.6272902
+[2025-06-26 14:48:43,345] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_twodim_base_impl.py first seen with mtime 1740508215.66229
+[2025-06-26 14:48:43,345] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_twodim_base_impl.py first seen with mtime 1740508215.66229
+[2025-06-26 14:48:43,346] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_ufunc.py first seen with mtime 1740508216.2432888
+[2025-06-26 14:48:43,346] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_ufunc.py first seen with mtime 1740508216.2432888
+[2025-06-26 14:48:43,346] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0011_modules_processing_status.py first seen with mtime 1740576015.8736992
+[2025-06-26 14:48:43,346] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0011_modules_processing_status.py first seen with mtime 1740576015.8736992
+[2025-06-26 14:48:43,347] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\__init__.py first seen with mtime 1740508216.2442925
+[2025-06-26 14:48:43,347] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\__init__.py first seen with mtime 1740508216.2442925
+[2025-06-26 14:48:43,348] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0005_alter_studentprofile_mobile.py first seen with mtime 1735286503.1521778
+[2025-06-26 14:48:43,348] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0005_alter_studentprofile_mobile.py first seen with mtime 1735286503.1521778
+[2025-06-26 14:48:43,348] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\routing.py first seen with mtime 1747140107.7980242
+[2025-06-26 14:48:43,348] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\routing.py first seen with mtime 1747140107.7980242
+[2025-06-26 14:48:43,349] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\contenttypes\migrations\0002_remove_content_type_name.py first seen with mtime 1734683619.526882
+[2025-06-26 14:48:43,349] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\contenttypes\migrations\0002_remove_content_type_name.py first seen with mtime 1734683619.526882
+[2025-06-26 14:48:43,358] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\backends.py first seen with mtime 1734683619.238201
+[2025-06-26 14:48:43,358] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\backends.py first seen with mtime 1734683619.238201
+[2025-06-26 14:48:43,359] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_ufunc_config.py first seen with mtime 1740508216.097288
+[2025-06-26 14:48:43,359] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_ufunc_config.py first seen with mtime 1740508216.097288
+[2025-06-26 14:48:43,360] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\_linalg.py first seen with mtime 1740508215.70329
+[2025-06-26 14:48:43,360] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\_linalg.py first seen with mtime 1740508215.70329
+[2025-06-26 14:48:43,360] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\PIL\_imaging.cp311-win_amd64.pyd first seen with mtime 1740508213.0228052
+[2025-06-26 14:48:43,360] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\PIL\_imaging.cp311-win_amd64.pyd first seen with mtime 1740508213.0228052
+[2025-06-26 14:48:43,361] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\backends\__init__.py first seen with mtime 1734683620.2951734
+[2025-06-26 14:48:43,361] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\backends\__init__.py first seen with mtime 1734683620.2951734
+[2025-06-26 14:48:43,362] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_dtype_ctypes.py first seen with mtime 1740508216.0462885
+[2025-06-26 14:48:43,362] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_dtype_ctypes.py first seen with mtime 1740508216.0462885
+[2025-06-26 14:48:43,363] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0027_alter_enrolledcourses_order.py first seen with mtime 1741279821.4048443
+[2025-06-26 14:48:43,363] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0027_alter_enrolledcourses_order.py first seen with mtime 1741279821.4048443
+[2025-06-26 14:48:43,364] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\views\csrf.py first seen with mtime 1734683620.8736887
+[2025-06-26 14:48:43,364] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\views\csrf.py first seen with mtime 1734683620.8736887
+[2025-06-26 14:48:43,364] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\middleware.py first seen with mtime 1739285450.7463717
+[2025-06-26 14:48:43,364] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\middleware.py first seen with mtime 1739285450.7463717
+[2025-06-26 14:48:43,365] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\introspect.py first seen with mtime 1740508215.6252882
+[2025-06-26 14:48:43,365] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\introspect.py first seen with mtime 1740508215.6252882
+[2025-06-26 14:48:43,366] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\core\asgi.py first seen with mtime 1734683620.620688
+[2025-06-26 14:48:43,366] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\core\asgi.py first seen with mtime 1734683620.620688
+[2025-06-26 14:48:43,367] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\consumer.py first seen with mtime 1747913852.8792267
+[2025-06-26 14:48:43,367] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\consumer.py first seen with mtime 1747913852.8792267
+[2025-06-26 14:48:43,368] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\exceptions.py first seen with mtime 1734683620.2931726
+[2025-06-26 14:48:43,368] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\exceptions.py first seen with mtime 1734683620.2931726
+[2025-06-26 14:48:43,370] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_type_check_impl.py first seen with mtime 1740508215.6642895
+[2025-06-26 14:48:43,370] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_type_check_impl.py first seen with mtime 1740508215.6642895
+[2025-06-26 14:48:43,371] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\backends\base.py first seen with mtime 1734683620.2961726
+[2025-06-26 14:48:43,371] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\backends\base.py first seen with mtime 1734683620.2961726
+[2025-06-26 14:48:43,372] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0005_remove_outstandingtoken_jti.py first seen with mtime 1735058425.5204585
+[2025-06-26 14:48:43,372] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0005_remove_outstandingtoken_jti.py first seen with mtime 1735058425.5204585
+[2025-06-26 14:48:43,373] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\contenttypes\migrations\__init__.py first seen with mtime 1734683619.526882
+[2025-06-26 14:48:43,373] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\contenttypes\migrations\__init__.py first seen with mtime 1734683619.526882
+[2025-06-26 14:48:43,374] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0014_studentnotification_delete_userstatus.py first seen with mtime 1739120806.216078
+[2025-06-26 14:48:43,374] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0014_studentnotification_delete_userstatus.py first seen with mtime 1739120806.216078
+[2025-06-26 14:48:43,374] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0020_progress_course_alter_progress_time_watched.py first seen with mtime 1740031124.0932975
+[2025-06-26 14:48:43,374] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0020_progress_course_alter_progress_time_watched.py first seen with mtime 1740031124.0932975
+[2025-06-26 14:48:43,375] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\middleware.py first seen with mtime 1734683619.2423697
+[2025-06-26 14:48:43,375] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\middleware.py first seen with mtime 1734683619.2423697
+[2025-06-26 14:48:43,376] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\middleware\security.py first seen with mtime 1734683620.813688
+[2025-06-26 14:48:43,376] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\middleware\security.py first seen with mtime 1734683620.813688
+[2025-06-26 14:48:43,376] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0016_notification_delete_studentnotification.py first seen with mtime 1739513310.2394395
+[2025-06-26 14:48:43,376] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0016_notification_delete_studentnotification.py first seen with mtime 1739513310.2394395
+[2025-06-26 14:48:43,378] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0013_alter_courses_visible_status.py first seen with mtime 1740746199.4568274
+[2025-06-26 14:48:43,378] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0013_alter_courses_visible_status.py first seen with mtime 1740746199.4568274
+[2025-06-26 14:48:43,378] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\einsumfunc.py first seen with mtime 1740508216.0192902
+[2025-06-26 14:48:43,378] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\einsumfunc.py first seen with mtime 1740508216.0192902
+[2025-06-26 14:48:43,379] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_dtype_like.py first seen with mtime 1740508216.238289
+[2025-06-26 14:48:43,379] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_dtype_like.py first seen with mtime 1740508216.238289
+[2025-06-26 14:48:43,380] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0003_studentprofile_gender_studentprofile_qualification.py first seen with mtime 1735274422.7046993
+[2025-06-26 14:48:43,380] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0003_studentprofile_gender_studentprofile_qualification.py first seen with mtime 1735274422.7046993
+[2025-06-26 14:48:43,380] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0003_alter_user_email_max_length.py first seen with mtime 1734683619.3938854
+[2025-06-26 14:48:43,380] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0003_alter_user_email_max_length.py first seen with mtime 1734683619.3938854
+[2025-06-26 14:48:43,382] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_arrayterator_impl.py first seen with mtime 1740508215.639289
+[2025-06-26 14:48:43,382] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_arrayterator_impl.py first seen with mtime 1740508215.639289
+[2025-06-26 14:48:43,383] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_internal.py first seen with mtime 1740508216.0472877
+[2025-06-26 14:48:43,383] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_internal.py first seen with mtime 1740508216.0472877
+[2025-06-26 14:48:43,385] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\array_utils.py first seen with mtime 1740508215.621289
+[2025-06-26 14:48:43,385] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\array_utils.py first seen with mtime 1740508215.621289
+[2025-06-26 14:48:43,386] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0001_initial.py first seen with mtime 1735488684.1419873
+[2025-06-26 14:48:43,386] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0001_initial.py first seen with mtime 1735488684.1419873
+[2025-06-26 14:48:43,386] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0016_alter_courses_visible_status_and_more.py first seen with mtime 1745294394.5330434
+[2025-06-26 14:48:43,386] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0016_alter_courses_visible_status_and_more.py first seen with mtime 1745294394.5330434
+[2025-06-26 14:48:43,387] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0006_cart.py first seen with mtime 1736764842.589617
+[2025-06-26 14:48:43,387] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0006_cart.py first seen with mtime 1736764842.589617
+[2025-06-26 14:48:43,387] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0005_passwordresetotp.py first seen with mtime 1744626600.2913883
+[2025-06-26 14:48:43,387] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0005_passwordresetotp.py first seen with mtime 1744626600.2913883
+[2025-06-26 14:48:43,388] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0004_auto_20171017_2013.py first seen with mtime 1735058425.5194583
+[2025-06-26 14:48:43,388] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0004_auto_20171017_2013.py first seen with mtime 1735058425.5194583
+[2025-06-26 14:48:43,388] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0010_modules_video_path.py first seen with mtime 1740550703.7974565
+[2025-06-26 14:48:43,388] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0010_modules_video_path.py first seen with mtime 1740550703.7974565
+[2025-06-26 14:48:43,389] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0004_alter_adminnotification_message_and_more.py first seen with mtime 1740476004.6923895
+[2025-06-26 14:48:43,389] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0004_alter_adminnotification_message_and_more.py first seen with mtime 1740476004.6923895
+[2025-06-26 14:48:43,390] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0002_alter_permission_name_max_length.py first seen with mtime 1734683619.3938854
+[2025-06-26 14:48:43,390] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0002_alter_permission_name_max_length.py first seen with mtime 1734683619.3938854
+[2025-06-26 14:48:43,391] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_add_docstring.py first seen with mtime 1740508216.2352898
+[2025-06-26 14:48:43,391] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_add_docstring.py first seen with mtime 1740508216.2352898
+[2025-06-26 14:48:43,392] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0002_outstandingtoken_jti_hex.py first seen with mtime 1735058425.5184584
+[2025-06-26 14:48:43,392] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0002_outstandingtoken_jti_hex.py first seen with mtime 1735058425.5184584
+[2025-06-26 14:48:43,393] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0003_teacherprofile_experience_in_and_more.py first seen with mtime 1735461373.291895
+[2025-06-26 14:48:43,393] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0003_teacherprofile_experience_in_and_more.py first seen with mtime 1735461373.291895
+[2025-06-26 14:48:43,393] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\format.py first seen with mtime 1740508215.6232886
+[2025-06-26 14:48:43,393] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\format.py first seen with mtime 1740508215.6232886
+[2025-06-26 14:48:43,394] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\matrixlib\__init__.py first seen with mtime 1740508215.7372904
+[2025-06-26 14:48:43,394] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\matrixlib\__init__.py first seen with mtime 1740508215.7372904
+[2025-06-26 14:48:43,394] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\migrations\0001_initial.py first seen with mtime 1734683620.455689
+[2025-06-26 14:48:43,394] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\migrations\0001_initial.py first seen with mtime 1734683620.455689
+[2025-06-26 14:48:43,395] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\sessions.py first seen with mtime 1737998517.5226302
+[2025-06-26 14:48:43,395] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\sessions.py first seen with mtime 1737998517.5226302
+[2025-06-26 14:48:43,395] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0028_alter_order_items_course.py first seen with mtime 1744289513.0940819
+[2025-06-26 14:48:43,395] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0028_alter_order_items_course.py first seen with mtime 1744289513.0940819
+[2025-06-26 14:48:43,396] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_asarray.py first seen with mtime 1740508216.043288
+[2025-06-26 14:48:43,396] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_asarray.py first seen with mtime 1740508216.043288
+[2025-06-26 14:48:43,398] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0011_chatroom_message_userstatus.py first seen with mtime 1737998827.2762458
+[2025-06-26 14:48:43,398] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0011_chatroom_message_userstatus.py first seen with mtime 1737998827.2762458
+[2025-06-26 14:48:43,398] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_datasource.py first seen with mtime 1740508215.6422884
+[2025-06-26 14:48:43,398] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_datasource.py first seen with mtime 1740508215.6422884
+[2025-06-26 14:48:43,399] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\__init__.py first seen with mtime 1734688648.56767
+[2025-06-26 14:48:43,399] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\__init__.py first seen with mtime 1734688648.56767
+[2025-06-26 14:48:43,399] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\layers.py first seen with mtime 1737998517.5206306
+[2025-06-26 14:48:43,399] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\layers.py first seen with mtime 1737998517.5206306
+[2025-06-26 14:48:43,400] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_array_api_info.py first seen with mtime 1740508215.3492882
+[2025-06-26 14:48:43,400] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_array_api_info.py first seen with mtime 1740508215.3492882
+[2025-06-26 14:48:43,400] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0007_auto_20171017_2214.py first seen with mtime 1735058425.5214598
+[2025-06-26 14:48:43,400] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0007_auto_20171017_2214.py first seen with mtime 1735058425.5214598
+[2025-06-26 14:48:43,401] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_nanfunctions_impl.py first seen with mtime 1740508215.6512885
+[2025-06-26 14:48:43,401] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_nanfunctions_impl.py first seen with mtime 1740508215.6512885
+[2025-06-26 14:48:43,402] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0004_alter_teacherprofile_user.py first seen with mtime 1735923766.6298006
+[2025-06-26 14:48:43,402] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0004_alter_teacherprofile_user.py first seen with mtime 1735923766.6298006
+[2025-06-26 14:48:43,402] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_index_tricks_impl.py first seen with mtime 1740508215.6482882
+[2025-06-26 14:48:43,402] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_index_tricks_impl.py first seen with mtime 1740508215.6482882
+[2025-06-26 14:48:43,403] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_methods.py first seen with mtime 1740508216.0492897
+[2025-06-26 14:48:43,403] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_methods.py first seen with mtime 1740508216.0492897
+[2025-06-26 14:48:43,404] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0010_comments.py first seen with mtime 1737696666.2651672
+[2025-06-26 14:48:43,404] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0010_comments.py first seen with mtime 1737696666.2651672
+[2025-06-26 14:48:43,404] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\__init__.py first seen with mtime 1735487110.4400594
+[2025-06-26 14:48:43,404] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\__init__.py first seen with mtime 1735487110.4400594
+[2025-06-26 14:48:43,405] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0007_alter_courses_description.py first seen with mtime 1737384027.9702902
+[2025-06-26 14:48:43,405] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0007_alter_courses_description.py first seen with mtime 1737384027.9702902
+[2025-06-26 14:48:43,406] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\typing\__init__.py first seen with mtime 1740508215.8922892
+[2025-06-26 14:48:43,406] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\typing\__init__.py first seen with mtime 1740508215.8922892
+[2025-06-26 14:48:43,407] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\graph.py first seen with mtime 1734683620.7166896
+[2025-06-26 14:48:43,407] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\graph.py first seen with mtime 1734683620.7166896
+[2025-06-26 14:48:43,408] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0001_initial.py first seen with mtime 1734683619.3928845
+[2025-06-26 14:48:43,408] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0001_initial.py first seen with mtime 1734683619.3928845
+[2025-06-26 14:48:43,410] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\records.py first seen with mtime 1740508216.0342891
+[2025-06-26 14:48:43,410] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\records.py first seen with mtime 1740508216.0342891
+[2025-06-26 14:48:43,410] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0025_alter_enrolledcourses_order.py first seen with mtime 1741174299.9278996
+[2025-06-26 14:48:43,410] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0025_alter_enrolledcourses_order.py first seen with mtime 1741174299.9278996
+[2025-06-26 14:48:43,411] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_utils_impl.py first seen with mtime 1740508215.6692922
+[2025-06-26 14:48:43,411] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_utils_impl.py first seen with mtime 1740508215.6692922
+[2025-06-26 14:48:43,412] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0022_message_image.py first seen with mtime 1740746199.4599211
+[2025-06-26 14:48:43,412] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0022_message_image.py first seen with mtime 1740746199.4599211
+[2025-06-26 14:48:43,412] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\shape_base.py first seen with mtime 1740508216.0372891
+[2025-06-26 14:48:43,412] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\shape_base.py first seen with mtime 1740508216.0372891
+[2025-06-26 14:48:43,413] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\0003_logentry_add_action_flag_choices.py first seen with mtime 1734683618.980197
+[2025-06-26 14:48:43,413] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\0003_logentry_add_action_flag_choices.py first seen with mtime 1734683618.980197
+[2025-06-26 14:48:43,414] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\middleware\clickjacking.py first seen with mtime 1734683620.8106885
+[2025-06-26 14:48:43,414] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\middleware\clickjacking.py first seen with mtime 1734683620.8106885
+[2025-06-26 14:48:43,414] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0017_alter_notification_notification_type.py first seen with mtime 1739513399.0104918
+[2025-06-26 14:48:43,414] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0017_alter_notification_notification_type.py first seen with mtime 1739513399.0104918
+[2025-06-26 14:48:43,415] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0010_alter_group_name_max_length.py first seen with mtime 1734683619.3978844
+[2025-06-26 14:48:43,415] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0010_alter_group_name_max_length.py first seen with mtime 1734683619.3978844
+[2025-06-26 14:48:43,417] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0005_alter_user_last_login_null.py first seen with mtime 1734683619.3958848
+[2025-06-26 14:48:43,417] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0005_alter_user_last_login_null.py first seen with mtime 1734683619.3958848
+[2025-06-26 14:48:43,418] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0001_initial.py first seen with mtime 1735056592.0704372
+[2025-06-26 14:48:43,418] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0001_initial.py first seen with mtime 1735056592.0704372
+[2025-06-26 14:48:43,418] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\0001_initial.py first seen with mtime 1734683618.979196
+[2025-06-26 14:48:43,418] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\0001_initial.py first seen with mtime 1734683618.979196
+[2025-06-26 14:48:43,419] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_add_newdocs_scalars.py first seen with mtime 1740508216.043288
+[2025-06-26 14:48:43,419] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_add_newdocs_scalars.py first seen with mtime 1740508216.043288
+[2025-06-26 14:48:43,420] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0015_alter_comments_created_at.py first seen with mtime 1739464332.8421834
+[2025-06-26 14:48:43,420] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0015_alter_comments_created_at.py first seen with mtime 1739464332.8421834
+[2025-06-26 14:48:43,420] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_arraypad_impl.py first seen with mtime 1740508215.6362875
+[2025-06-26 14:48:43,420] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_arraypad_impl.py first seen with mtime 1740508215.6362875
+[2025-06-26 14:48:43,421] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0015_alter_courses_visible_status_status.py first seen with mtime 1745250093.502859
+[2025-06-26 14:48:43,421] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0015_alter_courses_visible_status_status.py first seen with mtime 1745250093.502859
+[2025-06-26 14:48:43,421] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0001_initial.py first seen with mtime 1735056592.0694377
+[2025-06-26 14:48:43,421] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0001_initial.py first seen with mtime 1735056592.0694377
+[2025-06-26 14:48:43,422] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_histograms_impl.py first seen with mtime 1740508215.6462917
+[2025-06-26 14:48:43,422] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_histograms_impl.py first seen with mtime 1740508215.6462917
+[2025-06-26 14:48:43,423] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\models\sql\compiler.py first seen with mtime 1734683620.7486925
+[2025-06-26 14:48:43,423] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\models\sql\compiler.py first seen with mtime 1734683620.7486925
+[2025-06-26 14:48:43,424] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_pytesttester.py first seen with mtime 1740508215.3572886
+[2025-06-26 14:48:43,424] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_pytesttester.py first seen with mtime 1740508215.3572886
+[2025-06-26 14:48:43,425] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\__init__.py first seen with mtime 1734683619.3988848
+[2025-06-26 14:48:43,425] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\__init__.py first seen with mtime 1734683619.3988848
+[2025-06-26 14:48:43,426] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0008_alter_user_username_max_length.py first seen with mtime 1734683619.3968835
+[2025-06-26 14:48:43,426] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0008_alter_user_username_max_length.py first seen with mtime 1734683619.3968835
+[2025-06-26 14:48:43,426] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0012_alter_user_first_name_max_length.py first seen with mtime 1734683619.3988848
+[2025-06-26 14:48:43,426] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0012_alter_user_first_name_max_length.py first seen with mtime 1734683619.3988848
+[2025-06-26 14:48:43,428] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\arrayprint.py first seen with mtime 1740508216.014289
+[2025-06-26 14:48:43,428] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\arrayprint.py first seen with mtime 1740508216.014289
+[2025-06-26 14:48:43,429] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\recorder.py first seen with mtime 1734683620.719688
+[2025-06-26 14:48:43,429] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\recorder.py first seen with mtime 1734683620.719688
+[2025-06-26 14:48:43,430] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0003_adminnotification.py first seen with mtime 1740416135.8054478
+[2025-06-26 14:48:43,430] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0003_adminnotification.py first seen with mtime 1740416135.8054478
+[2025-06-26 14:48:43,431] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\npyio.py first seen with mtime 1740508215.6282892
+[2025-06-26 14:48:43,431] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\npyio.py first seen with mtime 1740508215.6282892
+[2025-06-26 14:48:43,431] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\asgi.py first seen with mtime 1747033352.6496103
+[2025-06-26 14:48:43,431] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\asgi.py first seen with mtime 1747033352.6496103
+[2025-06-26 14:48:43,432] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_ufunclike_impl.py first seen with mtime 1740508215.6662886
+[2025-06-26 14:48:43,432] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_ufunclike_impl.py first seen with mtime 1740508215.6662886
+[2025-06-26 14:48:43,433] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\__init__.py first seen with mtime 1735023524.174338
+[2025-06-26 14:48:43,433] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\__init__.py first seen with mtime 1735023524.174338
+[2025-06-26 14:48:43,434] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\generic\__init__.py first seen with mtime 1737998517.5246294
+[2025-06-26 14:48:43,434] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\generic\__init__.py first seen with mtime 1737998517.5246294
+[2025-06-26 14:48:43,434] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_machar.py first seen with mtime 1740508216.0492897
+[2025-06-26 14:48:43,434] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_machar.py first seen with mtime 1740508216.0492897
+[2025-06-26 14:48:43,435] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0011_linearizes_history.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,435] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0011_linearizes_history.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,436] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_nbit_base.py first seen with mtime 1740508216.2402904
+[2025-06-26 14:48:43,436] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_nbit_base.py first seen with mtime 1740508216.2402904
+[2025-06-26 14:48:43,436] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\middleware.py first seen with mtime 1737998517.5206306
+[2025-06-26 14:48:43,436] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\middleware.py first seen with mtime 1737998517.5206306
+[2025-06-26 14:48:43,437] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0004_courses_offer_price_courses_price.py first seen with mtime 1736254932.539793
+[2025-06-26 14:48:43,437] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0004_courses_offer_price_courses_price.py first seen with mtime 1736254932.539793
+[2025-06-26 14:48:43,437] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0010_fix_migrate_to_bigautofield.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,437] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0010_fix_migrate_to_bigautofield.py first seen with mtime 1735058425.522458
+[2025-06-26 14:48:43,439] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\loader.py first seen with mtime 1734683620.7176898
+[2025-06-26 14:48:43,439] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\db\migrations\loader.py first seen with mtime 1734683620.7176898
+[2025-06-26 14:48:43,439] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\backends\db.py first seen with mtime 1734683620.2971728
+[2025-06-26 14:48:43,439] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\backends\db.py first seen with mtime 1734683620.2971728
+[2025-06-26 14:48:43,440] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\utils.py first seen with mtime 1737998517.5226302
+[2025-06-26 14:48:43,440] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\utils.py first seen with mtime 1737998517.5226302
+[2025-06-26 14:48:43,441] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0006_auto_20171017_2113.py first seen with mtime 1735058425.5204585
+[2025-06-26 14:48:43,441] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0006_auto_20171017_2113.py first seen with mtime 1735058425.5204585
+[2025-06-26 14:48:43,442] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_stride_tricks_impl.py first seen with mtime 1740508215.6602895
+[2025-06-26 14:48:43,442] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_stride_tricks_impl.py first seen with mtime 1740508215.6602895
+[2025-06-26 14:48:43,442] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0023_order_payment_id_order_payment_type.py first seen with mtime 1741105216.6672723
+[2025-06-26 14:48:43,442] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0023_order_payment_id_order_payment_type.py first seen with mtime 1741105216.6672723
+[2025-06-26 14:48:43,443] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\memmap.py first seen with mtime 1740508216.0262885
+[2025-06-26 14:48:43,443] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\memmap.py first seen with mtime 1740508216.0262885
+[2025-06-26 14:48:43,443] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0018_alter_courses_visible_status_and_more.py first seen with mtime 1745382109.9258838
+[2025-06-26 14:48:43,443] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0018_alter_courses_visible_status_and_more.py first seen with mtime 1745382109.9258838
+[2025-06-26 14:48:43,444] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\auth.py first seen with mtime 1737998517.5176303
+[2025-06-26 14:48:43,444] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\auth.py first seen with mtime 1737998517.5176303
+[2025-06-26 14:48:43,444] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_shape.py first seen with mtime 1740508216.2422903
+[2025-06-26 14:48:43,444] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_shape.py first seen with mtime 1740508216.2422903
+[2025-06-26 14:48:43,445] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0009_courses_visible_status.py first seen with mtime 1740478568.162683
+[2025-06-26 14:48:43,445] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0009_courses_visible_status.py first seen with mtime 1740478568.162683
+[2025-06-26 14:48:43,446] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\middleware.py first seen with mtime 1734683620.0318851
+[2025-06-26 14:48:43,446] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\middleware.py first seen with mtime 1734683620.0318851
+[2025-06-26 14:48:43,447] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\middleware.py first seen with mtime 1734683620.294173
+[2025-06-26 14:48:43,447] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\middleware.py first seen with mtime 1734683620.294173
+[2025-06-26 14:48:43,447] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_shape_base_impl.py first seen with mtime 1740508215.6592896
+[2025-06-26 14:48:43,447] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_shape_base_impl.py first seen with mtime 1740508215.6592896
+[2025-06-26 14:48:43,448] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0017_status_required.py first seen with mtime 1745329813.2054183
+[2025-06-26 14:48:43,448] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0017_status_required.py first seen with mtime 1745329813.2054183
+[2025-06-26 14:48:43,449] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0030_alter_studentprofile_date.py first seen with mtime 1745567387.917474
+[2025-06-26 14:48:43,449] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0030_alter_studentprofile_date.py first seen with mtime 1745567387.917474
+[2025-06-26 14:48:43,449] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\routing.py first seen with mtime 1737998517.5216327
+[2025-06-26 14:48:43,449] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\routing.py first seen with mtime 1737998517.5216327
+[2025-06-26 14:48:43,450] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\corsheaders\middleware.py first seen with mtime 1735224276.5765483
+[2025-06-26 14:48:43,450] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\corsheaders\middleware.py first seen with mtime 1735224276.5765483
+[2025-06-26 14:48:43,450] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0029_studentprofile_date.py first seen with mtime 1745065043.8821805
+[2025-06-26 14:48:43,450] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0029_studentprofile_date.py first seen with mtime 1745065043.8821805
+[2025-06-26 14:48:43,451] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\corsheaders\signals.py first seen with mtime 1735224276.5775495
+[2025-06-26 14:48:43,451] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\corsheaders\signals.py first seen with mtime 1735224276.5775495
+[2025-06-26 14:48:43,452] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_array_like.py first seen with mtime 1740508216.2362907
+[2025-06-26 14:48:43,452] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_array_like.py first seen with mtime 1740508216.2362907
+[2025-06-26 14:48:43,452] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\PIL\_util.py first seen with mtime 1740508213.0437698
+[2025-06-26 14:48:43,452] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\PIL\_util.py first seen with mtime 1740508213.0437698
+[2025-06-26 14:48:43,453] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\contenttypes\migrations\0001_initial.py first seen with mtime 1734683619.5258842
+[2025-06-26 14:48:43,453] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\contenttypes\migrations\0001_initial.py first seen with mtime 1734683619.5258842
+[2025-06-26 14:48:43,454] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0026_order_items_created_at_remove_enrolledcourses_order_and_more.py first seen with mtime 1741180147.851649
+[2025-06-26 14:48:43,454] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0026_order_items_created_at_remove_enrolledcourses_order_and_more.py first seen with mtime 1741180147.851649
+[2025-06-26 14:48:43,454] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_polynomial_impl.py first seen with mtime 1740508215.655288
+[2025-06-26 14:48:43,454] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_polynomial_impl.py first seen with mtime 1740508215.655288
+[2025-06-26 14:48:43,455] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0008_migrate_to_bigautofield.py first seen with mtime 1735058425.5214598
+[2025-06-26 14:48:43,455] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\rest_framework_simplejwt\token_blacklist\migrations\0008_migrate_to_bigautofield.py first seen with mtime 1735058425.5214598
+[2025-06-26 14:48:43,455] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\consumer.py first seen with mtime 1737998517.5176303
+[2025-06-26 14:48:43,455] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\channels\consumer.py first seen with mtime 1737998517.5176303
+[2025-06-26 14:48:43,455] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\__init__.py first seen with mtime 1740508215.6722894
+[2025-06-26 14:48:43,455] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\__init__.py first seen with mtime 1740508215.6722894
+[2025-06-26 14:48:43,456] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0008_ratingstar.py first seen with mtime 1740043377.1521807
+[2025-06-26 14:48:43,456] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0008_ratingstar.py first seen with mtime 1740043377.1521807
+[2025-06-26 14:48:43,456] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\getlimits.py first seen with mtime 1740508216.024292
+[2025-06-26 14:48:43,456] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\getlimits.py first seen with mtime 1740508216.024292
+[2025-06-26 14:48:43,457] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0006_courses_cover_text.py first seen with mtime 1736747104.5672011
+[2025-06-26 14:48:43,457] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\courses\migrations\0006_courses_cover_text.py first seen with mtime 1736747104.5672011
+[2025-06-26 14:48:43,458] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0007_alter_validators_add_error_messages.py first seen with mtime 1734683619.3968835
+[2025-06-26 14:48:43,458] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0007_alter_validators_add_error_messages.py first seen with mtime 1734683619.3968835
+[2025-06-26 14:48:43,460] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0002_teacherprofile_gender.py first seen with mtime 1735276811.7484188
+[2025-06-26 14:48:43,460] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\teacher\migrations\0002_teacherprofile_gender.py first seen with mtime 1735276811.7484188
+[2025-06-26 14:48:43,461] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0018_remove_progress_enrolled_course_and_more.py first seen with mtime 1739973266.3955762
+[2025-06-26 14:48:43,461] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0018_remove_progress_enrolled_course_and_more.py first seen with mtime 1739973266.3955762
+[2025-06-26 14:48:43,461] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\migrations\__init__.py first seen with mtime 1734683620.455689
+[2025-06-26 14:48:43,461] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\migrations\__init__.py first seen with mtime 1734683620.455689
+[2025-06-26 14:48:43,463] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\0002_logentry_remove_auto_add.py first seen with mtime 1734683618.980197
+[2025-06-26 14:48:43,463] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\admin\migrations\0002_logentry_remove_auto_add.py first seen with mtime 1734683618.980197
+[2025-06-26 14:48:43,463] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0024_enrolledcourses_order.py first seen with mtime 1741106865.4783876
+[2025-06-26 14:48:43,463] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0024_enrolledcourses_order.py first seen with mtime 1741106865.4783876
+[2025-06-26 14:48:43,464] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\__init__.py first seen with mtime 1740508215.7072897
+[2025-06-26 14:48:43,464] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\linalg\__init__.py first seen with mtime 1740508215.7072897
+[2025-06-26 14:48:43,464] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0004_alter_user_username_opts.py first seen with mtime 1734683619.3948846
+[2025-06-26 14:48:43,464] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0004_alter_user_username_opts.py first seen with mtime 1734683619.3948846
+[2025-06-26 14:48:43,465] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_npyio_impl.py first seen with mtime 1740508215.6532884
+[2025-06-26 14:48:43,465] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_npyio_impl.py first seen with mtime 1740508215.6532884
+[2025-06-26 14:48:43,465] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\function_base.py first seen with mtime 1740508216.0232916
+[2025-06-26 14:48:43,465] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\function_base.py first seen with mtime 1740508216.0232916
+[2025-06-26 14:48:43,466] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0006_require_contenttypes_0002.py first seen with mtime 1734683619.3958848
+[2025-06-26 14:48:43,466] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\auth\migrations\0006_require_contenttypes_0002.py first seen with mtime 1734683619.3958848
+[2025-06-26 14:48:43,466] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0004_alter_studentprofile_place.py first seen with mtime 1735279951.4662263
+[2025-06-26 14:48:43,466] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0004_alter_studentprofile_place.py first seen with mtime 1735279951.4662263
+[2025-06-26 14:48:43,467] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_array_utils_impl.py first seen with mtime 1740508215.6412895
+[2025-06-26 14:48:43,467] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\lib\_array_utils_impl.py first seen with mtime 1740508215.6412895
+[2025-06-26 14:48:43,468] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0012_remove_chatroom_members_chatroom_created_at_and_more.py first seen with mtime 1738044041.8123658
+[2025-06-26 14:48:43,468] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\student\migrations\0012_remove_chatroom_members_chatroom_created_at_and_more.py first seen with mtime 1738044041.8123658
+[2025-06-26 14:48:43,468] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0002_userstatus.py first seen with mtime 1739120806.2140796
+[2025-06-26 14:48:43,468] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\smartlearn_api\api\migrations\0002_userstatus.py first seen with mtime 1739120806.2140796
+[2025-06-26 14:48:43,469] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_nbit.py first seen with mtime 1740508216.23929
+[2025-06-26 14:48:43,469] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_typing\_nbit.py first seen with mtime 1740508216.23929
+[2025-06-26 14:48:43,470] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_add_newdocs.py first seen with mtime 1740508216.0422885
+[2025-06-26 14:48:43,470] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\numpy\_core\_add_newdocs.py first seen with mtime 1740508216.0422885
+[2025-06-26 15:27:30,863] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 2024]
+[2025-06-26 15:27:30,907] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 2025]
+[2025-06-26 15:27:30,944] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 2024]
+[2025-06-26 15:27:30,946] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2024]
+[2025-06-26 15:27:30,950] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2024]
+[2025-06-26 15:27:30,952] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.09, 127.0.0.1:2024][0m
+[2025-06-26 15:27:30,952] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.09, 127.0.0.1:2024][0m
+[2025-06-26 15:27:30,954] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 2025]
+[2025-06-26 15:27:30,955] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2025]
+[2025-06-26 15:27:30,956] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2025]
+[2025-06-26 15:27:30,956] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.05, 127.0.0.1:2025][0m
+[2025-06-26 15:27:30,956] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.05, 127.0.0.1:2025][0m
+[2025-06-26 15:27:30,962] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 2025]
+[2025-06-26 15:27:30,964] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 2024]
+[2025-06-26 15:27:31,029] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:27:31,029] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:27:31,029] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:27:31,029] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:27:31,032] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 2024]
+[2025-06-26 15:27:31,032] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2024]
+[2025-06-26 15:27:31,032] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2024]
+[2025-06-26 15:27:31,033] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.07, 127.0.0.1:2024][0m
+[2025-06-26 15:27:31,033] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.07, 127.0.0.1:2024][0m
+[2025-06-26 15:27:31,033] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 2025]
+[2025-06-26 15:27:31,034] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2025]
+[2025-06-26 15:27:31,034] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2025]
+[2025-06-26 15:27:31,035] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.07, 127.0.0.1:2025][0m
+[2025-06-26 15:27:31,035] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.07, 127.0.0.1:2025][0m
+[2025-06-26 15:27:32,620] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\serializers.py first seen with mtime 1734683620.2951734
+[2025-06-26 15:27:32,620] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\sessions\serializers.py first seen with mtime 1734683620.2951734
+[2025-06-26 15:27:32,625] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\fallback.py first seen with mtime 1734683620.035886
+[2025-06-26 15:27:32,625] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\fallback.py first seen with mtime 1734683620.035886
+[2025-06-26 15:27:32,628] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\session.py first seen with mtime 1734683620.035886
+[2025-06-26 15:27:32,628] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\session.py first seen with mtime 1734683620.035886
+[2025-06-26 15:27:32,645] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\cookie.py first seen with mtime 1734683620.0348852
+[2025-06-26 15:27:32,645] DEBUG [django.utils.autoreload:394] File D:\projects\secondproject1\BackEnd\env\Lib\site-packages\django\contrib\messages\storage\cookie.py first seen with mtime 1734683620.0348852
+[2025-06-26 15:28:01,910] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,911] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,914] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,916] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,917] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,917] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.01, 127.0.0.1:2026][0m
+[2025-06-26 15:28:01,917] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.01, 127.0.0.1:2026][0m
+[2025-06-26 15:28:01,918] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,919] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,920] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,920] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.01, 127.0.0.1:2025][0m
+[2025-06-26 15:28:01,920] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.01, 127.0.0.1:2025][0m
+[2025-06-26 15:28:01,924] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,926] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,959] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:28:01,959] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:28:01,959] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:28:01,959] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:28:01,961] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,961] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,961] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2026]
+[2025-06-26 15:28:01,962] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.04, 127.0.0.1:2026][0m
+[2025-06-26 15:28:01,962] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.04, 127.0.0.1:2026][0m
+[2025-06-26 15:28:01,963] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,964] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,965] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2025]
+[2025-06-26 15:28:01,965] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.04, 127.0.0.1:2025][0m
+[2025-06-26 15:28:01,965] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.04, 127.0.0.1:2025][0m
+[2025-06-26 15:34:54,664] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,665] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,668] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,668] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,669] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,669] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.01, 127.0.0.1:2985][0m
+[2025-06-26 15:34:54,669] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.01, 127.0.0.1:2985][0m
+[2025-06-26 15:34:54,670] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,671] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,671] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,672] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.01, 127.0.0.1:2986][0m
+[2025-06-26 15:34:54,672] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.01, 127.0.0.1:2986][0m
+[2025-06-26 15:34:54,675] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,676] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,685] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:34:54,685] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:34:54,686] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:34:54,686] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 15:34:54,687] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,687] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,687] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2985]
+[2025-06-26 15:34:54,688] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.01, 127.0.0.1:2985][0m
+[2025-06-26 15:34:54,688] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.01, 127.0.0.1:2985][0m
+[2025-06-26 15:34:54,689] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,689] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,689] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 2986]
+[2025-06-26 15:34:54,690] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.02, 127.0.0.1:2986][0m
+[2025-06-26 15:34:54,690] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.02, 127.0.0.1:2986][0m
+[2025-06-26 16:54:39,230] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,242] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,268] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,271] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,272] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,273] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.04, 127.0.0.1:9719][0m
+[2025-06-26 16:54:39,273] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.04, 127.0.0.1:9719][0m
+[2025-06-26 16:54:39,274] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,274] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,274] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,275] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.03, 127.0.0.1:9720][0m
+[2025-06-26 16:54:39,275] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.03, 127.0.0.1:9720][0m
+[2025-06-26 16:54:39,278] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,279] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,300] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 16:54:39,300] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 16:54:39,300] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 16:54:39,300] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 16:54:39,301] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,302] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,302] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 9720]
+[2025-06-26 16:54:39,303] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.02, 127.0.0.1:9720][0m
+[2025-06-26 16:54:39,303] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.02, 127.0.0.1:9720][0m
+[2025-06-26 16:54:39,304] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,305] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,305] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 9719]
+[2025-06-26 16:54:39,306] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.03, 127.0.0.1:9719][0m
+[2025-06-26 16:54:39,306] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.03, 127.0.0.1:9719][0m
+[2025-06-26 18:07:01,988] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 14933]
+[2025-06-26 18:07:01,995] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,006] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 14933]
+[2025-06-26 18:07:02,007] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 14933]
+[2025-06-26 18:07:02,008] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 14933]
+[2025-06-26 18:07:02,009] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.02, 127.0.0.1:14933][0m
+[2025-06-26 18:07:02,009] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Fiction 200 [0.02, 127.0.0.1:14933][0m
+[2025-06-26 18:07:02,010] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,011] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,011] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,012] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.02, 127.0.0.1:14934][0m
+[2025-06-26 18:07:02,012] INFO [django.channels.server:168] [mHTTP OPTIONS /api/indexbooks/?genre=Crime 200 [0.02, 127.0.0.1:14934][0m
+[2025-06-26 18:07:02,017] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,018] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 14933]
+[2025-06-26 18:07:02,039] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 18:07:02,039] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 18:07:02,040] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,040] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 18:07:02,040] WARNING [django.request:248] Not Found: /api/indexbooks/
+[2025-06-26 18:07:02,041] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,041] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 14934]
+[2025-06-26 18:07:02,042] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.03, 127.0.0.1:14934][0m
+[2025-06-26 18:07:02,042] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Fiction 404 [0.03, 127.0.0.1:14934][0m
+[2025-06-26 18:07:02,043] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 14933]
+[2025-06-26 18:07:02,044] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 14933]
+[2025-06-26 18:07:02,045] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 14933]
+[2025-06-26 18:07:02,045] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.03, 127.0.0.1:14933][0m
+[2025-06-26 18:07:02,045] WARNING [django.channels.server:176] [33mHTTP GET /api/indexbooks/?genre=Crime 404 [0.03, 127.0.0.1:14933][0m
+[2025-06-27 12:03:09,643] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 5502]
+[2025-06-27 12:03:09,718] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 5502]
+[2025-06-27 12:03:09,721] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 5502]
+[2025-06-27 12:03:09,725] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 5502]
+[2025-06-27 12:03:09,728] INFO [django.channels.server:168] [mHTTP OPTIONS /media/books/cropped-image_WxSmI8h.jpg 200 [0.09, 127.0.0.1:5502][0m
+[2025-06-27 12:03:09,728] INFO [django.channels.server:168] [mHTTP OPTIONS /media/books/cropped-image_WxSmI8h.jpg 200 [0.09, 127.0.0.1:5502][0m
+[2025-06-27 12:03:09,739] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 5501]
+[2025-06-27 12:03:09,781] WARNING [django.request:248] Not Found: /media/books/cropped-image_WxSmI8h.jpg
+[2025-06-27 12:03:09,781] WARNING [django.request:248] Not Found: /media/books/cropped-image_WxSmI8h.jpg
+[2025-06-27 12:03:09,784] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 5501]
+[2025-06-27 12:03:09,787] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 5501]
+[2025-06-27 12:03:09,788] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 5501]
+[2025-06-27 12:03:09,789] WARNING [django.channels.server:176] [33mHTTP GET /media/books/cropped-image_WxSmI8h.jpg 404 [0.05, 127.0.0.1:5501][0m
+[2025-06-27 12:03:09,789] WARNING [django.channels.server:176] [33mHTTP GET /media/books/cropped-image_WxSmI8h.jpg 404 [0.05, 127.0.0.1:5501][0m
+[2025-06-27 12:03:22,201] DEBUG [daphne.http_protocol:166] HTTP b'OPTIONS' request for ['127.0.0.1', 5502]
+[2025-06-27 12:03:22,210] DEBUG [daphne.http_protocol:261] HTTP 200 response started for ['127.0.0.1', 5502]
+[2025-06-27 12:03:22,212] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 5502]
+[2025-06-27 12:03:22,216] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 5502]
+[2025-06-27 12:03:22,218] INFO [django.channels.server:168] [mHTTP OPTIONS /media/books/cropped-image_WxSmI8h.jpg 200 [0.02, 127.0.0.1:5502][0m
+[2025-06-27 12:03:22,218] INFO [django.channels.server:168] [mHTTP OPTIONS /media/books/cropped-image_WxSmI8h.jpg 200 [0.02, 127.0.0.1:5502][0m
+[2025-06-27 12:03:22,231] DEBUG [daphne.http_protocol:166] HTTP b'GET' request for ['127.0.0.1', 5521]
+[2025-06-27 12:03:22,253] WARNING [django.request:248] Not Found: /media/books/cropped-image_WxSmI8h.jpg
+[2025-06-27 12:03:22,253] WARNING [django.request:248] Not Found: /media/books/cropped-image_WxSmI8h.jpg
+[2025-06-27 12:03:22,255] DEBUG [daphne.http_protocol:261] HTTP 404 response started for ['127.0.0.1', 5521]
+[2025-06-27 12:03:22,256] DEBUG [daphne.http_protocol:229] HTTP close for ['127.0.0.1', 5521]
+[2025-06-27 12:03:22,257] DEBUG [daphne.http_protocol:275] HTTP response complete for ['127.0.0.1', 5521]
+[2025-06-27 12:03:22,258] WARNING [django.channels.server:176] [33mHTTP GET /media/books/cropped-image_WxSmI8h.jpg 404 [0.03, 127.0.0.1:5521][0m
+[2025-06-27 12:03:22,258] WARNING [django.channels.server:176] [33mHTTP GET /media/books/cropped-image_WxSmI8h.jpg 404 [0.03, 127.0.0.1:5521][0m
+[2025-06-27 20:38:59,138] DEBUG [django.utils.autoreload:397] File D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\settings.py previous mtime: 1750929517.6076157, current mtime: 1751036938.5964675
+[2025-06-27 20:38:59,138] DEBUG [django.utils.autoreload:397] File D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\settings.py previous mtime: 1750929517.6076157, current mtime: 1751036938.5964675
+[2025-06-27 20:38:59,173] DEBUG [django.utils.autoreload:371] D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\settings.py notified as changed. Signal results: [(<function template_changed at 0x000002093B30D8A0>, None), (<function translation_file_changed at 0x000002093E52E0C0>, None)].
+[2025-06-27 20:38:59,173] DEBUG [django.utils.autoreload:371] D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\settings.py notified as changed. Signal results: [(<function template_changed at 0x000002093B30D8A0>, None), (<function translation_file_changed at 0x000002093E52E0C0>, None)].
+[2025-06-27 20:38:59,180] INFO [django.utils.autoreload:266] D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\settings.py changed, reloading.
+[2025-06-27 20:38:59,180] INFO [django.utils.autoreload:266] D:\projects\secondproject1\BackEnd\smartlearn_api\smartlearn_api\settings.py changed, reloading.
