@@ -52,21 +52,21 @@ SmartLearn is a modern, scalable online learning platform built with **React** a
 
 ##  .env file Configuration
 ### AWS S3
-AWS_ACCESS_KEY_ID=aws_access_key
-AWS_SECRET_ACCESS_KEY=yaws_secret_key
-AWS_STORAGE_BUCKET_NAME=AWS_BUCKET_NAME
-AWS_REGION=ap-southeast-2
+-AWS_ACCESS_KEY_ID=aws_access_key
+-AWS_SECRET_ACCESS_KEY=aws_secret_key
+-AWS_STORAGE_BUCKET_NAME=AWS_BUCKET_NAME
+-AWS_REGION=ap-southeast-2
 
 ### Razorpay
-RAZORPAY_KEY_ID=razorpay_key_id
-RAZORPAY_KEY_SECRET=razorpay_key_secret
+-RAZORPAY_KEY_ID=razorpay_key_id
+-RAZORPAY_KEY_SECRET=razorpay_key_secret
 
 ### Email
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=email
-EMAIL_HOST_PASSWORD=app_password
+-EMAIL_HOST=smtp.gmail.com
+-EMAIL_PORT=587
+-EMAIL_USE_TLS=True
+-EMAIL_HOST_USER=email
+-EMAIL_HOST_PASSWORD=app_password
 
 Author
 Raijo Raj
