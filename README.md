@@ -5,12 +5,12 @@ SmartLearn is a modern, scalable online learning platform built with **React** a
 ### For Students
 - Register and login using JWT authentication
 - Enroll in public courses
-- View and update profile (with profile picture and address)
+- View and update profile 
 - Chat with instructors in real-time (WebSocket via Django Channels)
 
 ###  For Teachers
 - Register accounts
-- Dashboard with Transactions and Students
+- Dashboard showing enrolled students and transactions
 - Add abd Access to course data
 - Update profile and change password
 - Live chat support with enrolled students
@@ -19,7 +19,7 @@ SmartLearn is a modern, scalable online learning platform built with **React** a
 - Full control over users (students, teachers)
 - Register and manage users
 - Controll course workFlow
-- Dashboard with user, course analytics and Transactions
+- Dashboard with analytics: user count, courses, transactions
 
 ###  Video Processing (Background)
 - Course videos uploaded by teachers are automatically:
