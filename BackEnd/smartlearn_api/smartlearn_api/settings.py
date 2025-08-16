@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-)h$hy8yeu++&dbz_e!%e%075-t0^5vx+-)%*9vc97_xg=vz+9_
 ALLOWED_HOSTS = [
     "mysmartlearn.com",
     "www.mysmartlearn.com",
-    "13.60.66.158",
+    "13.61.174.57",
     "smartlearn-self.vercel.app",
     "127.0.0.1",
     "localhost",
