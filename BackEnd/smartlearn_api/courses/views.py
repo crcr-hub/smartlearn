@@ -36,7 +36,7 @@ s3_client = boto3.client(
     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
     region_name=settings.AWS_REGION
 )
-# Create your views here.
+
 
 
 
@@ -84,7 +84,8 @@ class CourseView(APIView):
     
     def get(self, request):
         """Retrieve all Courses"""
-        courses = Courses.objects.filter(visible_status__iexact='public')
+        print("this is working")
+        courses = Courses.objects.filter(visible_status__iexact='public',teacher__user__block_status = False)
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     

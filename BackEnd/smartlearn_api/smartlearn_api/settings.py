@@ -139,6 +139,8 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "https://mysmartlearn.com",  
      "https://www.mysmartlearn.com", 
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -248,44 +250,44 @@ MEDIA_URL = '/media/'  # URL to access media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
 
-    'formatters': {
-        'verbose': {
-            'format': '[{asctime}] {levelname} [{name}:{lineno}] {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname}: {message}',
-            'style': '{',
-        },
-    },
+#     'formatters': {
+#         'verbose': {
+#             'format': '[{asctime}] {levelname} [{name}:{lineno}] {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{levelname}: {message}',
+#             'style': '{',
+#         },
+#     },
 
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log'),
-            'formatter': 'verbose',
-        },
-    },
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose',
+#         },
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'debug.log'),
+#             'formatter': 'verbose',
+#         },
+#     },
 
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        # Logger for your app (e.g., 'courses' if your app is named courses)
-        '': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-        },
-    }
-}
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         # Logger for your app (e.g., 'courses' if your app is named courses)
+#         '': {
+#             'handlers': ['console', 'file'],
+#             'level': 'DEBUG',
+#         },
+#     }
+# }
