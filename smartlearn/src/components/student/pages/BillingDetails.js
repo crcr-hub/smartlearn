@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStudentProfile, placeOrder } from "../../../redux/authSlices";
+import { fetchLearningCourse, fetchStudentProfile, placeOrder } from "../../../redux/authSlices";
 import { useNavigate } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axiosInstance from "../../../utils/axiosInstances";
@@ -51,7 +51,7 @@ function BillingDetails() {
         name: "smartLearn",
         description: "Course Payment",
         order_id: data.id, 
-        handler: (response) => {
+        handler: async (response) => {
           const updatedBillData = {
             ...billData,
             payment: "Razorpay",
@@ -59,7 +59,9 @@ function BillingDetails() {
             order_id: response.razorpay_order_id,
             signature: response.razorpay_signature,
           };
-          dispatch(placeOrder(updatedBillData));
+          await dispatch(placeOrder(updatedBillData));
+          await dispatch(fetchLearningCourse());
+          // dispatch(placeOrder(updatedBillData));
           alert("Payment successful via Razorpay!");
           navigate("/mylearning");
         },

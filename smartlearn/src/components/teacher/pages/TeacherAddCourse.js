@@ -105,8 +105,10 @@ function TeacherAddCourse() {
       const croppedFile = await getCroppedImage();
       setCourseData({ ...courseData, image: croppedFile });
       const updatedCourseData = { ...courseData, image: croppedFile,role:'teacher' };
-      dispatch(addCourses({ updatedCourseData, navigate }));
-      navigate('/mycourse')
+      const result = await dispatch(addCourses({ updatedCourseData, navigate }));
+      if (addCourses.fulfilled.match(result)) {
+        navigate('/mycourse');
+      }
     };
 
     const handleAddModule = async (e) => {

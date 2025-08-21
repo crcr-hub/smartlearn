@@ -183,7 +183,7 @@ function MyCourse() {
               ? " Waiting For approval ": status.course_status}
         
         </td>
-      <td>{status.reason || '------'}</td>
+      <td>{status.reason || status.course_status === "Private"?"Not publically visible":"--------"}</td>
       <td>{status.required || '------'}</td>
     </tr>
   ))
