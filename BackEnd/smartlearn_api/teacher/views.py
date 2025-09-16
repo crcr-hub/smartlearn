@@ -139,7 +139,6 @@ def get_tutors_student(request):
 
     # Convert dictionary values to a list for response
     students_data_list = list(students_data.values())
-    print(students_data_list)
 
     return Response(students_data_list)
 
@@ -174,7 +173,6 @@ class GetTeacherProfile(APIView):
     
     def put(self,request):
         user = request.user
-        print(request.data)
         try:
             profile_data = TeacherProfile.objects.get(user = user)
         except TeacherProfile.DoesNotExist:
@@ -304,7 +302,6 @@ def tutor_dashboard(request):
             }, status=status.HTTP_200_OK)
 
     except Exception as e:
-        print(e)
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 

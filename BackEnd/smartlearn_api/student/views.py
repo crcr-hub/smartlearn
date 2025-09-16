@@ -32,7 +32,6 @@ class ChangePasswordView(APIView):
         user = request.user
         current_password = request.data.get('current_password')
         new_password = request.data.get('new_password')
-        print(user,current_password)
 
         if not current_password or not new_password:
             return Response({'error': 'Both current and new passwords are required'}, status=status.HTTP_400_BAD_REQUEST)
@@ -318,7 +317,6 @@ from django.conf import settings
 def create_razorpay_order(request):
     import logging
     user = request.user
-    print("is authenticated",user)
     logger = logging.getLogger(__name__)
     logger.debug(f"REQUEST HEADERS: {dict(request.headers)}")
     logger.debug(f"REQUEST USER: {request.user} | AUTHENTICATED: {request.user.is_authenticated}")
@@ -416,7 +414,6 @@ def place_order(request):
         return Response(response_serializer.data, status=201)
 
     except Exception as e:
-        print("Unexpected error:", str(e))
         return Response({'error': str(e)}, status=500)
 
 @api_view(['GET'])
@@ -427,7 +424,6 @@ def fetchLearnings(request):
     if not learnings.exists():
         return Response({'error': 'You are not enrolled any courses!'}, status=400)
     serializer = EnrolledCourseSerializer(learnings,many=True)
-    print("learningdata",serializer.data)
     return Response(serializer.data)
 
 
@@ -560,7 +556,6 @@ def handle_comment(request,cid):
         return Response({"message":"Successfully deleted"},status=204)
     elif request.method == 'PUT':
         comment_text = request.data.get('comment_text')
-        print(comment_text)
         if not comment_text:
             return Response({"error": "Comment text is required"}, status=400)
         comment.comment = comment_text  # Update comment text
@@ -714,7 +709,6 @@ from datetime import timedelta
 def handleProgress(request,mid):
     user = request.user
     if request.method == 'POST':
-        print(request.data)
         course_id = request.data.get("course_id")
         module_id = request.data.get("moduleId")
         time_watched = request.data.get("time_watched")  # Time watched in seconds
@@ -732,7 +726,6 @@ def handleProgress(request,mid):
 
         if progress.time_watched is None:
             progress.time_watched = 0
-        print("progress.time",progress.time_watched)
         # Only update if the new time watched is greater
         if time_watched > progress.time_watched:
             progress.time_watched = time_watched
@@ -748,7 +741,6 @@ def handleProgress(request,mid):
             enrolled = get_object_or_404(EnrolledCourses,user=request.user,course_id=course)
             enrolled.progress = int(overall_progress)
             enrolled.save()
-        print("over all",int(overall_progress))
 
         return Response({"ok":"ok"}, status=200)
 
@@ -761,10 +753,8 @@ def handleProgress(request,mid):
 def fetchProgress(request,cid):
     course_id = cid
     if request.method == 'GET':
-        print("user id",request.user.id)
         enrolled_course = get_object_or_404(EnrolledCourses,course_id=course_id,user_id=request.user.id)
         enrolled_course_data = EnrolledCourseSerializer(enrolled_course).data
-        print("enrolled courses",enrolled_course_data)
         return Response(enrolled_course_data, status=200)
     
 @api_view(['GET','POST','PUT'])
@@ -897,7 +887,6 @@ class OrderHIstory(APIView):
                 'total':items.total_price,
                 'type':items.payment_type,
             })
-        print("order data",order_data)
         return Response(order_data,status=status.HTTP_200_OK)
 
 

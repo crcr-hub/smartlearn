@@ -4,6 +4,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 from teacher.models import TeacherProfile
 from student.models import StudentProfile
+from .models import RegisterOTP
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 from api.models import User,AdminNotification
@@ -31,8 +32,24 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
         return token  
 
+class SendOTPSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    def validate_email(self, email):
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError("Email is already registered.")
+        return email
 
+   
+
+
+
+class VerifyOTPSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    otp = serializers.CharField(max_length=6)
+
+    
 class RegisterSerializer(serializers.ModelSerializer):
+    session_id = serializers.UUIDField(write_only = True, required=False)
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
     block_status = serializers.BooleanField(required = False)
@@ -47,7 +64,9 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password', 'password2', 'block_status','role', 'first_name', 'last_name', 'gender', 'place', 'mobile', 'qualification', 'experience','experience_in')
+        fields = ('session_id','email', 'username', 'password', 'password2', 'block_status','role', 'first_name', 'last_name', 'gender', 'place', 'mobile', 'qualification', 'experience','experience_in')
+        extra_kwargs = { 'email': {'required':False},'session_id':{'required':False}
+                        }
 
     def validate_first_name(self, value):
         if not re.search(r'[a-zA-Z]', value):
@@ -65,6 +84,23 @@ class RegisterSerializer(serializers.ModelSerializer):
         
         if len(set(attrs['password'])) == 1:
             raise serializers.ValidationError({"password": "Password can't be all the same character."})
+        
+        role = attrs.get('role')
+       
+        if role == "student":
+            session_id = attrs.get("session_id")
+            if not session_id:
+                raise serializers.ValidationError({"session_id":"session_id is required For registration"})
+            
+            try:
+                otp_obj = RegisterOTP.objects.get(session_id = session_id, is_verified  = True)
+            except RegisterOTP.DoesNotExist:
+                raise serializers.ValidationError({"error":"OTP Not Verified or expired"})
+            attrs["email"] = otp_obj.email
+        elif role == "teacher":
+            if not attrs.get('email'):
+                raise serializers.ValidationError({"error":"Email is required"})
+            
         return attrs
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():

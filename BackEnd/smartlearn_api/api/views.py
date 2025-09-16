@@ -14,14 +14,14 @@ from student.models import EnrolledCourses, Order, Order_items, StudentProfile,N
 from student.serializer import StudentProfileSerializer
 from teacher.models import TeacherProfile
 from teacher.serializer import TeacherProfileSerializer
-from .serializer import AdminNotificationSerializer, MyTokenObtainPairSerializer,RegisterSerializer, UserSerializer
+from .serializer import AdminNotificationSerializer, MyTokenObtainPairSerializer,RegisterSerializer, UserSerializer,SendOTPSerializer, VerifyOTPSerializer
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import User,UserStatus,AdminNotification
+from .models import RegisterOTP, User,UserStatus,AdminNotification
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.dispatch import receiver
 from django.shortcuts import get_object_or_404
@@ -102,7 +102,7 @@ class UserDetailsView(APIView):
         return Response(user_data)
 
 
-
+# user Registration
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = (AllowAny,)
@@ -118,21 +118,78 @@ class RegisterView(generics.CreateAPIView):
             user = serializer.save()  # Calls the create() method in the serializer
             return Response({"user": user.username,"message": "Registered successfully"}, status=status.HTTP_201_CREATED)
         else:
-            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# checking email and sending OTP for user registration
+import random
+
+def generate_otp():
+    return str(random.randint(100000, 999999))  # 6-digit OTP
+
+
+
+class send_otp(APIView):
+    def post(self,request):
+        serializer = SendOTPSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data["email"]
+
+            # Generate OTP
+            otp_code = generate_otp()
+
+            # Save OTP
+            otp_obj = RegisterOTP.objects.create(email=email, otp_code=otp_code)
+
+            # Send OTP via email
+            send_mail(
+                "Your OTP Code",
+                f"Your OTP code is {otp_code}. It will expire in 5 minutes.",
+                "noreply@example.com",
+                [email],
+                fail_silently=True,
+            )
+
+            return Response(
+                {"message": "OTP sent to email", "session_id": str(otp_obj.session_id),"email":email},
+                status=status.HTTP_201_CREATED
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# verifying otp that sent for user registration
+
+class verifyRegisterOtp(APIView):
+    def post(self,request):
+        serializer = VerifyOTPSerializer(data = request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            otp = serializer.validated_data['otp']
+            try:
+                otp_obj = RegisterOTP.objects.filter(email=email).latest("created_at")
+            except RegisterOTP.DoesNotExist:
+                return Response({"error":"OTP Not Found"}, status=status.HTTP_404_NOT_FOUND)
+            if otp_obj.otp_code != otp:
+                return Response({"error":"Invalid OTP"},status=status.HTTP_400_BAD_REQUEST)
+            if otp_obj.is_expired():
+                return Response({"error":"OTP Expired"},status=status.HTTP_400_BAD_REQUEST)
+            
+            otp_obj.is_verified = True
+            otp_obj.save()
+            return Response({"status":"Verified","Session_id":str(otp_obj.session_id),"email":otp_obj.email},status=status.HTTP_200_OK)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
 
 
 User = get_user_model()
-
+# sending otp for forget password
 class SendOTPView(APIView):
     def post(self, request):
         email = request.data.get('email')
         try:
             user = User.objects.get(email=email)
             otp_instance = PasswordResetOTP.objects.create(user=user)
-            print("OTp      :",otp_instance.otp)
+           
             send_mail(
                 'Your OTP for Password Reset',
                 f'Your OTP is {otp_instance.otp}',
@@ -149,12 +206,10 @@ class VerifyOTPView(APIView):
     def post(self, request):
         email = request.data.get('email')
         otp = request.data.get('otp')
-        print("ots",otp,email)
 
         try:
             user = User.objects.get(email=email)
             otp_instance = PasswordResetOTP.objects.filter(user=user, otp=otp, is_verified=False).latest('created_at')
-            # Optional: check time validity here
             otp_instance.is_verified = True
             otp_instance.save()
             return Response({'message': 'OTP verified'}, status=status.HTTP_200_OK)
@@ -272,7 +327,6 @@ class StatusCourseView(APIView):
             
             return Response({"course": course.name}, status=status.HTTP_200_OK)
         else:
-            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -425,9 +479,6 @@ def handle_notification(request,id):
     
     if request.method == 'GET':
         if request.user.id == user_id:
-            print("DEBUG - request.user:", request.user)
-            print("DEBUG - request.user.is_authenticated:", request.user.is_authenticated)
-            print("DEBUG - request headers:", request.headers)
             logger.debug(f"DEBUG - request.user: {request.user}")
             logger.debug(f"DEBUG - request.user.is_authenticated: {request.user.is_authenticated}")
             logger.debug(f"DEBUG - request headers: {request.headers}")
@@ -458,7 +509,7 @@ def handle_notification(request,id):
                     "message_count": n["message_count"],
                     "notification_type": notification_type,
                 })
-                print("yes ",notification_data)
+             
             return Response({"notification":notification_data})
        
     elif request.method == 'PUT':
@@ -616,7 +667,6 @@ class AdminDashboardView(APIView):
             }, status=status.HTTP_200_OK)
 
         except Exception as e:
-            print(e)
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET', 'PUT','PATCH'])
@@ -707,7 +757,6 @@ def tutorTransaction(request,tid):
 
     total_teacher_share = courses.aggregate(total=Sum('teacher_share'))['total'] or 0
     total_admin_share = courses.aggregate(total=Sum('admin_share'))['total'] or 0
-    print("shares",total_teacher_share,total_admin_share)
     # Prepare the response data
     response_data = [
         {
@@ -775,7 +824,6 @@ class SingleStudentTransaction(APIView):
                              }, status=status.HTTP_200_OK)
 
         except Exception as e:
-            print(e)
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 

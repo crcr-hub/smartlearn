@@ -79,12 +79,10 @@ class CourseView(APIView):
             else:
                 logger.error(f"Status Serializer Errors: {status_serializer.errors}")
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request):
         """Retrieve all Courses"""
-        print("this is working")
         courses = Courses.objects.filter(visible_status__iexact='public',teacher__user__block_status = False)
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -178,12 +176,9 @@ def handle_courses(request, cid):
             serializer = CourseSerializer(course,data=request.data, partial = True)
             if serializer.is_valid():
                 serializer.save()
-                print(serializer.errors)
                 return Response({  'course_errors':serializer.errors}, status=status.HTTP_200_OK)
-            print(serializer.errors)
             return Response({'course_errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     except Category.DoesNotExist:
-        print(serializer.errors)
         return Response({'error': 'course not found'}, status=status.HTTP_404_NOT_FOUND)
     return Response({'error': 'course not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -202,8 +197,7 @@ class PublishCourseView(APIView):
         status_serializer = StatusSerializer(data=status_data)
         if status_serializer.is_valid():
             status_serializer.save()
-        else:
-            print(status_serializer.errors)
+       
         AdminNotification.objects.create(
             sender=request.user,
             course=course,
@@ -273,11 +267,9 @@ def get_module(request,id):
                     process_video_for_s3.delay(module_id) 
                 return Response(serializer.data)
             else:
-                print(serializer.errors)
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
        
     except Exception as e:
-        print(e)
         return Response({"error": str(e)}, status=500)
     
 
@@ -313,7 +305,6 @@ class ModuleView(APIView):
         
         # Check if a video file is uploaded
         video_file = request.FILES.get("media")
-        print("okkkkkk video file",video_file)
         if not video_file:
             return Response({"error": "Video file is required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -332,14 +323,11 @@ class ModuleView(APIView):
             module.save(update_fields=['video_path'])
 
             # 🔹 Trigger Celery to process and upload video
-            print("from here")
             process_video_for_s3.delay(module.id)
             return Response({
                 "message": "Module created. Video processing in background.",
                 "module_id": module.id
             }, status=status.HTTP_201_CREATED)
-        
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request):
@@ -355,8 +343,6 @@ def avarage_rating(request,cid):
 
         # If there are no ratings, set avg_rating to 0
         avg_rating = avg_rating if avg_rating else 0
-        print("average Rating",avg_rating)
-
         return Response({"average_rating": round(avg_rating, 2)}, status=200)
     
     

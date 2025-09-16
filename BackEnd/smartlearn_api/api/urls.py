@@ -3,7 +3,7 @@ from django.urls import path,include
 from .views import (CustomTokenObtainPairView, RegisterView, LogoutView,SendOTPView,
                     VerifyOTPView,ResetPasswordView,PendingCoursesView,ApproveCourseView,
                     StatusCourseView,UserDetailsView,ClearAdminNotificationView,AdminNotificationsView,
-                    AdminDashboardView,AdminTransactions,SingleStudentTransaction
+                    AdminDashboardView,AdminTransactions,SingleStudentTransaction,send_otp,verifyRegisterOtp
                     )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -40,6 +40,8 @@ urlpatterns = [
     path('sentOtp/',SendOTPView.as_view(),name='sendOtp'),
     path('verifyOtp/',VerifyOTPView.as_view(),name='verifyOtp'),
     path('resetPwd/',ResetPasswordView.as_view(),name='resetPwd'),
+    path('register-otp/', send_otp.as_view(), name="register_otp"),
+    path('verifyRegisterOtp/',verifyRegisterOtp.as_view(),name='verifyRegisterOtp'),
     path('', include('courses.urls')),
     path('',include('teacher.urls')),
     path('', include('student.urls')),

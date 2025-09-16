@@ -67,3 +67,19 @@ class PasswordResetOTP(models.Model):
         if not self.otp:
             self.otp = f"{random.randint(100000, 999999)}"
         super().save(*args, **kwargs)
+
+
+from django.utils import timezone
+import uuid
+class RegisterOTP(models.Model):
+    email = models.EmailField()
+    otp_code = models.CharField(max_length=6)
+    session_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_verified = models.BooleanField(default=False)
+
+    def is_expired(self):
+        return timezone.now() > self.created_at + timezone.timedelta(minutes=5)
+
+    def __str__(self):
+        return f"{self.email} - {self.otp_code}"
