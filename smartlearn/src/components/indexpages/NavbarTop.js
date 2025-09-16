@@ -81,7 +81,7 @@ function NavbarTop() {
             
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/register">
+            <Link className="nav-link" to="/getotp">
             <button type="button" className="btn btn-secondary btn-sm">SignUp</button>
             </Link>
             </li>

@@ -3,6 +3,7 @@ import axiosInstance from '../utils/axiosInstances';
 import Swal from 'sweetalert2';
 import {jwtDecode} from 'jwt-decode';
 import { connectNotificationSocket } from './notificationThunk';
+import { act } from 'react';
 
 
 
@@ -82,7 +83,27 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
 return rejectWithValue(error.response?.data || 'Login failed');
 }
 });
+// Senting Otp before Registration
+export const registerOtp = createAsyncThunk('auth/registerOtp',
+  async({email},{rejectWithValue})=>{
+    try{
+      const response = await axiosInstance.post('/register-otp/', { email });
+      return response.data
+    }catch(error){
+      return rejectWithValue(error.response?.data || 'Failed to sent Otp')
+    }
+  });
 
+  // Verifying Otp Before Registration
+  export const verifyRegisterOtp = createAsyncThunk('auth/verifyRegisterOtp',
+    async({email,otp},{rejectWithValue})=>{
+      try{
+        const response = await axiosInstance.post('/verifyRegisterOtp/', {email,otp});
+        return response.data
+      }catch(error){
+        return rejectWithValue(error.response?.data || 'Failed to verify Otp')
+      }
+    });
 
 
 export const sentOtp = createAsyncThunk('auth/sentOtp',
@@ -1348,6 +1369,7 @@ const initialState = {
   singleTransaction_data : null,
   order_items : null,
   reciept_data : null,
+  session_id : null
 };
 
 // Slice
@@ -1416,6 +1438,18 @@ const authSlice = createSlice({
  
   extraReducers: (builder) => {
     builder
+    .addCase(verifyRegisterOtp.pending,(state)=>{
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(verifyRegisterOtp.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.session_id = action.payload;
+    })
+    .addCase(verifyRegisterOtp.rejected,(state,action)=>{
+      state.loading = false;
+      state.error = action.payload;
+    })
     .addCase(fetchReciept.pending,(state)=>{
       state.loading = true;
       state.error = null;

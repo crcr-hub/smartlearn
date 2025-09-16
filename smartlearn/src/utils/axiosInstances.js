@@ -21,8 +21,8 @@ import { baseUrl } from './constant';
 
 
 const axiosInstance = axios.create({
-   //baseURL: 'http://127.0.0.1:8000/api/',
-  baseURL : baseUrl
+   baseURL: 'http://127.0.0.1:8000/api/',
+ // baseURL : baseUrl
 });
 
 axiosInstance.interceptors.request.use(

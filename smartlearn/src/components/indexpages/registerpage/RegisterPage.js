@@ -9,19 +9,25 @@ import {
     MDBCol,
   }
   from 'mdb-react-ui-kit';
-import { useDispatch } from 'react-redux';
-import {  Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {  Link, useLocation, useNavigate } from 'react-router-dom';
 import { addStudent } from '../../../redux/authSlices';
 
 
 function RegisterPage() {
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const location = useLocation();
+  const {session_id} = useSelector((state)=>state.auth)
+ 
+  const email = location.state?.email || '';
+  console.log("session_id",session_id.Session_id,email)
   const [userData,setUserData] = useState({
+        session_id : session_id.Session_id,
         username: "",
         password: "",
         password2 :"",
-        email: "",
+        email: email,
         role: "student",
         first_name: "",
         last_name: "",
@@ -220,7 +226,7 @@ function RegisterPage() {
                 </MDBCol>
               </MDBRow>
 
-              <MDBInput wrapperClass='mb-2' label= {
+              <MDBInput wrapperClass='mb-2'  label= {
                               errors.email ? (
                                 <span style={{ color: "red" }}>{errors.email}</span>
                               ) : ( "Email")
@@ -229,7 +235,7 @@ function RegisterPage() {
       if(errors.email){
         setErrors({...errors,email:""})
       }
-      }} id='form3' type='email'/>
+      }} id='form3' type='email' readOnly/>
               <MDBInput wrapperClass='mb-2' label={
                               errors.password ? (
                                 <span style={{ color: "red" }}>{errors.password}</span>

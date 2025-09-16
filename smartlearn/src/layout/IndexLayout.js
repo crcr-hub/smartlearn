@@ -42,6 +42,8 @@ import TeacherChangePwdPage from '../components/teacher/screen/TeacherChangePwdP
 import SingleTransaction from '../components/teacher/screen/SingleTransaction';
 import PurchaseHistory from '../components/student/screen/PurchaseHistory';
 import ReceiptPage from '../components/student/screen/ReceiptPage';
+import GetOtp from '../components/indexpages/otp/GetOtp';
+import VerifyRegisterOtp from '../components/indexpages/otp/VerifyRegisterOtp';
 
 function IndexLayout() {
   return (
@@ -50,6 +52,8 @@ function IndexLayout() {
        
           <Route path="/" element={<Home/>} />
           <Route path="loginpage" element={<Login/> } />
+          <Route path = "getotp" element={<GetOtp/>}/>
+          <Route path= "/verifyregisterotp" element = {<VerifyRegisterOtp/>} />
           <Route path = "register" element= {<Register/>} />
           <Route path= "tregister" element = {<TeacherRegister/>}/>
           <Route path='/teacherregister' element={<TeacherRegister/>}/>
