@@ -1,4 +1,16 @@
-BackEnd/smartlearn_api/.env
+.env
+db.sqlite3
+debug.log
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+media/
+*.log
+
 smartlearn/node_module/
 node_modules/
+.vscode/
+.idea/
+
 
