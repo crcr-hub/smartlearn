@@ -24,7 +24,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)h$hy8yeu++&dbz_e!%e%075-t0^5vx+-)%*9vc97_xg=vz+9_'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-)h$hy8yeu++&dbz_e!%e%075-t0^5vx+-)%*9vc97_xg=vz+9_
 ALLOWED_HOSTS = [
     "mysmartlearn.com",
     "www.mysmartlearn.com",
-    "16.170.252.40",
+    "16.171.36.200",
     "smartlearn-self.vercel.app",
     "127.0.0.1",
     "localhost",
@@ -229,21 +229,6 @@ SIMPLE_JWT = {
 }
 
 
-
-
-
-
-
-# AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
-# AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
-# AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
-# AWS_REGION = config("AWS_REGION", default="ap-southeast-2")
-
-# RAZORPAY_KEY_ID = config("RAZORPAY_KEY_ID")
-# RAZORPAY_KEY_SECRET = config("RAZORPAY_KEY_SECRET")
-
-
-
 import os
 
 
@@ -251,44 +236,44 @@ MEDIA_URL = '/media/'  # URL to access media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
 
-    'formatters': {
-        'verbose': {
-            'format': '[{asctime}] {levelname} [{name}:{lineno}] {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname}: {message}',
-            'style': '{',
-        },
-    },
+#     'formatters': {
+#         'verbose': {
+#             'format': '[{asctime}] {levelname} [{name}:{lineno}] {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{levelname}: {message}',
+#             'style': '{',
+#         },
+#     },
 
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log'),
-            'formatter': 'verbose',
-        },
-    },
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose',
+#         },
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'debug.log'),
+#             'formatter': 'verbose',
+#         },
+#     },
 
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        # Logger for your app (e.g., 'courses' if your app is named courses)
-        '': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-        },
-    }
-}
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         # Logger for your app (e.g., 'courses' if your app is named courses)
+#         '': {
+#             'handlers': ['console', 'file'],
+#             'level': 'DEBUG',
+#         },
+#     }
+# }
