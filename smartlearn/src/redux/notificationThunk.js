@@ -13,7 +13,7 @@ export const connectNotificationSocket = () => (dispatch) => {
 
   const createSocket = () => {
     const notificationSocket = new WebSocket(
-      `wss://mysmartlearn.com/ws/notifications/?token=${token}`
+      `wss://mysmartlearn.live/ws/notifications/?token=${token}`
     );
 
     notificationSocket.onopen = () => {

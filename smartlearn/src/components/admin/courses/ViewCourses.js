@@ -159,7 +159,7 @@ function ViewCourses() {
             <td>
             {course.images ? (
                 <img
-                src={`https://mysmartlearn.com/${course.images}`} // Path to the image
+                src={`https://mysmartlearn.live/${course.images}`} // Path to the image
                     alt={`Course ${course.name}`} // Alt text for the image
                     style={{ width: '50px', height: '50px' }} // Styling for the image
                 />

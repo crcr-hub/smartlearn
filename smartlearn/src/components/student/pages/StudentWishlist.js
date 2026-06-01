@@ -153,7 +153,7 @@ function StudentWishlist() {
                                         }}>
                                         
                                             
-                                            <img onClick={()=>handleOnClick(course.id)}   src={course?.image? `https://mysmartlearn.com/${course.image}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
+                                            <img onClick={()=>handleOnClick(course.id)}   src={course?.image? `https://mysmartlearn.live/${course.image}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
                                                 height: "100px",
                                                 cursor:"pointer",
                                                 width:"150px",  
@@ -274,7 +274,7 @@ function StudentWishlist() {
                       }}>
                       
                           
-                          <img onClick={()=>handleOnClick(items.id)} src={items?.image? `https://mysmartlearn.com/${items.image}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
+                          <img onClick={()=>handleOnClick(items.id)} src={items?.image? `https://mysmartlearn.live/${items.image}` : null} className="card-img-top"  style={{    // Make the image take the full width of the div
                               height: "100px",
                                width:"150px",  
                               cursor:"pointer",

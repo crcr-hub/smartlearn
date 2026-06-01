@@ -68,7 +68,7 @@ function MyLearning() {
                               <img
                                 src={
                                   items?.image
-                                    ? `https://mysmartlearn.com/${items.image}`
+                                    ? `https://mysmartlearn.live/${items.image}`
                                     : null
                                 }
                                 className="card-img-top"

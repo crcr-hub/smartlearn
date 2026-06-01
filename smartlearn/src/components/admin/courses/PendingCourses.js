@@ -263,7 +263,7 @@ const handleCancelReject = (cid) =>{
           <td>
             {course.images ? (
               <img
-                src={`https://mysmartlearn.com/${course.images}`} // Path to the image
+                src={`https://mysmartlearn.live/${course.images}`} // Path to the image
                 style={{ width: '50px', height: '50px' }} // Styling for the image
               />
             ) : (

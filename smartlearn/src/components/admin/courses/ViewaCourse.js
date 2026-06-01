@@ -239,7 +239,7 @@ function ViewaCourse() {
 
   {course && course.course && course.course.images ? (
     <img
-      src={`https://mysmartlearn.com/${course.course.images}`} // Corrected path
+      src={`https://mysmartlearn.live/${course.course.images}`} // Corrected path
       alt={`Course ${course.course.name}`} // Use course.course.name if needed
       style={{ width: '100px', height: '90px', marginLeft: '10px' }}
     />

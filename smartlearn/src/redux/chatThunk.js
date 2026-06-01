@@ -21,7 +21,7 @@ export const connectWebSocket = (roomName) => (dispatch) => {
   }
   //wss://mysmartlearn.com
   //ws://localhost:8000
-  const socketUrl = `wss://mysmartlearn.com/ws/chat/${roomName}/?token=${token}`;
+  const socketUrl = `wss://mysmartlearn.live/ws/chat/${roomName}/?token=${token}`;
 
   const createSocket = () => {
     const socket = new WebSocket(socketUrl);
