@@ -34,13 +34,10 @@ function LoginPage() {
  
     <MDBContainer className='my-5'>
     <MDBCard>
-
       <MDBRow className='g-0 d-flex align-items-center'>
-
         <MDBCol md='4'>
           <MDBCardImage src={side} alt='phone' className='rounded-t-5 rounded-tr-lg-0' fluid />
         </MDBCol>
-        
                     <MDBCol md='6'>
                     <div style={{ marginLeft: '100px' }} >
                     <h2 className="fw-bold mb-5">SignIn</h2>
@@ -74,7 +71,6 @@ function LoginPage() {
                     </MDBCardBody>
                     </div>
                     </MDBCol>
- 
 
       </MDBRow>
 

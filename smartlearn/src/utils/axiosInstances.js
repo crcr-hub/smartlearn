@@ -45,7 +45,7 @@ const refreshToken = async () => {
       throw new Error('No refresh token available');
     }
 
-    const response = await axios.post('https://mysmartlearn.com/api/token/refresh/', {
+    const response = await axios.post('https://mysmartlearn.live/api/token/refresh/', {
       refresh: refresh,
     });
 

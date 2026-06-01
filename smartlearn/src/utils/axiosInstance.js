@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://mysmartlearn.com/api',
+  baseURL: 'https://mysmartlearn.live/api',
 });
 
 axiosInstance.interceptors.request.use((config) => {

@@ -314,27 +314,14 @@ function StudentCart() {
             
                                   </>
                                   :(<span style={{ fontWeight: "bold", color: "red" }}>Item Not Available</span>)}
-                                 
-            
-            
-                                      
+                                     
                                   </div>
                                   </div>
-            
-            
-            
-            
-                                
-                                    
-                                  
-                                );
-                  })}
+                                );})}
               
               </div>
             )}
-            
-            
-               
+             
                 </div>
           </div>
         )}

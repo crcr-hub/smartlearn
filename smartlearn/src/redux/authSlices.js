@@ -14,16 +14,11 @@ import { act } from 'react';
 export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, password, navigate }, { rejectWithValue ,dispatch}) => {
   try {
 
-
-
     localStorage.clear();
     sessionStorage.clear();
     const response = await axiosInstance.post('/token/', { email, password });
     const { access, refresh } = response.data;
     
-
-
-
     // Store tokens
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", refresh);
@@ -37,7 +32,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
     const user = userResponse.data; // Full user details
 
     localStorage.setItem("user", JSON.stringify(user));
-    
+
     dispatch(loginSuccess({ user, access, refresh }));
     window.localStorage.setItem('userLoggedIn', 'true');
 
