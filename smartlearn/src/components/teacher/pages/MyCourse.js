@@ -117,7 +117,7 @@ function MyCourse() {
                       <td>
                         {courses.images ? (
                           <img
-                            src={`https://mysmartlearn.com/${courses.images}`} // Path to the image
+                            src={`https://mysmartlearn.live/${courses.images}`} // Path to the image
                             alt={`Course ${courses.name}`} // Alt text for the image
                             style={{ width: "50px", height: "50px" }} // Styling for the image
                           />

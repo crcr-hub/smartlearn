@@ -75,7 +75,7 @@ function IndexCourses() {
                                   categoryCourses.map(course => (
                                     <div className="col me-1" key={course.id}>
                                       <div className="card h-100">
-                                      <Link to={`/coursedetails/${course.id}`} style={{ color: 'black', textDecoration: 'none' }}>  <img src={`https://mysmartlearn.com/${course.images}` || side} className="card-img-top" alt={course.title} />
+                                      <Link to={`/coursedetails/${course.id}`} style={{ color: 'black', textDecoration: 'none' }}>  <img src={`https://mysmartlearn.live/${course.images}` || side} className="card-img-top" alt={course.title} />
                                         <div className="card-body" style={{height:"100px"}}>
                                           <h5 className="card-title" style={{fontWeight:"bold"}}>{course.name}</h5>
                                           <p className="card-text" style={{fontSize:"12px"}}>

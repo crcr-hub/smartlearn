@@ -217,7 +217,7 @@ useEffect(() => {
 
         <div className="col-mb-6">
         {courseData.image ? (
-                    <img src={`https://mysmartlearn.com/${courseData.image}`} // Path to the image
+                    <img src={`https://mysmartlearn.live/${courseData.image}`} // Path to the image
                     alt={`Course ${courseData.name}`} // Alt text for the image
                     style={{ width: '50px', height: '50px' }} // Styling for the image
                         />
