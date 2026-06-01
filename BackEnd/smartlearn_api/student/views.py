@@ -13,7 +13,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
 from teacher.models import TeacherProfile
-from .models import Cart,Wishlist,Order_items,Order,EnrolledCourses,Progress,Comments,Message,Progress
+from .models import Cart, PendingPayment,Wishlist,Order_items,Order,EnrolledCourses,Progress,Comments,Message,Progress
 from django.shortcuts import get_object_or_404
 from django.db import transaction
 from collections import defaultdict
@@ -325,8 +325,9 @@ def create_razorpay_order(request):
         return Response({'error': 'Your cart is empty!'}, status=400)
 
     total_price = sum(item.course.offer_price for item in cart_items)
-    amount = int(total_price * 100)  # Convert to paisa
-
+    amount1 = int(total_price) 
+    amount = int(total_price * 100) # Convert to paisa
+    
     client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
     
     data = {
@@ -337,6 +338,8 @@ def create_razorpay_order(request):
 
     try:
         order = client.order.create(data=data)
+        print(order)
+        PendingPayment.objects.create(user = user, razorpay_order_id = order['id'],amount = amount1)
         return Response(order)
     except Exception as e:
         return Response({'error': str(e)}, status=500)
@@ -364,19 +367,29 @@ def place_order(request):
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
         # Only verify if payment method is razorpay
-        if request.data['payment'] == 'razorpay':
-            params_dict = {
+        payment_method = request.data.get('payment', '').lower()
+        if  payment_method != 'razorpay':
+            return Response({'error': 'Only Razorpay allowed'}, status=400)
+           
+        params_dict = {
                 'razorpay_order_id': request.data['order_id'],
                 'razorpay_payment_id': request.data['payment_id'],
                 'razorpay_signature': request.data['signature'],
             }
-
-            try:
-                client.utility.verify_payment_signature(params_dict)
-            except razorpay.errors.SignatureVerificationError:
-                return Response({'error': 'Payment verification failed!'}, status=400)
+        try:
+            pending = PendingPayment.objects.get(user = user, razorpay_order_id = request.data['order_id'],
+                                                is_used = False )
+        except PendingPayment.DoesNotExist:
+            return Response({'error' : 'Invalid Razorpay Order'}, status=400)
+        try:
+            client.utility.verify_payment_signature(params_dict)
+        except razorpay.errors.SignatureVerificationError:
+            return Response({'error': 'Payment verification failed!'}, status=400)
 
         total_price = sum(item.course.offer_price for item in cart_items)
+        print("amounts",total_price,pending.amount)
+        if pending.amount != total_price:
+            return Response({'error': ' Amount Mismatch'},status=400)
         with transaction.atomic():
             order = Order.objects.create(
                 user=user,
@@ -407,9 +420,11 @@ def place_order(request):
                     enrolled_courses_dict[cart_item.course] = enrolled_course
 
             for course, enrolled_course in enrolled_courses_dict.items():
-                enrolled_course.order.set(order_items_list)  # Correct way to assign ManyToManyField
+                enrolled_course.order.set(order_items_list)  #  assign ManyToManyField
 
             cart_items.delete()
+            pending.is_used = True
+            pending.save()
         response_serializer = OrderSerializer(order)
         return Response(response_serializer.data, status=201)
 

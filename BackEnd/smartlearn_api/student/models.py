@@ -26,6 +26,13 @@ class Wishlist(models.Model):
     course = models.ForeignKey(Courses,on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 
+class PendingPayment(models.Model):
+    user = models.ForeignKey('api.user',on_delete=models.CASCADE)
+    razorpay_order_id = models.CharField(max_length=100,unique=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    is_used = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 class Order(models.Model):
     user = models.ForeignKey('api.user',on_delete= models.CASCADE)
     user_housename = models.CharField(max_length=500, null=True, blank=True)

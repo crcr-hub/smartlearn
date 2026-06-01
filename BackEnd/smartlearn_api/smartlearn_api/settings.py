@@ -30,8 +30,8 @@ SECRET_KEY = config('SECRET_KEY')
 # DEBUG = True
 
 ALLOWED_HOSTS = [
-    "mysmartlearn.com",
-    "www.mysmartlearn.com",
+    "mysmartlearn.live",
+    "www.mysmartlearn.live",
     "16.171.36.200",
     "smartlearn-self.vercel.app",
     "127.0.0.1",
@@ -137,8 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://mysmartlearn.com",  
-     "https://www.mysmartlearn.com", 
+    "https://mysmartlearn.live",  
+     "https://www.mysmartlearn.live", 
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
