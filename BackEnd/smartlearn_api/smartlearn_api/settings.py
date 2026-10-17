@@ -32,7 +32,7 @@ SECRET_KEY = config('SECRET_KEY')
 ALLOWED_HOSTS = [
     "mysmartlearn.live",
     "www.mysmartlearn.live",
-    "13.60.171.250",
+    "13.60.46.120",
     "smartlearn-self.vercel.app",
     "127.0.0.1",
     "localhost",
