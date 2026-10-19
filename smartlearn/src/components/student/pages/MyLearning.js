@@ -37,10 +37,12 @@ function MyLearning() {
     <div style={{ width: "87%", marginLeft: "95px" }}>
   <div className="tab-content" id="nav-tabContent" >
 
-            <h2 style={{fontWeight:"bold"}}>My Learning</h2>
+            <h2 style={{fontWeight:"bold"}}>My Learnings</h2>
            
             {learnings && learnings.courses.length > 0 ? (
-                    learnings.courses.map((items, index) => {
+              [...learnings.courses]
+    .sort((a, b) => b.id - a.id)
+                    .map((items, index) => {
                      
                       return (
                         <div
@@ -99,8 +101,8 @@ function MyLearning() {
                                 by :{items?.by ? items.by : ""}
                               </h6>
                               <p style={{ fontWeight: "20px", color: "white" }}>
-      <StarRating rating={items.rating} /> Rating
-      </p>
+                              <StarRating rating={items.rating} /> Rating
+                              </p>
                             </Link>
                           </div>
                         </div>

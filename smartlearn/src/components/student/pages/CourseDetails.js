@@ -38,21 +38,23 @@ function CourseDetails() {
     };
     
 
-     useEffect(() => {
-       dispatch(fetchCourse(id));
-       dispatch(fetchModules(id));
-       if (course && course.course && course.course.id) {
-        const courseId = course.course.id;
-        
-        dispatch(averageRating(courseId));
-         dispatch(getAllFeedback(courseId));
-     }
-     }, [dispatch]);
-    
 
 
-  
-    
+    // 1. Fetch main course and modules when component mounts or ID changes
+  useEffect(() => {
+    dispatch(fetchCourse(id));
+    dispatch(fetchModules(id));
+  }, [dispatch, id]);
+
+  // 2. Fetch ratings & feedback *after* the course object is successfully loaded into Redux
+  useEffect(() => {
+    const courseId = course?.course?.id;
+    if (courseId) {
+      dispatch(averageRating(courseId));
+      dispatch(getAllFeedback(courseId));
+    }
+  }, [dispatch, course]);
+      
   return (
 
 

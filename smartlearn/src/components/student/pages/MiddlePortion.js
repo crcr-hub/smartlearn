@@ -94,7 +94,7 @@ function MiddlePortion({ courseData, modules, onSelectVideo }) {
                                 <h4>{courseData?.name}</h4>
                                 <p style={{ fontWeight: "20px"}}>Rating</p>
                         <p style={{ fontWeight: "20px"}}>
-                          Created by {teacherprofile ? teacherprofile.first_name + " " + teacherprofile.last_name : ""}
+                          Created by {teacherprofile ? teacherprofile.teacher.first_name + " " + teacherprofile.teacher.last_name : ""}
                         </p>
                         <h5>Description</h5>
                         <p>

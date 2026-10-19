@@ -456,7 +456,7 @@ export const fetchTeacherProfile = createAsyncThunk('auth/fetchTeacherProfile',
     const response = await axiosInstance.get(`/teacher_profile/${id}/`);
     return response.data;
   } catch (error) {
-    return rejectWithValue(error.response?.data || 'Failed to fetch student');
+    return rejectWithValue(error.response?.data || 'Failed to fetch Teacher Details');
   }
 });
 // Fetch a single student
@@ -1718,6 +1718,12 @@ const authSlice = createSlice({
         state.teacherprofile = action.payload
         state.loading = false;
       })
+
+      .addCase(fetchTeacherProfile.rejected,(state,action)=>{
+        state.error = action.payload; // Store the error message
+        state.loading = false;
+      })
+      
       .addCase(viewAllTeachers.fulfilled, (state, action) => {
         state.teachers = action.payload; // Set users data
         state.loading = false; // Loading complete
