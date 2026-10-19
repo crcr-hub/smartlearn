@@ -446,7 +446,7 @@ class FetchLearnings(APIView):
     permission_classes = [IsAuthenticated]
     def get(self,request):
         user = request.user
-        learning_courses =  EnrolledCourses.objects.filter(user=user).select_related('course')
+        learning_courses =  EnrolledCourses.objects.filter(user=user).order_by('-id').select_related('course')
         courses = []
         for items in learning_courses:
             star_ratings = RatingStar.objects.filter(course = items.course)
@@ -462,7 +462,6 @@ class FetchLearnings(APIView):
                 "rating":average_rating,
                 "image":items.course.images.url if items.course.images else None,
             })
-        
         return Response({"courses":courses},status=status.HTTP_200_OK)
 
 
@@ -781,6 +780,9 @@ def handleFeedback(request,cid):
         user = request.user
         if not star or not feedback:
             return Response({"error": "Star rating and feedback are required"}, status=400)
+        if RatingStar.objects.filter(user=user, course_id=course_id).exists():
+            return Response({"error": "You have already submitted a review for this course. "
+            "You can edit your existing review instead."}, status=400)
 
         # Create and save a new rating entry
         feedback_entry = RatingStar.objects.create(

@@ -34,8 +34,8 @@ class TeacherProfileDetail(APIView):
     permission_classes = [AllowAny]
     def get(self, request, tid):
         try:
-            user = request.user
-            teacher = TeacherProfile.objects.get(user=user)
+            teacher = TeacherProfile.objects.get(id=tid)
+            print(teacher)
             serializer = TeacherProfileSerializer(teacher)
             user_serializer = UserSerializer(teacher.user)
             return Response({
